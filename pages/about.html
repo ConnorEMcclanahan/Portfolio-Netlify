@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About | Connor McClanahan - Designer & Developer</title>
+
+  <!-- Favicon & Global CSS -->
+  <link rel="icon" type="image/png" href="../Images/logo.png" />
+  <link rel="stylesheet" href="../styles/style.css" />
+  <link rel="stylesheet" href="../styles/frontend.css" />
+  <link rel="stylesheet" href="../components/navbar/navbar.css"/>
+  <link rel="stylesheet" href="../components/footer/footer.css"/>
+  <style>
+    /* Override navbar to be transparent on project pages */
+    .navbar {
+      background: rgba(0, 0, 0, 0.5) !important;
+    }
+  </style>
+
+  <!-- External Resources -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+
+  <!-- Site JS -->
+  <script src="../js/java.js" defer></script>
+
+  <style>
+    body {
+      background: #000;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Profile Section */
+    .profile-section {
+      display: flex;
+      gap: 4rem;
+      align-items: flex-start;
+      max-width: 1200px;
+      margin: 4rem auto;
+      padding: 0 2rem;
+    }
+
+    .profile-image {
+      flex: 0 0 300px;
+    }
+
+    .profile-image img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    }
+
+    .profile-text {
+      flex: 1;
+    }
+
+    .profile-text h2 {
+      font-size: 2rem;
+      color: #6E07F3;
+      margin-bottom: 1.5rem;
+    }
+
+    .profile-text p {
+      font-size: 1.125rem;
+      line-height: 1.8;
+      color: #fff;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Social Icons */
+    .social-links {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(45deg, #7f5af0, #6b3ff0);
+      border-radius: 50%;
+      color: #fff;
+      text-decoration: none;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .social-links a:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(110, 7, 243, 0.4);
+    }
+
+    .social-links ion-icon {
+      font-size: 1.5rem;
+    }
+
+
+
+    @media (max-width: 768px) {
+      .profile-section {
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .profile-image {
+        flex: 0 0 250px;
+        margin: 0 auto;
+      }
+
+      .profile-text h2 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar-container">
+      <a href="index.html" class="navbar-logo">
+        <img src="../Images/logo.png" alt="logo" class="navbar-logo-img"/>
+      </a>
+      <button class="navbar-burger" aria-label="Toggle navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="navbar-menu">
+        <li><a href="About.html">About</a></li>
+        <li><a href="index.html#projects">Projects</a></li>
+        <li><a href="../PDFS/Resume.pdf">Resume</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Profile Section -->
+  <section class="profile-section">
+    <div class="profile-image">
+      <img src="Images/me.jpeg" alt="Connor McClanahan" />
+    </div>
+    <div class="profile-text">
+      <h2>Connor McClanahan</h2>
+      <p>
+        Hello! I'm an American recent graduate with a BS in ICT Media Design and a minor in AI for Society from Fontys University. My passion lies in designing and developing intuitive user experiences, particularly within mobile applications and web platforms, with a thoughtful consideration of AI's societal impact.
+      </p>
+      <p>
+        With a strong foundation in UI/UX design, full-stack development, and human-centered AI, I specialize in creating seamless digital experiences that users genuinely enjoy. During my studies, I completed intensive work in Smart Mobile App Development, where I honed skills in both design and programming—leading to successful app launches on the App Store. My AI for Society minor has given me a unique perspective on ethical design and responsible technology.
+      </p>
+      <p>
+        Professionally, I've gained valuable experience working with both Diplora and Motivate.nl. At Diplora, I designed an accessible ECG app for elderly patients, conducting comprehensive user research and iterating through patient feedback. I built a functional Flutter MVP with Bluetooth sensor integration and established a design system and brand identity following accessibility standards. At Motivate.nl, a logistics technology company, I developed standardized builders for mobile and tablet interfaces, owned full-stack work including design, prototyping, and Vue.js frontend development. These roles have deepened my understanding of practical UX design, usability principles, and collaborative development processes. I'm eager to bring these skills and perspectives to new challenges in the industry.
+      </p>
+      <p>
+        Beyond work and design, I'm passionate about gaming, cooking, and exploring diverse cultures. Living internationally has fostered my independence and continuously informs my design philosophy—creating solutions that blend thoughtful design with technical excellence and ethical consideration.
+      </p>
+
+      <!-- Social Links -->
+      <div class="social-links">
+        <a href="https://github.com/ConnorEMcclanahan?tab=repositories" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <ion-icon name="logo-github"></ion-icon>
+        </a>
+        <a href="mailto:connor.e.mcclanahan@gmail.com" aria-label="Email">
+          <ion-icon name="mail-outline"></ion-icon>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer-section">
+    <div class="footer-content">
+      <p class="footer-thanks">Thank you for exploring</p>
+      <ul id="navigation">
+        <li><a href="index.html" class="footer-btn"><ion-icon name="home"></ion-icon> Home</a></li>
+        <li><a href="#top" class="footer-btn return-top"><ion-icon name="arrow-up"></ion-icon> Return to Top</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="../js/script.js"></script>
+  <script src="../components/navbar/navbar.js" defer></script>
+</body>
+</html>

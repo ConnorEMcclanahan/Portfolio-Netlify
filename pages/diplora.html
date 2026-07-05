@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Diplora | Internship Project Portfolio</title>
+
+  <!-- Favicon & Global CSS -->
+  <link rel="icon" type="image/png" href="../images/logo.png" />
+  <link rel="stylesheet" href="../styles/style.css" />
+  <link rel="stylesheet" href="../styles/frontend.css" />
+  <link rel="stylesheet" href="../components/navbar/navbar.css"/>
+  <link rel="stylesheet" href="../components/footer/footer.css"/>
+  <link rel="stylesheet" href="../components/project-page/project-components.css"/>
+  <link rel="stylesheet" href="../styles/mobile-responsive.css"/>
+  <link rel="stylesheet" href="../styles/pages/diplora.css"/>
+<!-- External Resources -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+
+  <!-- PDF.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js"></script>
+
+  <!-- Site JS -->
+  <script src="../js/java.js" defer></script>
+</head>
+
+<body class="project-page-standard">
+  <!-- Loader -->
+  <div id="loader">
+    <div class="loading-text">Loading...</div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="parallax-1" id="top" style="background: url('../images/diplora/hospital.jpg') center/cover no-repeat fixed;">
+    <a href="#intro-summary" class="scroll-down" aria-label="Scroll down">
+      <ion-icon name="chevron-down-outline"></ion-icon>
+    </a>
+
+    <nav class="navbar">
+      <div class="navbar-container">
+        <a href="index.html" class="navbar-logo">
+          <img src="../images/logo.png" alt="logo" class="navbar-logo-img"/>
+        </a>
+        <button class="navbar-burger" aria-label="Toggle navigation menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <ul class="navbar-menu">
+          <li><a href="About.html">About</a></li>
+          <li><a href="index.html#projects">Projects</a></li>
+          <li><a href="../PDFS/Resume.pdf">Resume</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  <section id="intro-summary" class="reveal"></section>
+
+  <div class="IntroPic reveal" style="margin-top:3rem; text-align:center;">
+    <img
+      src="../images/diplora/mainrounded.png"
+      alt="Diplora key screens"
+      class="diplora-intro-image"
+    />
+  </div>
+
+  <section class="Overview reveal" style="display: flex; justify-content: center; padding: 0 2rem; max-width: 1200px; margin: 10vh auto; flex-direction: column; align-items: center;">
+    <h1>Overview</h1>
+    <p style="color: white;">
+      Diplora is an accessibility-first mobile concept for elderly Holter monitor users. The core design goal was to reduce anxiety and confusion by emphasizing device status clarity over complex medical detail.
+    </p>
+    <p style="color: white;">
+      Through interviews, surveys, and iterative testing, the product direction focused on readability, clear onboarding, reliable Bluetooth feedback, and simplified symptom logging.
+    </p>
+    <p style="color: white;">
+      The outcome is a validated UX direction and working MVP foundation that can scale toward production while maintaining clinical boundaries and inclusive usability.
+    </p>
+  </section>
+
+  <!-- Research and Analysis section -->
+  <section id="research" class="project-section reveal">
+    <div class="text-column">
+      <h3>Research & Key Findings</h3>
+      <p style="color: white; margin-top: 1rem;">
+        Research revealed critical barriers preventing elderly users from engaging with health monitoring apps. The findings directly informed all design decisions.
+      </p>
+    </div>
+
+    <!-- Research Stats -->
+    <div class="interview-stats" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; width: 100%; margin-top: 2rem;">
+      <div class="stat-card" style="background: rgba(30, 30, 30, 0.85); border-radius: 10px; padding: 20px; text-align: center; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); border-left: 3px solid #6E07F3;">
+        <div class="stat-value" style="font-size: 2.5rem; font-weight: 600; color: #fff; margin-bottom: 5px;">54%</div>
+        <div class="stat-label" style="font-size: 0.9rem; color: #ccc;">Found health apps too complicated</div>
+      </div>
+      <div class="stat-card" style="background: rgba(30, 30, 30, 0.85); border-radius: 10px; padding: 20px; text-align: center; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); border-left: 3px solid #6E07F3;">
+        <div class="stat-value" style="font-size: 2.5rem; font-weight: 600; color: #fff; margin-bottom: 5px;">70%</div>
+        <div class="stat-label" style="font-size: 0.9rem; color: #ccc;">Wanted "Device Working" confirmation</div>
+      </div>
+      <div class="stat-card" style="background: rgba(30, 30, 30, 0.85); border-radius: 10px; padding: 20px; text-align: center; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); border-left: 3px solid #6E07F3;">
+        <div class="stat-value" style="font-size: 2.5rem; font-weight: 600; color: #fff; margin-bottom: 5px;">14%</div>
+        <div class="stat-label" style="font-size: 0.9rem; color: #ccc;">Cited small text as barrier (46+)</div>
+      </div>
+      <div class="stat-card highlighted" style="background: linear-gradient(135deg, rgba(110, 7, 243, 0.8), rgba(110, 7, 243, 0.4)); border-radius: 10px; padding: 20px; text-align: center; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
+        <div class="stat-value" style="font-size: 2.5rem; font-weight: 600; color: #fff; margin-bottom: 5px;">66%</div>
+        <div class="stat-label" style="font-size: 0.9rem; color: #ccc;">Preferred video tutorials</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Design System section -->
+  <section id="design-system" class="project-section reveal">
+    <div class="text-column">
+      <h3>Brand & Design System Development</h3>
+      <p style="color: white; margin-top: 1rem;">
+        Built Diplora's visual identity and established accessibility-first design standards as the foundation for all interface decisions.
+      </p>
+    </div>
+
+    <!-- Accessibility Standards Cards -->
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2rem;">
+      <div style="background: rgba(30, 30, 30, 0.85); border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
+        <div style="color: #6E07F3; font-size: 2rem; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center;">
+          <span style="font-size: 2.5rem;">Aa</span>
+        </div>
+        <h4 style="color: #6E07F3; margin-bottom: 1rem; font-size: 1.1rem; text-align: center;">Typography</h4>
+        <ul style="list-style: none; padding: 0; margin: 0;">
+          <li style="color: #fff; margin-bottom: 0.5rem; text-align: center;">Min 18pt font size</li>
+          <li style="color: #fff; margin-bottom: 0.5rem; text-align: center;">Clear hierarchy</li>
+          <li style="color: #fff; text-align: center;">High legibility</li>
+        </ul>
+      </div>
+
+      <div style="background: rgba(30, 30, 30, 0.85); border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
+        <div style="color: #6E07F3; font-size: 2rem; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center;">
+          <span style="font-size: 2.5rem;">◐</span>
+        </div>
+        <h4 style="color: #6E07F3; margin-bottom: 1rem; font-size: 1.1rem; text-align: center;">Contrast</h4>
+        <ul style="list-style: none; padding: 0; margin: 0;">
+          <li style="color: #fff; margin-bottom: 0.5rem; text-align: center;">4.5:1 ratio</li>
+          <li style="color: #fff; margin-bottom: 0.5rem; text-align: center;">WCAG 2.1 AA</li>
+          <li style="color: #fff; text-align: center;">All text covered</li>
+        </ul>
+      </div>
+
+      <div style="background: rgba(30, 30, 30, 0.85); border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
+        <div style="color: #6E07F3; font-size: 2rem; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center;">
+          <span style="font-size: 2.5rem;">◻</span>
+        </div>
+        <h4 style="color: #6E07F3; margin-bottom: 1rem; font-size: 1.1rem; text-align: center;">Touch Targets</h4>
+        <ul style="list-style: none; padding: 0; margin: 0;">
+          <li style="color: #fff; margin-bottom: 0.5rem; text-align: center;">44x44px minimum</li>
+          <li style="color: #fff; margin-bottom: 0.5rem; text-align: center;">Motor control support</li>
+          <li style="color: #fff; text-align: center;">Consistent spacing</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Requirements section -->
+  <section id="requirements" class="project-section reveal">
+    <div class="text-column">
+      <h3>User Requirements & Features</h3>
+      <p style="color: white; margin-top: 1rem;">
+        Using the MOSCOW method, I prioritized features based on accessibility and clinical validation requirements. Must-have features address the core needs identified in research.
+      </p>
+    </div>
+
+    <!-- Features Grid -->
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2rem;">
+      <div style="background: rgba(30, 30, 30, 0.85); border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); transition: transform 0.3s ease;">
+        <div style="color: #6E07F3; font-size: 2rem; margin-bottom: 1rem;">🔐</div>
+        <h4 style="color: #6E07F3; margin-bottom: 1rem; font-size: 1.1rem;">Accessibility Compliance</h4>
+        <ul style="list-style: none; padding: 0; margin: 0;">
+          <li style="color: #fff; margin-bottom: 0.5rem;">WCAG 2.1 AA</li>
+          <li style="color: #fff; margin-bottom: 0.5rem;">Large text & buttons</li>
+          <li style="color: #fff;">High contrast</li>
+        </ul>
+      </div>
+
+      <div style="background: rgba(30, 30, 30, 0.85); border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); transition: transform 0.3s ease;">
+        <div style="color: #6E07F3; font-size: 2rem; margin-bottom: 1rem;">📱</div>
+        <h4 style="color: #6E07F3; margin-bottom: 1rem; font-size: 1.1rem;">Simple Onboarding</h4>
+        <ul style="list-style: none; padding: 0; margin: 0;">
+          <li style="color: #fff; margin-bottom: 0.5rem;">4 essential screens</li>
+          <li style="color: #fff; margin-bottom: 0.5rem;">Visual guidance</li>
+          <li style="color: #fff;">Setup in minutes</li>
+        </ul>
+      </div>
+
+      <div style="background: rgba(30, 30, 30, 0.85); border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); transition: transform 0.3s ease;">
+        <div style="color: #6E07F3; font-size: 2rem; margin-bottom: 1rem;">✓</div>
+        <h4 style="color: #6E07F3; margin-bottom: 1rem; font-size: 1.1rem;">Device Status</h4>
+        <ul style="list-style: none; padding: 0; margin: 0;">
+          <li style="color: #fff; margin-bottom: 0.5rem;">Working confirmation</li>
+          <li style="color: #fff; margin-bottom: 0.5rem;">Battery indicator</li>
+          <li style="color: #fff;">Connection status</li>
+        </ul>
+      </div>
+
+      <div style="background: rgba(30, 30, 30, 0.85); border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); transition: transform 0.3s ease;">
+        <div style="color: #6E07F3; font-size: 2rem; margin-bottom: 1rem;">🔗</div>
+        <h4 style="color: #6E07F3; margin-bottom: 1rem; font-size: 1.1rem;">Bluetooth Pairing</h4>
+        <ul style="list-style: none; padding: 0; margin: 0;">
+          <li style="color: #fff; margin-bottom: 0.5rem;">Real BLE connection</li>
+          <li style="color: #fff; margin-bottom: 0.5rem;">Visual guidance</li>
+          <li style="color: #fff;">Error handling</li>
+        </ul>
+      </div>
+
+      <div style="background: rgba(30, 30, 30, 0.85); border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); transition: transform 0.3s ease;">
+        <div style="color: #6E07F3; font-size: 2rem; margin-bottom: 1rem;">📞</div>
+        <h4 style="color: #6E07F3; margin-bottom: 1rem; font-size: 1.1rem;">Emergency Contact</h4>
+        <ul style="list-style: none; padding: 0; margin: 0;">
+          <li style="color: #fff; margin-bottom: 0.5rem;">Easy setup</li>
+          <li style="color: #fff; margin-bottom: 0.5rem;">Quick access</li>
+          <li style="color: #fff;">Peace of mind</li>
+        </ul>
+      </div>
+
+      <div style="background: rgba(30, 30, 30, 0.85); border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); transition: transform 0.3s ease;">
+        <div style="color: #6E07F3; font-size: 2rem; margin-bottom: 1rem;">📝</div>
+        <h4 style="color: #6E07F3; margin-bottom: 1rem; font-size: 1.1rem;">Symptom Logging</h4>
+        <ul style="list-style: none; padding: 0; margin: 0;">
+          <li style="color: #fff; margin-bottom: 0.5rem;">Simple categories</li>
+          <li style="color: #fff; margin-bottom: 0.5rem;">Local storage</li>
+          <li style="color: #fff;">Quick entry</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Research Methods & Deliverables section -->
+  <section id="research-methods" class="project-section reveal">
+    <div class="text-column">
+      <h3>Research Methods & Deliverables</h3>
+      <p style="color: white; margin-top: 1rem;">
+        Conducted comprehensive mixed-methods research to understand both clinical requirements and elderly user needs. The research phase produced detailed documentation that informed all subsequent design and development decisions.
+      </p>
+    </div>
+
+    <!-- Research Methods Grid -->
+    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 2rem;">
+      <div style="background: rgba(30, 30, 30, 0.85); border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
+        <h4 style="color: #6E07F3; margin-bottom: 1rem; font-size: 1.1rem;">📚 Literature Review</h4>
+        <p style="color: white; margin: 0; line-height: 1.6;">Comprehensive review of WCAG 2.1 AA standards, elderly UX research, and medical device regulations to establish accessibility requirements and compliance frameworks.</p>
+      </div>
+
+      <div style="background: rgba(30, 30, 30, 0.85); border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
+        <h4 style="color: #6E07F3; margin-bottom: 1rem; font-size: 1.1rem;">Competitor Analysis</h4>
+        <p style="color: white; margin: 0; line-height: 1.6;">Evaluated 6 device-connected health apps (AliveCor, myPhonak, Garmin, Omron, Apple Health, FreeStyle) to identify accessibility gaps and opportunities.</p>
+      </div>
+
+      <div style="background: rgba(30, 30, 30, 0.85); border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
+        <h4 style="color: #6E07F3; margin-bottom: 1rem; font-size: 1.1rem;">👨‍⚕️ Stakeholder Interviews</h4>
+        <p style="color: white; margin: 0; line-height: 1.6;">Interviewed cardiologists and GPs to gather clinical requirements, understand device limitations, and validate that the app shows device status only (never diagnostic information).</p>
+      </div>
+
+      <div style="background: rgba(30, 30, 30, 0.85); border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
+        <h4 style="color: #6E07F3; margin-bottom: 1rem; font-size: 1.1rem;">🗣️ Patient Interviews</h4>
+        <p style="color: white; margin: 0; line-height: 1.6;">Conducted in-depth interviews with elderly Holter monitor users (70+) to understand real-world pain points, anxieties, and what actually builds confidence with monitoring devices.</p>
+      </div>
+
+      <div style="background: rgba(30, 30, 30, 0.85); border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
+        <h4 style="color: #6E07F3; margin-bottom: 1rem; font-size: 1.1rem;">📊 Survey Analysis</h4>
+        <p style="color: white; margin: 0; line-height: 1.6;">Quantitative survey with 50 respondents aged 18-75+ on health app usability, revealing that 54% find apps too complicated and 70% want "Device Working" confirmation.</p>
+      </div>
+
+      <div style="background: rgba(30, 30, 30, 0.85); border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
+        <h4 style="color: #6E07F3; margin-bottom: 1rem; font-size: 1.1rem;">🎯 Internal Feedback</h4>
+        <p style="color: white; margin: 0; line-height: 1.6;">Reviewed existing Figma designs with Diplora stakeholders to validate design direction and gather feedback from the company team before prototyping.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Competitor Analysis section -->
+  <section id="competitor-analysis" class="project-section reveal">
+    <div id="competitor-analysis-matrix"></div>
+  </section>
+
+  <!-- Personas Section -->
+  <section id="personas" class="project-section reveal">
+    <div class="text-column">
+      <h3>User Personas</h3>
+      <p style="color: white; margin-top: 1rem;">
+        Two primary user personas informed the design, representing the distinct needs of elderly patients and their healthcare providers.
+      </p>
+    </div>
+
+    <div style="display: flex; gap: 2rem; margin-top: 3rem; flex-wrap: wrap;">
+      <div style="flex: 1; min-width: 300px; background: rgba(30, 30, 30, 0.85); border-radius: 12px; padding: 2rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
+        <div style="margin-bottom: 1.5rem; text-align: center;">
+          <img src="../images/diplora/persona1.png" alt="Persona 1" style="width: 100%; height: auto; border-radius: 8px;" />
+        </div>
+        <h4 style="color: #6E07F3; margin-bottom: 0.5rem; font-size: 1.1rem;">Persona 1: Primary User</h4>
+        <p style="color: white; font-size: 0.95rem; margin-bottom: 0.5rem;">Represents elderly patients aged 65+ who prioritize device reassurance and simple operation over comprehensive medical data.</p>
+      </div>
+
+      <div style="flex: 1; min-width: 300px; background: rgba(30, 30, 30, 0.85); border-radius: 12px; padding: 2rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
+        <div style="margin-bottom: 1.5rem; text-align: center;">
+          <img src="../images/diplora/persona2.png" alt="Persona 2" style="width: 100%; height: auto; border-radius: 8px;" />
+        </div>
+        <h4 style="color: #6E07F3; margin-bottom: 0.5rem; font-size: 1.1rem;">Persona 2: Secondary User</h4>
+        <p style="color: white; font-size: 0.95rem; margin-bottom: 0.5rem;">Healthcare professionals and caregivers who need diagnostic data access while ensuring elderly users have simplified, reassuring experiences.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="prototyping" class="project-section reveal">
+    <div class="text-column">
+      <h3>Prototyping & User Testing</h3>
+      <p style="color: white; margin-top: 1rem;">
+        Conducted iterative user testing with elderly users (ages 56-70+) to validate accessibility-first design patterns. Six major design iterations addressed user feedback and expert recommendations.
+      </p>
+    </div>
+
+    <!-- Testing Results - Side by Side -->
+    <div style="display: flex; gap: 2rem; margin-top: 2rem; flex-wrap: wrap;">
+      <div style="flex: 1; min-width: 300px; background: rgba(30, 30, 30, 0.85); border-radius: 12px; padding: 2rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
+        <h4 style="color: #6E07F3; margin-bottom: 1.5rem; font-size: 1.2rem;">What Worked Well</h4>
+        <ul style="color: white; list-style-type: disc; padding-left: 2rem; margin: 0;">
+          <li style="margin-bottom: 0.8rem;">Large touch targets (44x44px) were easy to hit and navigate</li>
+          <li style="margin-bottom: 0.8rem;">"Device Working" confirmation provided essential reassurance</li>
+          <li style="margin-bottom: 0.8rem;">Simplified dashboard layout with only essential information</li>
+          <li style="margin-bottom: 0.8rem;">Text labels with icons improved clarity significantly</li>
+          <li>Simple three-block layout felt intuitive to elderly users</li>
+        </ul>
+      </div>
+
+      <div style="flex: 1; min-width: 300px; background: rgba(30, 30, 30, 0.85); border-radius: 12px; padding: 2rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
+        <h4 style="color: #6E07F3; margin-bottom: 1.5rem; font-size: 1.2rem;">Key Iterations</h4>
+        <ul style="color: white; list-style-type: disc; padding-left: 2rem; margin: 0;">
+          <li style="margin-bottom: 0.8rem;">Button label clarity: "Add Complaint" → "Log Symptom"</li>
+          <li style="margin-bottom: 0.8rem;">Icon addition: Added text labels to all navigation elements</li>
+          <li style="margin-bottom: 0.8rem;">Help button: Made visible on home screen for easy access</li>
+          <li style="margin-bottom: 0.8rem;">Battery display: De-emphasized to reduce visual clutter</li>
+          <li style="margin-bottom: 0.8rem;">Logbook: Simplified from tabs to unified list view</li>
+          <li>Device connection: Auto-start search matching familiar phone Bluetooth behavior</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Design Iterations section -->
+  <section id="design-iterations" class="project-section reveal">
+    <div class="text-column">
+      <h3>Design Iterations Based on Feedback</h3>
+      <p style="color: white; margin-top: 1rem;">
+        The design underwent six major iterations based on combined feedback from user testing, expert review, and internal stakeholder input. Each iteration was informed by real user behavior and expert guidance.
+      </p>
+    </div>
+
+    <!-- Iteration 1 -->
+    <div class="iteration-card">
+      <div class="iteration-image">
+        <img src="../images/diplora/iterations/iteration1.png" alt="Iteration 1: Button Label Clarity" style="width: 100%; border-radius: 8px;">
+      </div>
+      <div class="iteration-text">
+        <h4>Iteration 1: Button Label Clarity</h4>
+        <p><strong>Issue:</strong> Test users confused by "Add Complaint"—Faye thought it meant complaining about the sensor itself</p>
+        <p><strong>Change:</strong> Renamed to "Log Symptom" throughout the interface; "Detected Activity" → "Activity History"</p>
+        <p><strong>Impact:</strong> Users immediately understood each button's purpose</p>
+      </div>
+    </div>
+
+    <!-- Iteration 2 -->
+    <div class="iteration-card">
+      <div class="iteration-image">
+        <img src="../images/diplora/iterations/iteration2.png" alt="Iteration 2: Icon Replacement" style="width: 100%; border-radius: 8px;">
+      </div>
+      <div class="iteration-text">
+        <h4>Iteration 2: Icon Replacement</h4>
+        <p><strong>Issue:</strong> Placeholder icons didn't clearly indicate function; confusing for elderly users</p>
+        <p><strong>Change:</strong> Replaced unclear icons with standard health app iconography; added text labels to all navigation items</p>
+        <p><strong>Impact:</strong> Functions became immediately recognizable</p>
+      </div>
+    </div>
+
+    <!-- Iteration 3 -->
+    <div class="iteration-card">
+      <div class="iteration-image">
+        <img src="../images/diplora/iterations/iteration3.png" alt="Iteration 3: Help Button Addition" style="width: 100%; border-radius: 8px;">
+      </div>
+      <div class="iteration-text">
+        <h4>Iteration 3: Help Button Addition</h4>
+        <p><strong>Issue:</strong> Mildred couldn't find instructions when needed; Ben requested "easy Help button"</p>
+        <p><strong>Change:</strong> Added visible "Help" button to main navigation, always accessible from home screen</p>
+        <p><strong>Impact:</strong> Users can access instructions at any point without navigating through settings</p>
+      </div>
+    </div>
+
+    <!-- Iteration 4 -->
+    <div class="iteration-card">
+      <div class="iteration-image">
+        <img src="../images/diplora/iterations/iteration4.png" alt="Iteration 4: Battery Display De-emphasis" style="width: 100%; border-radius: 8px;">
+      </div>
+      <div class="iteration-text">
+        <h4>Iteration 4: Battery Display De-emphasis</h4>
+        <p><strong>Issue:</strong> Large battery indicator took significant space; Mildred said "It's too big"</p>
+        <p><strong>Change:</strong> Reduced battery to small status indicator in persistent status bar; only draws attention when charging threshold reached</p>
+        <p><strong>Impact:</strong> Refocused home screen hierarchy on actionable items, reduced visual clutter</p>
+      </div>
+    </div>
+
+    <!-- Iteration 5 -->
+    <div class="iteration-card">
+      <div class="iteration-image">
+        <img src="../images/diplora/iterations/iteration5.png" alt="Iteration 5: Logbook Simplification" style="width: 100%; border-radius: 8px;">
+      </div>
+      <div class="iteration-text">
+        <h4>Iteration 5: Logbook Simplification</h4>
+        <p><strong>Issue:</strong> Separate tabs for "Review Alerts" and "History" with filtering options was overcomplicated</p>
+        <p><strong>Change:</strong> Combined into single unified list; actionable items emphasized, removed unnecessary filtering</p>
+        <p><strong>Impact:</strong> Cleaner, less technical interface that's easier to navigate</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- High-Fidelity Prototypes section -->
+  <section id="high-fidelity-prototypes" class="project-section reveal">
+    <div class="mockup-section">
+      <div class="mockup-text">
+        <h3 style="font-size: 2em; color: #6E07F3; text-align: left;">High-Fidelity Prototypes</h3>
+        <p style="color: white;">
+          Designed high-fidelity prototypes based on feedback from low-fidelity testing. These detailed, interactive prototypes incorporated refined design elements and enhanced functionality, providing an accurate representation of the final product ready for user validation.
+        </p>
+      </div>
+      <div class="mockup-image" style="display: flex; align-items: center; justify-content: center; flex: 1;">
+        <iframe style="border: 1px solid rgba(0, 0, 0, 0.1); border-radius: 12px; width: 100%; max-width: 600px; height: 700px;" src="https://embed.figma.com/proto/eqd6DAeBVrZMSbTEye6kas/Diplora-Mobile-MVP---Connor?page-id=301%3A391&node-id=302-3041&p=f&viewport=1532%2C-314%2C0.6&scaling=scale-down&content-scaling=fixed&starting-point-node-id=302%3A3041&embed-host=share" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+  <section id="implementation" class="project-section reveal">
+    <div class="text-column">
+      <h3>Implementation & Development</h3>
+      <p style="color: white; margin-top: 1rem;">
+        Built a fully functional Flutter MVP with Bluetooth Low Energy connectivity, working symptom logbook, and movement simulation system. All code follows accessibility standards and uses scalable architecture patterns.
+      </p>
+    </div>
+
+    <!-- Tech Stack & Features -->
+    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-top: 2rem;">
+      <div style="background: rgba(30, 30, 30, 0.85); border-radius: 12px; padding: 2rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
+        <h4 style="color: #6E07F3; margin-bottom: 1.5rem; font-size: 1.2rem;">🛠 Tech Stack</h4>
+        <ul style="color: white; list-style: none; padding: 0; margin: 0;">
+          <li style="margin-bottom: 0.8rem;"><strong>Framework:</strong> Flutter (iOS & Android)</li>
+          <li style="margin-bottom: 0.8rem;"><strong>Language:</strong> Dart</li>
+          <li style="margin-bottom: 0.8rem;"><strong>Bluetooth:</strong> FlutterBluePlus BLE</li>
+          <li style="margin-bottom: 0.8rem;"><strong>State:</strong> BLoC pattern</li>
+          <li><strong>Storage:</strong> Local storage (Supabase ready)</li>
+        </ul>
+      </div>
+
+      <div style="background: rgba(30, 30, 30, 0.85); border-radius: 12px; padding: 2rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
+        <h4 style="color: #6E07F3; margin-bottom: 1.5rem; font-size: 1.2rem;">✓ Completed Features</h4>
+        <ul style="color: white; list-style: none; padding: 0; margin: 0;">
+          <li style="margin-bottom: 0.8rem;">Real BLE sensor connection & scanning</li>
+          <li style="margin-bottom: 0.8rem;">3D model for sensor movement visualization</li>
+          <li style="margin-bottom: 0.8rem;">Symptom logbook with local storage</li>
+          <li style="margin-bottom: 0.8rem;">Alert system for detected activity</li>
+          <li>Persistent status bar (battery, connection, recording)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- How Usability Might Be Improved & Lessons Learned section -->
+  <section id="final-container" class="project-section reveal"></section>
+
+    <footer class="footer-section">
+      <div class="footer-content">
+        <p class="footer-thanks">Thank you for exploring</p>
+        <ul id="navigation">
+          <li><a href="../index.html" class="footer-btn"><ion-icon name="home"></ion-icon> Home</a></li>
+          <li><a href="#top" class="footer-btn return-top"><ion-icon name="arrow-up"></ion-icon> Return to Top</a></li>
+        </ul>
+      </div>
+    </footer>
+
+  <script src="../components/project-page/utils.js" defer></script>
+  <script src="../components/project-page/intro-summary.js" defer></script>
+  <script src="../components/project-page/final-columns.js" defer></script>
+  <script src="../components/project-page/comparison-matrix.js" defer></script>
+  <script src="../js/pages/diplora.js" defer></script>
+  <script src="../components/navbar/navbar.js" defer></script>
+</body>
+
+</html>
+

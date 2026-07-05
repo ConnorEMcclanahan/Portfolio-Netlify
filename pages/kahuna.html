@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/png" href="../Images/logo.png"/>
+  <link rel="stylesheet" href="../styles/style.css"/>
+  <link rel="stylesheet" href="../styles/frontend.css"/>
+  <link rel="stylesheet" href="../components/navbar/navbar.css"/>
+  <link rel="stylesheet" href="../components/footer/footer.css"/>
+  <link rel="stylesheet" href="../components/project-page/project-components.css"/>
+  <link rel="stylesheet" href="../styles/mobile-responsive.css"/>
+  <link rel="stylesheet" href="../styles/pages/kahuna.css"/>
+  <!-- PDF.js library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+  <!-- PDF.js worker -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js"></script>
+  <script src="../js/java.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <title>Kahuna Surfing App</title>
+  <style>
+    html,
+    body {
+      min-height: 100% !important;
+      background: #000 !important;
+    }
+
+    body {
+      min-height: 100vh !important;
+      display: flex !important;
+      flex-direction: column !important;
+    }
+
+    footer {
+      margin-top: auto !important;
+    }
+  </style>
+</head>
+<body class="project-page-standard">
+  <div id="loader">
+    <div class="loading-text">Loading...</div>
+  </div>
+
+  <div class="parallax-1" id="top">
+     <!-- scroll cue -->
+<a href="#intro-summary" class="scroll-down" aria-label="Scroll down">
+  <!-- you’re already loading Ionicons, so we can reuse it -->
+  <ion-icon name="chevron-down-outline"></ion-icon>
+</a>
+    <nav class="navbar">
+      <div class="navbar-container">
+        <a href="index.html" class="navbar-logo">
+          <img src="../Images/logo.png" alt="logo" class="navbar-logo-img"/>
+        </a>
+        <button class="navbar-burger" aria-label="Toggle navigation menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <ul class="navbar-menu">
+          <li><a href="About.html">About</a></li>
+          <li><a href="index.html#projects">Projects</a></li>
+          <li><a href="../PDFS/Resume.pdf">Resume</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+    <header>
+    </header>
+  </div>
+
+ 
+ <!-- Intro & Meta -->
+ <section id="intro-summary" class="reveal"></section>
+      <!-- Wrap Overview in a reveal container for the animation -->
+      <section class="Overview reveal overview-section">
+        <h1>Overview</h1>
+        <p>
+          Kahuna is the perfect app for those who want to stay ahead of the weather and maximize their time on the waves.
+          It is user-friendly and intuitive, with a simple and easy-to-use interface that provides all the necessary
+          information at a glance.
+        </p>
+        <p>
+          Kahuna is the perfect companion for your surfing adventures. With its accurate and up-to-date information,
+          you can be confident in your ability to catch the best waves and enjoy the ultimate surfing experience.
+        </p>
+  </section>
+  
+  <!-- Questions & Criteria Section: replaced PDF with snippet -->
+  <section id="questions" class="project-section reveal"></section>
+
+  <div class="reveal kahuna-charts-stack">
+
+    <!-- Popular NL Weather Apps Section -->
+    <div class="kahuna-chart-panel">
+      <div id="nl-apps" class="kahuna-chart-anchor kahuna-nl-apps">
+        <canvas id="nlAppsChart"></canvas>
+
+        <p class="chart-note chart-note--top">Based on a sample of 100 users, here are the most used weather apps:</p>
+
+      </div>
+
+
+      
+    <!-- Feature Ranking Section -->
+      <div id="features-rank" class="kahuna-chart-anchor">       
+      </div>
+      <div class="chart-container">
+        <canvas id="featureRankChart"></canvas>
+        <p class="chart-note">Users rated key features on a scale of 1-100:</p>
+      </div>
+
+  
+    <!-- Sports Dependence Section -->
+      <div id="sports-depend" class="kahuna-chart-anchor">        
+      </div>
+      <div class="chart-container">
+        <canvas id="sportsChart"></canvas>
+        <p class="chart-note">Which sports rely most on weather conditions?</p>
+      </div>
+    
+  </div>
+ 
+  <!-- Survey Section -->
+  <section id="survey" class="project-section reveal">
+    <div class="stats">
+      <div class="stat"><h4>Participants</h4><p class="stat-value">100</p></div>
+      <div class="stat"><h4>Age 18-22</h4><p class="stat-value">90%</p></div>
+      <div class="stat"><h4>Used apps before</h4><p class="stat-value">100%</p></div>
+      <div class="stat"><h4>Satisfaction (avg)</h4><p class="stat-value">4/5</p></div>
+    </div>
+    <div class="text-column">
+      <h3>Survey Insights</h3>
+      <p>We surveyed 50 users (mostly students) to uncover needs for a beginner‑friendly surf weather app.</p>
+      <ul>
+        <li>50% prioritize temperature; 50% prioritize rain & wind.</li>
+        <li>100% want simplistic design; 90% want weekly forecasts.</li>
+        <li>70% seek wind speed data; 10% enjoy animations.</li>
+        <li>60% skateboarders; 50% surfers & basketball players.</li>
+      </ul>
+    </div>
+  </section>
+
+<!-- Interviews Section -->
+<section id="interviews" class="project-section reveal">
+  <div class="pdf-container" data-pdf-url="../pdfs/kahuna/edited/interview.pdf">
+    <div class="pdf-loading">Loading PDF...</div>
+    <canvas class="pdf-canvas"></canvas>
+    <div class="pdf-page-indicator">Page 1/1</div>
+    <div class="pdf-controls">
+      <button class="pdf-prev-btn">Previous</button>
+      <span class="pdf-page-num">1/1</span>
+      <button class="pdf-next-btn">Next</button>
+      <button class="pdf-zoom-out">-</button>
+      <button class="pdf-zoom-in">+</button>
+    </div>
+  </div>
+  <div class="text-column">
+    <h3>Interviews</h3>
+    <p>
+      We sat down with eight participants (ages 18–22) and a professional meteorologist to dig deeper into how users interpret weather data. Students confirmed our survey findings—that temperature and rain intensity are critical—but stressed the need for relatable analogies (e.g., “light drizzle vs. heavy downpour”) and simple towel-reminder prompts based on real-time conditions. They also asked for clear wind-speed visualizations to plan surf sessions. Our expert interview underscored the importance of integrating wave height and wind direction overlays for surfers. These conversations directly influenced our design: we introduced a color-coded rain scale with contextual labels, dynamic towel notifications, and an interactive surf conditions graph to make decision-making effortless.
+    </p>
+  </div>
+</section>
+
+
+<section id="hmw-pov" class="project-section reveal"></section>
+
+<section id="competitor-analysis" class="project-section reveal">
+  <div class="pdf-container" data-pdf-url="../pdfs/kahuna/competitor analysis surfing app (1).pdf">
+    <div class="pdf-loading">Loading PDF...</div>
+    <canvas class="pdf-canvas"></canvas>
+    <div class="pdf-page-indicator">Page 1/1</div>
+    <div class="pdf-controls">
+      <button class="pdf-prev-btn">Previous</button>
+      <span class="pdf-page-num">1/1</span>
+      <button class="pdf-next-btn">Next</button>
+      <button class="pdf-zoom-out">-</button>
+      <button class="pdf-zoom-in">+</button>
+    </div>
+  </div>
+  <div class="text-column">
+    <h3 class="accent-heading">Competitor Analysis</h3>
+    <p>What beginners miss in existing surf-weather apps:</p>
+    <ul>
+      <li>Surfline: excellent wave cams, but you must pay for live feeds.</li>
+      <li>Magicseaweed: similar features, yet its layout and paywall overwhelm new users.</li>
+      <li>Wisuki: strong wind data across sports, but no surf-specific visuals.</li>
+      <li>WSL: rich competition stats, though the UI is too dense for casual surfers.</li>
+    </ul>
+  </div>
+</section>
+
+
+<section id="paper-prototype" class="project-section reveal">
+  <div class="pdf-container" data-pdf-url="../pdfs/kahuna/paper prototype (1).pdf">
+    <div class="pdf-loading">Loading PDF...</div>
+    <canvas class="pdf-canvas"></canvas>
+    <div class="pdf-page-indicator">Page 1/1</div>
+    <div class="pdf-controls">
+      <button class="pdf-prev-btn">Previous</button>
+      <span class="pdf-page-num">1/1</span>
+      <button class="pdf-next-btn">Next</button>
+      <button class="pdf-zoom-out">-</button>
+      <button class="pdf-zoom-in">+</button>
+    </div>
+  </div>
+  <div class="text-column">
+    <h3>Paper Prototype</h3>
+    <p>
+    Sketeched up a simple interface that would be simple for beginner sufers to use while they are out and began, testing in our environment.
+    </p>
+  </div>
+</section>
+
+
+  <!-- Low-fidelity Prototype Section -->
+<section id="low-fidelity" class="project-section reveal">
+  <div class="pdf-container" data-pdf-url="../pdfs/kahuna/edited/low-fi.pdf">
+    <div class="pdf-loading">Loading PDF...</div>
+    <canvas class="pdf-canvas"></canvas>
+    <div class="pdf-page-indicator">Page 1/1</div>
+    <div class="pdf-controls">
+      <button class="pdf-prev-btn">Previous</button>
+      <span class="pdf-page-num">1/1</span>
+      <button class="pdf-next-btn">Next</button>
+      <button class="pdf-zoom-out">-</button>
+      <button class="pdf-zoom-in">+</button>
+    </div>
+  </div>
+  <div class="text-column">
+    <h3>Low‑fidelity Prototype</h3>
+    <p>
+      We built a simple Figma prototype to make it more tesable and make it natural growing position so that we can make our higher fidelity prototypes
+    </p>
+  </div>
+</section>
+
+
+<!-- Low-fidelity User Test Section -->
+<section id="user-tests-low" class="project-section reveal">
+  <div class="pdf-container" data-pdf-url="../pdfs/kahuna/edited/usertesting.pdf">
+    <div class="pdf-loading">Loading PDF...</div>
+    <canvas class="pdf-canvas"></canvas>
+    <div class="pdf-page-indicator">Page 1/1</div>
+    <div class="pdf-controls">
+      <button class="pdf-prev-btn">Previous</button>
+      <span class="pdf-page-num">1/1</span>
+      <button class="pdf-next-btn">Next</button>
+      <button class="pdf-zoom-out">-</button>
+      <button class="pdf-zoom-in">+</button>
+    </div>
+  </div>
+  <div class="text-column">
+    <h3 class="accent-heading">Low-fidelity User Test</h3>
+    <p>We tested our low-fi prototype with 5 users to catch early issues:</p>
+    <ul>
+      <li>Forecast &amp; Conditions tabs were easy to find.</li>
+      <li>Swipe-to-refresh felt natural for most users.</li>
+      <li>Towel-tip placement needs to be higher on the screen.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- High-fidelity User Test Section -->
+<section id="user-tests-high" class="project-section reveal">
+  <div class="pdf-container" data-pdf-url="../pdfs/kahuna/edited/usertesting.pdf">
+    <div class="pdf-loading">Loading PDF...</div>
+    <canvas class="pdf-canvas"></canvas>
+    <div class="pdf-page-indicator">Page 1/1</div>
+    <div class="pdf-controls">
+      <button class="pdf-prev-btn">Previous</button>
+      <span class="pdf-page-num">1/1</span>
+      <button class="pdf-next-btn">Next</button>
+      <button class="pdf-zoom-out">-</button>
+      <button class="pdf-zoom-in">+</button>
+    </div>
+  </div>
+  <div class="text-column">
+    <h3 class="accent-heading">High-fidelity User Test</h3>
+    <p>We tested our polished prototype with 5 users to confirm final usability:</p>
+    <ul>
+      <li>Visual design was well received, users found the color scheme clear.</li>
+      <li>Bottom navigation bar still caused slight confusion—labels will be refined.</li>
+      <li>Interactive towel-tip animation was engaging but needs faster response.</li>
+      <li>Wave-condition graph was intuitive and helped users plan their session.</li>
+    </ul>
+  </div>
+</section>
+
+
+
+<section id="high-fidelity" class="project-section reveal">
+  <div class="media-column">
+    <div class="phone-frame">
+      <iframe
+        class="prototype-frame"
+        src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FSRdvhrluzRwWizIkn3LNwG%2FUntitled%3Fpage-id%3D0%253A1%26type%3Ddesign%26node-id%3D1-2%26viewport%3D865%252C1373%252C0.43%26t%3DISTmh8y72KVnyFHd-1%26scaling%3Dscale-down%26starting-point-node-id%3D1%253A2%26mode%3Ddesign"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+  <div class="text-column">
+    <h3 class="accent-heading">High-fidelity Prototype</h3>
+    <p>
+      We cleaned up our low-fi screens in Figma, added real colors, icons, and interactions, and made it fully clickable. This let us test the exact flow before writing any code—only one small bottom-bar tweak remains for the next round.
+    </p>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+<section id="final-container" class="project-section reveal"></section>
+
+
+
+
+
+  <footer>
+    <div class="footer-content">
+      <p class="footer-thanks">Thank you for exploring</p>
+      <ul id="navigation">
+        <li><a href="index.html" class="footer-btn">
+          <ion-icon name="home"></ion-icon> Home
+        </a></li>
+        <li>
+          <!-- add a class so we can animate just this one -->
+          <a href="#top" class="footer-btn return-top">
+            <ion-icon name="arrow-up"></ion-icon> Return to Top
+          </a>
+        </li>
+      </ul>
+    </div>
+  </footer>
+
+
+
+  <!-- GitHub Corner -->
+  <a href="https://github.com/ConnorEMcclanahan/Kahuna" class="github-corner" aria-label="View source on GitHub" target="_blank">
+    <svg viewBox="0 0 16 16" width="80" height="80">
+      <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+    </svg>
+  </a>
+
+
+
+
+
+    <!-- Three.js loader: non-overlapping spheres -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="../components/project-page/utils.js" defer></script>
+    <script src="../components/project-page/intro-summary.js" defer></script>
+    <script src="../components/project-page/final-columns.js" defer></script>
+    <script src="../components/project-page/questions-criteria.js" defer></script>
+    <script src="../components/project-page/pov-hmw.js" defer></script>
+    <script src="../js/pages/kahuna.js" defer></script>
+    <script src="../components/navbar/navbar.js" defer></script>
+</body>
+</html>
+
