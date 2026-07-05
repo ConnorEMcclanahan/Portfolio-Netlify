@@ -1,0 +1,553 @@
+/* FitPhone page-specific styles */
+.navbar {
+  background: rgba(0, 0, 0, 0.5) !important;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+h1 {
+  text-align: center;
+  font-size: 3em !important;
+}
+
+h3 {
+  text-align: left;
+  color: #6E07F3 !important;
+}
+
+.wrapingimageleftt h1,
+.wrapingimagerightt h1 {
+  text-align: left !important;
+  color: #fff !important;
+  font-size: 3em !important;
+}
+
+.wrapingimageleftt h3,
+.wrapingimagerightt h3 {
+  font-size: 3em !important;
+}
+
+.wrapingimagerightt p {
+  color: #fff !important;
+}
+
+.skills-banner h3 {
+  text-align: center;
+  color: #000 !important;
+}
+
+.pdf-page-num {
+  background: transparent;
+  color: white;
+  border: none;
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 5px 8px;
+  transition: color 0.2s;
+}
+
+section {
+  margin-bottom: 10em;
+  font-size: 17px;
+  clear: both;
+  overflow: hidden;
+}
+
+section p {
+  font-size: 2vh;
+  line-height: 1.5;
+  margin-bottom: 1em;
+  color: #fff;
+}
+
+.navbar-menu {
+  display: flex;
+  list-style: none;
+  margin: 0 !important;
+  padding: 0 !important;
+  gap: 0rem !important;
+  align-items: center;
+}
+
+.pdf-container {
+  max-height: 85vh;
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 8 / 11;
+  background: transparent;
+  border-radius: 0;
+}
+
+.pdf-canvas {
+  display: block;
+  height: 85vh;
+  object-fit: contain;
+}
+
+.pdf-page-indicator {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background: rgba(110, 7, 243, 0.85);
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  z-index: 10;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.pdf-controls {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 12px;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 6px 14px;
+  border-radius: 20px;
+  opacity: 0;
+  transition: opacity 0.3s ease, bottom 0.3s ease;
+  z-index: 20;
+}
+
+.pdf-container:hover .pdf-page-indicator {
+  opacity: 0;
+}
+
+.pdf-container:hover .pdf-controls {
+  opacity: 1;
+  bottom: 50px;
+}
+
+.pdf-controls button {
+  background: transparent;
+  color: white;
+  border: none;
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 5px 8px;
+  transition: color 0.2s;
+}
+
+.pdf-controls button:hover {
+  color: #6E07F3;
+}
+
+.pdf-loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #6E07F3;
+  font-weight: bold;
+}
+
+.figma-container {
+  width: 100%;
+  height: 500px;
+  margin-bottom: 30px;
+}
+
+.figma-container iframe {
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.parallax-1 {
+  background: url(../Images/fitphone\ 412\ Copy-1.png) center/cover fixed no-repeat;
+}
+
+.github-corner {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.github-corner svg {
+  width: 60px;
+  height: 60px;
+  fill: #6E07F3;
+  transition: transform 0.3s ease-in-out;
+}
+
+.github-corner:hover svg {
+  transform: scale(1.1);
+}
+
+#final-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 30px;
+  max-width: 1200px;
+  margin: 4rem auto;
+  flex-wrap: wrap;
+}
+
+#final-container .box {
+  flex: 1;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 8px;
+  padding: 20px;
+}
+
+#final-container .box h3 {
+  margin-top: 0;
+  margin-bottom: 1em;
+  text-align: center;
+  color: #fff;
+  font-size: 1.8em;
+}
+
+#final-container .box ul {
+  list-style: disc inside;
+  margin: 0;
+  padding: 0;
+}
+
+#final-container .box li {
+  color: #fff;
+  margin-bottom: 0.5em;
+  line-height: 1.4;
+}
+
+.reveal.active:not(section) {
+  display: flex;
+  justify-content: center;
+  padding: 0 2rem;
+  gap: 0;
+}
+
+.media-column,
+.text-column {
+  flex: 1 1 45%;
+  max-width: 50%;
+  min-width: 280px;
+  float: none;
+  margin: 10px;
+  box-sizing: border-box;
+}
+
+.phone-frame {
+  width: 360px;
+  height: 800px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 40px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.phone-frame iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.Overview {
+  display: flex;
+  justify-content: center;
+  padding: 0 2rem;
+  gap: 0;
+  flex-direction: column;
+  margin: 10vh;
+}
+
+.intro-summary-left {
+  display: flex;
+  justify-content: center;
+  padding: 0 2rem;
+  gap: 0;
+  flex-direction: column;
+}
+
+#loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.loading-text {
+  color: #6E07F3;
+  font-size: 1.5rem;
+  animation: pulse 1.5s infinite;
+}
+
+#navigation li {
+  margin: 0 1em;
+}
+
+.scroll-down {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 3.25rem;
+  color: #b18bff;
+  cursor: pointer;
+  text-decoration: none;
+  z-index: 5;
+  filter: drop-shadow(0 0 6px #7f5af0) drop-shadow(0 0 16px #7f5af0);
+  animation: bounceDown 1.4s infinite ease-out, pulseGlow 2.4s infinite ease-in-out;
+  transition: opacity .3s ease;
+}
+
+.section-intro {
+  padding: 4rem 1rem;
+  background: #000;
+  color: #fff;
+}
+
+.intro-summary-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.intro-title {
+  font-size: 2.5rem;
+  color: #6E07F3;
+  margin-bottom: 1rem;
+  font-weight: 400;
+}
+
+.intro-lead {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.intro-summary-right {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.intro-summary-right ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.intro-summary-right li {
+  margin: 0;
+}
+
+.intro-meta-item {
+  margin-bottom: 0.5rem;
+}
+
+.intro-summary-right span {
+  font-weight: 400;
+}
+
+.intro-image-wrap {
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.intro-image {
+  max-width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.white-text {
+  color: white;
+}
+
+.hero-title-spacer {
+  margin-top: 20%;
+}
+
+.media-image-full {
+  width: 100%;
+  height: auto;
+}
+
+.section-title-blue {
+  font-size: 2em;
+  color: #4475e2;
+}
+
+.centered-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.mockup-image {
+  width: 20%;
+  height: 20%;
+}
+
+.client-feedback-layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: flex-start;
+  flex-direction: column;
+  align-content: center;
+}
+
+.client-feedback-text {
+  flex: 1;
+  min-width: 300px;
+}
+
+.client-feedback-timeline {
+  flex: 1;
+  min-width: 300px;
+  border-left: 3px solid #6E07F3;
+  padding-left: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.meeting-title {
+  color: #6E07F3;
+}
+
+.pdf-container--tall {
+  max-height: none;
+}
+
+.final-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.final-col {
+  flex: 1;
+  min-width: 300px;
+}
+
+.final-col--border {
+  border-left: 3px solid #6E07F3;
+  padding-left: 2rem;
+}
+
+.final-title {
+  font-size: 2em;
+  color: #6E07F3;
+  text-align: left;
+}
+
+.final-items {
+  margin-top: 1.5rem;
+}
+
+.final-item-title {
+  color: #6E07F3;
+  margin-bottom: 0.5rem;
+  font-size: 1.05rem;
+}
+
+.final-item-copy {
+  color: white;
+  font-size: 0.95rem;
+}
+
+.final-item-copy--spaced {
+  margin-bottom: 1.5rem;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes bounceDown {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translate(-50%, 0);
+  }
+
+  40% {
+    transform: translate(-50%, -12px) scale(1.1);
+  }
+
+  60% {
+    transform: translate(-50%, -6px);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 6px #7f5af0) drop-shadow(0 0 16px #7f5af0);
+  }
+
+  50% {
+    filter: drop-shadow(0 0 12px #a78bff) drop-shadow(0 0 28px #a78bff);
+  }
+}
+
+@media (max-width: 768px) {
+  .pdf-container {
+    width: 100%;
+    height: 70vh;
+  }
+
+  .pdf-page-indicator {
+    font-size: 0.75rem;
+    padding: 4px 8px;
+  }
+
+  .pdf-controls button {
+    font-size: 0.8rem;
+  }
+
+  #final-container,
+  .final-section {
+    flex-direction: column;
+  }
+
+  .reveal.active:not(section) {
+    display: block;
+    padding: 0;
+  }
+
+  .reveal.active:not(section) .media-column,
+  .reveal.active:not(section) .text-column {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1.5rem;
+  }
+
+  .intro-summary-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .intro-summary-left {
+    padding: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .scroll-down {
+    font-size: 2.5rem;
+  }
+}

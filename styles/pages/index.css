@@ -1,0 +1,270 @@
+/* Page-specific cleanup for index.html */
+.navbar {
+  background: #000 !important;
+}
+
+body {
+  color: #fff;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  background: #000;
+}
+
+section {
+  padding: 5rem 1.5rem;
+  margin-bottom: 2rem;
+}
+
+#top {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.reveal {
+  position: relative;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero-shell {
+  color: #fff;
+  text-align: left;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hero-title {
+  margin-bottom: -15px;
+  font-size: 4em;
+  color: #fff;
+}
+
+.hero-subtitle {
+  font-size: 3em;
+  color: #6e07f3;
+}
+
+.hero-copy {
+  font-size: 20px;
+  color: #fff;
+}
+
+.project-list {
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+}
+
+.project-item {
+  display: flex;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.project-item:hover {
+  opacity: 0.7;
+}
+
+.project-info {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.project-number {
+  font-size: 2rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin-right: 20px;
+  width: 50px;
+}
+
+.project-title-wrap {
+  flex-grow: 1;
+  padding-right: 20px;
+}
+
+.project-title {
+  margin: 0 0 4px;
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+.project-date {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.project-tags {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+.project-link {
+  text-decoration: none;
+  display: block;
+  z-index: 5;
+}
+
+#contact .container {
+  max-width: 1000px;
+  width: 100%;
+}
+
+#contact form {
+  margin-top: 2rem;
+}
+
+.label {
+  color: #fff;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 28px;
+  background-color: #6e07f3;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  margin-top: 1.5rem;
+}
+
+.btn:hover {
+  background-color: #5206b8;
+  transform: translateY(-2px);
+}
+
+.title {
+  color: #fff;
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+  margin-bottom: 3rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.project-preview {
+  position: fixed;
+  pointer-events: none;
+  display: none;
+  width: 520px;
+  aspect-ratio: 16 / 9;
+  z-index: 999;
+  transition: top 0.15s ease-out, left 0.15s ease-out;
+}
+
+.preview-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-size: 150%;
+  background-position: center;
+  border-radius: 12px;
+  border: 2px solid #6e07f3;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.preview-image.active {
+  opacity: 1;
+}
+
+.preview-image--1 {
+  background-image: url('../../images/fitphonebanner.png');
+}
+
+.preview-image--2 {
+  background-image: url('../../images/urbansports.png');
+}
+
+.preview-image--3 {
+  background-image: url('../../images/kahuna.png');
+}
+
+.preview-image--4 {
+  background-image: url('../../images/topbar-motivate.png');
+}
+
+.preview-image--5 {
+  background-image: url('../../images/diplora/diploraecgapplicationinterface.png');
+}
+
+@media screen and (max-width: 768px) {
+  section {
+    padding: 3rem 1rem;
+  }
+
+  .project-info {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .project-tags {
+    margin-top: 10px;
+    margin-left: 0;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 6px;
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    white-space: nowrap;
+  }
+
+  .project-tags::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tag {
+    font-size: 0.72rem;
+    padding: 4px 8px;
+  }
+
+  .project-preview {
+    display: none !important;
+  }
+
+  .hero h1 {
+    font-size: 2.5em !important;
+  }
+
+  .hero h3 {
+    font-size: 2em !important;
+  }
+}

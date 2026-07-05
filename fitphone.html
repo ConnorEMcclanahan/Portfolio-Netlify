@@ -8,492 +8,22 @@
   <link rel="stylesheet" href="../styles/frontend.css"/>
   <link rel="stylesheet" href="../components/navbar/navbar.css"/>
   <link rel="stylesheet" href="../components/footer/footer.css"/>
+  <link rel="stylesheet" href="../components/project-page/project-components.css"/>
   <link rel="stylesheet" href="../styles/mobile-responsive.css"/>
-  <style>
-    /* Override navbar to be transparent on project pages */
-    .navbar {
-      background: rgba(0, 0, 0, 0.5) !important;
-    }
-  </style>
+  <link rel="stylesheet" href="../styles/pages/fitphone.css"/>
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <title>FitPhone</title>
   
   <!-- PDF.js library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
   
-  <style>
-  
-    h1 {
-      text-align: center;
-      font-size: 3em !important;
-    }
-  
-    /* Heading tweaks inside image wrappers */
-    .wrapingimageleftt h1,
-    .wrapingimagerightt h1 {
-      text-align: left !important;
-      color: #fff !important;
-      font-size: 3em !important;
-    }
-    .wrapingimageleftt h3,
-    .wrapingimagerightt h3 {
-      font-size: 3em !important;
-    }
-    .wrapingimagerightt p {
-      color: #fff !important;
-    }
-  
-    h3 {
-      text-align: left;
-      color: #6E07F3 !important;
-    }
-    .skills-banner h3 {
-      text-align: center;
-      color: #000 !important;
-    }
-  
-    footer {
-  background: #222;
-  color: #fff;
-}
-
-.footer-content {
-  max-width: 600px;
-  margin: 0 auto;
-  text-align: center;
-  padding: 2rem 1rem;
-}
-
-/* Big “Thank you” */
-.footer-thanks {
-  font-size: 2.5rem;
-  font-weight: 500;
-  margin-bottom: 1.5rem;
-}
-
-/* Nav list centered below */
-#navigation {
-  list-style: none;
-  padding: 0;
-  margin: 0 auto;
-  display: inline-flex;
-  gap: 1rem;
-}
-
-/* Softer purple pills */
-.footer-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5em;
-  padding: 0.75em 1.5em;
-  background: linear-gradient(45deg, #7f5af0, #6b3ff0);
-  color: #fff;
-  border-radius: 999px;
-  text-decoration: none;
-  font-weight: 500;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.footer-btn ion-icon {
-  font-size: 1.2em;
-}
-
-/* Hover lift */
-.footer-btn:hover,
-.footer-btn:focus {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-}
-.pdf-page-num {
-  background: transparent;
-    color: white;
-    border: none;
-    font-size: 0.9rem;
-    cursor: pointer;
-    padding: 5px 8px;
-    transition: color 0.2s;
-}
-html {
-  scroll-behavior: smooth;
-}
-
-/* bounce keyframes */
-@keyframes bounce {
-  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-  40% { transform: translateY(-6px); }
-  60% { transform: translateY(-3px); }
-}
-
-/* target only the “Return to Top” button */
-.footer-btn.return-top:hover {
-  animation: bounce 0.8s;
-}
-
-/* optional: make that button stand out even more */
-.footer-btn.return-top {
-  position: relative;
-  overflow: hidden;
-}
-    section {
-      margin-bottom: 10em;
-      font-size: 17px;
-      clear: both;
-      overflow: hidden;
-    }
-  
-    section p {
-      font-size: 2vh;
-      line-height: 1.5;
-      margin-bottom: 1em;
-      color: #fff;
-    }
-    
-    .navbar-menu {
-    display: flex;
-    list-style: none;
-    margin: 0 !important;
-    padding: 0 !important;
-    gap: 0rem !important;
-    align-items: center;
-}
-  
-  /* PDF Viewer Container */
-.pdf-container {
-  max-height: 85vh;
-    position: relative;
-    overflow: hidden;
-    aspect-ratio: 8 / 11;
-    background: transparent;
-    border-radius: 0;
-}
-
-/* PDF Canvas */
-.pdf-canvas {
-  display: block;
-    /* width: 85vh; */
-    height: 85vh;
-    object-fit: contain;
-
-}
-
-
-/* Purple Page Number Badge */
-.pdf-page-indicator {
-  position: absolute;
-  bottom: 12px;
-  right: 12px;
-  background: rgba(110, 7, 243, 0.85); /* purple semi-transparent */
-  color: #fff;
-  padding: 4px 10px;
-  border-radius: 12px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  z-index: 10;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-}
-
-/* Control Bar: Hidden by Default */
-.pdf-controls {
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 12px;
-  background: rgba(0, 0, 0, 0.7);
-  padding: 6px 14px;
-  border-radius: 20px;
-  opacity: 0;
-  transition: opacity 0.3s ease, bottom 0.3s ease;
-  z-index: 20;
-}
-
-/* When Hovering: Hide Page Number, Show Controls */
-.pdf-container:hover .pdf-page-indicator {
-  opacity: 0;
-}
-.pdf-container:hover .pdf-controls {
-  opacity: 1;
-  bottom: 50px; /* lift it up a little */
-}
-
-/* Control Buttons */
-.pdf-controls button {
-  background: transparent;
-  color: white;
-  border: none;
-  font-size: 0.9rem;
-  cursor: pointer;
-  padding: 5px 8px;
-  transition: color 0.2s;
-}
-.pdf-controls button:hover {
-  color: #6E07F3;
-}
-
-/* Loading Message */
-.pdf-loading {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #6E07F3;
-  font-weight: bold;
-}
-
-/* Mobile Tweaks */
-@media(max-width: 768px) {
-  .pdf-container {
-    width: 100%;
-    height: 70vh;
-  }
-  .pdf-page-indicator {
-    font-size: 0.75rem;
-    padding: 4px 8px;
-  }
-  .pdf-controls button {
-    font-size: 0.8rem;
-  }
-}
-
-  
-    /* Figma frame */
-    .figma-container {
-      width: 100%;
-      height: 500px;
-      margin-bottom: 30px;
-    }
-    .figma-container iframe {
-      width: 100%;
-      height: 100%;
-      border: 1px solid rgba(0,0,0,0.1);
-    }
-  
-    /* Parallax background */
-    .parallax-1 {
-      background: url(../Images/fitphone\ 412\ Copy-1.png) center/cover fixed no-repeat;
-    }
-  
-    /* GitHub corner */
-    .github-corner {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      z-index: 1000;
-    }
-    .github-corner svg {
-      width: 60px;
-      height: 60px;
-      fill: #6E07F3;
-      transition: transform 0.3s ease-in-out;
-    }
-    .github-corner:hover svg {
-      transform: scale(1.1);
-    }
-  
-    /* Final container boxes */
-    #final-container {
-      display: flex;
-  justify-content: center; /* Center the boxes */
-  gap: 20px;
-  padding: 30px;
-  max-width: 1200px; /* Optional: controls container width */
-  margin: 4rem auto; /* Center the whole container */
-  flex-wrap: wrap; /* make it wrap nicely on smaller screens */
-    }
-    #final-container .box {
-      flex: 1;
-      background: rgba(0,0,0,0.6);
-      border-radius: 8px;
-      padding: 20px;
-    }
-    #final-container .box h3 {
-      margin-top: 0;
-      margin-bottom: 1em;
-      text-align: center;
-      color: #fff;
-      font-size: 1.8em;
-    }
-    #final-container .box ul {
-      list-style: disc inside;
-      margin: 0;
-      padding: 0;
-    }
-    #final-container .box li {
-      color: #fff;
-      margin-bottom: 0.5em;
-      line-height: 1.4;
-    }
-    @media(max-width:768px) {
-      #final-container { flex-direction: column; }
-    }
-  
-    /* Two-column flush center layout */
-    .reveal.active {
-      display: flex;
-      justify-content: center;  /* center the two columns */
-      padding: 0 2rem;          /* side gutters */
-      gap: 0;                   /* no gap between them */
-    }
-    
-  .media-column,
-    .text-column {
-    /* flex: 0 0 50%; */
-    /* max-width: 50%; */
-    float: none;
-    width: 80vh;
-    margin: 0;
-    /* width: 100%; */
-    padding: 2;
-    margin: 10px;
-    box-sizing: border-box;
-
-    }
-  
-    @media(max-width:768px) {
-      .reveal.active {
-        display: block;
-        padding: 0;
-      }
-      .reveal.active .media-column,
-      .reveal.active .text-column {
-        width: 100%;
-        margin-bottom: 1.5rem;
-      }
-    }
-  
-    /* Remove any residual gutter rule */
-    /* (delete or override your old .media-column, .text-column padding:0 1rem) */
-  
-    /* Phone frame */
-    .phone-frame {
-      width: 360px;
-      height: 800px;
-      margin: 0 auto;
-      overflow: hidden;
-      border-radius: 40px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
-    }
-    .phone-frame iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-    section ul {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    margin: 0;
-    padding: 0;
-    flex-direction: column;
-}
-
-.Overview{
-    display: flex;
-    justify-content: center;
-    padding: 0 2rem;
-    gap: 0;
-    flex-direction: column;
-    margin: 10vh;
-
-}
-.intro-summary-left{
-  display: flex
-;
-    justify-content: center;
-    padding: 0 2rem;
-    gap: 0;
-    flex-direction: column;
-}
-
-/* Loader Styles */
-    #loader {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: #000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-    }
-
-    .loading-text {
-      color: #6E07F3;
-      font-size: 1.5rem;
-      animation: pulse 1.5s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.5; }
-    }
-
-li{
-  margin: 0 1em;
-}
-
-/* scroll-down indicator — purple + attention-grabbing */
-.scroll-down{
-  position:absolute;
-  bottom:32px;
-  left:50%;
-  transform:translateX(-50%);
-  font-size:3.25rem;           /* a bit larger */
-  color:#b18bff;               /* lighter purple for contrast */
-  cursor:pointer;
-  text-decoration:none;
-  z-index:5;
-
-  /* glow */
-  filter:drop-shadow(0 0 6px #7f5af0) drop-shadow(0 0 16px #7f5af0);
-
-  /* bounce + pulse */
-  animation:
-    bounceDown 1.4s infinite ease-out,
-    pulseGlow 2.4s infinite ease-in-out;
-  transition:opacity .3s ease;
-}
-
-@keyframes bounceDown{
-  0%,20%,50%,80%,100%{transform:translate(-50%,0);}
-  40%{transform:translate(-50%,-12px) scale(1.1);}
-  60%{transform:translate(-50%,-6px);}
-}
-
-@keyframes pulseGlow{
-  0%,100%{filter:drop-shadow(0 0 6px #7f5af0) drop-shadow(0 0 16px #7f5af0);}
-  50%     {filter:drop-shadow(0 0 12px #a78bff) drop-shadow(0 0 28px #a78bff);}
-}
-
-@media(max-width:480px){
-  .scroll-down{font-size:2.5rem;}
-}
-
-
-  </style>
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const scrollCue = document.querySelector('.scroll-down');
-    function toggleCue(){
-      // vanish after ~30 vh of scroll so it’s not distracting
-      scrollCue.style.opacity = (window.scrollY > window.innerHeight * 0.3) ? '0' : '1';
-    }
-    window.addEventListener('scroll', toggleCue, {passive:true});
-  });
-  </script>
-  
 </head>
 
 
-<body>
+<body class="project-page-standard">
 
   <div class="parallax-1" id="top">
     <a href="#intro-summary" class="scroll-down" aria-label="Scroll down">
@@ -522,71 +52,32 @@ li{
       <div id="loader">
         <div class="loading-text">Loading....</div>
       </div>
-      <h1 style="margin-top: 20%; color: white !important;"></h1>
+      <h1 class="white-text hero-title-spacer"></h1>
     </header>
   </div>
 
-  <section id="intro-summary reveal" style="padding:4rem 1rem; background:#000; color:#fff;">
-    <div class="intro-summary-grid" style="
-        display:grid;
-        grid-template-columns:1.3fr 1fr;     /* a bit wider left column */
-        gap:3rem;
-        max-width:1200px;
-        margin:0 auto;
-    ">
-      <!-- LEFT: Title, Summary, Problem -->
-      <div class="intro-summary-left reveal">
-        <h1 style="font-size:2.5rem; color:#6E07F3; margin-bottom:1rem; font-weight:400;">
-          FitPhone Case Study
-        </h1>
-        <p style="font-size:1.125rem; line-height:1.6; margin-bottom:2rem;">
-          As Primary UI/UX Designer &amp; Front-end Developer, I took this app from concept through App-Store submission on both iOS and Android. Built in Flutter, designed in Figma, iterated through client &amp; user feedback.
-        </p>
-      </div>
-  
-      <!-- RIGHT: Quick Meta -->
-      <div class="intro-summary-right reveal" style="font-size:1rem; line-height:1.6;">
-        <ul style="list-style:none; padding:0; margin:0;">
-          <li style="margin-bottom:.5rem;"><span style="font-weight:400;">Role:</span> UI/UX Designer &amp; Front-end Engineer</li>
-          <li style="margin-bottom:.5rem;"><span style="font-weight:400;">Duration:</span> 4 weeks</li>
-          <li style="margin-bottom:.5rem;"><span style="font-weight:400;">Tech:</span> Flutter, Dart</li>
-          <li style="margin-bottom:.5rem;"><span style="font-weight:400;">Design:</span> Figma, Canva</li>
-          <li style="margin-bottom:.5rem;"><span style="font-weight:400;">Release:</span> App Store &amp; Play Store</li>
-        </ul>
-      </div>
-    </div>
-  
-    <!-- FULL-WIDTH: Key screens -->
-    <div class="IntroPic reveal" style="margin-top:3rem; text-align:center; ">
-      <img
-        src="../Images/sss.png"
-        alt="FitPhone key screens"
-        style="max-width:100%; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.4);"
-      />
-    </div>
-  </section>
+  <section id="intro-summary" class="reveal"></section>
 
 <section class="Overview reveal">
     <h1 >Overview</h1>
-    <p style="color: white;">The increasing prevalence of smartphone addiction poses significant challenges for young adults aged 18-30. Studies reveal that excessive screen time adversely impacts mental health, productivity, and overall well-being. While several apps address digital wellness, most are limited to screen time tracking, lacking the holistic tools necessary to drive meaningful behavioral change. FitPhone fills this gap by incorporating educational content, peer accountability, and gamification into its framework.
+    <p class="white-text">The increasing prevalence of smartphone addiction poses significant challenges for young adults aged 18-30. Studies reveal that excessive screen time adversely impacts mental health, productivity, and overall well-being. While several apps address digital wellness, most are limited to screen time tracking, lacking the holistic tools necessary to drive meaningful behavioral change. FitPhone fills this gap by incorporating educational content, peer accountability, and gamification into its framework.
     </p>
 
-    <p style="color: white;">Before this project, many available digital wellness solutions failed to engage users effectively. Common pain points include an over-reliance on tracking metrics, a lack of personalized advice, and limited options for social support or motivation. FitPhone seeks to go beyond these limitations by providing a dynamic, user-centered approach to wellness that integrates actionable guidance with communal support.
+    <p class="white-text">Before this project, many available digital wellness solutions failed to engage users effectively. Common pain points include an over-reliance on tracking metrics, a lack of personalized advice, and limited options for social support or motivation. FitPhone seeks to go beyond these limitations by providing a dynamic, user-centered approach to wellness that integrates actionable guidance with communal support.
     </p>
       
-    <p style="color: white;">The primary goal of this app is to empower young people to take control of their smartphone usage and overcome procrastination by fostering accountability, personal growth, and social connections. This will be achieved by creating a space where users can set specific, measurable goals, track their progress, and engage with others facing similar challenges. The app's features will encourage consistent participation, with weekly meetings and progress tracking to ensure continuous improvement. By incorporating gamification elements, users will be motivated to stay engaged through rewards and recognition, while peer accountability will offer support and encouragement to help each individual achieve their personal goals. Ultimately, the goal is to create a supportive, community-driven environment that fosters real-world connections and positive behavioral change.
+    <p class="white-text">The primary goal of this app is to empower young people to take control of their smartphone usage and overcome procrastination by fostering accountability, personal growth, and social connections. This will be achieved by creating a space where users can set specific, measurable goals, track their progress, and engage with others facing similar challenges. The app's features will encourage consistent participation, with weekly meetings and progress tracking to ensure continuous improvement. By incorporating gamification elements, users will be motivated to stay engaged through rewards and recognition, while peer accountability will offer support and encouragement to help each individual achieve their personal goals. Ultimately, the goal is to create a supportive, community-driven environment that fosters real-world connections and positive behavioral change.
     </p>
-  </section>
   </section>
 
   <section id="Questions">
     <div class="reveal active">
       <div class="media-column">
-        <img src="../Images/questionsFit.PNG" alt="Questions" style="width:100%; height:auto;">
+        <img src="../Images/questionsFit.PNG" alt="Questions" class="media-image-full">
       </div>
       <div class="text-column">
-        <h3 style="font-size: 2em; color: #4475e2;">Questions & Criteria</h3>
-        <p style="color: white;">First I started the project by making questions and criteria, this allowed me and my group to easily identify problems and find different ways for us to solve what the client wants.</p>
+        <h3 class="section-title-blue">Questions & Criteria</h3>
+        <p class="white-text">First I started the project by making questions and criteria, this allowed me and my group to easily identify problems and find different ways for us to solve what the client wants.</p>
       </div>
     </div>
   </section>
@@ -594,11 +85,11 @@ li{
   <section id="Ideation">
     <div class="reveal active">
       <div class="text-column">
-        <h3 style="font-size: 2em; color: #4475e2;">Ideation</h3>
-        <p style="color: white;">This approach allowed us to develop our core concept, which became the cornerstone of the project. By refining our ideas based on the research question and creative brainstorming, we were able to focus on the key aspects that would best address the challenges we aimed to solve. This core concept set the stage for further development and guided the decisions we made throughout the process.</p>
+        <h3 class="section-title-blue">Ideation</h3>
+        <p class="white-text">This approach allowed us to develop our core concept, which became the cornerstone of the project. By refining our ideas based on the research question and creative brainstorming, we were able to focus on the key aspects that would best address the challenges we aimed to solve. This core concept set the stage for further development and guided the decisions we made throughout the process.</p>
       </div>
       <div class="media-column">
-          <img src="../Images/ideation.jpeg" alt="Ideation" style="width:100%; height:auto;">
+          <img src="../Images/ideation.jpeg" alt="Ideation" class="media-image-full">
 
       </div>
     </div>
@@ -620,8 +111,8 @@ li{
           </div>
         </div>
       <div class="text-column">
-        <h3 style="font-size: 2em; color: #4475e2;">Online Research</h3>
-        <p style="color: white;">One of the main things the client asked for was a way for the users to see their counter movement jump statistics to be able to track their fatigue. I took my own initiative to create a research document so that it was possible for my group to have a full understanding of what needs to be incorporated into our applications.</p>
+        <h3 class="section-title-blue">Online Research</h3>
+        <p class="white-text">One of the main things the client asked for was a way for the users to see their counter movement jump statistics to be able to track their fatigue. I took my own initiative to create a research document so that it was possible for my group to have a full understanding of what needs to be incorporated into our applications.</p>
       </div>
     </div>
   </section>
@@ -629,8 +120,8 @@ li{
   <section id="competitor-analysis">
     <div class="reveal active">
       <div class="text-column">
-        <h3 style="font-size: 2em; color: #4475e2;">Competitor Analysis</h3>
-        <p style="color: white;">To properly visualize our product we created low fidelity wireframes so that we could know exactly what the client wants, and what screens need to be shown and tested.</p>
+        <h3 class="section-title-blue">Competitor Analysis</h3>
+        <p class="white-text">To properly visualize our product we created low fidelity wireframes so that we could know exactly what the client wants, and what screens need to be shown and tested.</p>
       </div>
         <div class="pdf-container" data-pdf-url="../PDFS/Fit/Compeitor SOCIAL Apps.pdf">
           <div class="pdf-loading">Loading PDF...</div>
@@ -648,43 +139,42 @@ li{
   </section>
 
   <section id="Client-Feedback">
-    <div class="reveal active" style="display:flex; flex-wrap:wrap; gap:2rem; align-items:flex-start; flex-direction: column;
-    align-content: center;">
-   <div class="text-column" style="flex:1; min-width:300px;">
-    <h3 style="font-size: 2em; color: #4475e2;">Client Feedback and User Research</h3>
-    <p style="color: white;">Throughout the development of FitPhone, we held biweekly meetings with our client, which provided consistent opportunities for feedback and collaboration. The client also engaged minor students and target audience members, enabling us to gather diverse perspectives. These sessions encouraged innovative ideas like integrating habit reflection, screentime reduction strategies, and personalized activity tracking. We conducted thorough research on user behavior, iteratively refining the app based on insights gained. Key updates included adding stories to enhance engagement, weekly reflections for users, and options to visualize progress. The collaborative approach and iterative development process ensured that FitPhone evolved into a well-rounded and user-centric product that aligned with the client's vision and needs.</p>
+      <div class="reveal active client-feedback-layout">
+   <div class="text-column client-feedback-text">
+    <h3 class="section-title-blue">Client Feedback and User Research</h3>
+    <p class="white-text">Throughout the development of FitPhone, we held biweekly meetings with our client, which provided consistent opportunities for feedback and collaboration. The client also engaged minor students and target audience members, enabling us to gather diverse perspectives. These sessions encouraged innovative ideas like integrating habit reflection, screentime reduction strategies, and personalized activity tracking. We conducted thorough research on user behavior, iteratively refining the app based on insights gained. Key updates included adding stories to enhance engagement, weekly reflections for users, and options to visualize progress. The collaborative approach and iterative development process ensured that FitPhone evolved into a well-rounded and user-centric product that aligned with the client's vision and needs.</p>
   </div>
 
-      <div class="media-column" style="flex:1; min-width:300px; border-left:3px solid #6E07F3; padding-left:2rem; display:flex; flex-direction:column; gap:2rem;">
+      <div class="media-column client-feedback-timeline">
   
         <div>
-          <h4 style="color: #6E07F3;">📅 Meeting 1: Sep 9, 2024</h4>
-          <p style="color: white;">Outlined FitPhone’s 4-step structure. Discussed core ideas and scheduled initial follow-ups.</p>
+          <h4 class="meeting-title">📅 Meeting 1: Sep 9, 2024</h4>
+          <p class="white-text">Outlined FitPhone’s 4-step structure. Discussed core ideas and scheduled initial follow-ups.</p>
         </div>
   
         <div>
-          <h4 style="color: #6E07F3;">📅 Meeting 2: Sep 18, 2024</h4>
-          <p style="color: white;">User feedback session with 5+ participants. Brainstormed features, prioritized pickups over screentime, and outlined tech research tasks.</p>
+          <h4 class="meeting-title">📅 Meeting 2: Sep 18, 2024</h4>
+          <p class="white-text">User feedback session with 5+ participants. Brainstormed features, prioritized pickups over screentime, and outlined tech research tasks.</p>
         </div>
   
         <div>
-          <h4 style="color: #6E07F3;">📅 Meeting 3: Oct 2, 2024</h4>
-          <p style="color: white;">Analyzed screentime reduction strategies. Proposed integrating lifestyle coaching, motivational stories, and location-based events.</p>
+          <h4 class="meeting-title">📅 Meeting 3: Oct 2, 2024</h4>
+          <p class="white-text">Analyzed screentime reduction strategies. Proposed integrating lifestyle coaching, motivational stories, and location-based events.</p>
         </div>
   
         <div>
-          <h4 style="color: #6E07F3;">📅 Meeting 4: Oct 16, 2024</h4>
-          <p style="color: white;">Planned collaborative research strategy. Discussed features like user matchmaking, manual progress tracking, and offline incentives.</p>
+          <h4 class="meeting-title">📅 Meeting 4: Oct 16, 2024</h4>
+          <p class="white-text">Planned collaborative research strategy. Discussed features like user matchmaking, manual progress tracking, and offline incentives.</p>
         </div>
   
         <div>
-          <h4 style="color: #6E07F3;">📅 Meeting 5: Dec 4, 2024</h4>
-          <p style="color: white;">Focused on app data visualization and storytelling. Confirmed stories as key differentiator versus competitors.</p>
+          <h4 class="meeting-title">📅 Meeting 5: Dec 4, 2024</h4>
+          <p class="white-text">Focused on app data visualization and storytelling. Confirmed stories as key differentiator versus competitors.</p>
         </div>
   
         <div>
-          <h4 style="color: #6E07F3;">📅 Meeting 6: Dec 18, 2024</h4>
-          <p style="color: white;">Received positive UI/UX feedback. Finalized concepts for home page activities and scheduled exhibition for Jan 10, 2025.</p>
+          <h4 class="meeting-title">📅 Meeting 6: Dec 18, 2024</h4>
+          <p class="white-text">Received positive UI/UX feedback. Finalized concepts for home page activities and scheduled exhibition for Jan 10, 2025.</p>
         </div>
   
       </div>
@@ -709,8 +199,8 @@ li{
           </div>
       </div>
       <div class="text-column">
-        <h3 style="font-size: 2em; color: #4475e2;">MOSKOW</h3>
-        <p style="color: white;">The proposed feature set, guided by the MoSCoW analysis, ensures FitPhone focuses on essential functionalities like matchmaking and meeting management while integrating enhancements to boost user engagement. By prioritizing core features and leaving space for future growth, the app is well-positioned to meet user needs effectively and adapt to evolving feedback.</p>
+        <h3 class="section-title-blue">MOSKOW</h3>
+        <p class="white-text">The proposed feature set, guided by the MoSCoW analysis, ensures FitPhone focuses on essential functionalities like matchmaking and meeting management while integrating enhancements to boost user engagement. By prioritizing core features and leaving space for future growth, the app is well-positioned to meet user needs effectively and adapt to evolving feedback.</p>
       </div>
     </div>
   </section>
@@ -718,12 +208,12 @@ li{
   <section id="Low-fidelity">
     <div class="reveal active">
       <div class="text-column">
-        <h3 style="font-size: 2em; color: #4475e2;">Low-fidelity Sketches</h3>
-        <p style="color: white;">Initial sketches focused on core functionalities like matchmaking and Education.</p>
+        <h3 class="section-title-blue">Low-fidelity Sketches</h3>
+        <p class="white-text">Initial sketches focused on core functionalities like matchmaking and Education.</p>
       </div>
       <div class="media-column">
         <div class="figma-container">
-          <img src="../Images/sketches.jpeg" alt="Sketches" style="width:100%; height:auto;">
+          <img src="../Images/sketches.jpeg" alt="Sketches" class="media-image-full">
         </div>
       </div>
     </div>
@@ -732,8 +222,8 @@ li{
   <section id="High-fidelity">
     <div class="reveal active">
       <div class="text-column">
-        <h3 style="font-size: 2em; color: #4475e2;">High-fidelity prototype</h3>
-        <p style="color: white;">Refinements included polished UI elements and interactive features like meetings and overall style and design.</p>
+        <h3 class="section-title-blue">High-fidelity prototype</h3>
+        <p class="white-text">Refinements included polished UI elements and interactive features like meetings and overall style and design.</p>
       </div>
       <div class="media-column">
         <div class="phone-frame">
@@ -751,13 +241,13 @@ li{
   <section id="Impmentation">
     <div class="reveal active">
       <div class="media-column">
-        <div class="pdf-container" style="  max-height:none;">
-          <img src="../Images/implement.jpeg" alt="Implementation" style="width:100%; height:auto;">
+        <div class="pdf-container pdf-container--tall">
+          <img src="../Images/implement.jpeg" alt="Implementation" class="media-image-full">
         </div>
       </div>
       <div class="text-column">
-        <h3 style="font-size: 2em; color: #6E07F3;">Implementation</h3>
-        <p style="color: white;">The development of the FitPhone focused on creating an engaging, educational experience that encourages healthier smartphone habits without becoming intrusive or annoying. The primary goal was to develop a user-friendly interface that tracks phone usage and provides valuable insights in a seamless and motivating way. We built the app using Flutter, ensuring a smooth and responsive experience across different devices. We followed an Agile Scrum methodology throughout the process, using Teams Planner to schedule tasks and track progress with additional bi-weekly retrospectives.</p>
+        <h3>Implementation</h3>
+        <p class="white-text">The development of the FitPhone focused on creating an engaging, educational experience that encourages healthier smartphone habits without becoming intrusive or annoying. The primary goal was to develop a user-friendly interface that tracks phone usage and provides valuable insights in a seamless and motivating way. We built the app using Flutter, ensuring a smooth and responsive experience across different devices. We followed an Agile Scrum methodology throughout the process, using Teams Planner to schedule tasks and track progress with additional bi-weekly retrospectives.</p>
       </div>
     </div>
   </section>
@@ -765,8 +255,8 @@ li{
   <section id="Improvments">
     <div class="reveal active">
       <div class="Overview">
-        <h3 style="font-size: 2em; color: #6E07F3;">Improvements</h3>
-        <p style="color: white;">During user testing and feedback sessions with the client, we made several adjustments to the final design and functionality. One key change was deciding against implementing a full login and account system. This was because we realized it wasn't necessary for our app, as we could utilize local storage instead. Since we aren't storing any user information, this approach also addressed privacy concerns. Additionally, as we continued developing the app and worked through each of the FitPhone steps, we discovered more efficient ways to implement our ideas. These improvements led to a design that was not only more professional and user-friendly but also maintained the style we established in our high-fidelity prototype.</p>
+        <h3>Improvements</h3>
+        <p class="white-text">During user testing and feedback sessions with the client, we made several adjustments to the final design and functionality. One key change was deciding against implementing a full login and account system. This was because we realized it wasn't necessary for our app, as we could utilize local storage instead. Since we aren't storing any user information, this approach also addressed privacy concerns. Additionally, as we continued developing the app and worked through each of the FitPhone steps, we discovered more efficient ways to implement our ideas. These improvements led to a design that was not only more professional and user-friendly but also maintained the style we established in our high-fidelity prototype.</p>
       </div>
     </div>
   </section>
@@ -774,14 +264,13 @@ li{
 
   <section id="Onboarding">
     <div class="reveal active">
-      <div class="text-column" style="display: flex;flex-direction: column;
-    justify-content: center;">
-        <h3 style="font-size: 2em; color: #4475e2;">Onboarding</h3>
-        <p style="color: white;">   During onboarding, users identify the challenges they want to solve. Based on their choices, the app recommends personalized resources and activities to help them achieve their goals.
+      <div class="text-column centered-column">
+        <h3 class="section-title-blue">Onboarding</h3>
+        <p class="white-text">   During onboarding, users identify the challenges they want to solve. Based on their choices, the app recommends personalized resources and activities to help them achieve their goals.
 
         </p>
       </div>
-    <img src="../Images/Mockups/Onboarding.png" alt="Onboarding" style="width:20%; height:20%;">
+    <img src="../Images/Mockups/Onboarding.png" alt="Onboarding" class="mockup-image">
     </div>
   </section>
   
@@ -789,95 +278,63 @@ li{
 
   <section id="Homescreen">
     <div class="reveal active">
-      <div class="text-column" style="display: flex;flex-direction: column;
-    justify-content: center;">
-        <h3 style="font-size: 2em; color: #4475e2;">Home Screen</h3>
-        <p style="color: white;">  Central hub showing personalized activities and progress based on the user's selected goals, with tracking and gamified achievements to keep engagement high.
+      <div class="text-column centered-column">
+        <h3 class="section-title-blue">Home Screen</h3>
+        <p class="white-text">  Central hub showing personalized activities and progress based on the user's selected goals, with tracking and gamified achievements to keep engagement high.
         </p>
       </div>
-    <img src="../Images/Mockups/Home/WhatsApp Image 2025-04-27 at 23.59.48-portrait.png" alt="Mockup Home" style="width:20%; height:20%;">
+    <img src="../Images/Mockups/Home/WhatsApp Image 2025-04-27 at 23.59.48-portrait.png" alt="Mockup Home" class="mockup-image">
     </div>
   </section>
 
   <section id="Activities">
     <div class="reveal active">
-      <div class="text-column" style="display: flex;flex-direction: column;
-    justify-content: center;">
-        <h3 style="font-size: 2em; color: #4475e2;">Activities</h3>
-        <p style="color: white;">Lists of alternative actitivys related to the users intrestrests, has group and individual activtys.</p>
+      <div class="text-column centered-column">
+        <h3 class="section-title-blue">Activities</h3>
+        <p class="white-text">Lists of alternative actitivys related to the users intrestrests, has group and individual activtys.</p>
       </div>
-    <img src="../Images/Mockups/Activty/WhatsApp Image 2025-04-27 at 23.57.23-portrait.png" alt="Activty" style="width:20%; height:20%;">
+    <img src="../Images/Mockups/Activty/WhatsApp Image 2025-04-27 at 23.57.23-portrait.png" alt="Activty" class="mockup-image">
     </div>
   </section>
 
   <section id="Education">
     <div class="reveal active">
-      <div class="text-column" style="display: flex;flex-direction: column;
-    justify-content: center;">
-        <h3 style="font-size: 2em; color: #4475e2;">Education</h3>
-        <p style="color: white;">  Access educational resources and activities based on your interests, supporting both individual and group learning.
+      <div class="text-column centered-column">
+        <h3 class="section-title-blue">Education</h3>
+        <p class="white-text">  Access educational resources and activities based on your interests, supporting both individual and group learning.
         </p>
       </div>
-    <img src="../Images/Mockups/Education.png" alt="Education" style="width:20%; height:20%;">
+    <img src="../Images/Mockups/Education.png" alt="Education" class="mockup-image">
     </div>
   </section>
   
 
   <section id="Journal">
     <div class="reveal active">
-      <div class="text-column" style="display: flex;flex-direction: column;
-    justify-content: center;">
-        <h3 style="font-size: 2em; color: #4475e2;">Journal Entry/Weekly Check-in</h3>
-        <p style="color: white;">  Reflect on your phone usage each week by recording your screen time, number of pickups, and answering guided reflection questions.
+      <div class="text-column centered-column">
+        <h3 class="section-title-blue">Journal Entry/Weekly Check-in</h3>
+        <p class="white-text">  Reflect on your phone usage each week by recording your screen time, number of pickups, and answering guided reflection questions.
         </p>
       </div>
-    <img src="../Images/Mockups/journelentry/WhatsApp Image 2025-04-27 at 23.57.24-portrait.png" alt="Journal Entry" style="width:20%; height:20%;">
+    <img src="../Images/Mockups/journelentry/WhatsApp Image 2025-04-27 at 23.57.24-portrait.png" alt="Journal Entry" class="mockup-image">
     </div>
   </section>
 
 
   <section id="Stats">
     <div class="reveal active">
-      <div class="text-column" style="display: flex;flex-direction: column;
-    justify-content: center;">
-        <h3 style="font-size: 2em; color: #4475e2;">Stats</h3>
-        <p style="color: white;">    The Stats screen provides users with a visual overview of their screen time, pickups, and overall phone usage trends. It helps users track their progress, identify patterns, and stay motivated to improve their digital habits.
+      <div class="text-column centered-column">
+        <h3 class="section-title-blue">Stats</h3>
+        <p class="white-text">    The Stats screen provides users with a visual overview of their screen time, pickups, and overall phone usage trends. It helps users track their progress, identify patterns, and stay motivated to improve their digital habits.
 
         </p>
       </div>
-    <img src="../Images/Mockups/Stats.png" alt="Stats" style="width:20%; height:20%;">
+    <img src="../Images/Mockups/Stats.png" alt="Stats" class="mockup-image">
     </div>
   </section>
 
 
-  <section id="final-container" class="project-section reveal" style="display:flex; flex-wrap:wrap; gap:2rem; align-items:flex-start;">
-    <div style="flex:1; min-width:300px;">
-      <h3 style="font-size:2em; color:#6E07F3; text-align:left;">How Usability Might Be Improved</h3>
-      <div style="margin-top:1.5rem;">
-        <h4 style="color:#6E07F3; margin-bottom:0.5rem; font-size:1.05rem;">Local Community Events</h4>
-        <p style="color:white; font-size:0.95rem; margin-bottom:1.5rem;">Connect with local groups to organize real-world fitness events and meetups.</p>
-        <h4 style="color:#6E07F3; margin-bottom:0.5rem; font-size:1.05rem;">Scalability</h4>
-        <p style="color:white; font-size:0.95rem; margin-bottom:1.5rem;">Expand FitPhone to include more cities and locations over time.</p>
-        <h4 style="color:#6E07F3; margin-bottom:0.5rem; font-size:1.05rem;">Privacy Adaptations</h4>
-        <p style="color:white; font-size:0.95rem; margin-bottom:1.5rem;">Strengthen data privacy controls as the user base grows.</p>
-        <h4 style="color:#6E07F3; margin-bottom:0.5rem; font-size:1.05rem;">Continuous Improvement</h4>
-        <p style="color:white; font-size:0.95rem;">Iterate based on ongoing user feedback post-launch.</p>
-      </div>
-    </div>
-    <div style="flex:1; min-width:300px; border-left:3px solid #6E07F3; padding-left:2rem;">
-      <h3 style="font-size:2em; color:#6E07F3; text-align:left;">Lessons Learned</h3>
-      <div style="margin-top:1.5rem;">
-        <h4 style="color:#6E07F3; margin-bottom:0.5rem; font-size:1.05rem;">Balance Tech &amp; User Needs</h4>
-        <p style="color:white; font-size:0.95rem; margin-bottom:1.5rem;">Technical requirements must always serve real user goals, not the other way around.</p>
-        <h4 style="color:#6E07F3; margin-bottom:0.5rem; font-size:1.05rem;">Flutter Deep-Dive</h4>
-        <p style="color:white; font-size:0.95rem; margin-bottom:1.5rem;">Hands-on Flutter development was a major growth opportunity across the whole team.</p>
-        <h4 style="color:#6E07F3; margin-bottom:0.5rem; font-size:1.05rem;">App Dev Complexity</h4>
-        <p style="color:white; font-size:0.95rem; margin-bottom:1.5rem;">Integrating features, troubleshooting bugs, and App Store prep each required dedicated time.</p>
-        <h4 style="color:#6E07F3; margin-bottom:0.5rem; font-size:1.05rem;">Client Collaboration</h4>
-        <p style="color:white; font-size:0.95rem;">Managing meetings, gathering feedback, and iterating based on it was crucial to success.</p>
-      </div>
-    </div>
-  </section>
+  <section id="final-container" class="project-section reveal"></section>
 
   <footer class="footer-section">
     <div class="footer-content">
@@ -904,159 +361,12 @@ li{
       <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
     </svg>
   </a>
-  <script>
-function initPDF(){
-  document.querySelectorAll('.pdf-container[data-pdf-url]').forEach(container => {
-    const url = container.dataset.pdfUrl;
-    const canvas = container.querySelector('.pdf-canvas');
-    const ctx = canvas.getContext('2d');
-    const pageIndicator = container.querySelector('.pdf-page-indicator');
-    const prevBtn = container.querySelector('.pdf-prev-btn');
-    const nextBtn = container.querySelector('.pdf-next-btn');
-    const zoomIn = container.querySelector('.pdf-zoom-in');
-    const zoomOut = container.querySelector('.pdf-zoom-out');
-    const loading = container.querySelector('.pdf-loading');
-    const pageNumSpan = container.querySelector('.pdf-page-num');
-
-    let pdfDoc, pageNum = 1, zoomLevel = 1.2;
-
-    async function renderPage(num) {
-      loading.style.display = 'block';
-      const page = await pdfDoc.getPage(num);
-      const viewport = page.getViewport({ scale: zoomLevel });
-      canvas.height = viewport.height;
-      canvas.width = viewport.width;
-
-      await page.render({ canvasContext: ctx, viewport }).promise;
-      loading.style.display = 'none';
-
-      // ✅ Update floating badge text
-      pageIndicator.textContent = `Page ${num}/${pdfDoc.numPages}`;
-      pageNumSpan.textContent = `${num}/${pdfDoc.numPages}`; // <-- ADD THIS
-
-    }
-
-    // Button handlers
-    prevBtn.onclick = () => { if(pageNum > 1) renderPage(--pageNum); };
-    nextBtn.onclick = () => { if(pageNum < pdfDoc.numPages) renderPage(++pageNum); };
-    zoomIn.onclick  = () => { zoomLevel *= 1.2; renderPage(pageNum); };
-    zoomOut.onclick = () => { zoomLevel /= 1.2; renderPage(pageNum); };
-
-    // Load PDF
-    pdfjsLib.getDocument(url).promise.then(doc => {
-      pdfDoc = doc;
-      renderPage(pageNum);
-    }).catch(() => loading.textContent = 'Failed to load PDF.');
-  });
-}
-    function reveal(){
-      document.querySelectorAll('.reveal').forEach(el=>{
-        const top = el.getBoundingClientRect().top;
-        el.classList.toggle('active', top < window.innerHeight-150);
-      });
-    }
-    window.addEventListener('scroll', reveal);
-    window.addEventListener('load', () => {
-      const loader = document.getElementById('loader');
-      if (loader) loader.style.display = 'none';
-      document.body.classList.add('loaded');
-      initPDF();
-      reveal();
-    });
-  </script>
-
- 
-  
-
   <!-- Three.js loader: non-overlapping spheres -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script>
-    (function(){
-      const loader = document.getElementById('loader');
-      const scene  = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(50, window.innerWidth/window.innerHeight, 1, 1000);
-      camera.position.set(0,0,200);
-      const renderer = new THREE.WebGLRenderer({ antialias:true, alpha:true });
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      renderer.setPixelRatio(window.devicePixelRatio);
-      loader.appendChild(renderer.domElement);
-  
-      scene.add(new THREE.AmbientLight(0xffffff, 0.3));
-      const dir = new THREE.DirectionalLight(0xffffff, 0.7);
-      dir.position.set(1,1,1);
-      scene.add(dir);
-  
-      function rand(min,max){ return min + Math.random()*(max-min); }
-  
-      function createGlobe(R){
-        const g = new THREE.Group();
-        const edges = new THREE.EdgesGeometry(new THREE.SphereGeometry(R,16,16));
-        g.add(new THREE.LineSegments(edges, new THREE.LineBasicMaterial({ color:0x6E07F3, transparent:true, opacity:0.8 })));
-  
-        const spikeVerts = new Float32Array(40*2*3);
-        let idx=0;
-        for(let i=0;i<40;i++){
-          const θ= Math.acos(rand(-1,1)); const φ=rand(0,Math.PI*2);
-          const x=R*Math.sin(θ)*Math.cos(φ);
-          const y=R*Math.sin(θ)*Math.sin(φ);
-          const z=R*Math.cos(θ);
-          spikeVerts[idx++]=x; spikeVerts[idx++]=y; spikeVerts[idx++]=z;
-          const sc=1+rand(0.15,0.35);
-          spikeVerts[idx++]=x*sc; spikeVerts[idx++]=y*sc; spikeVerts[idx++]=z*sc;
-        }
-        g.add(new THREE.LineSegments(
-          new THREE.BufferGeometry().setAttribute('position', new THREE.BufferAttribute(spikeVerts,3)),
-          new THREE.LineBasicMaterial({ color:0xffffff, transparent:true, opacity:0.3 })
-        ));
-  
-        const pts=[];
-        for(let i=0;i<80;i++){
-          const t=rand(-R*0.6,R*0.6);
-          const h=rand(-R*0.2,R*0.2)*(1-Math.abs(t)/(R*0.6));
-          pts.push(new THREE.Vector3(t,h,0), new THREE.Vector3(t,-h,0));
-        }
-        const waveGeo = new THREE.BufferGeometry().setFromPoints(pts);
-        const waveMat = new THREE.LineBasicMaterial({ color:0xffffff, transparent:true, opacity:0.6 });
-        const wave1   = new THREE.LineSegments(waveGeo, waveMat);
-        g.add(wave1, wave1.clone().rotateX(Math.PI/2), wave1.clone().rotateY(Math.PI/2));
-  
-        return g;
-      }
-  
-      const R = 40, placed = [], globes = [];
-      for(let i=0;i<5;i++){
-        let x,y,scale,radius,attempts=0;
-        do{
-          x=rand(-100,100); y=rand(-60,60);
-          scale=rand(0.6,1.2); radius=R*scale;
-          attempts++;
-        } while(placed.some(p=>Math.hypot(p.x-x,p.y-y)<p.radius+radius) && attempts<1000);
-        placed.push({x,y,radius});
-        const g = createGlobe(R);
-        g.position.set(x,y,0); g.scale.set(scale,scale,scale);
-        scene.add(g);
-        globes.push({g,speed:rand(0.1,0.3)});
-      }
-  
-      let prev=0;
-      function animate(time=0){
-        const dt=(time-prev)/1000; prev=time;
-        globes.forEach(o=>{
-          o.g.rotation.y += dt*o.speed;
-          o.g.rotation.x += dt*o.speed*0.4;
-        });
-        renderer.render(scene,camera);
-        requestAnimationFrame(animate);
-      }
-      requestAnimationFrame(animate);
-  
-      window.addEventListener('resize', ()=>{
-        camera.aspect=window.innerWidth/window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-      });
-    })();
-  </script>
+  <script src="../components/project-page/utils.js" defer></script>
+  <script src="../components/project-page/intro-summary.js" defer></script>
+  <script src="../components/project-page/final-columns.js" defer></script>
+  <script src="../js/pages/fitphone.js" defer></script>
   <script src="../components/navbar/navbar.js" defer></script>
 </body>
 </html>
