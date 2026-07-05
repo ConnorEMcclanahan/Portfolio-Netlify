@@ -1037,27 +1037,33 @@ li{
 
 
 
-<section id="final-container" class="project-section reveal">
-  <div class="box reveal" id="improvements"  style="flex-direction: column;">
-    <h3>How Usability Might Be Improved</h3>
-    <ul>
-      <li>Integrate a free wave-and-weather API so users get real-time surf conditions without paywalls.</li>
-      <li>Use clear, contextual visuals (e.g. “light drizzle” vs “heavy downpour”).</li>
-      <li>Add prominent towel reminders based on height and conditions.</li>
-      <li>Include interactive surf-condition graphs (wave height, wind direction).</li>
-      <li>Scale location support—add more beaches & community events over time.</li>
-    </ul>
+<section id="final-container" class="project-section reveal" style="display:flex; flex-wrap:wrap; gap:2rem; align-items:flex-start;">
+  <div style="flex:1; min-width:300px;">
+    <h3 style="font-size:2em; color:#6E07F3; text-align:left;">How Usability Might Be Improved</h3>
+    <div style="margin-top:1.5rem;">
+      <h4 style="color:#6E07F3; margin-bottom:0.5rem; font-size:1.05rem;">Live Conditions Integration</h4>
+      <p style="color:white; font-size:0.95rem; margin-bottom:1.5rem;">Integrate a free wave-and-weather API so users get real-time surf data without paywalls.</p>
+      <h4 style="color:#6E07F3; margin-bottom:0.5rem; font-size:1.05rem;">Clearer Contextual Visuals</h4>
+      <p style="color:white; font-size:0.95rem; margin-bottom:1.5rem;">Use clearer visual states (like light drizzle vs heavy downpour) to speed user understanding.</p>
+      <h4 style="color:#6E07F3; margin-bottom:0.5rem; font-size:1.05rem;">Stronger Surf Guidance</h4>
+      <p style="color:white; font-size:0.95rem; margin-bottom:1.5rem;">Add prominent reminders and interactive surf graphs for wave height and wind direction.</p>
+      <h4 style="color:#6E07F3; margin-bottom:0.5rem; font-size:1.05rem;">Scalable Location Coverage</h4>
+      <p style="color:white; font-size:0.95rem;">Expand support to more beaches and community events as the platform grows.</p>
+    </div>
   </div>
 
-  <div class="box reveal" id="lessons" style="flex-direction: column;">
-    <h3>Lessons Learned</h3>
-    <ul>
-      <li>Balance simplicity with functionality—too many features overwhelm beginners.</li>
-      <li>Rapid paper & low-fi tests catch major issues early.</li>
-      <li>Domain expert feedback (meteorologists, surfers) is invaluable.</li>
-      <li>Agile iteration & client reviews keep us on track.</li>
-      <li>Clear planning and structure maintain project cohesion.</li>
-    </ul>
+  <div style="flex:1; min-width:300px; border-left:3px solid #6E07F3; padding-left:2rem;">
+    <h3 style="font-size:2em; color:#6E07F3; text-align:left;">Lessons Learned</h3>
+    <div style="margin-top:1.5rem;">
+      <h4 style="color:#6E07F3; margin-bottom:0.5rem; font-size:1.05rem;">Simplicity First</h4>
+      <p style="color:white; font-size:0.95rem; margin-bottom:1.5rem;">Balancing simplicity with functionality is critical because feature overload overwhelms new users.</p>
+      <h4 style="color:#6E07F3; margin-bottom:0.5rem; font-size:1.05rem;">Test Early, Test Fast</h4>
+      <p style="color:white; font-size:0.95rem; margin-bottom:1.5rem;">Rapid paper and low-fidelity tests surfaced major usability issues before expensive implementation.</p>
+      <h4 style="color:#6E07F3; margin-bottom:0.5rem; font-size:1.05rem;">Expert Input Matters</h4>
+      <p style="color:white; font-size:0.95rem; margin-bottom:1.5rem;">Feedback from surfers and meteorology experts added valuable, real-world domain accuracy.</p>
+      <h4 style="color:#6E07F3; margin-bottom:0.5rem; font-size:1.05rem;">Planning Enables Agility</h4>
+      <p style="color:white; font-size:0.95rem;">Consistent planning, client reviews, and agile iteration kept the team aligned and delivery cohesive.</p>
+    </div>
   </div>
 </section>
 
@@ -1067,15 +1073,15 @@ li{
 
   <footer>
     <div class="footer-content">
-      <p class="footer-thanks">Thank you for exploring✌️</p>
+      <p class="footer-thanks">Thank you for exploring</p>
       <ul id="navigation">
         <li><a href="index.html" class="footer-btn">
-          <ion-icon name="home-outline"></ion-icon> Home
+          <ion-icon name="home"></ion-icon> Home
         </a></li>
         <li>
           <!-- add a class so we can animate just this one -->
           <a href="#top" class="footer-btn return-top">
-            <ion-icon name="arrow-up-circle-outline"></ion-icon> Return to Top
+            <ion-icon name="arrow-up"></ion-icon> Return to Top
           </a>
         </li>
       </ul>
@@ -1085,7 +1091,7 @@ li{
 
 
   <!-- GitHub Corner -->
-  <a href="https://github.com/sh0utTMMM/Kahuna" class="github-corner" aria-label="View source on GitHub" target="_blank">
+  <a href="https://github.com/ConnorEMcclanahan/Kahuna" class="github-corner" aria-label="View source on GitHub" target="_blank">
     <svg viewBox="0 0 16 16" width="80" height="80">
       <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
     </svg>

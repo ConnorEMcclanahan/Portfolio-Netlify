@@ -60,6 +60,21 @@
       text-align: center;
       color: var(--primary);
     }
+
+    .footer-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    padding: 0.75em 1.5em;
+    background: linear-gradient(45deg, #7f5af0, #6b3ff0);
+    color: #fff;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
 .navbar-menu li a {
   color: #6E07F3;
   text-decoration: none;
@@ -74,7 +89,7 @@
     }
 
     footer li {
-      font-size: 1rem !important;
+      font-size: .8rem !important;
       margin-bottom: 0;
       line-height: normal;
     }
@@ -220,26 +235,6 @@
       color: var(--primary);
     }
 
-    .navbar-burger {
-      display: none;
-      flex-direction: column;
-      position: absolute;
-      left: 15px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 5px;
-      z-index: 1001;
-    }
-
-    .navbar-burger span {
-      width: 24px;
-      height: 3px;
-      background-color: #fff;
-      margin: 4px 0;
-      transition: all 0.3s ease;
-      display: block;
-    }
 
     /* Parallax section adjustment */
     .parallax-1 {
@@ -278,38 +273,6 @@
     }
 
     @media(max-width:768px) {
-      .navbar-burger {
-        display: flex;
-      }
-
-      .navbar-burger.is-active span:nth-child(1) {
-        transform: rotate(45deg) translate(8px, 8px);
-      }
-
-      .navbar-burger.is-active span:nth-child(2) {
-        opacity: 0;
-      }
-
-      .navbar-burger.is-active span:nth-child(3) {
-        transform: rotate(-45deg) translate(6px, -6px);
-      }
-
-      .navbar-menu {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: rgba(0, 0, 0, 0.98);
-        flex-direction: column;
-        padding: 1.5rem 1rem;
-        border-bottom: 1px solid rgba(110, 7, 243, 0.2);
-      }
-
-      .navbar-menu.is-active {
-        display: flex;
-      }
-
       header nav {
         flex-direction: column;
         gap: 1rem;
@@ -365,6 +328,65 @@
 
       header nav a {
         font-size: 0.85rem;
+      }
+    }
+
+    /* Diplora mobile sizing match */
+    @media (max-width: 768px) {
+      .parallax-1 {
+        min-height: 78vh !important;
+        background-attachment: scroll !important;
+        background-position: center top !important;
+        background-size: cover !important;
+        background-repeat: no-repeat !important;
+        background-color: #000 !important;
+      }
+
+      section {
+        margin-top: 2rem !important;
+        margin-bottom: 2.5rem !important;
+      }
+
+      #intro-summary {
+        padding: 1.5rem 1rem !important;
+        margin-top: 0 !important;
+        margin-bottom: 1.5rem !important;
+      }
+
+      #intro-summary .intro-summary-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 1rem !important;
+        max-width: 100% !important;
+      }
+
+      #intro-summary .intro-summary-left,
+      #intro-summary .intro-summary-right,
+      #intro-summary .intro-summary-left.reveal.active,
+      #intro-summary .intro-summary-right.reveal.active {
+        display: block !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+
+      .reveal.active {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+      }
+
+      .scroll-down {
+        bottom: 14px !important;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .parallax-1 {
+        min-height: 70vh !important;
+        background-size: cover !important;
+      }
+
+      #intro-summary {
+        padding: 1rem 0.75rem !important;
       }
     }
 
@@ -598,7 +620,7 @@
   </div>
 
   <!-- Main Content -->
-  <div class="parallax-1" id="top" style="background: url('../Images/Diplora/image.png') center/cover no-repeat fixed;">
+  <div class="parallax-1" id="top" style="background: url('../Images/Diplora/hospital.jpg') center/cover no-repeat fixed;">
 
     <a href="#intro-summary" class="scroll-down" aria-label="Scroll down">
       <ion-icon name="chevron-down-outline"></ion-icon>
@@ -1137,9 +1159,9 @@
   </section>
 
   <!-- How Usability Might Be Improved & Lessons Learned section -->
-  <section id="improvements-lessons" class="project-section reveal" style="display:flex; flex-wrap:wrap; gap:2rem; align-items:flex-start; flex-direction: row;">
+  <section id="final-container" class="project-section reveal" style="display:flex; flex-wrap:wrap; gap:2rem; align-items:flex-start;">
     <!-- Left Column: How Usability Might Be Improved -->
-    <div class="text-column" style="flex:1; min-width:300px;">
+    <div style="flex:1; min-width:300px;">
       <h3 style="font-size: 2em; color: #6E07F3;">How Usability Might Be Improved</h3>
       
       <div style="margin-top: 1.5rem;">
@@ -1164,7 +1186,7 @@
     </div>
 
     <!-- Right Column: Lessons Learned -->
-    <div class="text-column" style="flex:1; min-width:300px; border-left:3px solid #6E07F3; padding-left:2rem;">
+    <div style="flex:1; min-width:300px; border-left:3px solid #6E07F3; padding-left:2rem;">
       <h3 style="font-size: 2em; color: #6E07F3;">Key Learning Outcomes</h3>
 
       <div style="margin-top: 1.5rem;">
@@ -1189,21 +1211,15 @@
     </div>
   </section>
 
-  <footer>
-    <div class="footer-content">
-      <p class="footer-thanks">Thank you for exploring✌️</p>
-      <ul id="navigation">
-        <li><a href="index.html" class="footer-btn">
-          <ion-icon name="home-outline"></ion-icon> Home
-        </a></li>
-        <li>
-          <a href="#top" class="footer-btn return-top">
-            <ion-icon name="arrow-up-circle-outline"></ion-icon> Return to Top
-          </a>
-        </li>
-      </ul>
-    </div>
-  </footer>
+    <footer class="footer-section">
+      <div class="footer-content">
+        <p class="footer-thanks">Thank you for exploring</p>
+        <ul id="navigation">
+          <li><a href="../index.html" class="footer-btn"><ion-icon name="home"></ion-icon> Home</a></li>
+          <li><a href="#top" class="footer-btn return-top"><ion-icon name="arrow-up"></ion-icon> Return to Top</a></li>
+        </ul>
+      </div>
+    </footer>
 
   <script src="../components/navbar/navbar.js" defer></script>
   <script>
@@ -1236,23 +1252,6 @@
     window.addEventListener('scroll', checkReveal);
     checkReveal();
 
-    // Mobile menu toggle
-    const burger = document.querySelector('.navbar-burger');
-    const menu = document.querySelector('.navbar-menu');
-    if (burger) {
-      burger.addEventListener('click', function() {
-        menu.classList.toggle('is-active');
-        burger.classList.toggle('is-active');
-      });
-
-      const links = menu.querySelectorAll('a');
-      links.forEach(link => {
-        link.addEventListener('click', function() {
-          menu.classList.remove('is-active');
-          burger.classList.remove('is-active');
-        });
-      });
-    }
   </script>
 </body>
 
