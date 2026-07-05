@@ -1,0 +1,19 @@
+# Legacy root-level routes to pages/
+/About.html /pages/about.html 301
+/Fitphone.html /pages/fitphone.html 301
+/Urbansports.html /pages/urbansports.html 301
+/Kahuna.html /pages/kahuna.html 301
+/Motivate.html /pages/motivate.html 301
+/Diplora.html /pages/diplora.html 301
+/Petica.html /pages/petica.html 301
+/Thankyou.html /pages/thankyou.html 301
+
+# Lowercase root-level aliases
+/about.html /pages/about.html 301
+/fitphone.html /pages/fitphone.html 301
+/urbansports.html /pages/urbansports.html 301
+/kahuna.html /pages/kahuna.html 301
+/motivate.html /pages/motivate.html 301
+/diplora.html /pages/diplora.html 301
+/petica.html /pages/petica.html 301
+/thankyou.html /pages/thankyou.html 301
