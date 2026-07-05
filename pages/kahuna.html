@@ -1,0 +1,1388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/png" href="../Images/logo.png"/>
+  <link rel="stylesheet" href="../styles/style.css"/>
+  <link rel="stylesheet" href="../styles/frontend.css"/>
+  <link rel="stylesheet" href="../components/navbar/navbar.css"/>
+  <link rel="stylesheet" href="../components/footer/footer.css"/>
+  <link rel="stylesheet" href="../styles/mobile-responsive.css"/>
+  <style>
+    /* Override navbar to be transparent on project pages */
+    .navbar {
+      background: rgba(0, 0, 0, 0.5) !important;
+    }
+    .pdf-canvas { transform: none !important; }
+  </style>
+
+  <!-- PDF.js library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+  <!-- PDF.js worker -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js"></script>
+  <script>
+    // Configure PDF.js worker
+    if (window.pdfjsLib) {
+      pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js';
+    }
+  </script>
+  <script src="../js/java.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <title>Kahuna Surfing App</title>
+  <style>
+    /* Standardized font size system */
+    h1, h3, h3{
+      font-size: 2rem !important;
+      text-align: center;
+    }
+    .footer-btn {
+    display: inline-flex
+;
+    align-items: center;
+    gap: 0.5em;
+    padding: 0.75em 1.5em;
+    background: linear-gradient(45deg, #7f5af0, #6b3ff0);
+    color: #fff;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+  /* Stats and charts flex */
+  #survey, #nl-apps, #features-rank, #sports-depend { flex-direction: column; }
+    .stats { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem; }
+    .stat { background: #111; color: #fff; padding: 1rem; border-radius: 8px; flex: 1; text-align: center; }
+    .stat h4 { color: #6E07F3; margin-bottom: 0.5rem; }
+    .charts { display: flex; flex-wrap: wrap; gap: 2rem; margin-top: 2rem; }
+    .chart-container {padding: 1rem; border-radius: 8px; flex: 1;    margin-bottom: 2vh;  }
+    .chart-container canvas { width: 100% !important; height: 300px !important; }
+
+
+section h1 {
+    font-size: 7vh;
+    color: #6E07F3;
+}
+    h3 {
+      text-align: left;
+      color: #6E07F3 !important;
+    }
+    
+    p, li, .pov-item p,.box li {
+      margin: 0;
+    padding: 0;
+    }
+        .navbar-menu {
+    display: flex;
+    list-style: none;
+    margin: 0 !important;
+    padding: 0 !important;
+    gap: 0rem !important;
+    align-items: center;
+}
+  
+    .pov-item h4 {
+      font-size: 1.2rem !important;
+      color: #6E07F3;
+    }
+  
+    h1 {
+      text-align: center;
+      font-size: 3em !important;
+    }
+    p{
+      font-size: 1.125rem !important;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+  
+    /* Heading tweaks inside image wrappers */
+    .wrapingimageleftt h1,
+    .wrapingimagerightt h1 {
+      text-align: left !important;
+      color: #fff !important;
+    }
+    
+    .wrapingimageleftt h3,
+    .wrapingimagerightt h3 {
+      font-size: 2rem !important;
+    }
+    
+    .wrapingimagerightt p {
+      color: #fff !important;
+    }
+  
+    .skills-banner h3 {
+      text-align: center;
+      color: #000 !important;
+    }
+  
+    footer {
+  background: #222;
+  color: #fff;
+}
+
+.footer-content {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+/* Big "Thank you" */
+.footer-thanks {
+  font-size: 2.5rem!important;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+}
+
+/* Nav list centered below */
+#navigation {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  display: inline-flex;
+  gap: 1rem;
+}
+
+* Softer purple pills */
+.footer-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.75em 1.5em;
+  background: linear-gradient(45deg, #7f5af0, #6b3ff0);
+  color: #fff;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.footer-btn ion-icon {
+  font-size: 1.2em;
+}
+
+/* Hover lift */
+.footer-btn:hover,
+.footer-btn:focus {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+.pdf-page-num {
+  background: transparent;
+    color: white;
+    border: none;
+    font-size: 0.9rem;
+    cursor: pointer;
+    padding: 5px 8px;
+    transition: color 0.2s;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+/* bounce keyframes */
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-6px); }
+  60% { transform: translateY(-3px); }
+}
+
+/* target only the “Return to Top” button */
+.footer-btn.return-top:hover {
+  animation: bounce 0.8s;
+}
+
+/* optional: make that button stand out even more */
+.footer-btn.return-top {
+  position: relative;
+  overflow: hidden;
+}
+    section {
+      margin-bottom: 10em;
+      clear: both;
+      overflow: hidden;
+      font-size: 17px;
+    }
+  
+    section p {
+      font-size: 2vh !important;
+    line-height: 1.5;
+    margin-bottom: 1em;
+    color: #fff;
+  
+    }
+  
+  /* PDF Viewer Container */
+.pdf-container {
+  max-height: 85vh;
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 8 / 11;
+    background: transparent;
+    border-radius: 0;
+}
+
+/* PDF Canvas */
+.pdf-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+    object-fit: contain;
+
+}
+
+
+/* Purple Page Number Badge */
+.pdf-page-indicator {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background: rgba(110, 7, 243, 0.85); /* purple semi-transparent */
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  z-index: 10;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+/* Control Bar: Hidden by Default */
+.pdf-controls {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 12px;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 6px 14px;
+  border-radius: 20px;
+  opacity: 0;
+  transition: opacity 0.3s ease, bottom 0.3s ease;
+  z-index: 20;
+}
+
+/* When Hovering: Hide Page Number, Show Controls */
+.pdf-container:hover .pdf-page-indicator {
+  opacity: 0;
+}
+.pdf-container:hover .pdf-controls {
+  opacity: 1;
+  bottom: 50px; /* lift it up a little */
+}
+
+/* Control Buttons */
+.pdf-controls button {
+  background: transparent;
+  color: white;
+  border: none;
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 5px 8px;
+  transition: color 0.2s;
+}
+.pdf-controls button:hover {
+  color: #6E07F3;
+}
+
+/* Loading Message */
+.pdf-loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #6E07F3;
+  font-weight: bold;
+}
+
+/* Mobile Tweaks */
+@media(max-width: 768px) {
+  .pdf-container {
+    width: 100%;
+    height: 70vh;
+  }
+  .pdf-page-indicator {
+    font-size: 0.75rem;
+    padding: 4px 8px;
+  }
+  .pdf-controls button {
+    font-size: 0.8rem;
+  }
+}
+
+#hmw-pov {
+  max-width: 1200px;    /* 20% larger than your previous 1000px */
+  margin: 0 auto;       /* horizontally center it */
+  padding: 0 1rem;      /* keep a little side-padding on narrow viewports */
+}
+
+/* Restore left-alignment of headings, table cells and list items inside */
+#hmw-pov h3,
+#hmw-pov .pov-table th,
+#hmw-pov .pov-table td,
+#hmw-pov .pov-container li {
+  text-align: left;
+}
+.pov-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+.pov-table th,
+.pov-table td {
+  border: 1px solid #444;
+  padding: 0.75rem;
+  text-align: left;
+  color: #fff;
+}
+.pov-table th {
+  background: rgba(110,7,243,0.8);
+}
+
+    /* Figma frame */
+    .figma-container {
+      width: 100%;
+      height: 500px;
+      margin-bottom: 30px;
+    }
+    .figma-container iframe {
+      width: 100%;
+      height: 100%;
+      border: 1px solid rgba(0,0,0,0.1);
+    }
+  
+    /* Parallax background */
+    .parallax-1 {
+      background: url(../Images/Mockups/Kahuna/Mockuuups\ iPhone\ mockup\ on\ the\ surfboard.jpeg) center/cover fixed no-repeat;
+    }
+  
+    /* GitHub corner */
+    .github-corner {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+    }
+    .github-corner svg {
+      width: 60px;
+      height: 60px;
+      fill: #6E07F3;
+      transition: transform 0.3s ease-in-out;
+    }
+    .github-corner:hover svg {
+      transform: scale(1.1);
+    }
+  
+    /* Final container boxes */
+    #final-container {
+      display: flex;
+  justify-content: center; /* Center the boxes */
+  gap: 20px;
+  padding: 30px;
+  max-width: 1200px; /* Optional: controls container width */
+  margin: 4rem auto; /* Center the whole container */
+  flex-wrap: wrap; /* make it wrap nicely on smaller screens */
+    }
+    #final-container .box {
+      flex: 1;
+      background: rgba(0,0,0,0.6);
+      border-radius: 8px;
+      padding: 20px;
+    }
+    #final-container .box h3 {
+      margin-top: 0;
+      margin-bottom: 1em;
+      text-align: center;
+      color: #fff;
+    }
+    #final-container .box ul {
+      list-style: disc inside;
+      margin: 0;
+      padding: 0;
+    }
+    #final-container .box li {
+      color: #fff;
+      margin-bottom: 0.5em;
+      line-height: 1.4;
+    }
+    @media(max-width:768px) {
+      #final-container { flex-direction: column; }
+    }
+    .reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease-out;
+}
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+    
+  .media-column,
+    .text-column {
+    /* flex: 0 0 50%; */
+    /* max-width: 50%; */
+    float: none;
+    width: 80vh;
+    margin: 0;
+    /* width: 100%; */
+    padding: 2;
+    margin: 10px;
+    box-sizing: border-box;
+
+    }
+  
+    @media(max-width:768px) {
+      .reveal.active {
+        display: block;
+        padding: 0;
+      }
+      .reveal.active .media-column,
+      .reveal.active .text-column {
+        width: 100%;
+        margin-bottom: 1.5rem;
+      }
+    }
+
+      /* layout for PDF sections */
+  .project-section {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  /* alternate even sections */
+  .project-section:nth-of-type(even) {
+    flex-direction: row-reverse;
+  }
+  
+    /* Remove any residual gutter rule */
+    /* (delete or override your old .media-column, .text-column padding:0 1rem) */
+  
+    /* Phone frame */
+    .phone-frame {
+      width: 360px;
+      height: 800px;
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: 40px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    }
+    .phone-frame iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    section ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    flex-direction: column;
+}
+
+.Overview{
+    display: flex;
+    justify-content: center;
+    padding: 0 2rem;
+    gap: 0;
+    flex-direction: column;
+    margin: 10vh;
+
+}
+.intro-summary-left{
+  display: flex
+;
+    justify-content: center;
+    padding: 0 2rem;
+    gap: 0;
+    flex-direction: column;
+}
+
+/* Loader Styles */
+    #loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+
+    .loading-text {
+      color: #6E07F3;
+      font-size: 1.5rem;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .pov-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  background: #111;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.pov-item {
+  border-bottom: 1px solid #222;
+  padding-bottom: 1rem;
+}
+
+.pov-item:last-child {
+  border-bottom: none;
+}
+
+.pov-item h4 {
+  color: #6E07F3;
+  margin-bottom: 0.5rem;
+}
+
+.pov-item p {
+  color: #fff;
+  line-height: 1.5;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .pov-container {
+    padding: 1rem;
+  }
+}
+/* Prototype Buttons */
+.prototype-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75em 1.5em;
+  background: linear-gradient(45deg, #7f5af0, #6b3ff0);
+  color: #fff;
+  font-weight: bold;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 1.2rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+  margin-top: 1rem;
+}
+
+.prototype-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+}
+
+/* Standardized section headlines */
+.project-section h3, 
+.project-section h3 {
+  font-size: 2rem !important;
+  color: #6E07F3;
+  margin-bottom: 1rem;
+}
+.snippet{
+display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    background: #111;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+.snippet h4 {
+    color: #6E07F3;
+    margin-bottom: 0.5rem;
+}
+/* Header main title */
+header h1 {
+  margin-top: 20%; 
+  color: white !important;
+  font-size: 2.5rem !important;
+}
+
+/* scroll-down indicator — purple + attention-grabbing */
+.scroll-down{
+  position:absolute;
+  bottom:32px;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:3.25rem;           /* a bit larger */
+  color:#b18bff;               /* lighter purple for contrast */
+  cursor:pointer;
+  text-decoration:none;
+  z-index:5;
+
+  /* glow */
+  filter:drop-shadow(0 0 6px #7f5af0) drop-shadow(0 0 16px #7f5af0);
+
+  /* bounce + pulse */
+  animation:
+    bounceDown 1.4s infinite ease-out,
+    pulseGlow 2.4s infinite ease-in-out;
+  transition:opacity .3s ease;
+}
+
+@keyframes bounceDown{
+  0%,20%,50%,80%,100%{transform:translate(-50%,0);}
+  40%{transform:translate(-50%,-12px) scale(1.1);}
+  60%{transform:translate(-50%,-6px);}
+}
+
+@keyframes pulseGlow{
+  0%,100%{filter:drop-shadow(0 0 6px #7f5af0) drop-shadow(0 0 16px #7f5af0);}
+  50%     {filter:drop-shadow(0 0 12px #a78bff) drop-shadow(0 0 28px #a78bff);}
+}
+
+@media(max-width:480px){
+  .scroll-down{font-size:2.5rem;}
+}
+li{
+  margin: 0 1em;
+}
+  </style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const scrollCue = document.querySelector('.scroll-down');
+    function toggleCue(){
+      // vanish after ~30 vh of scroll so it’s not distracting
+      scrollCue.style.opacity = (window.scrollY > window.innerHeight * 0.3) ? '0' : '1';
+    }
+    window.addEventListener('scroll', toggleCue, {passive:true});
+  });
+  </script>
+  
+</head>
+<body>
+  <div id="loader">
+    <div class="loading-text">Loading...</div>
+  </div>
+
+  <div class="parallax-1" id="top">
+     <!-- scroll cue -->
+<a href="#intro-summary" class="scroll-down" aria-label="Scroll down">
+  <!-- you’re already loading Ionicons, so we can reuse it -->
+  <ion-icon name="chevron-down-outline"></ion-icon>
+</a>
+    <nav class="navbar">
+      <div class="navbar-container">
+        <a href="index.html" class="navbar-logo">
+          <img src="../Images/logo.png" alt="logo" class="navbar-logo-img"/>
+        </a>
+        <button class="navbar-burger" aria-label="Toggle navigation menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <ul class="navbar-menu">
+          <li><a href="About.html">About</a></li>
+          <li><a href="index.html#projects">Projects</a></li>
+          <li><a href="../PDFS/Resume.pdf">Resume</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+    <header>
+    </header>
+  </div>
+
+ 
+ <!-- Intro & Meta -->
+ <section id="intro-summary" class="reveal" style="padding:4rem 1rem; background:#000; color:#fff;">
+  <div class="intro-summary-grid" style="display:grid; grid-template-columns:1.3fr 1fr; gap:3rem; max-width:1200px; margin:0 auto;">
+    <div class="intro-summary-left reveal">
+      <h1 style="color:#6E07F3; margin-bottom:1rem; font-weight:400;">Kahuna Surfing App</h1>
+      <p style="font-size:1.125rem; line-height:1.6;">
+        As Visual &amp; UX Designer and Front-end Engineer, I led Kahuna from concept through prototype. Built in Figma, iterated through user testing, delivered interactive high-fidelity mobile prototype.
+      </p>
+    </div>
+    <div class="intro-summary-right reveal" style="font-size:1rem; line-height:1.6;">
+      <ul style="list-style:none; padding:0; margin:0;">
+        <li style="margin-bottom:.5rem;"><span style="font-weight:400;">Role:</span> UX/UI &amp; Front-end Developer</li>
+        <li style="margin-bottom:.5rem;"><span style="font-weight:400;">Duration:</span> 4 weeks</li>
+        <li style="margin-bottom:.5rem;"><span style="font-weight:400;">Tools:</span> Figma, JavaScript</li>
+        <li style="margin-bottom:.5rem;"><span style="font-weight:400;">Deliverables:</span> Survey, Personas, Prototypes</li>
+        <li style="margin-bottom:.5rem;"><span style="font-weight:400;">Release:</span> Figma Share Link</li>
+      </ul>
+    </div>
+  </div>
+</section>
+      <!-- Wrap Overview in a reveal container for the animation -->
+      <section class="Overview reveal" style="flex-direction: column;" >
+        <h1>Overview</h1>
+        <p>
+          Kahuna is the perfect app for those who want to stay ahead of the weather and maximize their time on the waves.
+          It is user-friendly and intuitive, with a simple and easy-to-use interface that provides all the necessary
+          information at a glance.
+        </p>
+        <p>
+          Kahuna is the perfect companion for your surfing adventures. With its accurate and up-to-date information,
+          you can be confident in your ability to catch the best waves and enjoy the ultimate surfing experience.
+        </p>
+  </section>
+  
+  <!-- Questions & Criteria Section: replaced PDF with snippet -->
+  <section id="questions" class="project-section reveal">
+    <div class="snippet">
+      <h4>Project Questions</h4>
+      <ul>
+        <li style="border-bottom: 1px solid #222; padding-bottom: 1rem;">How much is 1 mm of rain in everyday terms, and how does it feel stepping outside?</li>
+        <li style="border-bottom: 1px solid #222; padding-bottom: 1rem;">Should I grab a towel when coming in? What about someone shorter or taller?</li>
+        <li style="border-bottom: 1px solid #222; padding-bottom: 1rem;">How can we present rain intensity so beginners instantly understand it?</li>
+        <li style="border-bottom: 1px solid #222; padding-bottom: 1rem;">What analogies or visuals best convey the sensation of rain?</li>
+        <li style="border-bottom: 1px solid #222; padding-bottom: 1rem;">How do we tailor a surfing app for newcomers to both weather data and waves?</li>
+      </ul>
+    </div>
+    <div class="text-column">
+      <h3>Questions & Criteria</h3>
+      <p>By refining these core questions, we ensured every design decision: </p>
+      <ul>
+        <li>Bridges the gap between raw rainfall metrics and real‑world experience.</li>
+        <li>Offers context‑aware advice (e.g. towel recommendations by height or conditions).</li>
+        <li>Uses intuitive graphs, icons, and analogies for clarity.</li>
+        <li>Delivers a friendly onboarding for first‑time surfing and weather app users.</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="reveal" style="display: flex; flex-direction: column; align-items: center; gap: 6rem; margin-top: 4rem;">
+
+    <!-- Popular NL Weather Apps Section -->
+    <div style="max-width: 700px; width: 100%;">
+      <div id="nl-apps"  style="max-height: 500px; width: 100%;"> 
+        <canvas id="nlAppsChart"></canvas>
+
+        <p style="color: #bbb; margin-top: 1rem;">Based on a sample of 100 users, here are the most used weather apps:</p>
+
+      </div>
+
+
+      
+    <!-- Feature Ranking Section -->
+      <div id="features-rank" style="max-width: 700px; width: 100%;">       
+      </div>
+      <div class="chart-container">
+        <canvas id="featureRankChart"></canvas>
+        <p style="color: #bbb;">Users rated key features on a scale of 1–100:</p>
+      </div>
+
+  
+    <!-- Sports Dependence Section -->
+      <div id="sports-depend" style="max-width: 700px; width: 100%;">        
+      </div>
+      <div class="chart-container">
+        <canvas id="sportsChart"></canvas>
+        <p style="color: #bbb;">Which sports rely most on weather conditions?</p>
+      </div>
+    
+  </div>
+ 
+  <!-- Survey Section -->
+  <section id="survey" class="project-section reveal">
+    <div class="stats">
+      <div class="stat"><h4>Participants</h4><p style="font-size: 4vh !important; text-align: center;display: flow;">100</p></div>
+      <div class="stat"><h4>Age 18–22</h4><p style="font-size: 4vh !important; text-align: center;display: flow;">90%</p></div>
+      <div class="stat"><h4>Used apps before</h4><p style="font-size: 4vh !important; text-align: center;display: flow;">100%</p></div>
+      <div class="stat"><h4>Satisfaction (avg)</h4><p style="font-size: 4vh !important; text-align: center;display: flow;">4/5</p></div>
+    </div>
+    <div class="text-column">
+      <h3>Survey Insights</h3>
+      <p>We surveyed 50 users (mostly students) to uncover needs for a beginner‑friendly surf weather app.</p>
+      <ul>
+        <li>50% prioritize temperature; 50% prioritize rain & wind.</li>
+        <li>100% want simplistic design; 90% want weekly forecasts.</li>
+        <li>70% seek wind speed data; 10% enjoy animations.</li>
+        <li>60% skateboarders; 50% surfers & basketball players.</li>
+      </ul>
+    </div>
+  </section>
+
+<!-- Interviews Section -->
+<section id="interviews" class="project-section reveal">
+  <div class="pdf-container" data-pdf-url="PDFS/Kahuna/edited/Interview.pdf">
+    <div class="pdf-loading">Loading PDF...</div>
+    <canvas class="pdf-canvas"></canvas>
+    <div class="pdf-page-indicator">Page 1/1</div>
+    <div class="pdf-controls">
+      <button class="pdf-prev-btn">Previous</button>
+      <span class="pdf-page-num">1/1</span>
+      <button class="pdf-next-btn">Next</button>
+      <button class="pdf-zoom-out">-</button>
+      <button class="pdf-zoom-in">+</button>
+    </div>
+  </div>
+  <div class="text-column">
+    <h3>Interviews</h3>
+    <p>
+      We sat down with eight participants (ages 18–22) and a professional meteorologist to dig deeper into how users interpret weather data. Students confirmed our survey findings—that temperature and rain intensity are critical—but stressed the need for relatable analogies (e.g., “light drizzle vs. heavy downpour”) and simple towel-reminder prompts based on real-time conditions. They also asked for clear wind-speed visualizations to plan surf sessions. Our expert interview underscored the importance of integrating wave height and wind direction overlays for surfers. These conversations directly influenced our design: we introduced a color-coded rain scale with contextual labels, dynamic towel notifications, and an interactive surf conditions graph to make decision-making effortless.
+    </p>
+  </div>
+</section>
+
+
+<section id="hmw-pov" class="project-section reveal" style="display: flex; gap: 2rem; align-items: stretch; flex-wrap: wrap;">
+  <!-- LEFT: POV table -->
+  <div style="flex: 1; min-width: 280px; display: flex; flex-direction: column;">
+    <h3 style="color:#6E07F3; text-align: center; margin-bottom: 1rem;">POV</h3>
+    <table class="pov-table" style="flex: 1; width: 100%; border-collapse: collapse; table-layout: fixed; font-size: 1.1rem;">
+      <thead>
+        <tr>
+          <th style="border:1px solid #444; padding:12px; background:rgba(110,7,243,0.8); color:#fff;">Users</th>
+          <th style="border:1px solid #444; padding:12px; background:rgba(110,7,243,0.8); color:#fff;">Need</th>
+          <th style="border:1px solid #444; padding:12px; background:rgba(110,7,243,0.8); color:#fff;">Insight</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="border:1px solid #444; padding:12px; color:#fff;">
+            A surfer who needs weather insight before heading out.
+          </td>
+          <td style="border:1px solid #444; padding:12px; color:#fff;">
+            To show accurate weather information for surfers.
+          </td>
+          <td style="border:1px solid #444; padding:12px; color:#fff;">
+            Users need a precise, easy-to-use app that lets them see beaches, weather, and waves quickly and for free.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- RIGHT: HMW list -->
+  <div style="flex: 1; min-width: 280px; display: flex; flex-direction: column;">
+    <h3 style="color:#6E07F3; text-align: center; margin-bottom: 1rem;">HMW</h3>
+    <ul class="pov-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center; font-size: 1.1rem; gap: 1rem; padding-left: 1rem;">
+      <li class="pov-item">
+        How might we create a good representation of the weather?
+      </li>
+      <li class="pov-item">
+        How might we make a more usable app for surfers of all skills?
+      </li>
+      <li class="pov-item">
+        How might we improve upon existing weather apps to build something unique and easy?
+      </li>
+    </ul>
+</div>
+</section>
+
+<section id="competitor-analysis" class="project-section reveal">
+  <div class="pdf-container" data-pdf-url="PDFS/Kahuna/Competitor Analysis Surfing App (1).pdf">
+    <div class="pdf-loading">Loading PDF...</div>
+    <canvas class="pdf-canvas"></canvas>
+    <div class="pdf-page-indicator">Page 1/1</div>
+    <div class="pdf-controls">
+      <button class="pdf-prev-btn">Previous</button>
+      <span class="pdf-page-num">1/1</span>
+      <button class="pdf-next-btn">Next</button>
+      <button class="pdf-zoom-out">-</button>
+      <button class="pdf-zoom-in">+</button>
+    </div>
+  </div>
+  <div class="text-column">
+    <h3 style="color:#6E07F3 !important;">Competitor Analysis</h3>
+    <p>What beginners miss in existing surf-weather apps:</p>
+    <ul>
+      <li>Surfline: excellent wave cams, but you must pay for live feeds.</li>
+      <li>Magicseaweed: similar features, yet its layout and paywall overwhelm new users.</li>
+      <li>Wisuki: strong wind data across sports, but no surf-specific visuals.</li>
+      <li>WSL: rich competition stats, though the UI is too dense for casual surfers.</li>
+    </ul>
+  </div>
+</section>
+
+
+<section id="paper-prototype" class="project-section reveal">
+  <div class="pdf-container" data-pdf-url="PDFS/Kahuna/Paper Prototype (1).pdf">
+    <div class="pdf-loading">Loading PDF...</div>
+    <canvas class="pdf-canvas"></canvas>
+    <div class="pdf-page-indicator">Page 1/1</div>
+    <div class="pdf-controls">
+      <button class="pdf-prev-btn">Previous</button>
+      <span class="pdf-page-num">1/1</span>
+      <button class="pdf-next-btn">Next</button>
+      <button class="pdf-zoom-out">-</button>
+      <button class="pdf-zoom-in">+</button>
+    </div>
+  </div>
+  <div class="text-column">
+    <h3>Paper Prototype</h3>
+    <p>
+    Sketeched up a simple interface that would be simple for beginner sufers to use while they are out and began, testing in our environment.
+    </p>
+  </div>
+</section>
+
+
+  <!-- Low-fidelity Prototype Section -->
+<section id="low-fidelity" class="project-section reveal">
+  <div class="pdf-container" data-pdf-url="PDFS/Kahuna/edited/Low-fi.pdf">
+    <div class="pdf-loading">Loading PDF...</div>
+    <canvas class="pdf-canvas"></canvas>
+    <div class="pdf-page-indicator">Page 1/1</div>
+    <div class="pdf-controls">
+      <button class="pdf-prev-btn">Previous</button>
+      <span class="pdf-page-num">1/1</span>
+      <button class="pdf-next-btn">Next</button>
+      <button class="pdf-zoom-out">-</button>
+      <button class="pdf-zoom-in">+</button>
+    </div>
+  </div>
+  <div class="text-column">
+    <h3>Low‑fidelity Prototype</h3>
+    <p>
+      We built a simple Figma prototype to make it more tesable and make it natural growing position so that we can make our higher fidelity prototypes
+    </p>
+  </div>
+</section>
+
+
+<!-- Low-fidelity User Test Section -->
+<section id="user-tests-low" class="project-section reveal">
+  <div class="pdf-container" data-pdf-url="PDFS/Kahuna/edited/Usertesting.pdf">
+    <div class="pdf-loading">Loading PDF...</div>
+    <canvas class="pdf-canvas"></canvas>
+    <div class="pdf-page-indicator">Page 1/1</div>
+    <div class="pdf-controls">
+      <button class="pdf-prev-btn">Previous</button>
+      <span class="pdf-page-num">1/1</span>
+      <button class="pdf-next-btn">Next</button>
+      <button class="pdf-zoom-out">-</button>
+      <button class="pdf-zoom-in">+</button>
+    </div>
+  </div>
+  <div class="text-column">
+    <h3 style="color:#6E07F3;">Low-fidelity User Test</h3>
+    <p>We tested our low-fi prototype with 5 users to catch early issues:</p>
+    <ul>
+      <li>Forecast &amp; Conditions tabs were easy to find.</li>
+      <li>Swipe-to-refresh felt natural for most users.</li>
+      <li>Towel-tip placement needs to be higher on the screen.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- High-fidelity User Test Section -->
+<section id="user-tests-high" class="project-section reveal">
+  <div class="pdf-container" data-pdf-url="PDFS/Kahuna/edited/Usertesting.pdf">
+    <div class="pdf-loading">Loading PDF...</div>
+    <canvas class="pdf-canvas"></canvas>
+    <div class="pdf-page-indicator">Page 1/1</div>
+    <div class="pdf-controls">
+      <button class="pdf-prev-btn">Previous</button>
+      <span class="pdf-page-num">1/1</span>
+      <button class="pdf-next-btn">Next</button>
+      <button class="pdf-zoom-out">-</button>
+      <button class="pdf-zoom-in">+</button>
+    </div>
+  </div>
+  <div class="text-column">
+    <h3 style="color:#6E07F3;">High-fidelity User Test</h3>
+    <p>We tested our polished prototype with 5 users to confirm final usability:</p>
+    <ul>
+      <li>Visual design was well received, users found the color scheme clear.</li>
+      <li>Bottom navigation bar still caused slight confusion—labels will be refined.</li>
+      <li>Interactive towel-tip animation was engaging but needs faster response.</li>
+      <li>Wave-condition graph was intuitive and helped users plan their session.</li>
+    </ul>
+  </div>
+</section>
+
+
+
+<section id="high-fidelity" class="project-section reveal">
+  <div class="media-column">
+      <div class="phone-frame">
+        <iframe
+          style="border: 1px solid rgba(0, 0, 0, 0.1);"
+          src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FSRdvhrluzRwWizIkn3LNwG%2FUntitled%3Fpage-id%3D0%253A1%26type%3Ddesign%26node-id%3D1-2%26viewport%3D865%252C1373%252C0.43%26t%3DISTmh8y72KVnyFHd-1%26scaling%3Dscale-down%26starting-point-node-id%3D1%253A2%26mode%3Ddesign"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+    <div class="text-column">
+      <h3 style="color:#6E07F3;">High-fidelity Prototype</h3>
+      <p>
+        We cleaned up our low-fi screens in Figma, added real colors, icons, and interactions, and made it fully clickable. This let us test the exact flow before writing any code—only one small bottom-bar tweak remains for the next round.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+<section id="final-container" class="project-section reveal" style="display:flex; flex-wrap:wrap; gap:2rem; align-items:flex-start;">
+  <div style="flex:1; min-width:300px;">
+    <h3 style="font-size:2em; color:#6E07F3; text-align:left;">How Usability Might Be Improved</h3>
+    <div style="margin-top:1.5rem;">
+      <h4 style="color:#6E07F3; margin-bottom:0.5rem; font-size:1.05rem;">Live Conditions Integration</h4>
+      <p style="color:white; font-size:0.95rem; margin-bottom:1.5rem;">Integrate a free wave-and-weather API so users get real-time surf data without paywalls.</p>
+      <h4 style="color:#6E07F3; margin-bottom:0.5rem; font-size:1.05rem;">Clearer Contextual Visuals</h4>
+      <p style="color:white; font-size:0.95rem; margin-bottom:1.5rem;">Use clearer visual states (like light drizzle vs heavy downpour) to speed user understanding.</p>
+      <h4 style="color:#6E07F3; margin-bottom:0.5rem; font-size:1.05rem;">Stronger Surf Guidance</h4>
+      <p style="color:white; font-size:0.95rem; margin-bottom:1.5rem;">Add prominent reminders and interactive surf graphs for wave height and wind direction.</p>
+      <h4 style="color:#6E07F3; margin-bottom:0.5rem; font-size:1.05rem;">Scalable Location Coverage</h4>
+      <p style="color:white; font-size:0.95rem;">Expand support to more beaches and community events as the platform grows.</p>
+    </div>
+  </div>
+
+  <div style="flex:1; min-width:300px; border-left:3px solid #6E07F3; padding-left:2rem;">
+    <h3 style="font-size:2em; color:#6E07F3; text-align:left;">Lessons Learned</h3>
+    <div style="margin-top:1.5rem;">
+      <h4 style="color:#6E07F3; margin-bottom:0.5rem; font-size:1.05rem;">Simplicity First</h4>
+      <p style="color:white; font-size:0.95rem; margin-bottom:1.5rem;">Balancing simplicity with functionality is critical because feature overload overwhelms new users.</p>
+      <h4 style="color:#6E07F3; margin-bottom:0.5rem; font-size:1.05rem;">Test Early, Test Fast</h4>
+      <p style="color:white; font-size:0.95rem; margin-bottom:1.5rem;">Rapid paper and low-fidelity tests surfaced major usability issues before expensive implementation.</p>
+      <h4 style="color:#6E07F3; margin-bottom:0.5rem; font-size:1.05rem;">Expert Input Matters</h4>
+      <p style="color:white; font-size:0.95rem; margin-bottom:1.5rem;">Feedback from surfers and meteorology experts added valuable, real-world domain accuracy.</p>
+      <h4 style="color:#6E07F3; margin-bottom:0.5rem; font-size:1.05rem;">Planning Enables Agility</h4>
+      <p style="color:white; font-size:0.95rem;">Consistent planning, client reviews, and agile iteration kept the team aligned and delivery cohesive.</p>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+  <footer>
+    <div class="footer-content">
+      <p class="footer-thanks">Thank you for exploring✌️</p>
+      <ul id="navigation">
+        <li><a href="index.html" class="footer-btn">
+          <ion-icon name="home-outline"></ion-icon> Home
+        </a></li>
+        <li>
+          <!-- add a class so we can animate just this one -->
+          <a href="#top" class="footer-btn return-top">
+            <ion-icon name="arrow-up-circle-outline"></ion-icon> Return to Top
+          </a>
+        </li>
+      </ul>
+    </div>
+  </footer>
+
+
+
+  <!-- GitHub Corner -->
+  <a href="https://github.com/sh0utTMMM/Kahuna" class="github-corner" aria-label="View source on GitHub" target="_blank">
+    <svg viewBox="0 0 16 16" width="80" height="80">
+      <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+    </svg>
+  </a>
+
+
+
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+   function createGradient(ctx) {
+     const gradient = ctx.createLinearGradient(0, 0, 0, 300);
+     gradient.addColorStop(0, '#6E07F3');
+     gradient.addColorStop(1, '#A020F0');
+     return gradient;
+   }
+
+   // NL Apps Chart
+   const ctxApps = document.getElementById('nlAppsChart').getContext('2d');
+   new Chart(ctxApps, {
+     type: 'bar',
+     data: {
+       labels: ['Buienradar','KNMI','Weeronline','Weerplaza','WeatherPro','Buienalarm','NOS Weer','Yahoo!','AccuWeather'],
+       datasets: [{
+         label: 'Users (%)',
+         data: [25,15,12,10,8,7,6,5,12],
+         backgroundColor: createGradient(ctxApps),
+         borderColor: '#6E07F3',
+         borderWidth: 2
+       }]
+     },
+     options: { scales:{ y:{ beginAtZero:true, ticks:{ color:'#ddd' }, grid:{ color:'#333' } }, x:{ ticks:{ color:'#ddd' }, grid:{ color:'#333' } } }, plugins:{ legend:{ display:false } } }
+   });
+
+   // Feature Ranking Chart
+   const ctxFeat = document.getElementById('featureRankChart').getContext('2d');
+   new Chart(ctxFeat, {
+     type: 'bar',
+     data: {
+       labels: ['Simplicity','Forecast','Rain Intensity','Wind Speed','Animations'],
+       datasets: [{
+         label: 'Score',
+         data: [95,90,85,75,20],
+         backgroundColor: createGradient(ctxFeat),
+         borderColor: '#6E07F3',
+         borderWidth: 2
+       }]
+     },
+     options: { scales:{ y:{ beginAtZero:true, ticks:{ color:'#ddd' }, grid:{ color:'#333' } }, x:{ ticks:{ color:'#ddd' }, grid:{ color:'#333' } } }, plugins:{ legend:{ display:false } } }
+   });
+
+   // Sports Dependence Chart
+   const ctxSports = document.getElementById('sportsChart').getContext('2d');
+   new Chart(ctxSports, {
+     type: 'bar',
+     data: {
+       labels: ['Surfing','Sailing','Kitesurf','Tennis','Soccer','Running','Cycling','Golf','Basketball'],
+       datasets: [{
+         label: 'Dependence (%)',
+         data: [90,85,80,30,25,20,15,10,10],
+         backgroundColor: createGradient(ctxSports),
+         borderColor: '#6E07F3',
+         borderWidth: 2
+       }]
+     },
+     options: { scales:{ y:{ beginAtZero:true, ticks:{ color:'#ddd' }, grid:{ color:'#333' } }, x:{ ticks:{ color:'#ddd' }, grid:{ color:'#333' } } }, plugins:{ legend:{ display:false } } }
+   });
+ });
+</script>
+  <script>
+    // Burger menu functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const burger = document.querySelector('.navbar-burger');
+      const menu = document.querySelector('.navbar-menu');
+      
+      if (burger && menu) {
+        burger.addEventListener('click', function() {
+          burger.classList.toggle('is-active');
+          menu.classList.toggle('is-active');
+        });
+      }
+    });
+    
+    // Smooth scrolling for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') {
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+        } else {
+          document.querySelector(targetId).scrollIntoView({
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+    function reveal(){
+      document.querySelectorAll('.reveal').forEach(el=>{
+        const top = el.getBoundingClientRect().top;
+        el.classList.toggle('active', top < window.innerHeight-150);
+      });
+    }
+    window.addEventListener('scroll', reveal);
+    window.addEventListener('load', () => {
+      const loader = document.getElementById('loader');
+      if (loader) loader.style.display = 'none';
+      document.body.classList.add('loaded');
+      initPDF();
+      reveal();
+    });
+  </script>
+
+<script>
+    function initPDF() {
+      document.querySelectorAll('.pdf-container[data-pdf-url]').forEach(container => {
+        const url = container.dataset.pdfUrl;
+        const canvas = container.querySelector('.pdf-canvas');
+        const ctx = canvas.getContext('2d');
+        const loading = container.querySelector('.pdf-loading');
+        const pageIndicator = container.querySelector('.pdf-page-indicator');
+        const pageNumSpan = container.querySelector('.pdf-page-num');
+        const prevBtn = container.querySelector('.pdf-prev-btn');
+        const nextBtn = container.querySelector('.pdf-next-btn');
+        const zoomIn = container.querySelector('.pdf-zoom-in');
+        const zoomOut = container.querySelector('.pdf-zoom-out');
+        let pdfDoc = null, pageNum = 1, zoom = 1.2;
+
+        function render(num) {
+          loading.style.display = 'block';
+          pdfDoc.getPage(num).then(page => {
+            const viewport = page.getViewport({ scale: zoom });
+            canvas.width = viewport.width;
+            canvas.height = viewport.height;
+            page.render({ canvasContext: ctx, viewport }).promise.then(() => {
+              loading.style.display = 'none';
+              pageIndicator.textContent = `Page ${num}/${pdfDoc.numPages}`;
+              pageNumSpan.textContent = `${num}/${pdfDoc.numPages}`;
+            });
+          });
+        }
+
+        pdfjsLib.getDocument(url).promise.then(doc => {
+          pdfDoc = doc;
+          render(pageNum);
+        }).catch(() => {
+          loading.textContent = 'Failed to load PDF.';
+        });
+
+        prevBtn.addEventListener('click', () => { if (pageNum > 1) render(--pageNum); });
+        nextBtn.addEventListener('click', () => { if (pageNum < pdfDoc.numPages) render(++pageNum); });
+        zoomIn.addEventListener('click', () => { zoom *= 1.2; render(pageNum); });
+        zoomOut.addEventListener('click', () => { zoom /= 1.2; render(pageNum); });
+      });
+    }
+      document.querySelectorAll('.pdf-container[data-pdf-url]').forEach(container => {
+        const url = container.dataset.pdfUrl;
+        const canvas = container.querySelector('.pdf-canvas');
+        const ctx = canvas.getContext('2d');
+        const pageIndicator = container.querySelector('.pdf-page-indicator');
+        const pageNumSpan = container.querySelector('.pdf-page-num');
+        const prevBtn = container.querySelector('.pdf-prev-btn');
+        const nextBtn = container.querySelector('.pdf-next-btn');
+        const zoomIn = container.querySelector('.pdf-zoom-in');
+        const zoomOut = container.querySelector('.pdf-zoom-out');
+        let pdfDoc = null, pageNum = 1, zoom = 1.2;
+
+        function render(num) {
+          pdfDoc.getPage(num).then(page => {
+            const viewport = page.getViewport({ scale: zoom });
+            canvas.width = viewport.width;
+            canvas.height = viewport.height;
+            page.render({ canvasContext: ctx, viewport }).promise.then(() => {
+              pageIndicator.textContent = `Page ${num}/${pdfDoc.numPages}`;
+              pageNumSpan.textContent = `${num}/${pdfDoc.numPages}`;
+            });
+          });
+        }
+
+        pdfjsLib.getDocument(url).promise.then(doc => {
+          pdfDoc = doc;
+          render(pageNum);
+        });
+
+        prevBtn.addEventListener('click', () => { if (pageNum > 1) render(--pageNum); });
+        nextBtn.addEventListener('click', () => { if (pageNum < pdfDoc.numPages) render(++pageNum); });
+        zoomIn.addEventListener('click', () => { zoom *= 1.2; render(pageNum); });
+        zoomOut.addEventListener('click', () => { zoom /= 1.2; render(pageNum); });
+      });
+    
+    window.addEventListener('load', initPDF);
+  </script>
+  
+   
+    
+  
+    <!-- Three.js loader: non-overlapping spheres -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+      (function(){
+        const loader = document.getElementById('loader');
+        const scene  = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(50, window.innerWidth/window.innerHeight, 1, 1000);
+        camera.position.set(0,0,200);
+        const renderer = new THREE.WebGLRenderer({ antialias:true, alpha:true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        loader.appendChild(renderer.domElement);
+    
+        scene.add(new THREE.AmbientLight(0xffffff, 0.3));
+        const dir = new THREE.DirectionalLight(0xffffff, 0.7);
+        dir.position.set(1,1,1);
+        scene.add(dir);
+    
+        function rand(min,max){ return min + Math.random()*(max-min); }
+    
+        function createGlobe(R){
+          const g = new THREE.Group();
+          const edges = new THREE.EdgesGeometry(new THREE.SphereGeometry(R,16,16));
+          g.add(new THREE.LineSegments(edges, new THREE.LineBasicMaterial({ color:0x6E07F3, transparent:true, opacity:0.8 })));
+    
+          const spikeVerts = new Float32Array(40*2*3);
+          let idx=0;
+          for(let i=0;i<40;i++){
+            const θ= Math.acos(rand(-1,1)); const φ=rand(0,Math.PI*2);
+            const x=R*Math.sin(θ)*Math.cos(φ);
+            const y=R*Math.sin(θ)*Math.sin(φ);
+            const z=R*Math.cos(θ);
+            spikeVerts[idx++]=x; spikeVerts[idx++]=y; spikeVerts[idx++]=z;
+            const sc=1+rand(0.15,0.35);
+            spikeVerts[idx++]=x*sc; spikeVerts[idx++]=y*sc; spikeVerts[idx++]=z*sc;
+          }
+          g.add(new THREE.LineSegments(
+            new THREE.BufferGeometry().setAttribute('position', new THREE.BufferAttribute(spikeVerts,3)),
+            new THREE.LineBasicMaterial({ color:0xffffff, transparent:true, opacity:0.3 })
+          ));
+    
+          const pts=[];
+          for(let i=0;i<80;i++){
+            const t=rand(-R*0.6,R*0.6);
+            const h=rand(-R*0.2,R*0.2)*(1-Math.abs(t)/(R*0.6));
+            pts.push(new THREE.Vector3(t,h,0), new THREE.Vector3(t,-h,0));
+          }
+          const waveGeo = new THREE.BufferGeometry().setFromPoints(pts);
+          const waveMat = new THREE.LineBasicMaterial({ color:0xffffff, transparent:true, opacity:0.6 });
+          const wave1   = new THREE.LineSegments(waveGeo, waveMat);
+          g.add(wave1, wave1.clone().rotateX(Math.PI/2), wave1.clone().rotateY(Math.PI/2));
+    
+          return g;
+        }
+    
+        const R = 40, placed = [], globes = [];
+        for(let i=0;i<5;i++){
+          let x,y,scale,radius,attempts=0;
+          do{
+            x=rand(-100,100); y=rand(-60,60);
+            scale=rand(0.6,1.2); radius=R*scale;
+            attempts++;
+          } while(placed.some(p=>Math.hypot(p.x-x,p.y-y)<p.radius+radius) && attempts<1000);
+          placed.push({x,y,radius});
+          const g = createGlobe(R);
+          g.position.set(x,y,0); g.scale.set(scale,scale,scale);
+          scene.add(g);
+          globes.push({g,speed:rand(0.1,0.3)});
+        }
+    
+        let prev=0;
+        function animate(time=0){
+          const dt=(time-prev)/1000; prev=time;
+          globes.forEach(o=>{
+            o.g.rotation.y += dt*o.speed;
+            o.g.rotation.x += dt*o.speed*0.4;
+          });
+          renderer.render(scene,camera);
+          requestAnimationFrame(animate);
+        }
+        requestAnimationFrame(animate);
+    
+        window.addEventListener('resize', ()=>{
+          camera.aspect=window.innerWidth/window.innerHeight;
+          camera.updateProjectionMatrix();
+          renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+      })();
+    </script>
+    <script src="components/navbar/navbar.js" defer></script>
+</body>
+</html>

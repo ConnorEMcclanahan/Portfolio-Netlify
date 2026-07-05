@@ -1,0 +1,378 @@
+@import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
+@import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma-rtl.min.css";
+
+
+$primary-color: #6E07F3;
+$text-color: #222;
+$background-color: #f5f5f5;
+
+body {
+    font-family: "Helvetica Neue", sans-serif;
+    color: $text-color;
+    background-color: $background-color;
+    margin: 0;
+    padding: 0;
+  }
+  
+  header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #ffffff;
+    color: #000000;
+    height: 60em;
+    padding: 2em 0;
+    text-align: center !important;
+  }
+  
+  header img {
+    border-radius: 50%;
+    margin-bottom: 5em;
+  }
+  
+  header h1 {
+    font-size: 2em;
+    margin-bottom: 0.5em;
+  }
+  
+  header p {
+    font-size: 1.2em;
+    font-weight: 300;
+    margin-bottom: 2em;
+  }
+  
+  nav {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .navbar-menu{
+    justify-content: center;
+  }
+  
+  nav img {
+    width: 55px;
+    margin-right: 26em;
+    cursor: pointer;
+  }
+  
+  nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  nav li {
+    margin: 0 1em;
+  }
+  
+  nav a {
+    color: $primary-color;
+    text-decoration: none;
+    font-size: 1.2em;
+    font-weight: 500;
+  }
+  
+  nav a:hover {
+    color: #999;
+  }
+  
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2em;
+  }
+  
+  section {
+    margin-bottom: 2em;
+  }
+  
+  #about {
+    background-color: $primary-color;
+    color: white;
+    padding: 3rem-1.5rem;
+    margin-bottom: 2em;
+    display: flex;
+    flex-direction: column;
+    text-align: center !important;
+    padding: 2em;
+  }
+
+  
+section h2 {
+  font-size: 1.5em;
+  margin-bottom: 1em;
+}
+
+section h3 {
+  font-size: 1.2em;
+  margin-bottom: 0.5em;
+}
+
+section p {
+  font-size: 1em;
+  line-height: 1.5;
+  margin-bottom: 1em;
+}
+
+section ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+
+section li {
+  font-size: 1.2em;
+  margin-right: 1em;
+}
+
+section .button {
+  display: inline-block;
+  background-color: #333;
+  color: #fff;
+  font-size: 1em;
+  padding: 0.5em 1em;
+  border: none;
+  cursor: pointer;
+}
+
+section .button:hover {
+  background-color: #444;
+}
+
+section form {
+  display: flex;
+  flex-direction: column;
+}
+
+section input,
+section textarea {
+  width: 100%;
+  font-size: 1em;
+  padding: 0.5em;
+  border: 1px solid #ddd;
+  margin-bottom
+    : 1em;
+}
+
+section textarea {
+  height: 200px;
+}
+
+section input[type="submit"] {
+  background-color: #333;
+  color: #fff;
+  font-size: 1em;
+  padding: 0.5em 1em;
+  border: none;
+  cursor: pointer;
+}
+
+section input[type="submit"]:hover {
+  background-color: #444;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  padding: 2em;
+  color: #999;
+  font-size: 0.8em;
+}
+
+#intro{
+    text-align: center !important;
+}
+
+.skills-banners {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .skills-banner {
+    width: 30%;
+    text-align: center;
+    margin-bottom: 2em;
+  }
+  
+  .skills-banner img {
+    width: 50%;
+    margin: 0 auto;
+    display: block;
+  }
+  
+  .skills-banner h3 {
+    font-size: 1.2em;
+    margin-bottom: 0.5em;
+  }
+  
+  .skills-banner p {
+    font-size: 1em;
+    line-height: 1.5;
+    margin-bottom: 1em;
+  }
+  #time {
+    font-size: 36px;
+    font-weight: bold;
+    color: #333;
+  }
+
+  #contact form .button {
+    background-color: #6E07F3 !important;
+    color: white !important;
+    font-size: 1em !important;
+    padding: 0.5em 1em !important;
+    border: none !important;
+    border-radius: 5px !important;
+    cursor: pointer !important;
+  }
+  .projects {
+    display: inline-block;
+    position: relative;
+    width: 33.3%;
+  }
+  
+  .projects img {
+    height: auto;
+    cursor: pointer;
+  }
+  
+  .projects-about {
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+  }
+  
+  .projects:hover .projects-about {
+    visibility: visible;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+  }
+  
+  .projects-about h3 {
+    margin-bottom: 1em;
+  }
+
+
+  .projects:hover .projects-about .button {
+    background-color: #6E07F3 !important;
+    color: white !important;
+    font-size: 1em !important;
+    padding: 0.5em 1em !important;
+    border: none !important;
+    border-radius: 5px !important;
+    cursor: pointer !important;
+  }
+
+  .title {
+ text-align: center;
+  }
+.subtitle{
+text-align: center;
+}
+
+
+/* Define the keyframe animation */
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+/* Apply the animation to the logo when it is hovered */
+.logo:hover{
+  animation: shake 0.5s;
+}
+
+
+/*rotating icon*/
+.square_icon{
+  transition: .5s;
+}
+
+
+@keyframes slideUp {
+  from { transform: translateY(0); }
+  to { transform: translateY(-100px); }
+}
+
+
+
+
+  /*Nav bar Respnsive */
+  @media screen and (max-width: 768px) {
+    .logo:hover{
+     animation: none;
+    }
+
+    .mobileshake{
+      animation: shake .5s !important;
+    }
+    nav{
+      flex-direction: column;
+  }
+    nav img {
+      display: none;
+    }
+    nav ul {
+      display: block;
+      margin: 0;
+      padding: 0;
+      
+    }
+    nav li {
+      margin: 0;
+      display: block;
+    }
+    nav ul {
+      flex-direction: column;
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    .projects {
+      display: flex;
+      flex-direction: column; /* Stack skills banners vertically */
+      width:100%;
+    }
+
+    .skills-banners {
+        display: flex;
+        flex-direction: column; /* Stack skills banners vertically */
+      }
+      
+      .skills-banner {
+        width: 100%; /* Make each banner fill the full width */
+      }      
+
+      #contact {
+        flex-direction: column; /* Stack form elements vertically on mobile */
+      }
+  }

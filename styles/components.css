@@ -1,0 +1,207 @@
+/* Bulma Customizations */
+.hero {
+  align-items: stretch;
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.hero a {
+  background-color: var(--primary-color);
+  color: var(--text-primary);
+  font-size: var(--font-size-base);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: var(--spacing-lg);
+}
+
+.title {
+  color: var(--primary-color);
+  text-align: center;
+  font-size: 7vh;
+}
+
+.subtitle {
+  color: var(--text-primary);
+  text-align: center;
+}
+
+.label {
+  color: var(--text-primary);
+}
+
+.icons a {
+  color: var(--primary-color);
+}
+
+/* Card Component */
+.card__content {
+  box-shadow: 0 0.2em 1em rgba(0, 0, 0, 0.1), 0 1em 2em rgba(0, 0, 0, 0.1);
+  background: rgb(255, 255, 255);
+  color: rgb(10, 5, 7);
+  border-radius: 1em;
+  overflow: hidden;
+  display: grid;
+  grid-template-areas: "text img";
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  align-items: stretch;
+}
+
+.card__content > div {
+  grid-area: text;
+  width: 80%;
+  place-self: center;
+  text-align: left;
+  display: grid;
+  gap: var(--spacing-lg);
+  place-items: start;
+  padding: var(--spacing-lg);
+}
+
+.card__content > figure {
+  grid-area: img;
+  overflow: hidden;
+  margin: 0;
+}
+
+.card__content > figure > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card__content a {
+  background-color: var(--primary-color);
+  color: var(--text-primary);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: 5px;
+}
+
+/* Projects Grid */
+.projects {
+  display: inline-block;
+  position: relative;
+  width: 33.3%;
+  overflow: hidden;
+}
+
+.projects img {
+  height: auto;
+  cursor: pointer;
+  transition: transform var(--transition-speed) var(--transition-ease);
+}
+
+.projects-about {
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity var(--transition-speed) var(--transition-ease);
+}
+
+.projects:hover .projects-about {
+  visibility: visible;
+  opacity: 1;
+  color: var(--text-primary);
+}
+
+.projects-about h3 {
+  margin-bottom: var(--spacing-lg);
+  font-size: 1.5em;
+}
+
+.projects:hover .projects-about .button {
+  background-color: var(--primary-color);
+  color: var(--text-primary);
+  font-size: var(--font-size-base);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Skills Banners */
+.skills-banners {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  gap: var(--spacing-lg);
+}
+
+.skills-banner {
+  width: 15%;
+  text-align: left;
+  flex: 1 1 15%;
+  min-width: 150px;
+}
+
+.skills-banner img {
+  margin: 0 auto;
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.skills-banner h3 {
+  font-size: 3vh;
+  text-align: center;
+  color: var(--primary-color);
+  margin: var(--spacing-md) 0;
+}
+
+.skills-banner p {
+  font-size: 2vh;
+  line-height: 1.5;
+  text-align: left;
+  color: var(--text-primary);
+}
+
+/* Social Links */
+.social {
+  padding: 0.5vh;
+  transform: translate(0px, 3px);
+}
+
+.list-inline-item {
+  margin-right: 10px;
+}
+
+/* Logo Icon */
+.square_icon {
+  transition: transform var(--transition-speed) var(--transition-ease);
+}
+
+.logo:hover {
+  animation: shake 0.5s;
+}
+
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+.mobileshake {
+  animation: shake 0.5s;
+}

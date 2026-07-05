@@ -1,0 +1,726 @@
+/* Mobile Responsive Improvements for Project Pages */
+
+/* General Mobile Fixes */
+@media (max-width: 768px) {
+  /* Force mobile navbar collapsed by default, regardless of page-level overrides */
+  .navbar-menu {
+    display: none !important;
+  }
+
+  .navbar-menu.active,
+  .navbar-menu.is-active {
+    display: flex !important;
+  }
+
+  /* Prevent horizontal overflow */
+  body {
+    overflow-x: hidden;
+  }
+
+  /* Global font sizing - scales down for mobile */
+  html {
+    font-size: 14px;
+  }
+
+  body {
+    font-size: 14px;
+  }
+
+  /* Heading scaling */
+  h1 {
+    font-size: 1.5rem !important;
+    line-height: 1.2;
+  }
+
+  h2 {
+    font-size: 1.3rem !important;
+    line-height: 1.2;
+  }
+
+  h3 {
+    font-size: 1.15rem !important;
+    line-height: 1.2;
+  }
+
+  h4 {
+    font-size: 1rem !important;
+  }
+
+  h5, h6 {
+    font-size: 0.95rem !important;
+  }
+
+  /* Intro summary grid - stack vertically */
+  .intro-summary-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    grid-template-columns: unset !important;
+    gap: 1.5rem !important;
+    padding: 0 1rem !important;
+  }
+
+  .intro-summary-left h1 {
+    font-size: 1.5rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+
+  .intro-summary-left p {
+    font-size: 0.95rem !important;
+  }
+
+  .intro-summary-right {
+    font-size: 0.9rem !important;
+  }
+
+  .intro-summary-right ul li {
+    font-size: 0.9rem !important;
+  }
+
+  /* Images in intro section */
+  .IntroPic img {
+    max-width: 100% !important;
+    height: auto !important;
+    margin-top: 1.5rem !important;
+  }
+
+  /* Paragraph sizing */
+  p {
+    font-size: 0.95rem !important;
+    line-height: 1.5;
+  }
+
+  /* List sizing */
+  li {
+    font-size: 0.95rem !important;
+    line-height: 1.5;
+  }
+
+  /* Text content sizing */
+  .project-section p,
+  .text-column p,
+  .media-column p {
+    font-size: 0.95rem !important;
+  }
+
+  /* Small text */
+  small, .small-text {
+    font-size: 0.85rem !important;
+  }
+
+  /* SVG containers - make them responsive */
+  svg {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* SVG text elements */
+  svg text {
+    font-size: 12px !important;
+  }
+
+  /* Tables and grids */
+  .competitor-table,
+  .competitor-row {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .competitor-row {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .competitor-row > div {
+    padding: 0.75rem;
+    border-bottom: 1px solid rgba(110, 7, 243, 0.1);
+    font-size: 0.9rem !important;
+  }
+
+  .col-pros,
+  .col-cons {
+    font-size: 0.9rem !important;
+  }
+
+  .col-pros ul, 
+  .col-cons ul {
+    font-size: 0.9rem !important;
+  }
+
+  /* Flex layouts that contain diagrams */
+  .project-section {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+  }
+
+  /* Empathy Map and Affinity Map sections */
+  [style*="flex-direction: column"] {
+    padding: 1.5rem 0.75rem !important;
+  }
+
+  [style*="display: flex; gap: 4rem"],
+  [style*="display: flex; gap: 3rem"] {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* SVG wrapper containers */
+  div[style*="flex: 2"],
+  div[style*="flex: 1"] {
+    flex: 1 !important;
+    max-width: 100% !important;
+    padding: 0.75rem !important;
+  }
+
+  div[style*="background: #111"] {
+    max-width: 100% !important;
+    padding: 1rem !important;
+  }
+
+  /* Ensure SVG viewBox scales properly */
+  [viewBox] {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  /* Performance grids */
+  .performance-metrics,
+  .conclusion-grid,
+  .features-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+
+  .metric-card,
+  .conclusion-card,
+  .feature-card {
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 1rem !important;
+    font-size: 0.9rem !important;
+  }
+
+  .metric-card h4,
+  .conclusion-card h4,
+  .feature-card h4 {
+    font-size: 1rem !important;
+  }
+
+  /* Mockup sections */
+  .mockup-section {
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+    padding: 1rem !important;
+  }
+
+  .mockup-text {
+    flex: 1 !important;
+    padding: 0 !important;
+  }
+
+  .mockup-text h3 {
+    font-size: 1.2rem !important;
+  }
+
+  .mockup-image {
+    flex: 0 0 auto !important;
+    min-width: unset !important;
+    max-width: 100% !important;
+  }
+
+  .mockup-image img {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Phone and tablet frames */
+  .phone-frame,
+  .tablet-frame {
+    width: 100% !important;
+    max-width: 300px !important;
+    height: auto !important;
+    aspect-ratio: 360 / 800 !important;
+    padding: 0 !important;
+    margin: 1.5rem auto !important;
+    overflow: hidden;
+    border-radius: 40px;
+  }
+
+  .phone-frame iframe,
+  .tablet-frame img {
+    width: 100% !important;
+    height: 100% !important;
+    border: none;
+  }
+
+  /* Media column containing frames */
+  .media-column .phone-frame,
+  .media-column .tablet-frame {
+    max-width: 280px !important;
+  }
+
+  /* Disable fixed widths on mobile */
+  [style*="width: 360px"],
+  [style*="width: 720px"],
+  [style*="width: 800px"],
+  [style*="min-width: 360px"],
+  [style*="min-width: 300px"],
+  [style*="max-width: 1200px"] {
+    width: 100% !important;
+    min-width: unset !important;
+    max-width: 100% !important;
+  }
+
+  /* PDF containers */
+  .pdf-container {
+    width: 100% !important;
+    max-height: 400px !important;
+    overflow-y: auto !important;
+  }
+
+  /* Figma containers */
+  .figma-container {
+    width: 100% !important;
+    height: 300px !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  .figma-container iframe {
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  .pdf-controls {
+    gap: 0.5rem !important;
+    padding: 0.5rem !important;
+    font-size: 0.85rem !important;
+  }
+
+  .pdf-controls button {
+    padding: 0.4rem 0.6rem !important;
+    font-size: 0.75rem !important;
+  }
+
+  .pdf-page-indicator,
+  .pdf-page-num {
+    font-size: 0.8rem !important;
+  }
+
+  /* Text and media columns */
+  .text-column,
+  .media-column {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border-left: none !important;
+    border-bottom: 1px solid rgba(110, 7, 243, 0.1) !important;
+    padding-bottom: 1rem !important;
+  }
+
+  .text-column:last-child,
+  .media-column:last-child {
+    border-bottom: none !important;
+  }
+
+  /* Reduce padding on mobile */
+  .project-section {
+    padding: 1.5rem 0.75rem !important;
+  }
+
+  /* Overview section */
+  .Overview {
+    padding: 1.5rem 0.75rem !important;
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+  }
+
+  .Overview h1 {
+    font-size: 1.4rem !important;
+  }
+
+  .Overview p {
+    font-size: 0.9rem !important;
+  }
+
+  /* FitPhone Improvements section readability */
+  #Improvments .reveal.active {
+    display: block !important;
+    padding: 0 0.75rem !important;
+  }
+
+  #Improvments .Overview {
+    margin: 0 !important;
+    padding: 0.5rem 0 !important;
+  }
+
+  #Improvments .Overview h3 {
+    font-size: 1.2rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+
+  #Improvments .Overview p {
+    font-size: 1rem !important;
+    line-height: 1.7 !important;
+    max-width: 100% !important;
+  }
+
+  /* FitPhone final section: move divider for stacked mobile layout */
+  #final-container > div[style*="border-left"] {
+    border-left: none !important;
+    border-top: 3px solid #6E07F3 !important;
+    padding-left: 0 !important;
+    padding-top: 1rem !important;
+    margin-top: 1rem !important;
+  }
+
+  /* FitPhone mockup sections: side-by-side on mobile */
+  #Onboarding,
+  #Homescreen,
+  #Activities,
+  #Education,
+  #Journal,
+  #Stats {
+    margin-bottom: 2.5rem !important;
+  }
+
+  #Onboarding .reveal.active,
+  #Homescreen .reveal.active,
+  #Activities .reveal.active,
+  #Education .reveal.active,
+  #Journal .reveal.active,
+  #Stats .reveal.active {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) minmax(120px, 36vw) !important;
+    align-items: center !important;
+    gap: 0.9rem !important;
+    padding: 0 0.75rem !important;
+  }
+
+  #Onboarding .text-column,
+  #Homescreen .text-column,
+  #Activities .text-column,
+  #Education .text-column,
+  #Journal .text-column,
+  #Stats .text-column {
+    width: 100% !important;
+    margin-bottom: 0 !important;
+    border-bottom: none !important;
+    padding-bottom: 0 !important;
+  }
+
+  #Onboarding .reveal.active > img,
+  #Homescreen .reveal.active > img,
+  #Activities .reveal.active > img,
+  #Education .reveal.active > img,
+  #Journal .reveal.active > img,
+  #Stats .reveal.active > img {
+    width: 100% !important;
+    max-width: 220px !important;
+    height: auto !important;
+    display: block !important;
+    margin: 0 0 0 auto !important;
+  }
+
+  /* List styling */
+  .project-section ul {
+    margin-left: 1rem !important;
+    font-size: 0.95rem !important;
+  }
+
+  .project-section ul li {
+    font-size: 0.95rem !important;
+    margin-bottom: 0.4rem !important;
+  }
+
+  /* Button sizing */
+  .prototype-btn,
+  .pdf-prev-btn,
+  .pdf-next-btn {
+    padding: 0.4rem 0.75rem !important;
+    font-size: 0.8rem !important;
+  }
+
+  /* Split containers */
+  .split-container {
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+  }
+
+  .left-column,
+  .right-column {
+    width: 100% !important;
+  }
+
+  /* Content boxes */
+  .box {
+    padding: 1rem !important;
+    font-size: 0.9rem !important;
+  }
+
+  .box h3 {
+    font-size: 1.1rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+
+  .box ul li {
+    font-size: 0.9rem !important;
+    margin-bottom: 0.3rem !important;
+  }
+
+  /* Ensure text wrapping */
+  * {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+}
+
+/* Extra small phones - additional fixes */
+@media (max-width: 480px) {
+  html {
+    font-size: 12px;
+  }
+
+  h1 {
+    font-size: 1.3rem !important;
+  }
+
+  h2 {
+    font-size: 1.1rem !important;
+  }
+
+  h3 {
+    font-size: 1rem !important;
+  }
+
+  h4 {
+    font-size: 0.9rem !important;
+  }
+
+  p {
+    font-size: 0.9rem !important;
+  }
+
+  li {
+    font-size: 0.9rem !important;
+  }
+
+  .intro-summary-grid {
+    padding: 0 0.5rem !important;
+  }
+
+  .intro-summary-left h1 {
+    font-size: 1.3rem !important;
+  }
+
+  .intro-summary-right {
+    font-size: 0.85rem !important;
+  }
+
+  .project-section {
+    padding: 1rem 0.5rem !important;
+  }
+
+  .Overview {
+    padding: 1rem 0.5rem !important;
+    margin: 0 !important;
+    width: 100% !important;
+  }
+
+  .Overview h1 {
+    font-size: 1.2rem !important;
+  }
+
+  #Improvments .reveal.active {
+    padding: 0 0.5rem !important;
+  }
+
+  #Improvments .Overview h3 {
+    font-size: 1.05rem !important;
+  }
+
+  #Improvments .Overview p {
+    font-size: 0.95rem !important;
+    line-height: 1.65 !important;
+  }
+
+  #final-container > div[style*="border-left"] {
+    border-top-width: 2px !important;
+    padding-top: 0.85rem !important;
+    margin-top: 0.85rem !important;
+  }
+
+  #Onboarding,
+  #Homescreen,
+  #Activities,
+  #Education,
+  #Journal,
+  #Stats {
+    margin-bottom: 2rem !important;
+  }
+
+  #Onboarding .reveal.active,
+  #Homescreen .reveal.active,
+  #Activities .reveal.active,
+  #Education .reveal.active,
+  #Journal .reveal.active,
+  #Stats .reveal.active {
+    grid-template-columns: minmax(0, 1fr) 44vw !important;
+    align-items: center !important;
+    gap: 0.6rem !important;
+    padding: 0 0.5rem !important;
+  }
+
+  #Onboarding .reveal.active > img,
+  #Homescreen .reveal.active > img,
+  #Activities .reveal.active > img,
+  #Education .reveal.active > img,
+  #Journal .reveal.active > img,
+  #Stats .reveal.active > img {
+    width: 100% !important;
+    max-width: 170px !important;
+    margin-left: auto !important;
+  }
+
+  .competitor-row > div {
+    padding: 0.5rem !important;
+    font-size: 0.8rem !important;
+  }
+
+  .mockup-section {
+    padding: 0.75rem !important;
+  }
+
+  svg text {
+    font-size: 8px !important;
+  }
+
+  .metric-card,
+  .conclusion-card {
+    padding: 0.75rem !important;
+    font-size: 0.8rem !important;
+  }
+
+  /* Phone frames on tiny screens */
+  .phone-frame,
+  .tablet-frame {
+    max-width: 220px !important;
+  }
+
+  /* Stack everything vertically on very small screens */
+  [style*="display: grid"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Keep FitPhone mockup rows side-by-side on tiny screens */
+  #Onboarding .reveal.active,
+  #Homescreen .reveal.active,
+  #Activities .reveal.active,
+  #Education .reveal.active,
+  #Journal .reveal.active,
+  #Stats .reveal.active {
+    grid-template-columns: minmax(0, 1fr) 44vw !important;
+  }
+
+  /* Reduce gap on tiny screens */
+  [style*="gap:"] {
+    gap: 0.75rem !important;
+  }
+
+  /* Horizontal scroll for tables if needed */
+  .competitor-table {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .pdf-controls button {
+    padding: 0.3rem 0.5rem !important;
+    font-size: 0.7rem !important;
+  }
+
+  /* Further reduce figma-container on tiny screens */
+  .figma-container {
+    height: 200px !important;
+  }
+}
+
+/* Tablet optimization (768px - 1024px) */
+@media (max-width: 1024px) and (min-width: 769px) {
+  html {
+    font-size: 15px;
+  }
+
+  h1 {
+    font-size: 1.8rem !important;
+  }
+
+  h2 {
+    font-size: 1.5rem !important;
+  }
+
+  h3 {
+    font-size: 1.25rem !important;
+  }
+
+  p {
+    font-size: 0.98rem !important;
+  }
+
+  .intro-summary-grid {
+    gap: 2rem !important;
+  }
+
+  [style*="gap: 4rem"] {
+    gap: 1.5rem !important;
+  }
+
+  [style*="max-width: 150vh"] {
+    max-width: 100% !important;
+  }
+
+  .mockup-section {
+    gap: 1.5rem !important;
+  }
+
+  .phone-frame {
+    width: 360px !important;
+    max-width: 100% !important;
+    margin: 1rem auto !important;
+  }
+
+  .figma-container {
+    height: 400px !important;
+  }
+}
+
+/* Ensure scrolling doesn't break layouts */
+@media (max-width: 768px) {
+  * {
+    box-sizing: border-box;
+  }
+
+  /* Prevent text overflow */
+  .project-section p,
+  .project-section li {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  /* Ensure embedded iframes scale */
+  iframe {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  /* Navigation doesn't overlap content */
+  .project-section {
+    scroll-margin-top: 100px;
+  }
+}
+

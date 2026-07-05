@@ -1,0 +1,72 @@
+I made notifcations work within the Urban Sports Tracking this is something that can be added for the next steps and can notify the users when they hit their new milestones.
+
+const App = () => {
+  useEffect(() => {
+    PushNotification.createChannel(
+      {
+        channelId: 'com.urbansportstracking', // Any unique ID
+        channelName: 'urbansportstracking', // The name of the channel
+        channelDescription: 'Default channel for app notifications', // Optional description
+        soundName: 'default', // Optional sound for the channel
+        importance: 4, // Notification importance (default is 4)
+        vibrate: true, // Whether to vibrate the device on notification (default is true)
+      },
+      created => console.log(`Notification channel 'urbansportstracking' created: ${created}`)
+    );
+    
+    setTimeout(() => {
+      PushNotification.localNotification({
+        channelId: 'com.urbansportstracking',
+        title: 'Milestone Reached',
+        message: 'You achieved a high Counter Movement Jump value.'
+      });
+    }, 5000); // Scheduled for 5 seconds after the app is opened
+  }, []); // Empty dependency array means this effect will only run once, when the component is first mounted.
+  
+  const navigationRef = useNavigationContainerRef();
+
+  return (
+    <GestureHandlerRootView style={{flex: 1}}>
+      <NavigationContainer ref={navigationRef}>
+        <SafeAreaProvider>
+          <StackScreens />
+        </SafeAreaProvider>
+      </NavigationContainer>
+    </GestureHandlerRootView>
+  );
+};
+
+export default App;
+They are supposed to send messages about when you reach new limits or had a paticualrly hard fall or high jump.
+
+useEffect(() => {
+    if (averageImpactForceKG > averageImpactThreshold) {
+      PushNotification.localNotification({
+        title: 'Milestone Reached',
+        message: 'You achieved an above average impact force.',
+      });
+    }
+
+   
+    if (recentImpacts.length > recentImpactsThreshold) {
+      PushNotification.localNotification({
+        title: 'Milestone Reached',
+        message: 'You reached a high number of recent impacts.',
+      });
+    }
+
+    
+    if (recentCMJ > recentCMJThreshold) {
+      PushNotification.localNotification({
+        title: 'Milestone Reached',
+        message: 'You achieved a high Counter Movement Jump value.',
+      });
+    }
+
+    if (maxJumpHeight > maxJumpHeightThreshold) {
+      PushNotification.localNotification({
+        title: 'Milestone Reached',
+        message: 'You reached a new maximum jump height.',
+      });
+    }
+  }, [averageImpactForceKG, recentImpacts, recentCMJ, maxJumpHeight]);

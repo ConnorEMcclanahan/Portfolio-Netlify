@@ -1,0 +1,38 @@
+/* Design System Variables */
+:root {
+  /* Colors */
+  --primary-color: #6E07F3;
+  --secondary-color: #fffdfd;
+  --bg-dark: #000000;
+  --bg-light: #1a1a1a;
+  --text-primary: #fffdfd;
+  --text-secondary: #999;
+  --border-light: #ddd;
+  
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 4rem;
+  
+  /* Typography */
+  --font-primary: "Helvetica Neue", sans-serif;
+  --font-accent: "Oxygen", sans-serif;
+  --font-size-sm: 0.8em;
+  --font-size-base: 1em;
+  --font-size-lg: 1.2em;
+  --font-size-xl: 1.5em;
+  
+  /* Card styling */
+  --card-height: 40vw;
+  --card-margin: 4vw;
+  --card-top-offset: 1em;
+  --numcards: 4;
+  --outline-width: 0px;
+  
+  /* Animations */
+  --transition-speed: 0.3s;
+  --transition-ease: ease;
+}
