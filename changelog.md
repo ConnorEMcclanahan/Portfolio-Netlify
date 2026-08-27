@@ -39,3 +39,17 @@ Version 8 : Made imporvments to code and added some extra header and paragraph t
 - Big changes here I made SCSS work in my website
 - Added a cool stacking effect when I scroll though my projects section
 - Made a loading screen that will fade in to the website when its done
+
+**Version 13 : Cleaned up page structure and moved more logic into reusable component files**
+- Continued organizing project pages with shared modules and page-specific JS/CSS
+- Reduced inline code so updates are easier to maintain
+
+**Version 14 : Added a full README for this portfolio project**
+- Documented project overview, tech stack, folder structure, and run instructions
+- Added optional SCSS compile/watch commands and Netlify deployment notes
+
+**Version 15 : Fixed Netlify 404 errors caused by broken/case-sensitive links**
+- Corrected homepage links to valid page routes under /pages
+- Fixed bad relative asset paths on root index page
+- Updated page navbar/footer links to correct home/about routes
+- Added Netlify redirects for old legacy URLs to prevent future 404s

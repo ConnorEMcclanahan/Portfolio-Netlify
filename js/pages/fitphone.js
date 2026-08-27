@@ -14,7 +14,8 @@ function initScrollCue() {
 
 const introSummaryData = {
   title: 'FitPhone Case Study',
-  lead: 'As Primary UI/UX Designer & Front-end Developer, I took this app from concept through App-Store submission on both iOS and Android. Built in Flutter, designed in Figma, iterated through client & user feedback.',
+  subtitle: 'Digital wellness for healthier phone habits',
+  lead: 'I designed and built FitPhone, a community-focused digital wellness app that helps young adults build healthier relationships with their phones.',
   meta: [
     { label: 'Role', value: 'UI/UX Designer & Front-end Engineer' },
     { label: 'Duration', value: '4 weeks' },
@@ -22,6 +23,11 @@ const introSummaryData = {
     { label: 'Design', value: 'Figma, Canva' },
     { label: 'Release', value: 'App Store & Play Store' }
   ],
+  story: {
+    background: 'FitPhone is a digital wellness app designed to help young adults build healthier relationships with their phones through community and reflection.',
+    problem: 'Most digital wellness tools only track screen time. They rarely provide personalized guidance, social support, or reasons to change behavior.',
+    goals: 'Design and build a motivating, community-driven experience with goals, progress tracking, educational content, and peer accountability.'
+  },
   image: {
     src: '../Images/sss.png',
     alt: 'FitPhone key screens'

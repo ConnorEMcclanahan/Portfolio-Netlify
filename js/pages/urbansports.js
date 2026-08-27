@@ -7,6 +7,7 @@ function createGradient(ctx) {
 
 const introSummaryData = {
   title: 'Urban Sports Tracker',
+  subtitle: 'Training insights for athletes in motion',
   lead: 'As part of a collaborative team, I contributed to the design and front-end development of the Urban Sports Tracker - a cross-platform app focused on monitoring and visualizing workout impact. Working closely with the team, I helped shape the user interface, designed key screens, and built interactive components, ensuring a clear and engaging experience for athletes tracking their performance.',
   meta: [
     { label: 'Role', value: 'UI/UX Designer & Front-end Developer (Support)' },
@@ -15,6 +16,11 @@ const introSummaryData = {
     { label: 'Platforms', value: 'iOS & Android' },
     { label: 'Deliverables', value: 'High-fidelity Prototypes, Front-end Pages, Visual Assets' }
   ],
+  story: {
+    background: 'Urban Sports Tracker is a cross-platform experience for athletes who want to understand training impact and progress over time.',
+    problem: 'Athletes struggled to interpret performance data and identify fatigue patterns in an existing experience with unclear navigation and dense visualizations.',
+    goals: 'Make performance insights readable and actionable while creating a consistent, engaging experience across iOS and Android.'
+  },
   image: {
     src: '../Images/urbannns.png',
     alt: 'Urban key screens'

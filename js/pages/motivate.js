@@ -1,5 +1,6 @@
 const introSummaryData = {
   title: 'Instruction Creation Tool',
+  subtitle: 'Creating clearer work instructions for factory teams',
   lead: 'As UX/UI Designer and Front-end Developer, I led the development of an intuitive instruction management system within PMT that meets industry standardization requirements while optimizing user experience for factory environments.',
   meta: [
     { label: 'Role', value: 'UX/UI Designer and Front-end Developer' },
@@ -7,7 +8,12 @@ const introSummaryData = {
     { label: 'Stack', value: 'Vue 3, PDF.js, Node.js, Figma' },
     { label: 'Deliverables', value: 'Research Report, Competitive Analysis, Hi-fi Prototype, ICT' },
     { label: 'Release', value: 'Integrated PMT Branch' }
-  ]
+  ],
+  story: {
+    background: 'The Instruction Creation Tool extends Motivate\'s Platform Management Tool for teams creating standard work instructions in factory environments.',
+    problem: 'Managers relied on scattered files and external tools, making instruction creation, approval, version control, and access harder to manage.',
+    goals: 'Create one clear workflow for authoring, reviewing, publishing, and viewing multimedia work instructions across factory devices.'
+  }
 };
 
 const finalSectionData = {

@@ -1,13 +1,19 @@
 const introSummaryData = {
-  title: 'Diplora Mobile MVP',
-  lead: 'As UX/UI Designer and Front-end Developer, I designed and built an accessibility-first mobile experience for elderly Holter monitor users focused on confidence, clarity, and simple device interaction.',
+  title: 'Diplora',
+  subtitle: 'Mobile health monitoring for older adults',
+  lead: 'An Accessible ECG Sensor Companion',
   meta: [
     { label: 'Role', value: 'UX/UI Designer and Front-end Developer' },
-    { label: 'Focus', value: 'Accessibility-first health app UX' },
+    { label: 'Timeline', value: 'September 2025 - January 2026' },
     { label: 'Stack', value: 'Flutter, Dart, Bluetooth BLE, Figma' },
     { label: 'Deliverables', value: 'Research, Personas, Prototype, MVP' },
     { label: 'Context', value: 'Internship Project' }
-  ]
+  ],
+  story: {
+    background: 'Diplora is a medical technology company developing an ECG sensor and mobile application for cardiovascular monitoring. During my internship, I worked on the front-end experience for the portable sensor system, which supports continuous monitoring while giving clinicians the detailed information they need.',
+    problem: 'The existing interface was not accessible enough for the primary patient group: adults aged 65 and over. Small fonts, low contrast, unclear status feedback, and complicated onboarding made it difficult for patients to know whether their sensor was connected and working correctly. The app also needed to show device status without presenting diagnostic interpretations.',
+    goals: 'I redesigned and developed an accessible Flutter MVP with simpler onboarding, clear sensor pairing guidance, a persistent battery and connection status, and a focused symptom logbook. The goal was to create a trustworthy experience that reassures patients while keeping clinical interpretation with healthcare professionals.'
+  }
 };
 
 const finalSectionData = {

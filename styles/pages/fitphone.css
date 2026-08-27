@@ -318,6 +318,33 @@ section p {
   color: #fff;
 }
 
+body.project-page-standard #intro-summary {
+  background: #000 !important;
+  color: #fff;
+}
+
+body.project-page-standard #intro-summary .intro-overview-title,
+body.project-page-standard #intro-summary .intro-story-block h2,
+body.project-page-standard #intro-summary .intro-meta-item strong {
+  color: #fff !important;
+}
+
+body.project-page-standard #intro-summary .intro-heading .intro-title {
+  color: #6E07F3 !important;
+  font-family: "Syne", sans-serif;
+  font-weight: 800;
+}
+
+body.project-page-standard #intro-summary .intro-subtitle,
+body.project-page-standard #intro-summary .intro-story-block p,
+body.project-page-standard #intro-summary .intro-meta-item span {
+  color: #b8b8b8 !important;
+}
+
+body.project-page-standard #intro-summary .intro-heading .intro-lead {
+  color: #6E07F3 !important;
+}
+
 .intro-summary-grid {
   display: grid;
   grid-template-columns: 1.3fr 1fr;

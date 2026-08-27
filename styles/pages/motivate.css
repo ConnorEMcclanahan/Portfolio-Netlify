@@ -70,6 +70,23 @@
       margin-top: 0; /* Remove top margin for first section */
     }
 
+    body.project-page-standard #intro-summary {
+      background: #000 !important;
+    }
+
+    body.project-page-standard #intro-summary .intro-story-block p,
+    body.project-page-standard #intro-summary .intro-meta-item span {
+      color: #fff !important;
+    }
+
+    body.project-page-standard #intro-summary .intro-overview-title {
+      color: #fff !important;
+    }
+
+    body.project-page-standard #intro-summary .intro-heading .intro-subtitle {
+      color: #fff !important;
+    }
+
     /* Overview section spacing */
     .Overview {
       display: flex;

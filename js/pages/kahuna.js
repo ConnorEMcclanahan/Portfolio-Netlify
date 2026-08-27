@@ -1,5 +1,6 @@
 const introSummaryData = {
   title: 'Kahuna Surfing App',
+  subtitle: 'Surf conditions made clear for beginners',
   lead: 'As Visual and UX Designer and Front-end Engineer, I led Kahuna from concept through prototype. Built in Figma, iterated through user testing, and delivered an interactive high-fidelity mobile prototype.',
   meta: [
     { label: 'Role', value: 'UX/UI and Front-end Developer' },
@@ -7,7 +8,12 @@ const introSummaryData = {
     { label: 'Tools', value: 'Figma, JavaScript' },
     { label: 'Deliverables', value: 'Survey, Personas, Prototypes' },
     { label: 'Release', value: 'Figma Share Link' }
-  ]
+  ],
+  story: {
+    background: 'Kahuna is a beginner-friendly surf weather app that turns conditions and forecasts into practical guidance for time on the waves.',
+    problem: 'Existing weather apps often present raw data without enough context for new surfers to understand what conditions will feel like.',
+    goals: 'Make weather, rain intensity, wind, and surf conditions easy to scan, compare, and act on before a session.'
+  }
 };
 
 const questionsCriteriaData = {

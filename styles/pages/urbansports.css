@@ -396,6 +396,10 @@ section p {
   flex-direction: column;
 }
 
+body.project-page-standard #intro-summary {
+  background: #000 !important;
+}
+
 .intro-summary-grid {
   display: grid;
   grid-template-columns: 1.3fr 1fr;
