@@ -19,23 +19,23 @@ const introSummaryData = {
 const finalSectionData = {
   columns: [
     {
-      title: 'How Usability Might Be Improved',
+      title: 'Advice to Stakeholders & Future Developers',
       items: [
         {
-          title: 'More Guided Onboarding',
-          copy: 'Add progressive onboarding hints and contextual walkthroughs for first-time elderly users.'
+          title: 'Complete Backend Integration',
+          copy: 'Connect alerts, symptom logging, and communication with the doctors platform so the frontend can support the full monitoring workflow.'
         },
         {
-          title: 'Stronger Readability Controls',
-          copy: 'Provide in-app text scaling and contrast presets so users can personalize readability instantly.'
+          title: 'Improve Alert Accuracy',
+          copy: 'Replace simulated movement alerts with the movement matrix and validated sensor logic so notifications reflect real activity.'
         },
         {
-          title: 'Expanded Caregiver Flow',
-          copy: 'Support shared caregiver actions for setup checks, reminders, and follow-up assistance.'
+          title: 'Validate the Final Hardware',
+          copy: 'Revisit device placement guidance, onboarding video content, and alert behavior once the final sensor build is available.'
         },
         {
-          title: 'Smarter Connection Recovery',
-          copy: 'Improve BLE reconnection guidance with clearer step-by-step states and recovery feedback.'
+          title: 'Broaden Testing and Accessibility',
+          copy: 'Test across more iOS and Android devices, with screen readers and assistive technologies, before wider clinical adoption.'
         }
       ]
     },

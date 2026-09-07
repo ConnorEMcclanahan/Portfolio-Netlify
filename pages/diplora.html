@@ -68,27 +68,38 @@
     <div class="text-column">
       <h3>Research Approach</h3>
       <p style="color: white; margin-top: 1rem;">
-        To better understand the pain points and unmet needs of elderly users and the clinical requirements behind the product, I conducted foundational research using a mixed-methods approach. The goals for my research process were to explore patterns in how people use health monitoring apps, identify the barriers they face, and understand what would help them feel confident using an ECG sensor at home.
+        I used a mixed-methods research approach to understand the gap between Diplora's capable ECG hardware and the experience of using it at home. The research had to answer two connected questions: what do older adults need in order to feel confident using a monitoring device, and what can the patient-facing app communicate without crossing into diagnosis?
       </p>
     </div>
 
     <div class="research-narrative">
-      <p><strong>The research revealed several important patterns.</strong> Users found many health apps too complicated, wanted clear confirmation that their device was working, and needed larger text and simple visual guidance. These findings directly informed the accessibility standards, status feedback, onboarding flow, and feature priorities used throughout the project.</p>
+      <div class="research-overview">
+        <h4>Research Overview</h4>
+        <p>The project focused on an accessible ECG companion app for elderly cardiovascular patients. The app was not intended to interpret ECG results for patients. Its role was to make the monitoring process understandable by showing device status, connection, battery, recording state, and clear next steps when something needed attention.</p>
+        <p><strong>Main research question:</strong> How can an elderly-accessible ECG interface address barriers such as font size, contrast, touch targets, and cognitive load while meeting medical-device requirements?</p>
+        <ul>
+          <li>Understand accessibility barriers in health monitoring apps.</li>
+          <li>Identify what patients and healthcare stakeholders need from the interface.</li>
+          <li>Compare existing device-connected health apps and their onboarding patterns.</li>
+          <li>Translate evidence into requirements for onboarding, device status, help, and symptom logging.</li>
+        </ul>
+      </div>
 
       <h4>Literature Review</h4>
-      <p>I reviewed <strong>WCAG 2.1 AA standards, research into older adult interfaces, and medical device requirements</strong> before making design decisions. I focused on presbyopia, reduced contrast sensitivity, slower touch interactions, and different levels of digital confidence. This gave me a foundation for larger text, strong contrast, simple language, and touch targets of at least 44 by 44 pixels. It also clarified that the application should communicate device status, battery, and connection without interpreting ECG data or suggesting a diagnosis.</p>
+      <p>I reviewed <strong>WCAG 2.1 AA guidance, research into older adult interfaces, and medical-device requirements</strong> before making design decisions. Presbyopia, reduced contrast sensitivity, slower touch interactions, and different levels of digital confidence pointed to larger text, strong contrast, simple language, and touch targets of at least 44 by 44 pixels. The review also clarified the product boundary: the app should communicate device status, battery, and connection, while diagnostic interpretation remains with healthcare professionals.</p>
 
       <h4>Stakeholder Interviews</h4>
-      <p>I spoke with <strong>cardiologists, GPs, and company stakeholders</strong> about the clinical and technical requirements behind the interface. We discussed the value of longer monitoring periods, problems caused by leads detaching, movement affecting signal quality, and the importance of accurate sensor placement. These conversations clarified that the app could show whether the device was connected, recording, and working, but diagnostic interpretation had to remain with healthcare professionals. This shaped the status bar, onboarding language, placement guidance, and alerts.</p>
+      <p>I spoke with <strong>cardiologists, GPs, and company stakeholders</strong> about the clinical and technical requirements behind the interface. We discussed the value of longer monitoring periods, leads detaching, movement affecting signal quality, and the importance of accurate sensor placement. This clarified that the patient app should confirm whether the device is connected, recording, and working, while reports and diagnostic interpretation remain with specialists. That boundary shaped the status bar, onboarding language, placement guidance, and alerts.</p>
 
       <h4>Patient Interviews</h4>
-      <p>I conducted <strong>in-depth interviews with elderly Holter monitor users aged 70 and above</strong> to understand what using a monitoring device felt like at home. Participants described physical discomfort, anxiety about whether the device had stopped working, and confusion caused by technical information. They were less interested in graphs than in simple answers about whether the device was working, whether readings were being recorded, and what to do if something went wrong. These insights informed the focus on reassurance, large text, simple navigation, and visual guidance.</p>
+      <p>I conducted <strong>in-depth interviews with elderly Holter monitor users aged 70 and above</strong> to understand what monitoring felt like at home. Participants described physical discomfort, anxiety about whether the device had stopped working, and confusion caused by technical information. They were less interested in graphs than in simple answers: is it working, are readings being recorded, and what should I do if something goes wrong? This informed the focus on reassurance, large text, simple navigation, and visual guidance.</p>
 
       <h4>Survey Analysis</h4>
-      <p>I ran a <strong>quantitative survey with 50 respondents aged 18 to 75 and above</strong> to identify common problems with health monitoring apps and compare those results with the interviews. The strongest findings were that 54% found health apps too complicated, 14% of respondents aged 46 and above struggled with small text, and 70% wanted clear confirmation that their device was working. Respondents also preferred video demonstrations and step-by-step visual guidance for device placement. These results became direct design priorities rather than assumptions.</p>
+      <p>I ran a <strong>quantitative survey with 50 respondents aged 18 to 75 and above</strong> to test whether the interview themes appeared at a broader scale. The strongest findings were that 54% found health apps too complicated, 14% of respondents aged 46 and above struggled with small text, and 70% wanted clear confirmation that their device was working. Video demonstrations were preferred by 66% of respondents, followed by step-by-step pictures at 56%. These results turned reassurance, visual guidance, and simplified navigation into evidence-based priorities.</p>
 
       <h4>Internal Feedback</h4>
-      <p>I reviewed the existing <strong>Figma designs with Diplora stakeholders</strong> before moving into prototyping. This helped me understand the intended product direction, identify where the interface did not reflect the accessibility and medical requirements, and connect the research to the practical constraints of the project. I used the feedback to refine the visual direction, simplify the most important flows, and decide which features belonged in the MVP, including the persistent status bar, accessible onboarding, and focused symptom logging flow.</p>
+      <p>I reviewed the existing <strong>Figma designs with Diplora stakeholders</strong> before moving into prototyping. This exposed small default text, inconsistent visual language, unclear status communication, and an onboarding flow that asked users to process too much information. I used the feedback to refine the visual direction, simplify the highest-risk flows, and define the MVP around accessible onboarding, a persistent status bar, device pairing, help, emergency contact access, and focused symptom logging.</p>
+
     </div>
   </section>
 
@@ -103,6 +114,9 @@
 
       <h4>Scalable Components</h4>
       <p style="color: white; margin-top: 1rem;">I established reusable patterns for buttons, cards, navigation, status feedback, spacing, and form controls. These components created a consistent foundation for the Flutter implementation and future development.</p>
+
+      <h4>Design System Takeaway</h4>
+      <p style="color: white; margin-top: 1rem;">The design system turned research findings into rules that could be reused and checked throughout the product. With the visual and accessibility foundation in place, the next step was to decide which user needs were essential for the MVP and how those needs should shape the product flow.</p>
     </div>
   </section>
 
@@ -113,6 +127,12 @@
       <p style="color: white; margin-top: 1rem;">
         Using the MOSCOW method, I prioritized features based on accessibility and clinical validation requirements. Must-have features address the core needs identified in research.
       </p>
+
+      <h3>User Journey Mapping</h3>
+      <p style="color: white; margin-top: 1rem;">I mapped the experience from unboxing and account setup through sensor placement, pairing, daily status checks, emergencies, and the end of the monitoring period. The map highlighted where users were most likely to feel lost or anxious, especially during setup and when checking whether the device was still working.</p>
+
+      <h3>MoSCoW Prioritization</h3>
+      <p style="color: white; margin-top: 1rem;">Must-haves were accessible onboarding, device pairing, persistent status feedback, emergency contact access, and a clear device-working confirmation. Video guidance, symptom logging, history, and haptic or audio feedback were prioritized as should-haves. Multi-language support, advanced filtering, 3D placement guidance, and family notifications were future enhancements. Diagnostic interpretation, AI recommendations, social features, and gamification were intentionally out of scope.</p>
     </div>
 
     <!-- Features Grid -->
@@ -177,30 +197,19 @@
         </ul>
       </div>
     </div>
-  </section>
 
-  <!-- Research Methods & Deliverables section -->
-  <section id="research-methods" class="project-section reveal">
-    <div class="text-column">
-      <h3>Research Methods & Deliverables</h3>
-      <p style="color: white; margin-top: 1rem;">
-        Conducted comprehensive mixed-methods research to understand both clinical requirements and elderly user needs. The research phase produced detailed documentation that informed all subsequent design and development decisions.
-      </p>
-    </div>
-
-    <div class="research-methods-copy">
-      <p><strong>Literature Review:</strong> I reviewed WCAG 2.1 AA standards, research into designing for older adults, and medical device regulations before making interface decisions. This helped me establish requirements for readable text, contrast, touch targets, and clear language, while also clarifying that the app should show whether the sensor is connected and working without interpreting ECG data or suggesting a diagnosis.</p>
-      <p><strong>Competitor Analysis:</strong> I compared six device-connected health apps: AliveCor, myPhonak, Garmin, Omron, Apple Health, and FreeStyle LibreLink. I reviewed their onboarding, device pairing, status feedback, navigation, and presentation of health information. This revealed recurring issues with small text, complex setup flows, technical language, and relying on colour alone, while stronger patterns such as visual pairing guidance gave me opportunities to improve Diplora.</p>
-      <p><strong>Stakeholder Interviews:</strong> I spoke with cardiologists, GPs, and company stakeholders to understand the clinical requirements behind the interface. These conversations helped me understand the value of longer monitoring periods, the effect of sensor placement and movement on signal quality, and the limitations of the hardware. They also confirmed that patients need reassurance that the device is working, while diagnostic information must remain with healthcare professionals.</p>
-      <p><strong>Patient Interviews:</strong> I conducted in-depth interviews with elderly Holter monitor users aged 70 and above to understand what using a monitoring device felt like at home, where people became uncertain, and what helped them feel confident. The interviews showed that patients were less interested in graphs or technical details than in simple answers about whether the device was working, whether readings were being recorded, and what to do if something went wrong. These insights informed the focus on reassurance, large text, simple navigation, and visual guidance.</p>
-      <p><strong>Survey Analysis:</strong> I ran a quantitative survey with 50 respondents aged 18 to 75 and above to identify common problems with health monitoring apps and compare those results with the interview findings. The strongest findings were that 54% found health apps too complicated, 14% of respondents aged 46 and above struggled with small text, and 70% wanted clear confirmation that their device was working. These results became direct design priorities rather than assumptions.</p>
-      <p><strong>Internal Feedback:</strong> I reviewed the existing Figma designs with Diplora stakeholders before moving into prototyping. This helped me understand the intended product direction, identify where the interface did not yet reflect the company’s accessibility and medical requirements, and connect the research to the practical constraints of the project. I used the feedback to refine the visual direction, simplify the most important flows, and decide which features belonged in the MVP.</p>
-    </div>
   </section>
 
   <!-- Competitor Analysis section -->
   <section id="competitor-analysis" class="project-section reveal">
     <div id="competitor-analysis-matrix"></div>
+  </section>
+
+  <section id="research-conclusion" class="project-section reveal">
+    <div class="text-column">
+      <h3>Research Conclusion</h3>
+      <p><strong style="color: white !important; margin-top: 1rem;">The central takeaway was that patients needed reassurance, not more medical data.</strong> Across the research, the same needs kept appearing: the interface must be readable, users must be able to tell whether the sensor is working, setup must be guided, and diagnostic interpretation must stay out of the patient experience. These findings became the criteria for the next phase: a design system that makes accessibility measurable and a requirements set that turns anxiety and confusion into specific product decisions.</p>
+    </div>
   </section>
 
   <!-- Personas Section -->
@@ -231,39 +240,29 @@
     </div>
   </section>
 
+  <section id="requirements-conclusion" class="project-section reveal">
+    <div class="text-column">
+      <h3>Requirements Conclusion</h3>
+      <p style="color: white; margin-top: 1rem;">The requirements phase converted broad concerns such as confusion and anxiety into testable product decisions. It gave the prototype a clear job: help a patient set up the sensor, confirm that it is working, and get help without exposing unnecessary medical complexity. The next phase tested whether those decisions worked when real users interacted with them.</p>
+    </div>
+  </section>
+
   <section id="prototyping" class="project-section reveal">
     <div class="text-column">
-      <h3>Prototyping & User Testing</h3>
+      <h3>Low-Fidelity Prototypes</h3>
       <p style="color: white; margin-top: 1rem;">
-        Conducted iterative user testing with elderly users (ages 56-70+) to validate accessibility-first design patterns. Six major design iterations addressed user feedback and expert recommendations.
+        I started with paper prototypes to test the structure before investing in high-fidelity screens. The onboarding flow was reduced from more than seven screens to four essential steps, accessibility options moved into setup, and the dashboard was stripped back to the information users needed most: device status, battery, connection, and reassurance.
       </p>
     </div>
 
     <!-- Testing Results - Side by Side -->
-    <div style="display: flex; gap: 2rem; margin-top: 2rem; flex-wrap: wrap;">
-      <div style="flex: 1; min-width: 300px; background: rgba(30, 30, 30, 0.85); border-radius: 12px; padding: 2rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
-        <h4 style="color: #6E07F3; margin-bottom: 1.5rem; font-size: 1.2rem;">What Worked Well</h4>
-        <ul style="color: white; list-style-type: disc; padding-left: 2rem; margin: 0;">
-          <li style="margin-bottom: 0.8rem;">Large touch targets (44x44px) were easy to hit and navigate</li>
-          <li style="margin-bottom: 0.8rem;">"Device Working" confirmation provided essential reassurance</li>
-          <li style="margin-bottom: 0.8rem;">Simplified dashboard layout with only essential information</li>
-          <li style="margin-bottom: 0.8rem;">Text labels with icons improved clarity significantly</li>
-          <li>Simple three-block layout felt intuitive to elderly users</li>
-        </ul>
-      </div>
-
-      <div style="flex: 1; min-width: 300px; background: rgba(30, 30, 30, 0.85); border-radius: 12px; padding: 2rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
-        <h4 style="color: #6E07F3; margin-bottom: 1.5rem; font-size: 1.2rem;">Key Iterations</h4>
-        <ul style="color: white; list-style-type: disc; padding-left: 2rem; margin: 0;">
-          <li style="margin-bottom: 0.8rem;">Button label clarity: "Add Complaint" → "Log Symptom"</li>
-          <li style="margin-bottom: 0.8rem;">Icon addition: Added text labels to all navigation elements</li>
-          <li style="margin-bottom: 0.8rem;">Help button: Made visible on home screen for easy access</li>
-          <li style="margin-bottom: 0.8rem;">Battery display: De-emphasized to reduce visual clutter</li>
-          <li style="margin-bottom: 0.8rem;">Logbook: Simplified from tabs to unified list view</li>
-          <li>Device connection: Auto-start search matching familiar phone Bluetooth behavior</li>
-        </ul>
+    <div class="testing-results-grid">
+      <div style="flex-basis: 100%;">
+        <h3 class="testing-intro-title">User Testing on High-Fidelity Prototypes</h3>
+        <p style="color: var(--case-muted) !important; margin-top: 1rem;">I tested the main flows with older users using structured tasks, think-aloud feedback, observation, and short post-test interviews. The testing focused on onboarding, status checking, symptom logging, alerts, help, and sensor connection. This revealed where the accessibility decisions worked and where the language or hierarchy still created friction.</p>
       </div>
     </div>
+
   </section>
 
   <!-- Design Iterations section -->
@@ -282,9 +281,9 @@
       </div>
       <div class="iteration-text">
         <h4>Iteration 1: Button Label Clarity</h4>
-        <p><strong>Issue:</strong> Test users confused by "Add Complaint"—Faye thought it meant complaining about the sensor itself</p>
-        <p><strong>Change:</strong> Renamed to "Log Symptom" throughout the interface; "Detected Activity" → "Activity History"</p>
-        <p><strong>Impact:</strong> Users immediately understood each button's purpose</p>
+        <p class="iteration-step iteration-step--issue"><strong>Issue</strong><span>Test users confused "Add Complaint" with complaining about the sensor itself.</span></p>
+        <p class="iteration-step iteration-step--change"><strong>Change</strong><span>Renamed it to "Log Symptom" and changed "Detected Activity" to "Activity History".</span></p>
+        <p class="iteration-step iteration-step--impact"><strong>Impact</strong><span>Users immediately understood each button's purpose.</span></p>
       </div>
     </div>
 
@@ -295,9 +294,9 @@
       </div>
       <div class="iteration-text">
         <h4>Iteration 2: Icon Replacement</h4>
-        <p><strong>Issue:</strong> Placeholder icons didn't clearly indicate function; confusing for elderly users</p>
-        <p><strong>Change:</strong> Replaced unclear icons with standard health app iconography; added text labels to all navigation items</p>
-        <p><strong>Impact:</strong> Functions became immediately recognizable</p>
+        <p class="iteration-step iteration-step--issue"><strong>Issue</strong><span>Placeholder icons did not clearly communicate their functions.</span></p>
+        <p class="iteration-step iteration-step--change"><strong>Change</strong><span>Replaced unclear icons and added text labels to all navigation items.</span></p>
+        <p class="iteration-step iteration-step--impact"><strong>Impact</strong><span>Functions became immediately recognizable.</span></p>
       </div>
     </div>
 
@@ -308,9 +307,9 @@
       </div>
       <div class="iteration-text">
         <h4>Iteration 3: Help Button Addition</h4>
-        <p><strong>Issue:</strong> Mildred couldn't find instructions when needed; Ben requested "easy Help button"</p>
-        <p><strong>Change:</strong> Added visible "Help" button to main navigation, always accessible from home screen</p>
-        <p><strong>Impact:</strong> Users can access instructions at any point without navigating through settings</p>
+        <p class="iteration-step iteration-step--issue"><strong>Issue</strong><span>Mildred could not find instructions when needed; Ben requested an easy Help button.</span></p>
+        <p class="iteration-step iteration-step--change"><strong>Change</strong><span>Added a visible Help button to the main navigation.</span></p>
+        <p class="iteration-step iteration-step--impact"><strong>Impact</strong><span>Users can access instructions without navigating through settings.</span></p>
       </div>
     </div>
 
@@ -321,9 +320,9 @@
       </div>
       <div class="iteration-text">
         <h4>Iteration 4: Battery Display De-emphasis</h4>
-        <p><strong>Issue:</strong> Large battery indicator took significant space; Mildred said "It's too big"</p>
-        <p><strong>Change:</strong> Reduced battery to small status indicator in persistent status bar; only draws attention when charging threshold reached</p>
-        <p><strong>Impact:</strong> Refocused home screen hierarchy on actionable items, reduced visual clutter</p>
+        <p class="iteration-step iteration-step--issue"><strong>Issue</strong><span>The large battery indicator took too much space and drew attention away from actions.</span></p>
+        <p class="iteration-step iteration-step--change"><strong>Change</strong><span>Reduced the battery to a small status indicator in the persistent status bar.</span></p>
+        <p class="iteration-step iteration-step--impact"><strong>Impact</strong><span>Refocused the home screen on actionable items and reduced visual clutter.</span></p>
       </div>
     </div>
 
@@ -334,11 +333,12 @@
       </div>
       <div class="iteration-text">
         <h4>Iteration 5: Logbook Simplification</h4>
-        <p><strong>Issue:</strong> Separate tabs for "Review Alerts" and "History" with filtering options was overcomplicated</p>
-        <p><strong>Change:</strong> Combined into single unified list; actionable items emphasized, removed unnecessary filtering</p>
-        <p><strong>Impact:</strong> Cleaner, less technical interface that's easier to navigate</p>
+        <p class="iteration-step iteration-step--issue"><strong>Issue</strong><span>Separate alert and history tabs with filters made the logbook feel overcomplicated.</span></p>
+        <p class="iteration-step iteration-step--change"><strong>Change</strong><span>Combined both views into one list and removed unnecessary filtering.</span></p>
+        <p class="iteration-step iteration-step--impact"><strong>Impact</strong><span>Created a cleaner, less technical interface that is easier to navigate.</span></p>
       </div>
     </div>
+
   </section>
 
   <!-- High-Fidelity Prototypes section -->
@@ -355,12 +355,22 @@
       </div>
     </div>
   </section>
+
+  <section id="prototyping-conclusion" class="project-section reveal">
+    <div class="text-column">
+      <h3>Prototyping Conclusion</h3>
+      <p style="color: white; margin-top: 1rem;">Testing confirmed that accessibility was more than a visual specification. Large targets and clear status feedback worked, but vague labels, hidden help, oversized battery information, and excessive scrolling still created uncertainty. The validated prototype balanced reassurance with restraint and gave implementation a focused, testable direction.</p>
+    </div>
+  </section>
   <section id="implementation" class="project-section reveal">
     <div class="text-column">
       <h3>Implementation & Development</h3>
       <p style="color: white; margin-top: 1rem;">
-        Built a fully functional Flutter MVP with Bluetooth Low Energy connectivity, working symptom logbook, and movement simulation system. All code follows accessibility standards and uses scalable architecture patterns.
+        I moved into Agile development once the core direction had been validated. I translated the approved interface into a Flutter MVP, building reusable components and testing the experience on real devices as the product evolved. The implementation focused on a maintainable foundation rather than presenting unfinished clinical functionality as complete.
       </p>
+
+      <h3>Development Approach</h3>
+      <p style="color: white; margin-top: 1rem;">Work was organized into short sprints with planning, daily progress tracking, reviews, and retrospectives. The first sprint established the Flutter structure, design-system components, onboarding, and accessibility foundations. The following sprint focused on the dashboard, persistent sensor status, device pairing, emergency contact access, and navigation. Later work addressed BLE testing, logbook integration, accessibility refinement, performance, and bug fixing.</p>
     </div>
 
     <!-- Tech Stack & Features -->
@@ -385,6 +395,38 @@
           <li style="margin-bottom: 0.8rem;">Alert system for detected activity</li>
           <li>Persistent status bar (battery, connection, recording)</li>
         </ul>
+      </div>
+    </div>
+
+    <div class="implementation-details">
+      <h4>Technical Architecture</h4>
+      <p>The app flow moves from onboarding and accessibility settings into device pairing, then into a dashboard with persistent battery, connection, and recording status. Symptoms are stored locally through the logbook and the structure is ready for Supabase integration. BLoC separates business logic from the UI, keeping the Flutter codebase maintainable and easier to extend.</p>
+
+      <h4>Technical Challenges</h4>
+      <p>Bluetooth required careful handling of scanning, connection states, sensor communication, and recovery when a device was not found. The interface also had to stay consistent with the approved designs while remaining responsive on older devices. The logbook introduced a second integration challenge: storing, editing, and retrieving symptom entries in a way that could later connect to the Supabase backend.</p>
+
+      <h4>Quality Assurance</h4>
+      <p>I used manual testing on real iOS and Android devices, accessibility checks with screen readers, performance checks on older hardware, and stakeholder acceptance testing. The definition of done included mentor review, no critical bugs in the tested flows, accessibility validation, and updated documentation. This process also exposed implementation issues that were not visible in the prototype, such as contrast and touch-target inconsistencies.</p>
+
+      <h4>Known Limitations</h4>
+      <p>The alert system uses simulated movement rather than final sensor movement detection, and the backend integration still needs to connect logging and alerts to the wider platform. ECG data volume can create lag on-device, the movement matrix from a previous intern is not yet integrated, and broader testing across iOS and Android devices is still recommended. The emergency-contact frontend is designed, but sending alerts requires backend support.</p>
+
+      <h4>Implementation Conclusion</h4>
+      <p>The planned MVP was completed as a functional proof of concept. The Diplora style guide was implemented in Flutter through reusable components, the accessibility standards were carried into code, and the BLoC-based structure supports future development. The result connects the tested design direction to a working application while making the remaining product and platform work explicit for the next team.</p>
+    </div>
+
+    <div class="implementation-demo">
+      <h4>Final Working Demo</h4>
+      <p>Walkthrough of the completed Diplora application and its core functionality.</p>
+      <div class="implementation-demo__frame">
+        <iframe
+          src="https://www.youtube.com/embed/yP3T2WRFyq8?si=eUaP9y5u0aIjVqPu"
+          title="Diplora ECG application final working demo"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen>
+        </iframe>
       </div>
     </div>
   </section>

@@ -437,7 +437,11 @@
       align-items: flex-start;
       justify-content: space-between;
       gap: 2rem;
-      margin-top: 3rem;
+      margin-top: 2.5rem;
+      padding: 1.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 0.75rem;
+      background: rgba(255, 255, 255, 0.035);
     }
 
     .iteration-image {
@@ -471,7 +475,8 @@
     .iteration-text h4 {
       color: #6E07F3;
       margin-bottom: 0.8rem;
-      font-size: 1.1rem;
+      font-size: 1.25rem;
+      line-height: 1.3;
     }
 
     .iteration-text p {
@@ -480,7 +485,181 @@
       margin-bottom: 0.5rem;
     }
 
+    .iteration-step {
+      display: grid;
+      grid-template-columns: 4.5rem 1fr;
+      gap: 0.75rem;
+      align-items: start;
+      margin: 0 0 0.75rem !important;
+      padding: 0.75rem 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      line-height: 1.55;
+    }
+
+    .iteration-step strong {
+      color: #fff;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .iteration-step span {
+      color: var(--case-muted);
+    }
+
+    .iteration-step--impact {
+      margin-bottom: 0 !important;
+    }
+
+    body.project-page-standard #research .research-narrative h4,
+    body.project-page-standard #design-system .text-column h4,
+    body.project-page-standard #requirements .text-column h4,
+    body.project-page-standard #implementation .text-column h4,
+    body.project-page-standard #research-conclusion .text-column h3,
+    body.project-page-standard #requirements-conclusion .text-column h3,
+    body.project-page-standard #prototyping-conclusion .text-column h3 {
+      color: #6E07F3 !important;
+      font-size: 2rem !important;
+      line-height: 1.3;
+      text-align: left;
+    }
+
+    body.project-page-standard #research .research-narrative strong {
+      color: #fff;
+    }
+
+    body.project-page-standard #prototyping > div[style*="display: flex"] h4 {
+      font-size: 1.1rem !important;
+    }
+
+    body.project-page-standard .testing-results-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+
+    body.project-page-standard .testing-results-grid > div:first-child {
+      grid-column: 1 / -1;
+    }
+
+    body.project-page-standard .testing-intro-title,
+    body.project-page-standard .testing-result-card h4 {
+      margin: 0 0 0.75rem;
+      color: #6E07F3;
+      font-size: 1.25rem !important;
+      line-height: 1.3;
+      text-align: left;
+    }
+
+    body.project-page-standard .testing-result-card {
+      padding: 1.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 0.75rem;
+      background: rgba(30, 30, 30, 0.85);
+    }
+
+    body.project-page-standard .testing-result-card ul {
+      margin: 0;
+      padding-left: 1.35rem;
+    }
+
+    body.project-page-standard .testing-result-card li {
+      margin-bottom: 0.65rem !important;
+      color: #fff;
+      line-height: 1.5;
+    }
+
+    body.project-page-standard .testing-result-card li:last-child {
+      margin-bottom: 0 !important;
+    }
+
+    body.project-page-standard .research-overview,
+    body.project-page-standard .phase-takeaway,
+    body.project-page-standard .implementation-details {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      border-left: 3px solid #6E07F3;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    body.project-page-standard .research-overview h4,
+    body.project-page-standard .phase-takeaway h4,
+    body.project-page-standard .implementation-details h4 {
+      margin-top: 0;
+      color: #6E07F3;
+      font-size: 1.35rem !important;
+      line-height: 1.25;
+    }
+
+    body.project-page-standard .research-overview p,
+    body.project-page-standard .research-overview li,
+    body.project-page-standard .phase-takeaway p,
+    body.project-page-standard .implementation-details p {
+      color: var(--case-muted) !important;
+    }
+
+    body.project-page-standard .research-overview ul {
+      margin: 0;
+      padding-left: 1.25rem;
+      color: var(--case-muted);
+      line-height: 1.7;
+    }
+
+    body.project-page-standard .phase-takeaway h4,
+    body.project-page-standard .implementation-details h4 {
+      margin-top: 1.5rem;
+    }
+
+    body.project-page-standard .phase-takeaway h4:first-child,
+    body.project-page-standard .implementation-details h4:first-child {
+      margin-top: 0;
+    }
+
+    body.project-page-standard .implementation-demo {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--case-line);
+    }
+
+    body.project-page-standard .implementation-demo h4 {
+      margin: 0 0 0.75rem;
+      color: #6E07F3;
+      font-size: 1.35rem !important;
+      line-height: 1.25;
+    }
+
+    body.project-page-standard .implementation-demo p {
+      color: var(--case-muted) !important;
+    }
+
+    body.project-page-standard .implementation-demo__frame {
+      position: relative;
+      width: min(100%, 28rem);
+      margin-top: 1.5rem;
+      aspect-ratio: 9 / 16;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 0.75rem;
+      background: #000;
+    }
+
+    body.project-page-standard .implementation-demo__frame iframe {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
     @media (max-width: 768px) {
+      body.project-page-standard .testing-results-grid {
+        grid-template-columns: 1fr;
+      }
+
+      body.project-page-standard .testing-results-grid > div:first-child {
+        grid-column: auto;
+      }
+
       .mockup-section {
         flex-direction: column;
         align-items: center;
@@ -510,6 +689,10 @@
 
       .iteration-text {
         min-width: unset;
+      }
+
+      .iteration-step {
+        grid-template-columns: 4rem 1fr;
       }
     }
 

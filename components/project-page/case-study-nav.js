@@ -12,16 +12,16 @@
       ['05 / Implementation - Bridging Design and Code', /implementation|development|flutter|bloc|bluetooth/i]
     ];
     const phaseContents = {
-      Research: ['Research Phase Overview', 'Online Research & Literature Review', 'Competitor Analysis', 'Stakeholder Interviews', 'Survey', 'Patient Interviews', 'Research Conclusion'],
-      'Design System': ['Establishing Visual Identity', 'Accessible Design Standards', 'Key Outputs', 'Conclusion'],
-      Requirements: ['User Journey Mapping', 'Target User Personas', 'User Requirements', 'MoSCoW Prioritization'],
-      Prototyping: ['Low-Fidelity Prototypes', 'User Testing on High-Fidelity Prototypes', 'High-Fidelity Prototypes', 'Design Iterations Based on Feedback'],
-      Implementation: ['Development Approach', 'Technical Implementation', 'Completed Features', 'Technical Architecture', 'Technical Challenges', 'Quality Assurance', 'Known Limitations', 'Implementation Conclusion']
+      Research: ['Research Approach', 'Research Overview', 'Literature Review', 'Stakeholder Interviews', 'Patient Interviews', 'Survey Analysis', 'Internal Feedback', 'Competitor Analysis', 'Research Conclusion'],
+      'Design System': ['Brand Identity', 'Accessible Design Standards', 'Scalable Components', 'Design System Takeaway'],
+      Requirements: ['User Requirements & Features', 'User Journey Mapping', 'MoSCoW Prioritization', 'User Personas', 'Requirements Conclusion'],
+      Prototyping: ['Low-Fidelity Prototypes', 'User Testing on High-Fidelity Prototypes', 'What Worked Well', 'Key Iterations', 'Design Iterations Based on Feedback', 'High-Fidelity Prototypes', 'Prototyping Conclusion'],
+      Implementation: ['Implementation & Development', 'Development Approach', 'Tech Stack', 'Completed Features', 'Technical Architecture', 'Technical Challenges', 'Quality Assurance', 'Known Limitations', 'Implementation Conclusion']
     };
     const usedSections = new Set();
     const isDiplora = window.location.pathname.toLowerCase().includes('diplora');
     const preferredIds = isDiplora
-      ? [['research', 'research-methods', 'competitor-analysis'], ['design-system'], ['requirements', 'personas'], ['prototyping', 'design-iterations', 'high-fidelity-prototypes'], ['implementation']]
+      ? [['research', 'competitor-analysis', 'research-conclusion'], ['design-system'], ['requirements', 'personas', 'requirements-conclusion'], ['prototyping', 'design-iterations', 'high-fidelity-prototypes', 'prototyping-conclusion'], ['implementation']]
       : [];
     const phaseSections = phaseMatchers
       .map(([label, matcher], phaseIndex) => {
