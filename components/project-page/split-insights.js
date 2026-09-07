@@ -8,11 +8,15 @@
     }
 
     const escapeHtml = api.escapeHtml || ((v) => String(v));
+    const renderCopy = (copy) => {
+      const paragraphs = Array.isArray(copy) ? copy : [copy || ''];
+      return paragraphs.map((paragraph) => `<p class="split-copy">${escapeHtml(paragraph)}</p>`).join('');
+    };
     const panels = (data.panels || [])
       .map((panel) => {
         const body = Array.isArray(panel.list)
           ? `<ul class="split-list">${panel.list.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul>`
-          : `<p class="split-copy">${escapeHtml(panel.copy || '')}</p>`;
+          : renderCopy(panel.copy);
 
         return `
           <article class="split-card">
@@ -27,7 +31,7 @@
       <div class="split-insights reveal active">
         <div class="split-left">
           <h3 class="split-main-title">${escapeHtml(data.title || '')}</h3>
-          <p class="split-main-copy">${escapeHtml(data.copy || '')}</p>
+          ${renderCopy(data.copy).replaceAll('class="split-copy"', 'class="split-main-copy"')}
         </div>
         <div class="split-right">${panels}</div>
       </div>

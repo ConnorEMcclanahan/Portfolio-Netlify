@@ -141,6 +141,12 @@
       margin: 1rem auto 3rem;
     }
 
+    body.project-page-standard .research-narrative p + p,
+    body.project-page-standard .research-overview p + p,
+    body.project-page-standard .project-section p + p {
+      margin-top: 1.5rem !important;
+    }
+
     .user-journey-embed {
       position: relative;
       width: 100%;
@@ -154,6 +160,196 @@
       width: 100%;
       height: 100%;
       border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    body.project-page-standard #high-fidelity-prototypes .mockup-section {
+      display: block;
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    body.project-page-standard #high-fidelity-prototypes .mockup-text {
+      width: auto;
+      padding: 0;
+    }
+
+    body.project-page-standard #high-fidelity-prototypes .mockup-text p {
+      color: var(--case-muted) !important;
+      font-size: 1rem !important;
+      line-height: 1.75;
+    }
+
+    body.project-page-standard #high-fidelity-prototypes .mockup-image {
+      display: block !important;
+      width: 100%;
+      margin-top: 2rem;
+    }
+
+    body.project-page-standard #high-fidelity-prototypes .mockup-image iframe {
+      display: block;
+      width: 100% !important;
+      max-width: none !important;
+      height: 700px;
+    }
+
+    .requirements-narrative {
+      margin-top: 2rem;
+    }
+
+    .requirement-group {
+      width: 100%;
+      max-width: 1000px;
+      padding: 1.25rem 0;
+      border-top: 1px solid var(--case-line);
+    }
+
+    .requirement-group h4 {
+      margin: 0 0 0.5rem;
+      color: #6E07F3;
+      font-family: "Syne", "Plus Jakarta Sans", sans-serif;
+      font-size: 1.25rem !important;
+    }
+
+    .requirement-group p {
+      margin: 0;
+      color: var(--case-muted) !important;
+      line-height: 1.75;
+    }
+
+    body.project-page-standard #research > .text-column {
+      width: 100%;
+      max-width: 900px;
+      margin-bottom: 2rem;
+    }
+
+    body.project-page-standard #research > .text-column p {
+      max-width: 90ch;
+    }
+
+    body.project-page-standard #design-system .text-column {
+      width: 100%;
+      max-width: 1000px;
+      margin: 0;
+    }
+
+    body.project-page-standard #design-system .text-column p,
+    body.project-page-standard #design-system .text-column h4 {
+      max-width: 1000px;
+    }
+
+    body.project-page-standard #implementation .text-column,
+    body.project-page-standard #implementation .implementation-details,
+    body.project-page-standard #implementation .implementation-tech-stack__card {
+      width: 100%;
+      max-width: 1000px;
+    }
+
+    body.project-page-standard #implementation .text-column {
+      margin: 0;
+    }
+
+    body.project-page-standard #personas .persona-list {
+      display: grid;
+      gap: 4rem;
+      margin-top: 3rem;
+    }
+
+    body.project-page-standard #personas .persona-profile {
+      width: 100%;
+      max-width: 1000px;
+      padding: 0 0 3rem;
+      border-bottom: 1px solid var(--case-line);
+    }
+
+    body.project-page-standard #personas .persona-profile:last-child {
+      border-bottom: 0;
+    }
+
+    body.project-page-standard #personas .persona-profile__image {
+      width: 100%;
+      margin-bottom: 1.5rem;
+    }
+
+    body.project-page-standard #personas .persona-profile__image img {
+      display: block;
+      width: 100%;
+      max-width: 1000px;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    body.project-page-standard #personas .persona-profile h4 {
+      margin: 0 0 0.75rem;
+      color: #6E07F3;
+      font-size: 1.35rem !important;
+    }
+
+    body.project-page-standard #personas .persona-profile p {
+      max-width: 78ch;
+      margin: 0;
+      color: var(--case-muted) !important;
+      line-height: 1.75;
+    }
+
+    body.project-page-standard #requirements .text-column,
+    body.project-page-standard #prototyping > .text-column,
+    body.project-page-standard #design-iterations .text-column,
+    body.project-page-standard #personas .text-column {
+      width: 100%;
+      max-width: 1000px;
+      margin: 0;
+    }
+
+    body.project-page-standard #requirements .text-column p,
+    body.project-page-standard #prototyping > .text-column p,
+    body.project-page-standard #design-iterations .text-column p,
+    body.project-page-standard #personas .text-column p,
+    body.project-page-standard #prototyping .testing-results-grid > div:first-child p {
+      width: 100%;
+      max-width: 1000px;
+    }
+
+    body.project-page-standard #research .research-narrative {
+      width: 100%;
+      max-width: 1000px;
+    }
+
+    body.project-page-standard #research .research-narrative > h4,
+    body.project-page-standard #research .research-narrative > p,
+    body.project-page-standard #research .research-overview {
+      max-width: 1000px;
+    }
+
+    body.project-page-standard .case-study-phase__title {
+      overflow: hidden;
+    }
+
+    body.project-page-standard .case-study-phase__title h2 {
+      max-width: 100%;
+      padding: 0 1rem;
+      box-sizing: border-box;
+      font-size: clamp(1.35rem, 3vw, 1.8rem) !important;
+      line-height: 1.25;
+      overflow-wrap: anywhere;
+    }
+
+    body.project-page-standard #research-conclusion,
+    body.project-page-standard #requirements-conclusion,
+    body.project-page-standard #prototyping-conclusion {
+      min-height: 0;
+      margin-top: 0;
+      margin-bottom: 2rem;
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+    }
+
+    body.project-page-standard #research-conclusion .text-column,
+    body.project-page-standard #requirements-conclusion .text-column,
+    body.project-page-standard #prototyping-conclusion .text-column {
+      width: 100%;
+      max-width: 1000px;
+      margin: 0;
     }
 
     /* Header main title */
@@ -547,6 +743,10 @@
       text-align: left;
     }
 
+    body.project-page-standard #research .research-narrative > .research-overview h4 {
+      margin-top: 0;
+    }
+
     body.project-page-standard #research .research-narrative strong {
       color: #fff;
     }
@@ -604,6 +804,10 @@
       padding: 1.5rem;
       border-left: 3px solid #6E07F3;
       background: rgba(255, 255, 255, 0.04);
+    }
+
+    body.project-page-standard .research-overview {
+      margin-top: 0;
     }
 
     body.project-page-standard .research-overview h4,
@@ -922,6 +1126,96 @@
     body.project-page-standard #phase-05 #design-iterations .iteration-text p {
       color: var(--case-muted) !important;
       line-height: 1.7;
+    }
+
+    /* Iteration stories use the same readable case-study layout as the rest of the page. */
+    body.project-page-standard #design-iterations .iteration-card {
+      display: grid;
+      grid-template-columns: minmax(240px, 0.85fr) minmax(0, 1.15fr);
+      align-items: center;
+      gap: 3rem;
+      margin: 0 0 3rem;
+      padding: 2rem 1.5rem 3rem;
+      border-top: 1px solid var(--case-line);
+      background: transparent;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    body.project-page-standard #design-iterations .iteration-card:nth-of-type(even) {
+      grid-template-columns: minmax(240px, 0.85fr) minmax(0, 1.15fr);
+    }
+
+    body.project-page-standard #design-iterations .iteration-card:nth-of-type(even) .iteration-image {
+      order: initial;
+    }
+
+    body.project-page-standard #design-iterations .iteration-image {
+      grid-column: 2;
+      grid-row: 1;
+      min-width: 0;
+      padding: 0;
+      background: transparent;
+      border: 0;
+    }
+
+    body.project-page-standard #design-iterations .iteration-image img {
+      display: block;
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: none;
+    }
+
+    body.project-page-standard #design-iterations .iteration-card:nth-last-child(-n + 3) .iteration-image img {
+      width: 78% !important;
+      margin: 0 auto;
+    }
+
+    body.project-page-standard #design-iterations .iteration-text {
+      grid-column: 1;
+      grid-row: 1;
+      min-width: 0;
+    }
+
+    body.project-page-standard #design-iterations .iteration-text h4 {
+      margin: 0 0 1rem;
+      color: #6E07F3;
+      font-family: "Syne", "Plus Jakarta Sans", sans-serif;
+      font-size: 1.25rem !important;
+      line-height: 1.3;
+    }
+
+    body.project-page-standard #design-iterations .iteration-text p {
+      margin: 0 0 1rem;
+      color: var(--case-muted) !important;
+      font-size: 1rem !important;
+      line-height: 1.75;
+    }
+
+    body.project-page-standard #design-iterations .iteration-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    body.project-page-standard #design-iterations .iteration-text strong {
+      display: inline-block;
+      min-width: 4.75rem;
+      margin-right: 0.45rem;
+      color: #fff;
+      font-size: 0.8rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 768px) {
+      body.project-page-standard #design-iterations .iteration-card,
+      body.project-page-standard #design-iterations .iteration-card:nth-of-type(even) {
+        display: block;
+        padding: 2rem 1rem;
+      }
+
+      body.project-page-standard #design-iterations .iteration-image {
+        margin-bottom: 1.5rem;
+      }
     }
 
     /* Loader Styles */

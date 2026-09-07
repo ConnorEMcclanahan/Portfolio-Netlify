@@ -88,7 +88,8 @@ body.project-page-standard .case-study-phase__lead h3 {
 
 body.project-page-standard .case-study-phase__overview ul {
   margin: 0;
-  padding-left: 0;
+  width: 100%;
+  max-width: none;
   list-style: none;
 }
 
@@ -246,6 +247,14 @@ body.project-page-standard .project-section {
   max-width: 1200px;
   margin: 0 auto;
   padding: 4rem 2rem;
+}
+
+body.project-page-standard p + p {
+  margin-top: 1.5rem !important;
+}
+
+body.project-page-standard strong {
+  margin-inline: 0.08em;
 }
 
 body.project-page-standard .reveal.active {
@@ -720,7 +729,9 @@ body.project-page-standard .intro-meta ul {
 }
 
 .final-title {
-  font-size: 2em;
+  font-family: "Syne", "Plus Jakarta Sans", sans-serif;
+  font-size: 1.8rem;
+  line-height: 1.25;
   color: #6E07F3;
   text-align: left;
 }
@@ -730,14 +741,17 @@ body.project-page-standard .intro-meta ul {
 }
 
 .final-item-title {
-  color: #6E07F3;
+  font-family: "Syne", "Plus Jakarta Sans", sans-serif;
+  color: #fff;
   margin-bottom: 0.5rem;
   font-size: 1.05rem;
 }
 
 .final-item-copy {
-  color: white;
-  font-size: 0.95rem;
+  color: var(--case-muted);
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 1rem;
+  line-height: 1.75;
 }
 
 .final-item-copy--spaced {
@@ -1045,6 +1059,10 @@ body.project-page-standard .intro-meta ul {
   color: #4475e2;
   text-align: left;
   font-size: 2em;
+}
+
+.mockup-step-inline-title {
+  display: none;
 }
 
 .mockup-step-copy {

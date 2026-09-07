@@ -61,30 +61,7 @@
       margin-top: 10vh; /* Add consistent top margin */
     }
 
-    /* Intro section specific spacing */
-    #intro-summary {
-      padding: 8rem 1rem; /* Increase padding to match Fitphone */
-      background: #000;
-      color: #fff;
-      margin-top: 0; /* Remove top margin for first section */
-    }
-
-    body.project-page-standard #intro-summary {
-      background: #000 !important;
-    }
-
-    body.project-page-standard #intro-summary .intro-story-block p,
-    body.project-page-standard #intro-summary .intro-meta-item span {
-      color: #fff !important;
-    }
-
-    body.project-page-standard #intro-summary .intro-overview-title {
-      color: #fff !important;
-    }
-
-    body.project-page-standard #intro-summary .intro-heading .intro-subtitle {
-      color: #fff !important;
-    }
+    /* Intro presentation is standardized by the shared project-page component styles. */
 
     /* Overview section spacing */
     .Overview {
@@ -180,16 +157,6 @@
       50%     {filter:drop-shadow(0 0 12px #a78bff) drop-shadow(0 0 28px #a78bff);}
     }
 
-    @media(max-width:768px) {
-      #intro-summary {
-        padding: 2rem 1rem !important;
-      }
-
-      .intro-summary-grid {
-        grid-template-columns: 1fr !important;
-      }
-    }
-
     @media(max-width:480px){
       .scroll-down{font-size:2.5rem;}
       
@@ -223,16 +190,11 @@
       color: #6E07F3 !important;
     }
     
-    p, li, .pov-item p,.box li {
+    p, li, .box li {
       margin: 0;
     padding: 0;
     }
     
-    .pov-item h4 {
-      font-size: 1.2rem !important;
-      color: #6E07F3;
-    }
-  
     h1 {
       text-align: center;
       font-size: 3em !important;
@@ -243,26 +205,6 @@
       margin-bottom: 2rem;
     }
   
-    /* Heading tweaks inside image wrappers */
-    .wrapingimageleftt h1,
-    .wrapingimagerightt h1 {
-      text-align: left !important;
-      color: #fff !important;
-    }
-    
-    .wrapingimageleftt h3,
-    .wrapingimagerightt h3 {
-      font-size: 2rem !important;
-    }
-    
-    .wrapingimagerightt p {
-      color: #fff !important;
-    }
-  
-    .skills-banner h3 {
-      text-align: center;
-      color: #000 !important;
-    }
     footer {
   background: #222;
   color: #fff;
@@ -360,139 +302,9 @@ html {
       color: #fff;
     }
   
-  /* PDF Viewer Container */
-.pdf-container {
-  max-height: 85vh;
-    position: relative;
-    overflow: hidden;
-    aspect-ratio: 8 / 11;
-    background: transparent;
-    border-radius: 0;
-}
-
-/* PDF Canvas */
-.pdf-canvas {
-  display: block;
-    /* width: 85vh; */
-    height: 85vh;
-    object-fit: contain;
-
-}
-
-
-/* Purple Page Number Badge */
-.pdf-page-indicator {
-  position: absolute;
-  bottom: 12px;
-  right: 12px;
-  background: rgba(110, 7, 243, 0.85); /* purple semi-transparent */
-  color: #fff;
-  padding: 4px 10px;
-  border-radius: 12px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  z-index: 10;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-}
-
-/* Control Bar: Hidden by Default */
-.pdf-controls {
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 12px;
-  background: rgba(0, 0, 0, 0.7);
-  padding: 6px 14px;
-  border-radius: 20px;
-  opacity: 0;
-  transition: opacity 0.3s ease, bottom 0.3s ease;
-  z-index: 20;
-}
-
-/* When Hovering: Hide Page Number, Show Controls */
-.pdf-container:hover .pdf-page-indicator {
-  opacity: 0;
-}
-.pdf-container:hover .pdf-controls {
-  opacity: 1;
-  bottom: 50px; /* lift it up a little */
-}
-
-/* Control Buttons */
-.pdf-controls button {
-  background: transparent;
-  color: white;
-  border: none;
-  font-size: 0.9rem;
-  cursor: pointer;
-  padding: 5px 8px;
-  transition: color 0.2s;
-}
-.pdf-controls button:hover {
-  color: #6E07F3;
-}
-
-/* Loading Message */
-.pdf-loading {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #6E07F3;
-  font-weight: bold;
-}
-
-/* Mobile Tweaks */
-@media(max-width: 768px) {
-  .pdf-container {
-    width: 100%;
-    height: 70vh;
-  }
-  .pdf-page-indicator {
-    font-size: 0.75rem;
-    padding: 4px 8px;
-  }
-  .pdf-controls button {
-    font-size: 0.8rem;
-  }
-}
-
-  
-    /* Figma frame */
-    .figma-container {
-      width: 100%;
-      height: 500px;
-      margin-bottom: 30px;
-    }
-    .figma-container iframe {
-      width: 100%;
-      height: 100%;
-      border: 1px solid rgba(0,0,0,0.1);
-    }
-  
     /* Parallax background */
     .parallax-1 {
       background: url(../../images/motivate/motivatewall.png) center/cover fixed no-repeat;
-    }
-  
-    /* GitHub corner */
-    .github-corner {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      z-index: 1000;
-    }
-    .github-corner svg {
-      width: 60px;
-      height: 60px;
-      fill: #6E07F3;
-      transition: transform 0.3s ease-in-out;
-    }
-    .github-corner:hover svg {
-      transform: scale(1.1);
     }
   
     /* Final container boxes */
@@ -1107,6 +919,423 @@ body.project-page-standard .case-study-phase__content .reveal.active {
   padding: 0;
 }
 
+body.project-page-standard #implementation-details,
+body.project-page-standard #implementation-details p,
+body.project-page-standard #implementation-details ~ .implementation-demo p,
+body.project-page-standard #implementation-details ~ .implementation-demo__copy p {
+  color: var(--case-muted) !important;
+  line-height: 1.75;
+}
+
+body.project-page-standard #implementation-details ~ .implementation-demo {
+  display: grid;
+  grid-template-columns: minmax(0, 0.7fr) minmax(28rem, 1.3fr);
+  align-items: center;
+  gap: 3rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 3rem auto;
+}
+
+body.project-page-standard #implementation-details ~ .implementation-demo .implementation-demo__frame {
+  width: 100%;
+}
+
+body.project-page-standard #implementation-details ~ .implementation-demo iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+}
+
+@media (max-width: 768px) {
+  body.project-page-standard #implementation-details ~ .implementation-demo {
+    display: block;
+  }
+
+  body.project-page-standard #implementation-details ~ .implementation-demo .implementation-demo__frame {
+    margin-top: 2rem;
+  }
+}
+
+body.project-page-standard #mockup-flow.mockup-flow--editorial .mockup-step {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(18rem, 1fr);
+  gap: 0;
+  align-items: stretch;
+  margin: 0 0 3rem;
+  padding: 2rem;
+  background: #151515;
+}
+
+body.project-page-standard #mockup-flow.mockup-flow--editorial .mockup-step-text {
+  display: contents;
+}
+
+body.project-page-standard #mockup-flow.mockup-flow--editorial .mockup-step-title {
+  grid-column: 1 / -1;
+  width: calc(100% + 4rem);
+  margin: -2rem 0 2rem -2rem;
+  padding: 0.9rem 1.25rem;
+  border: 1px solid #6E07F3;
+  background: #050505;
+  color: #6E07F3;
+  font-family: "Syne", "Plus Jakarta Sans", sans-serif;
+  font-size: 1.8rem !important;
+  text-align: center;
+}
+
+body.project-page-standard #mockup-flow.mockup-flow--editorial .mockup-step-inline-title {
+  display: block;
+  grid-column: 1;
+  margin: 0;
+  padding: 1.5rem 1.5rem 0;
+  color: #6E07F3;
+  font-family: "Syne", "Plus Jakarta Sans", sans-serif;
+  font-size: 1.05rem !important;
+  text-align: left;
+}
+
+body.project-page-standard #mockup-flow.mockup-flow--editorial .mockup-step-copy {
+  grid-column: 1;
+  margin: 0;
+  padding: 1.5rem;
+  color: var(--case-muted);
+  font-size: 1.125rem !important;
+  line-height: 1.75;
+}
+
+body.project-page-standard #mockup-flow.mockup-flow--editorial .mockup-step-copy p {
+  margin: 0;
+}
+
+body.project-page-standard #mockup-flow.mockup-flow--editorial .mockup-step-copy p + p {
+  margin-top: 1.25rem;
+}
+
+body.project-page-standard #mockup-flow.mockup-flow--editorial .mockup-visual {
+  grid-column: 2;
+  align-self: center;
+  width: 100%;
+  min-width: 0;
+  padding: 0;
+}
+
+body.project-page-standard #mockup-flow.mockup-flow--editorial .mockup-step-image {
+  display: block;
+  width: 68%;
+  max-width: 760px;
+  margin: 0 auto;
+  height: auto;
+}
+
+body.project-page-standard #mockup-flow.mockup-flow--editorial .mockup-step--standard-form-pt3 .mockup-step-image,
+body.project-page-standard #mockup-flow.mockup-flow--editorial .mockup-step--approval .mockup-step-image,
+body.project-page-standard #mockup-flow.mockup-flow--editorial .mockup-step--viewing-standard .mockup-step-image {
+  width: 92%;
+  max-width: 900px;
+}
+
+/* Match Diplora's dark intro presentation while keeping Motivate's content. */
+body.project-page-standard #intro-summary {
+  background: #000 !important;
+  color: #fff !important;
+}
+
+body.project-page-standard #intro-summary .intro-heading .intro-title {
+  color: #6E07F3 !important;
+}
+
+body.project-page-standard #intro-summary .intro-heading .intro-subtitle,
+body.project-page-standard #intro-summary .intro-overview-title,
+body.project-page-standard #intro-summary .intro-story-block h2,
+body.project-page-standard #intro-summary .intro-meta-item strong {
+  color: #fff !important;
+}
+
+body.project-page-standard #intro-summary .intro-heading .intro-lead {
+  color: #6E07F3 !important;
+}
+
+body.project-page-standard #intro-summary .intro-story-block p,
+body.project-page-standard #intro-summary .intro-meta-item span {
+  color: #b8b8b8 !important;
+}
+
+body.project-page-standard #competitor-analysis-mount .comparison-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+body.project-page-standard #competitor-analysis-mount .comparison-layout > .text-column {
+  order: 1;
+  width: auto;
+  max-width: 78ch;
+  margin: 0;
+}
+
+body.project-page-standard #competitor-analysis-mount .comparison-table-shell {
+  order: 2;
+  width: 100%;
+}
+
+body.project-page-standard .narrative-block {
+  max-width: 78ch;
+}
+
+body.project-page-standard #pmt-research .text-column {
+  width: 100%;
+  max-width: 78ch;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+body.project-page-standard #pmt-research .text-column p {
+  margin: 0;
+  color: var(--case-muted) !important;
+  line-height: 1.75;
+}
+
+body.project-page-standard #observational-studies .split-insights {
+  display: block;
+  padding: 0;
+  background: transparent;
+}
+
+body.project-page-standard #observational-studies .split-left,
+body.project-page-standard #observational-studies .split-right {
+  width: auto;
+  max-width: 78ch;
+  margin: 0;
+  padding: 0;
+}
+
+body.project-page-standard #observational-studies .split-main-copy,
+body.project-page-standard #observational-studies .split-left p {
+  color: var(--case-muted) !important;
+  line-height: 1.75;
+}
+
+body.project-page-standard #observational-studies .split-right {
+  margin-top: 2rem;
+  border-left: 0;
+}
+
+body.project-page-standard #observational-studies .split-card {
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--case-line);
+  background: transparent;
+  box-shadow: none;
+}
+
+body.project-page-standard #observational-studies .split-card-title {
+  margin: 0 0 0.5rem;
+  color: #6E07F3;
+}
+
+body.project-page-standard #observational-studies .split-copy {
+  margin: 0;
+  color: var(--case-muted) !important;
+  line-height: 1.75;
+}
+
+body.project-page-standard #moscow-analysis {
+  display: block;
+}
+
+body.project-page-standard #moscow-analysis .text-column {
+  width: 100%;
+  max-width: 78ch;
+  margin: 0;
+  padding: 0;
+}
+
+body.project-page-standard #moscow-analysis .media-column {
+  width: 100%;
+  max-width: 900px;
+  margin: 2rem 0 0;
+  padding: 0;
+}
+
+body.project-page-standard #moscow-analysis .moscow-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+body.project-page-standard #user-feedback .split-insights {
+  display: block;
+  padding: 0;
+  background: transparent;
+}
+
+body.project-page-standard #user-feedback .split-left,
+body.project-page-standard #user-feedback .split-right {
+  width: auto;
+  max-width: 78ch;
+  margin: 0;
+  padding: 0;
+}
+
+body.project-page-standard #user-feedback .split-right {
+  margin-top: 2rem;
+  border-left: 0;
+}
+
+body.project-page-standard #user-feedback .split-card {
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--case-line);
+  background: transparent;
+  box-shadow: none;
+}
+
+body.project-page-standard #user-feedback .split-card-title {
+  margin: 0 0 0.5rem;
+  color: #6E07F3;
+}
+
+body.project-page-standard #user-feedback .split-copy {
+  margin: 0;
+  color: var(--case-muted) !important;
+  line-height: 1.75;
+}
+
+body.project-page-standard #user-feedback .split-main-copy,
+body.project-page-standard #user-feedback .split-left p,
+body.project-page-standard #prototyping p {
+  color: var(--case-muted) !important;
+  line-height: 1.75;
+}
+
+body.project-page-standard #low-fidelity {
+  display: block;
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 0;
+}
+
+body.project-page-standard #low-fidelity .text-column {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0;
+  padding: 0;
+}
+
+body.project-page-standard #low-fidelity .text-column p {
+  margin: 0;
+  color: var(--case-muted) !important;
+  line-height: 1.75;
+}
+
+body.project-page-standard #low-fidelity .media-column {
+  width: 100%;
+  max-width: 1000px;
+  margin: 2.5rem 0 0;
+  padding: 0;
+}
+
+body.project-page-standard #prototyping .workflow-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 2.5rem 0 0;
+}
+
+body.project-page-standard #prototyping .workflow-container img {
+  display: block;
+  width: 100%;
+  max-width: 1200px;
+  height: auto;
+}
+
+body.project-page-standard .narrative-block p {
+  margin-bottom: 1.25rem;
+  color: var(--case-muted) !important;
+  line-height: 1.75;
+}
+
+body.project-page-standard .narrative-block p + p,
+body.project-page-standard #customer-interviews p + p,
+body.project-page-standard .phase-conclusion p + p {
+  margin-top: 1.5rem !important;
+}
+
+body.project-page-standard .phase-conclusion {
+  max-width: 78ch;
+  padding-top: 2rem !important;
+  border-top: 1px solid var(--case-line);
+}
+
+body.project-page-standard .phase-conclusion h3 {
+  margin-bottom: 0.75rem;
+  color: #6E07F3;
+}
+
+body.project-page-standard .phase-conclusion p {
+  margin: 0;
+  color: var(--case-muted) !important;
+  line-height: 1.75;
+}
+
+body.project-page-standard .narrative-block strong,
+body.project-page-standard #customer-interviews strong {
+  color: #fff;
+}
+
+body.project-page-standard #customer-interviews .text-column {
+  max-width: 78ch;
+}
+
+body.project-page-standard .feature-groups {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 3rem;
+  width: 100%;
+  margin-top: 2.5rem;
+}
+
+body.project-page-standard #features-list .text-column {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0;
+  padding: 0;
+}
+
+body.project-page-standard #features-list .text-column h3 {
+  margin: 0 0 1rem;
+}
+
+body.project-page-standard #features-list .text-column p {
+  margin: 0;
+  color: var(--case-muted) !important;
+  line-height: 1.75;
+}
+
+body.project-page-standard .feature-group {
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--case-line);
+}
+
+body.project-page-standard .feature-group h4 {
+  margin: 0 0 0.5rem;
+  color: #6E07F3;
+  font-family: "Syne", "Plus Jakarta Sans", sans-serif;
+  font-size: 1.25rem !important;
+}
+
+body.project-page-standard .feature-group p {
+  margin: 0;
+  color: var(--case-muted) !important;
+  line-height: 1.65;
+}
+
+@media (max-width: 768px) {
+  body.project-page-standard .feature-groups {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Motivate screen stories: explanation first, supporting app screen beside it. */
 body.project-page-standard #mockup-flow .mockup-step {
   display: grid;
@@ -1115,9 +1344,9 @@ body.project-page-standard #mockup-flow .mockup-step {
   gap: 0;
   max-width: none;
   margin: 0 0 3rem;
-  padding: 2rem 0 3rem;
+  padding: 2rem;
   border-top: 1px solid var(--case-line);
-  background: transparent;
+  background: #151515;
 }
 
 body.project-page-standard #mockup-flow .mockup-step-text {
@@ -1127,7 +1356,8 @@ body.project-page-standard #mockup-flow .mockup-step-text {
 }
 
 body.project-page-standard #mockup-flow .mockup-step-title {
-  margin: 0 0 1rem;
+  width: calc(100% + 4rem);
+  margin: -2rem 0 1rem -2rem;
   padding: 0.9rem 1.25rem;
   border: 1px solid #6E07F3;
   background: #050505;
@@ -1141,11 +1371,11 @@ body.project-page-standard #mockup-flow .mockup-step-title {
 body.project-page-standard #mockup-flow .mockup-step-copy {
   margin: 0;
   padding: 1.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: #151515;
+  border: 0;
+  background: transparent;
   color: var(--case-muted);
   font-family: "Plus Jakarta Sans", sans-serif;
-  font-size: 1rem !important;
+  font-size: 1.125rem !important;
   line-height: 1.75;
 }
 
@@ -1168,7 +1398,9 @@ body.project-page-standard #mockup-flow .mockup-visual--tablet {
 
 body.project-page-standard #mockup-flow .mockup-step-image {
   display: block;
-  width: 100%;
+  width: 88%;
+  max-width: 100%;
+  margin: 0 auto;
   height: auto;
 }
 
@@ -1178,7 +1410,8 @@ body.project-page-standard #mockup-flow .mockup-step:first-child .mockup-step-te
 
 body.project-page-standard #mockup-flow .mockup-step:first-child .mockup-step-title {
   grid-column: 1 / -1;
-  margin-bottom: 2rem;
+  width: calc(100% + 4rem);
+  margin: -2rem 0 2rem -2rem;
   padding: 1rem 1.5rem;
   border: 1px solid #6E07F3;
   font-size: 1.8rem !important;
@@ -1207,13 +1440,15 @@ body.project-page-standard .case-study-phase--wide-final #mockup-flow {
 
 body.project-page-standard .case-study-phase--wide-final #final-design {
   margin-bottom: 2rem;
-  padding: 1rem 0;
+  padding: 1rem 2rem 2rem;
   border: 0;
+  background: #000;
   text-align: center;
 }
 
 body.project-page-standard .case-study-phase--wide-final #final-design h3 {
-  margin: 0;
+  width: calc(100% + 4rem);
+  margin: -1rem 0 0 -2rem;
   padding: 1rem 1.5rem;
   border: 1px solid #6E07F3;
   color: #6E07F3;
@@ -1232,6 +1467,7 @@ body.project-page-standard .case-study-phase--wide-final .final-design-showcase 
   body.project-page-standard #mockup-flow .mockup-step {
     display: block;
     margin-bottom: 3rem;
+    padding: 1.5rem;
   }
 
   body.project-page-standard #mockup-flow .mockup-step-title {

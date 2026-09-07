@@ -65,36 +65,35 @@ const finalSectionData = {
 
 const observationalData = {
   title: 'Observational Studies',
-  copy: 'Conducted observational studies to understand how factory workers interact with the current PMT system. These studies provided valuable insights into practical challenges in navigation, access to instructions, and update management, and helped identify improvements grounded in real factory workflows.',
+  copy: [
+    'I observed how factory workers interacted with the existing PMT system during real instruction-related tasks. The studies focused on navigation, finding the correct instruction, accessing updates, and working across different devices and conditions.',
+    'This made the gap between the digital workflow and the physical factory environment visible. Workers needed to find the right information quickly, often while dealing with noise, limited attention, and different screen sizes. The observation work therefore became a practical check on whether the new workflow would support real use rather than only look clear in a prototype.'
+  ],
   panels: [
     {
-      title: 'Key Findings',
-      list: [
-        'Technical limitations requiring responsive design across devices',
-        'Need for compatibility with various media formats and file types',
-        'Noisy factory environments requiring clear visual interfaces',
-        'Standardization needs aligned with Training Within Industry methods'
-      ]
+      title: 'What this changed',
+      copy: 'The findings led to a responsive interface, support for multiple media formats, clearer visual hierarchy, and a workflow aligned with Training Within Industry methods. The ICT needed to make the latest approved instruction easy to find and understand at the point of work.'
     }
   ]
 };
 
 const userFeedbackData = {
   title: 'User Feedback on Low-Fidelity Prototypes',
-  copy: 'To gather feedback on low-fidelity prototypes, initial interviews were conducted. Users reviewed sketches and answered questions to validate information coverage, usability, design clarity, and functional direction.',
+  copy: [
+    'To gather feedback on low-fidelity prototypes, I conducted initial interviews in which users reviewed sketches and answered questions about the proposed workflow. The sessions tested whether the screens communicated the right information and whether the overall direction felt understandable before visual detail was added.',
+    'This early feedback was important because it exposed problems in structure and flow while they were still inexpensive to change. It helped separate essential workflow steps from ideas that could wait until later iterations.'
+  ],
   panels: [
     {
       title: 'Key Validation Points',
-      list: [
-        'Navigation clarity and flow',
-        'Design intuitiveness',
-        'Feature completeness',
-        'Overall user experience'
-      ]
+      copy: 'The sessions focused on whether users could understand the navigation and flow, recognize the purpose of each screen, find the expected features, and complete the workflow without unnecessary explanation.'
     },
     {
       title: 'Insights Gathered',
-      copy: 'Feedback provided crucial insight into navigation clarity, design intuitiveness, and overall UX. Users confirmed the feature set and direction while reinforcing the need for a robust, user-friendly interface.'
+      copy: [
+        'Feedback provided crucial insight into navigation clarity, design intuitiveness, and overall UX. Users confirmed the feature set and direction while reinforcing the need for a robust, user-friendly interface.',
+        'The strongest signal was that the workflow needed to feel direct and predictable: users should understand what to do next, why a step was required, and how their work would move through review and approval.'
+      ]
     },
     {
       title: 'Next Steps',
@@ -104,38 +103,54 @@ const userFeedbackData = {
 };
 
 const mockupFlowData = {
+  layout: 'editorial',
   items: [
     {
       title: 'Standard Form',
-      copy: 'The first step gives managers a focused way to start a new standard without leaving the PMT platform. The form establishes the instruction title, ownership, and core information before the user moves into the detailed content. Keeping the entry point simple reduces the amount of information users need to process at once and creates a clear beginning for the approval workflow.',
+      copy: [
+        'The first step gives managers a focused way to start a new standard without leaving the PMT platform. The form establishes the instruction title, ownership, and core information before the user moves into the detailed content.',
+        'Keeping the entry point simple reduces the information users need to process at once and creates a clear beginning for the approval workflow.'
+      ],
       image: '../images/motivate/mockup-1.png',
       alt: 'Mockup Home',
       device: 'phone'
     },
     {
       title: 'Standard Form Pt2',
-      copy: 'The second step builds the standard around the real work being documented. Managers can add images, describe the task, and emphasize safety and quality requirements so the instruction is useful on the factory floor. Multimedia support also helps teams explain processes that are difficult to communicate through text alone.',
+      copy: [
+        'The second step builds the standard around the real work being documented. Managers can add images, describe the task, and emphasize safety and quality requirements so the instruction is useful on the factory floor.',
+        'Multimedia support helps teams explain processes that are difficult to communicate through text alone and gives operators more context while they work.'
+      ],
       image: '../images/motivate/mockup-2.png',
       alt: 'Activity',
       device: 'phone'
     },
     {
       title: 'Standard Form Pt3',
-      copy: 'Before submission, the final form step gives the manager an overview of the complete standard. This review stage makes it possible to catch missing information, check the order of the instruction, and make last-minute changes before sending the work into approval.',
+      copy: [
+        'Before submission, the final form step gives the manager an overview of the complete standard. This review stage makes it possible to catch missing information and check the order of the instruction.',
+        'Managers can make last-minute changes before sending the work into approval, reducing avoidable rework later in the process.'
+      ],
       image: '../images/motivate/mockup-3.png',
       alt: 'Education',
       device: 'phone'
     },
     {
       title: 'Approval',
-      copy: 'Once submitted, standards move into a controlled approval workflow. Authorized users can review the instruction, inspect its supporting media, and either approve it, request changes, or reject it. This keeps version control and responsibility inside PMT instead of relying on separate messages or files.',
+      copy: [
+        'Once submitted, standards move into a controlled approval workflow. Authorized users can review the instruction, inspect its supporting media, and either approve it, request changes, or reject it.',
+        'Keeping review and responsibility inside PMT makes version control clearer than relying on separate messages or files.'
+      ],
       image: '../images/motivate/mockup-5.png',
       alt: 'Journal Entry',
       device: 'tablet'
     },
     {
       title: 'Viewing Standard',
-      copy: 'After approval, the standard becomes available to the people who need it during production. The viewer is designed for factory tablets and PCs, making the latest approved instruction accessible at the point of work while preserving a consistent source for future updates.',
+      copy: [
+        'After approval, the standard becomes available to the people who need it during production. The viewer is designed for factory tablets and PCs so the latest approved instruction is accessible at the point of work.',
+        'This creates one consistent source for daily use while preserving a clear path for future updates.'
+      ],
       image: '../images/motivate/mockup-4.png',
       alt: 'Stats',
       device: 'tablet'
@@ -145,15 +160,8 @@ const mockupFlowData = {
 
 const competitorAnalysisData = {
   title: 'Competitor Analysis',
-  copy: 'Research into existing instruction creation tools helped identify market opportunities and user needs.',
-  focusTitle: 'Analysis Focus Areas:',
-  focusItems: [
-    'Ease of use and interface design',
-    'Quick editing capabilities',
-    'Device compatibility across platforms',
-    'Modern design principles',
-    'Language support features'
-  ],
+  copy: 'Research into existing instruction creation tools helped identify market opportunities and user needs. I compared each platform through the lens of ease of use, editing speed, cross-device access, current interface patterns, and language support. This comparison showed that the strongest opportunity was not simply adding more features, but creating a clearer workflow that makes authoring and reviewing standards easier for factory teams.',
+  focusItems: [],
   columns: ['Platform', 'Strengths', 'Weaknesses'],
   rows: [
     {

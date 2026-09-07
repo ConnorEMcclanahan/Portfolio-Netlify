@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Phillips Wall | AI Feedback Timeline</title>
+  <link rel="icon" type="image/png" href="../images/logo.png" />
+  <link rel="stylesheet" href="../styles/style.css" />
+  <link rel="stylesheet" href="../styles/frontend.css" />
+  <link rel="stylesheet" href="../components/navbar/navbar.css" />
+  <link rel="stylesheet" href="../components/footer/footer.css" />
+  <link rel="stylesheet" href="../components/project-page/project-components.css" />
+  <link rel="stylesheet" href="../styles/pages/phillipswall.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</head>
+<body class="project-page-standard">
+  <div id="loader"><div class="loading-text">Loading...</div></div>
+
+  <div class="parallax-1 phillips-hero" id="top">
+    <a href="#intro-summary" class="scroll-down" aria-label="Scroll down"><ion-icon name="chevron-down-outline"></ion-icon></a>
+    <nav class="navbar">
+      <div class="navbar-container">
+        <a href="../index.html" class="navbar-logo"><img src="../images/logo.png" alt="logo" class="navbar-logo-img" /></a>
+        <button class="navbar-burger" aria-label="Toggle navigation menu"><span></span><span></span><span></span></button>
+        <ul class="navbar-menu">
+          <li><a href="about.html">About</a></li>
+          <li><a href="../index.html#projects">Projects</a></li>
+          <li><a href="../pdfs/resume.pdf">Resume</a></li>
+          <li><a href="../index.html#contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  <section id="intro-summary" class="reveal"></section>
+
+  <section id="research" class="project-section reveal">
+    <div class="text-column">
+      <h3>Understanding the Visitor Feedback Problem</h3>
+      <p>Phillips Museum visitors were already leaving opinions on physical sticky notes, but the feedback was difficult to organize, compare, or revisit over time. The project asked how those scattered responses could become an interactive record of changing public perspectives.</p>
+      <p>The concept focused on turning handwritten notes into structured, searchable insight without removing the human character of the original feedback. The system needed to help visitors see how their thoughts compared with others while giving curators a clearer view of recurring themes and shifts in sentiment.</p>
+    </div>
+  </section>
+
+  <section id="data-preparation" class="project-section reveal">
+    <div class="text-column">
+      <h3>Data Preparation and AI Pipeline</h3>
+      <p>The pipeline digitizes sticky-note responses, transcribes handwritten text, translates it when needed, and prepares each response for categorization and visualization. During development, the team improved the earlier OCR approach by moving to OpenAI-based text recognition for more consistent results.</p>
+      <p>This stage made the difference between a static collection of notes and a usable data source. Better transcription meant more reliable sentiment analysis, clearer categories, and fewer misleading patterns in the final timeline.</p>
+    </div>
+  </section>
+
+  <section id="requirements" class="project-section reveal">
+    <div class="text-column">
+      <h3>Requirements and Responsible AI</h3>
+      <p>The timeline needed real-time updates, AI-powered categorization, sentiment and emotion analysis, and predictive insights based on feedback over time. It also needed to remain understandable for visitors and useful for researchers and educators who would interpret the data.</p>
+      <p>Responsible use was part of the product definition. Visitor notes may contain private or sensitive information, handwriting can be misread by AI, and automated classifications should support human interpretation rather than replace it. Clear terms, content moderation, and transparency about how notes are processed are essential next steps.</p>
+    </div>
+  </section>
+
+  <section id="prototyping" class="project-section reveal">
+    <div class="text-column">
+      <h3>Exploring the Interactive Timeline</h3>
+      <p>Early concepts explored how visitor opinions could be placed on a timeline and grouped into themes. The interface needed to make change visible without turning the exhibit into another dense dashboard. The most important design question was how to let people move between individual responses, recurring topics, and broader emotional patterns.</p>
+      <p>Feedback from the museum and project reviews pushed the design toward clearer visual hierarchy, more accessible language, and stronger emphasis on where a visitor's input appears in the larger conversation.</p>
+    </div>
+  </section>
+
+  <section id="implementation" class="project-section reveal">
+    <div class="text-column">
+      <h3>Prototype and Museum Testing</h3>
+      <p>The prototype connected the visitor input flow to a visual representation of the collected responses. The group tested the concept at the Phillips Museum and used visitor reactions to improve the interface for people with different levels of technical confidence.</p>
+    </div>
+    <div class="phillips-demo">
+      <div class="phillips-demo__copy">
+        <h3>Project Walkthrough</h3>
+        <p>A walkthrough of the Phillips Wall concept, including the visitor feedback experience and the interactive visualization direction.</p>
+      </div>
+      <div class="phillips-demo__frame">
+        <iframe src="https://www.youtube.com/embed/ume77evioKQ?si=y5sxJQdAiBF5CIiZ" title="Phillips Wall project walkthrough" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+
+  <section id="impact" class="project-section reveal">
+    <div class="text-column">
+      <h3>Impact and Next Steps</h3>
+      <p>The project offers visitors a more active way to engage with an exhibit and gives curators evidence they can use for longer-term planning. Instead of treating feedback as a one-time archive, the timeline makes public perception visible as something that evolves.</p>
+      <p>The main risks are privacy, inaccurate interpretation of handwriting or emotion, and over-reliance on automated conclusions. Future work should strengthen consent and data-retention language, improve human review tools, and test whether the visualizations help visitors understand the data without oversimplifying it.</p>
+    </div>
+  </section>
+
+  <footer class="footer-section">
+    <div class="footer-content">
+      <p class="footer-thanks">Thank you for exploring</p>
+      <ul id="navigation"><li><a href="../index.html" class="footer-btn"><ion-icon name="home"></ion-icon> Home</a></li><li><a href="#top" class="footer-btn return-top"><ion-icon name="arrow-up"></ion-icon> Return to Top</a></li></ul>
+    </div>
+  </footer>
+
+  <script src="../components/project-page/utils.js" defer></script>
+  <script src="../components/project-page/intro-summary.js" defer></script>
+  <script src="../components/project-page/final-columns.js" defer></script>
+  <script src="../components/project-page/case-study-nav.js" defer></script>
+  <script src="../js/pages/phillipswall.js" defer></script>
+  <script src="../components/navbar/navbar.js" defer></script>
+</body>
+</html>

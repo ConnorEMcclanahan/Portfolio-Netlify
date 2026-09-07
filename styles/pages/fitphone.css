@@ -26,10 +26,12 @@ h3 {
 
 .wrapingimageleftt h3,
 .wrapingimagerightt h3 {
-  font-size: 3em !important;
+  text-align: left !important;
 }
 
 .wrapingimagerightt p {
+  justify-content: initial;
+  text-align: left !important;
   color: #fff !important;
 }
 
@@ -49,17 +51,348 @@ h3 {
 }
 
 section {
-  margin-bottom: 10em;
+  margin-bottom: 6rem;
   font-size: 17px;
   clear: both;
   overflow: hidden;
 }
 
-section p {
-  font-size: 2vh;
-  line-height: 1.5;
+.project-section {
+  max-width: 1200px;
+  margin: 0 auto 5rem;
+  padding: 0 2rem;
+}
+
+.project-section .text-column,
+.project-section .media-column {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.project-section p,
+.project-section li {
+  font-size: 1.05rem;
+  line-height: 1.7;
   margin-bottom: 1em;
   color: #fff;
+}
+
+.phase-list {
+  margin: 1.25rem 0 0;
+  padding-left: 1.25rem;
+}
+
+.phase-list li {
+  margin-bottom: 0.6rem;
+}
+
+.phase-subsection {
+  margin-top: 1.75rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(110, 7, 243, 0.45);
+}
+
+.phase-subsection h4 {
+  margin: 0 0 0.75rem;
+  color: #6E07F3;
+  font-size: 1.15rem;
+}
+
+.method-sequence {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.method-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  width: 100%;
+  padding: 0;
+  background: transparent;
+  border: 0;
+}
+
+.method-card h3 {
+  margin: 0;
+  color: #6E07F3;
+  font-size: 1.45rem;
+  font-weight: 700;
+}
+
+.method-card p {
+  margin: 0;
+  color: var(--case-muted);
+}
+
+.method-card img,
+.method-card .pdf-container,
+.method-card .phone-frame {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  margin-top: 0.5rem;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.method-card .pdf-container {
+  max-height: none;
+}
+
+.method-card .image-grid-two {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.method-card .image-grid-two img {
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.phase-conclusion {
+  margin-top: 2rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(110, 7, 243, 0.35);
+}
+
+.phase-conclusion p {
+  margin: 0;
+  color: var(--case-muted);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.phase-conclusion p + p {
+  margin-top: 1.5rem;
+}
+
+.phase-conclusion h3 {
+  margin: 0 0 0.75rem;
+  color: #6E07F3;
+  font-family: "Syne", "Plus Jakarta Sans", sans-serif;
+  font-size: 2rem;
+  line-height: 1.2;
+}
+
+.fitphone-final-design > .text-column {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 0 2rem !important;
+  text-align: center !important;
+}
+
+.fitphone-final-design > .text-column h3 {
+  margin: 0 0 2rem;
+  padding: 0.9rem 1.25rem;
+  border: 1px solid #6E07F3;
+  color: #6E07F3 !important;
+  font-family: "Syne", "Plus Jakarta Sans", sans-serif;
+  font-size: 1.8rem;
+  text-align: center !important;
+}
+
+.fitphone-final-design > .text-column p {
+  max-width: 78ch;
+  margin: 0 auto;
+  color: var(--case-muted);
+}
+
+body.project-page-standard .case-study-phase--wide-final .case-study-phase__content {
+  display: contents;
+}
+
+body.project-page-standard .case-study-phase--wide-final .case-study-phase__content > .project-section {
+  grid-column: 2;
+}
+
+body.project-page-standard .case-study-phase--wide-final #final-design {
+  grid-column: 1 / -1;
+  width: 100%;
+  max-width: none;
+  margin: 0 0 2rem;
+  padding: 1rem 2rem 2rem;
+  background: #000;
+  text-align: center;
+}
+
+body.project-page-standard .case-study-phase--wide-final #final-design > .text-column h3 {
+  width: 100% !important;
+  margin: 0 0 2rem !important;
+  text-align: center !important;
+}
+
+body.project-page-standard #final-design > .text-column > h3 {
+  display: flex !important;
+  width: 100% !important;
+  justify-content: center !important;
+  align-items: center;
+  text-align: center !important;
+}
+
+body.project-page-standard #final-design #mockup-flow .mockup-step-title,
+body.project-page-standard #final-design #mockup-flow .mockup-step-inline-title {
+  text-align: left !important;
+}
+
+body.project-page-standard #final-design #mockup-flow .mockup-step-title {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center;
+  text-align: center !important;
+}
+
+body.project-page-standard #final-design #mockup-flow .mockup-step-inline-title {
+  justify-content: initial;
+  text-align: left !important;
+}
+
+body.project-page-standard .case-study-phase--wide-final #final-design > .text-column {
+  width: 100% !important;
+  max-width: none !important;
+}
+
+body.project-page-standard .case-study-phase--wide-final #final-design #mockup-flow {
+  width: 100%;
+  max-width: none;
+}
+
+.fitphone-final-design .final-design-showcase {
+  display: block;
+  width: 100%;
+  max-width: 1200px;
+  height: auto;
+  margin: 2rem auto 3rem;
+}
+
+.fitphone-final-design #mockup-flow.mockup-flow--editorial .mockup-step {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(18rem, 1fr);
+  gap: 0;
+  align-items: stretch;
+  margin: 0 0 3rem;
+  padding: 2rem;
+  background: #151515;
+}
+
+.fitphone-final-design #mockup-flow.mockup-flow--editorial .mockup-step-text {
+  display: contents;
+}
+
+.fitphone-final-design #mockup-flow.mockup-flow--editorial .mockup-step-title {
+  grid-column: 1 / -1;
+  width: calc(100% + 4rem);
+  margin: -2rem 0 2rem -2rem;
+  padding: 0.9rem 1.25rem;
+  border: 1px solid #6E07F3;
+  background: #050505;
+  color: #6E07F3;
+  font-family: "Syne", "Plus Jakarta Sans", sans-serif;
+  font-size: 1.8rem !important;
+  text-align: center !important;
+}
+
+.fitphone-final-design #mockup-flow.mockup-flow--editorial .mockup-step-inline-title {
+  display: block;
+  grid-column: 1;
+  margin: 0;
+  padding: 1.5rem 1.5rem 0;
+  color: #6E07F3;
+  font-family: "Syne", "Plus Jakarta Sans", sans-serif;
+  font-size: 1.05rem !important;
+  text-align: center !important;
+}
+
+.fitphone-final-design #mockup-flow.mockup-flow--editorial .mockup-step-copy {
+  grid-column: 1;
+  margin: 0;
+  padding: 1.5rem;
+  color: var(--case-muted);
+  font-size: 1.05rem;
+  line-height: 1.75;
+  text-align: left;
+}
+
+.fitphone-final-design #mockup-flow.mockup-flow--editorial .mockup-step-copy p {
+  margin: 0;
+}
+
+.fitphone-final-design #mockup-flow.mockup-flow--editorial .mockup-step-copy p + p {
+  margin-top: 1.25rem;
+}
+
+.fitphone-final-design #mockup-flow.mockup-flow--editorial .mockup-visual {
+  display: flex;
+  grid-column: 2;
+  align-self: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+  min-width: 0;
+}
+
+.fitphone-final-design #mockup-flow.mockup-flow--editorial .mockup-step-image {
+  display: block;
+  width: 68%;
+  max-width: 360px;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px #0006;
+}
+
+.fitphone-final-design #mockup-flow.mockup-flow--editorial .mockup-visual:has(> .mockup-step-image + .mockup-step-image) .mockup-step-image {
+  width: 46%;
+}
+
+@media (max-width: 768px) {
+  .fitphone-final-design #mockup-flow.mockup-flow--editorial .mockup-step {
+    display: flex;
+    flex-direction: column;
+    padding: 1.25rem;
+  }
+
+  .fitphone-final-design #mockup-flow.mockup-flow--editorial .mockup-step-title {
+    width: calc(100% + 2.5rem);
+    margin: -1.25rem 0 1rem -1.25rem;
+  }
+
+  .fitphone-final-design #mockup-flow.mockup-flow--editorial .mockup-step-inline-title,
+  .fitphone-final-design #mockup-flow.mockup-flow--editorial .mockup-step-copy {
+    padding: 0.75rem 0;
+  }
+
+  .fitphone-final-design #mockup-flow.mockup-flow--editorial .mockup-visual {
+    margin-top: 1rem;
+  }
+}
+
+.phone-frame-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.phase-timeline {
+  border-left: 3px solid #6E07F3;
+  padding-left: 1rem;
+}
+
+.phase-timeline h4 {
+  margin: 0 0 0.75rem;
+  color: #6E07F3;
+}
+
+.timeline-item {
+  margin-bottom: 0.75rem;
+  color: #fff;
+  line-height: 1.6;
 }
 
 .navbar-menu {
@@ -172,7 +505,7 @@ section p {
 
 .github-corner {
   position: fixed;
-  bottom: 20px;
+  bottom: 96px;
   right: 20px;
   z-index: 1000;
 }

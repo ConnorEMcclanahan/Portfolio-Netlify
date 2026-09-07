@@ -6,11 +6,23 @@
 
     const isDiplora = window.location.pathname.toLowerCase().includes('diplora');
     const isMotivate = window.location.pathname.toLowerCase().includes('motivate');
-    const phaseMatchers = isMotivate ? [
+    const isPhillipsWall = window.location.pathname.toLowerCase().includes('phillipswall');
+    const isFitPhone = window.location.pathname.toLowerCase().includes('fitphone');
+    const phaseMatchers = isPhillipsWall ? [
+      ['01 / Research - Understanding the Visitor Feedback Problem', /research|feedback|problem/i],
+      ['02 / Data Preparation - Turning Notes into Evidence', /data|pipeline|preparation|ai/i],
+      ['03 / Requirements - Designing for Visitors and Curators', /requirement|responsible|impact/i],
+      ['04 / Prototype - Making Change Visible', /prototype|timeline|testing|interactive/i]
+    ] : isMotivate ? [
       ['01 / Research - Understanding the User and Context', /research|question|interview|competitor|observational/i],
       ['02 / Requirements - Translating Research into Features', /feature|moscow|requirement|priorit/i],
       ['03 / Prototyping - Validating the Experience', /prototype|workflow|feedback|low-fidelity|mockup|test/i],
       ['04 / Implementation - Bridging Design and Code', /implementation|mockup|final|vue|pdf/i]
+    ] : isFitPhone ? [
+      ['01 / Research - Understanding the User and Context', /research|question|competitor|feedback|analysis/i],
+      ['02 / Requirements - Defining the Product Direction', /requirement|goal|feature|moscow|criteria/i],
+      ['03 / Design & Testing - Refining the Experience', /prototype|testing|sketch|ideation|feedback|iteration/i],
+      ['04 / Implementation - Building the Product', /implementation|flutter|final|app|build/i]
     ] : [
       ['01 / Research - Understanding the User and Context', /research|survey|interview|competitor/i],
       ['02 / Design System - Building a Scalable Foundation', /design-system|brand|accessib/i],
@@ -18,11 +30,21 @@
       ['04 / Prototyping - Validating the Experience', /prototype|design-iterations|high-fidelity|mockup|test/i],
       ['05 / Implementation - Bridging Design and Code', /implementation|development|flutter|bloc|bluetooth/i]
     ];
-    const phaseContents = isMotivate ? {
-      Research: ['Manufacturing Research', 'Research Question', 'Stakeholder Interviews', 'Competitor Analysis', 'Observational Studies'],
-      Requirements: ['Features List', 'MoSCoW Method Analysis'],
-      Prototyping: ['User Feedback on Low-Fidelity Prototypes', 'Prototyping & User Testing', 'Low-Fidelity Prototypes', 'Final Design'],
-      Implementation: ['Implementation & Delivery']
+    const phaseContents = isPhillipsWall ? {
+      Research: ['Museum Feedback Problem', 'Visitor Perspectives', 'Research Direction'],
+      'Data Preparation': ['OCR and Transcription', 'Sentiment Analysis', 'Data Quality'],
+      Requirements: ['Real-Time Visualization', 'Responsible AI', 'Visitor and Curator Needs'],
+      Prototype: ['Interactive Timeline', 'Museum Testing', 'Impact and Next Steps']
+    } : isMotivate ? {
+      Research: ['Manufacturing Research', 'Research Question', 'Stakeholder Interviews', 'Competitor Analysis', 'Observational Studies', 'Research Conclusion'],
+      Requirements: ['Features List', 'MoSCoW Method Analysis', 'Requirements Conclusion'],
+      Prototyping: ['User Feedback on Low-Fidelity Prototypes', 'Prototyping & User Testing', 'Low-Fidelity Prototypes', 'Final Design', 'Prototyping Conclusion'],
+      Implementation: ['Implementation & Delivery', 'Implementation Conclusion']
+    } : isFitPhone ? {
+      Research: ['Questions & Criteria', 'Ideation', 'Research Conclusion'],
+      Requirements: ['Client Feedback & User Research', 'MoSCoW Prioritization', 'Key Feedback Timeline', 'Requirements Conclusion'],
+      'Design & Testing': ['Low-fidelity Sketches', 'High-fidelity Prototype', 'Final Design', 'Onboarding', 'Home Screen', 'Activities & Education', 'Journal Entry / Weekly Check-in', 'Stats', 'Design & Testing Conclusion'],
+      Implementation: ['Core Screens', 'Improvements', 'Implementation Conclusion']
     } : {
       Research: ['Research Approach', 'Research Overview', 'Literature Review', 'Stakeholder Interviews', 'Patient Interviews', 'Survey Analysis', 'Internal Feedback', 'Competitor Analysis', 'Research Conclusion'],
       'Design System': ['Brand Identity', 'Accessible Design Standards', 'Scalable Components', 'Design System Takeaway'],
@@ -33,8 +55,12 @@
     const usedSections = new Set();
     const preferredIds = isDiplora
       ? [['research', 'competitor-analysis', 'research-conclusion'], ['design-system'], ['requirements', 'personas', 'requirements-conclusion'], ['prototyping', 'design-iterations', 'high-fidelity-prototypes', 'prototyping-conclusion'], ['implementation']]
+      : isPhillipsWall
+        ? [['research'], ['data-preparation'], ['requirements'], ['prototyping', 'implementation', 'impact']]
       : isMotivate
-        ? [['pmt-research', 'competitor-analysis', 'research-question', 'customer-interviews', 'observational-studies'], ['features-list', 'moscow-analysis'], ['user-feedback', 'prototyping', 'low-fidelity', 'final-design', 'mockup-flow'], ['implementation-details']]
+        ? [['pmt-research', 'competitor-analysis', 'research-question', 'customer-interviews', 'observational-studies', 'research-conclusion'], ['features-list', 'moscow-analysis', 'requirements-conclusion'], ['user-feedback', 'prototyping', 'low-fidelity', 'final-design', 'mockup-flow', 'prototyping-conclusion'], ['implementation-details', 'implementation-conclusion']]
+      : isFitPhone
+        ? [['research'], ['requirements'], ['prototyping', 'final-design'], ['implementation']]
         : [];
     const phaseSections = phaseMatchers
       .map(([label, matcher], phaseIndex) => {
@@ -61,7 +87,7 @@
         phaseHeader.id = phaseId;
         phaseHeader.className = 'case-study-phase';
         const phaseName = label.match(/^\d+ \/ ([^-]+)/)?.[1].trim() || label;
-        if (isMotivate && phaseName === 'Prototyping') {
+        if ((isMotivate && phaseName === 'Prototyping') || (isFitPhone && phaseName === 'Design & Testing')) {
           phaseHeader.classList.add('case-study-phase--wide-final');
         }
         const contents = phaseContents[phaseName] || [];

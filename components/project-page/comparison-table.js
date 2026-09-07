@@ -44,6 +44,9 @@
     const focusItems = (data.focusItems || [])
       .map((item) => `<li>${escapeHtml(item)}</li>`)
       .join('');
+    const focusMarkup = focusItems
+      ? `<h4 class="comparison-focus-title">${escapeHtml(data.focusTitle || 'Analysis Focus Areas')}</h4><ul class="comparison-focus-list">${focusItems}</ul>`
+      : '';
 
     target.innerHTML = `
       <div class="comparison-layout">
@@ -58,8 +61,7 @@
         <div class="text-column">
           <h3>${escapeHtml(data.title || 'Competitor Analysis')}</h3>
           <p>${escapeHtml(data.copy || '')}</p>
-          <h4 class="comparison-focus-title">${escapeHtml(data.focusTitle || 'Analysis Focus Areas')}</h4>
-          <ul class="comparison-focus-list">${focusItems}</ul>
+          ${focusMarkup}
         </div>
       </div>
     `;

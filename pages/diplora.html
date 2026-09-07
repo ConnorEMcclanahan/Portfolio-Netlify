@@ -70,6 +70,9 @@
       <p style="color: white; margin-top: 1rem;">
         I used a mixed-methods research approach to understand the gap between Diplora's capable ECG hardware and the experience of using it at home. The research had to answer two connected questions: what do older adults need in order to feel confident using a monitoring device, and what can the patient-facing app communicate without crossing into diagnosis?
       </p>
+      <p style="color: white; margin-top: 1rem;">
+        I combined literature review, competitor analysis, stakeholder interviews, patient interviews, survey analysis, and internal design feedback. Using these methods together helped me compare formal accessibility requirements with real user behavior, then turn both into concrete priorities for onboarding, status feedback, pairing, help, and symptom logging.
+      </p>
     </div>
 
     <div class="research-narrative">
@@ -77,28 +80,27 @@
         <h4>Research Overview</h4>
         <p>The project focused on an accessible ECG companion app for elderly cardiovascular patients. The app was not intended to interpret ECG results for patients. Its role was to make the monitoring process understandable by showing device status, connection, battery, recording state, and clear next steps when something needed attention.</p>
         <p><strong>Main research question:</strong> How can an elderly-accessible ECG interface address barriers such as font size, contrast, touch targets, and cognitive load while meeting medical-device requirements?</p>
-        <ul>
-          <li>Understand accessibility barriers in health monitoring apps.</li>
-          <li>Identify what patients and healthcare stakeholders need from the interface.</li>
-          <li>Compare existing device-connected health apps and their onboarding patterns.</li>
-          <li>Translate evidence into requirements for onboarding, device status, help, and symptom logging.</li>
-        </ul>
       </div>
 
       <h4>Literature Review</h4>
-      <p>I reviewed <strong>WCAG 2.1 AA guidance, research into older adult interfaces, and medical-device requirements</strong> before making design decisions. Presbyopia, reduced contrast sensitivity, slower touch interactions, and different levels of digital confidence pointed to larger text, strong contrast, simple language, and touch targets of at least 44 by 44 pixels. The review also clarified the product boundary: the app should communicate device status, battery, and connection, while diagnostic interpretation remains with healthcare professionals.</p>
+      <p>I reviewed <strong>WCAG 2.1 AA guidance, research into older adult interfaces, and medical-device requirements</strong> before making design decisions. The review focused on the barriers most likely to affect cardiovascular patients at home: presbyopia, reduced contrast sensitivity, slower touch interactions, and varying levels of digital confidence.</p>
+      <p>These findings became practical design rules rather than background theory. They supported larger text, strong contrast, simple language, and touch targets of at least 44 by 44 pixels. The review also clarified the product boundary: the app should communicate device status, battery, and connection, while diagnostic interpretation remains with healthcare professionals.</p>
 
       <h4>Stakeholder Interviews</h4>
-      <p>I spoke with <strong>cardiologists, GPs, and company stakeholders</strong> about the clinical and technical requirements behind the interface. We discussed the value of longer monitoring periods, leads detaching, movement affecting signal quality, and the importance of accurate sensor placement. This clarified that the patient app should confirm whether the device is connected, recording, and working, while reports and diagnostic interpretation remain with specialists. That boundary shaped the status bar, onboarding language, placement guidance, and alerts.</p>
+      <p>I spoke with <strong>cardiologists, GPs, and company stakeholders</strong> about the clinical and technical requirements behind the interface. We discussed the value of longer monitoring periods, leads detaching, movement affecting signal quality, and the importance of accurate sensor placement.</p>
+      <p>The interviews defined what the patient-facing app should and should not do. It needed to confirm whether the device was connected, recording, and working, while reports and diagnostic interpretation remained with specialists. That boundary shaped the status bar, onboarding language, placement guidance, and alerts.</p>
 
       <h4>Patient Interviews</h4>
-      <p>I conducted <strong>in-depth interviews with elderly Holter monitor users aged 70 and above</strong> to understand what monitoring felt like at home. Participants described physical discomfort, anxiety about whether the device had stopped working, and confusion caused by technical information. They were less interested in graphs than in simple answers: is it working, are readings being recorded, and what should I do if something goes wrong? This informed the focus on reassurance, large text, simple navigation, and visual guidance.</p>
+      <p>I conducted <strong>in-depth interviews with elderly Holter monitor users aged 70 and above</strong> to understand what monitoring felt like at home. Participants described physical discomfort, anxiety about whether the device had stopped working, and confusion caused by technical information.</p>
+      <p>Their needs were more direct than the existing interface suggested. They were less interested in graphs than in simple answers: is it working, are readings being recorded, and what should I do if something goes wrong? This shifted the design toward reassurance, large text, simple navigation, visual guidance, and clear next steps.</p>
 
       <h4>Survey Analysis</h4>
-      <p>I ran a <strong>quantitative survey with 50 respondents aged 18 to 75 and above</strong> to test whether the interview themes appeared at a broader scale. The strongest findings were that 54% found health apps too complicated, 14% of respondents aged 46 and above struggled with small text, and 70% wanted clear confirmation that their device was working. Video demonstrations were preferred by 66% of respondents, followed by step-by-step pictures at 56%. These results turned reassurance, visual guidance, and simplified navigation into evidence-based priorities.</p>
+      <p>I ran a <strong>quantitative survey with 50 respondents aged 18 to 75 and above</strong> to test whether the interview themes appeared at a broader scale. The survey measured perceived complexity, readability, confidence in device status, and preferred ways of learning how to use a monitoring device.</p>
+      <p>The strongest findings were that 54% found health apps too complicated, 14% of respondents aged 46 and above struggled with small text, and 70% wanted clear confirmation that their device was working. Video demonstrations were preferred by 66% of respondents, followed by step-by-step pictures at 56%. These results turned reassurance, visual guidance, and simplified navigation into evidence-based priorities.</p>
 
       <h4>Internal Feedback</h4>
-      <p>I reviewed the existing <strong>Figma designs with Diplora stakeholders</strong> before moving into prototyping. This exposed small default text, inconsistent visual language, unclear status communication, and an onboarding flow that asked users to process too much information. I used the feedback to refine the visual direction, simplify the highest-risk flows, and define the MVP around accessible onboarding, a persistent status bar, device pairing, help, emergency contact access, and focused symptom logging.</p>
+      <p>I reviewed the existing <strong>Figma designs with Diplora stakeholders</strong> before moving into prototyping. This exposed small default text, inconsistent visual language, unclear status communication, and an onboarding flow that asked users to process too much information.</p>
+      <p>I used that feedback to refine the visual direction and simplify the highest-risk flows. It also helped define the MVP around accessible onboarding, a persistent status bar, device pairing, help, emergency contact access, and focused symptom logging.</p>
 
     </div>
   </section>
@@ -139,67 +141,11 @@
       <p style="color: white; margin-top: 1rem;">Must-haves were accessible onboarding, device pairing, persistent status feedback, emergency contact access, and a clear device-working confirmation. Video guidance, symptom logging, history, and haptic or audio feedback were prioritized as should-haves. Multi-language support, advanced filtering, 3D placement guidance, and family notifications were future enhancements. Diagnostic interpretation, AI recommendations, social features, and gamification were intentionally out of scope.</p>
     </div>
 
-    <!-- Features Grid -->
-    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2rem;">
-      <div style="background: rgba(30, 30, 30, 0.85); border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); transition: transform 0.3s ease;">
-        <div style="color: #6E07F3; font-size: 2rem; margin-bottom: 1rem;">🔐</div>
-        <h4 style="color: #6E07F3; margin-bottom: 1rem; font-size: 1.1rem;">Accessibility Compliance</h4>
-        <ul style="list-style: none; padding: 0; margin: 0;">
-          <li style="color: #fff; margin-bottom: 0.5rem;">WCAG 2.1 AA</li>
-          <li style="color: #fff; margin-bottom: 0.5rem;">Large text & buttons</li>
-          <li style="color: #fff;">High contrast</li>
-        </ul>
-      </div>
-
-      <div style="background: rgba(30, 30, 30, 0.85); border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); transition: transform 0.3s ease;">
-        <div style="color: #6E07F3; font-size: 2rem; margin-bottom: 1rem;">📱</div>
-        <h4 style="color: #6E07F3; margin-bottom: 1rem; font-size: 1.1rem;">Simple Onboarding</h4>
-        <ul style="list-style: none; padding: 0; margin: 0;">
-          <li style="color: #fff; margin-bottom: 0.5rem;">4 essential screens</li>
-          <li style="color: #fff; margin-bottom: 0.5rem;">Visual guidance</li>
-          <li style="color: #fff;">Setup in minutes</li>
-        </ul>
-      </div>
-
-      <div style="background: rgba(30, 30, 30, 0.85); border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); transition: transform 0.3s ease;">
-        <div style="color: #6E07F3; font-size: 2rem; margin-bottom: 1rem;">✓</div>
-        <h4 style="color: #6E07F3; margin-bottom: 1rem; font-size: 1.1rem;">Device Status</h4>
-        <ul style="list-style: none; padding: 0; margin: 0;">
-          <li style="color: #fff; margin-bottom: 0.5rem;">Working confirmation</li>
-          <li style="color: #fff; margin-bottom: 0.5rem;">Battery indicator</li>
-          <li style="color: #fff;">Connection status</li>
-        </ul>
-      </div>
-
-      <div style="background: rgba(30, 30, 30, 0.85); border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); transition: transform 0.3s ease;">
-        <div style="color: #6E07F3; font-size: 2rem; margin-bottom: 1rem;">🔗</div>
-        <h4 style="color: #6E07F3; margin-bottom: 1rem; font-size: 1.1rem;">Bluetooth Pairing</h4>
-        <ul style="list-style: none; padding: 0; margin: 0;">
-          <li style="color: #fff; margin-bottom: 0.5rem;">Real BLE connection</li>
-          <li style="color: #fff; margin-bottom: 0.5rem;">Visual guidance</li>
-          <li style="color: #fff;">Error handling</li>
-        </ul>
-      </div>
-
-      <div style="background: rgba(30, 30, 30, 0.85); border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); transition: transform 0.3s ease;">
-        <div style="color: #6E07F3; font-size: 2rem; margin-bottom: 1rem;">📞</div>
-        <h4 style="color: #6E07F3; margin-bottom: 1rem; font-size: 1.1rem;">Emergency Contact</h4>
-        <ul style="list-style: none; padding: 0; margin: 0;">
-          <li style="color: #fff; margin-bottom: 0.5rem;">Easy setup</li>
-          <li style="color: #fff; margin-bottom: 0.5rem;">Quick access</li>
-          <li style="color: #fff;">Peace of mind</li>
-        </ul>
-      </div>
-
-      <div style="background: rgba(30, 30, 30, 0.85); border-radius: 12px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); transition: transform 0.3s ease;">
-        <div style="color: #6E07F3; font-size: 2rem; margin-bottom: 1rem;">📝</div>
-        <h4 style="color: #6E07F3; margin-bottom: 1rem; font-size: 1.1rem;">Symptom Logging</h4>
-        <ul style="list-style: none; padding: 0; margin: 0;">
-          <li style="color: #fff; margin-bottom: 0.5rem;">Simple categories</li>
-          <li style="color: #fff; margin-bottom: 0.5rem;">Local storage</li>
-          <li style="color: #fff;">Quick entry</li>
-        </ul>
-      </div>
+    <div class="requirements-narrative">
+      <div class="requirement-group"><h4>Accessibility Compliance</h4><p>The MVP followed WCAG 2.1 AA principles through large text and controls, high contrast, clear hierarchy, and touch targets that support older adults using the app.</p></div>
+      <div class="requirement-group"><h4>Simple Onboarding</h4><p>The onboarding flow was reduced to four essential screens with visual guidance so patients could set up the device without processing unnecessary information.</p></div>
+      <div class="requirement-group"><h4>Device Status and Bluetooth Pairing</h4><p>The interface needed to confirm that the device was working, show battery and connection status, and guide users through BLE pairing with clear recovery when something went wrong.</p></div>
+      <div class="requirement-group"><h4>Emergency Contact and Symptom Logging</h4><p>Emergency contact access was kept quick and easy to configure, while symptom logging used simple categories and local storage for low-friction entry during monitoring.</p></div>
     </div>
 
   </section>
@@ -225,21 +171,21 @@
       </p>
     </div>
 
-    <div style="display: flex; gap: 2rem; margin-top: 3rem; flex-wrap: wrap;">
-      <div style="flex: 1; min-width: 300px; background: rgba(30, 30, 30, 0.85); border-radius: 12px; padding: 2rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
-        <div style="margin-bottom: 1.5rem; text-align: center;">
-          <img src="../images/diplora/persona1.png" alt="Persona 1" style="width: 100%; height: auto; border-radius: 8px;" />
+    <div class="persona-list">
+      <div class="persona-profile">
+        <div class="persona-profile__image">
+          <img src="../images/diplora/persona1.png" alt="Persona 1" />
         </div>
-        <h4 style="color: #6E07F3; margin-bottom: 0.5rem; font-size: 1.1rem;">Persona 1: Primary User</h4>
-        <p style="color: white; font-size: 0.95rem; margin-bottom: 0.5rem;">Represents elderly patients aged 65+ who prioritize device reassurance and simple operation over comprehensive medical data.</p>
+        <h4>Persona 1: Primary User</h4>
+        <p>Represents elderly patients aged 65+ who prioritize device reassurance and simple operation over comprehensive medical data.</p>
       </div>
 
-      <div style="flex: 1; min-width: 300px; background: rgba(30, 30, 30, 0.85); border-radius: 12px; padding: 2rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
-        <div style="margin-bottom: 1.5rem; text-align: center;">
-          <img src="../images/diplora/persona2.png" alt="Persona 2" style="width: 100%; height: auto; border-radius: 8px;" />
+      <div class="persona-profile">
+        <div class="persona-profile__image">
+          <img src="../images/diplora/persona2.png" alt="Persona 2" />
         </div>
-        <h4 style="color: #6E07F3; margin-bottom: 0.5rem; font-size: 1.1rem;">Persona 2: Secondary User</h4>
-        <p style="color: white; font-size: 0.95rem; margin-bottom: 0.5rem;">Healthcare professionals and caregivers who need diagnostic data access while ensuring elderly users have simplified, reassuring experiences.</p>
+        <h4>Persona 2: Secondary User</h4>
+        <p>Healthcare professionals and caregivers who need diagnostic data access while ensuring elderly users have simplified, reassuring experiences.</p>
       </div>
     </div>
   </section>

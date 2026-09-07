@@ -1,0 +1,105 @@
+body.project-page-standard {
+  background: #000;
+  color: #fff;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+body.project-page-standard h1,
+body.project-page-standard h2,
+body.project-page-standard h3,
+body.project-page-standard h4 {
+  font-family: 'Syne', sans-serif;
+}
+
+.phillips-hero {
+  min-height: 72vh;
+  background: #000;
+}
+
+body.project-page-standard #intro-summary {
+  background: #000 !important;
+  color: #fff !important;
+}
+
+body.project-page-standard #intro-summary .intro-heading .intro-title,
+body.project-page-standard #intro-summary .intro-heading .intro-lead {
+  color: #6E07F3 !important;
+}
+
+body.project-page-standard #intro-summary .intro-heading .intro-subtitle,
+body.project-page-standard #intro-summary .intro-overview-title,
+body.project-page-standard #intro-summary .intro-story-block h2,
+body.project-page-standard #intro-summary .intro-meta-item strong {
+  color: #fff !important;
+}
+
+body.project-page-standard #intro-summary .intro-story-block p,
+body.project-page-standard #intro-summary .intro-meta-item span {
+  color: #b8b8b8 !important;
+}
+
+body.project-page-standard .project-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 5rem 2rem;
+}
+
+body.project-page-standard .project-section .text-column {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0;
+}
+
+body.project-page-standard .project-section h3 {
+  margin-bottom: 1rem;
+  color: #6E07F3;
+  font-size: 2rem !important;
+  line-height: 1.25;
+  text-align: left;
+}
+
+body.project-page-standard .project-section p {
+  max-width: 1000px;
+  color: #b8b8b8 !important;
+  font-size: 1rem !important;
+  line-height: 1.75;
+}
+
+body.project-page-standard .project-section p + p {
+  margin-top: 1.5rem !important;
+}
+
+.phillips-demo {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(20rem, 1.2fr);
+  gap: 3rem;
+  align-items: center;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--case-line);
+}
+
+.phillips-demo__copy h3 {
+  font-size: 1.5rem !important;
+}
+
+.phillips-demo__frame iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+}
+
+@media (max-width: 768px) {
+  .phillips-hero {
+    min-height: 60vh;
+  }
+
+  .phillips-demo {
+    display: block;
+  }
+
+  .phillips-demo__frame {
+    margin-top: 2rem;
+  }
+}
