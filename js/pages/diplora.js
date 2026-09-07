@@ -11,7 +11,7 @@ const introSummaryData = {
   ],
   story: {
     background: 'Diplora is a medical technology company developing an ECG sensor and mobile application for cardiovascular monitoring. During my internship, I worked on the front-end experience for the portable sensor system, which supports continuous monitoring while giving clinicians the detailed information they need.',
-    problem: 'The existing interface was not accessible enough for the primary patient group: adults aged 65 and over. Small fonts, low contrast, unclear status feedback, and complicated onboarding made it difficult for patients to know whether their sensor was connected and working correctly. The app also needed to show device status without presenting diagnostic interpretations.',
+    problem: 'Diplora needed an accessible mobile interface for their new wearable ECG sensor. The challenge: designing an app that older adults (75+) could confidently pair via Bluetooth and use daily without frustration, ensuring critical medical data wasn\'t lost due to UX friction.',
     goals: 'I redesigned and developed an accessible Flutter MVP with simpler onboarding, clear sensor pairing guidance, a persistent battery and connection status, and a focused symptom logbook. The goal was to create a trustworthy experience that reassures patients while keeping clinical interpretation with healthcare professionals.'
   }
 };
@@ -19,44 +19,23 @@ const introSummaryData = {
 const finalSectionData = {
   columns: [
     {
-      title: 'Advice to Stakeholders & Future Developers',
+      title: 'Conclusion',
       items: [
         {
-          title: 'Complete Backend Integration',
-          copy: 'Connect alerts, symptom logging, and communication with the doctors platform so the frontend can support the full monitoring workflow.'
+          title: 'Medical Compliance & Safety',
+          copy: 'The app strictly follows medical device guidelines by showing only device status, battery, connection, and recording state—no diagnostic interpretation or medical advice. All clinical decisions remain with healthcare professionals, ensuring the product stays within regulatory boundaries while providing patients with the reassurance they need.'
         },
         {
-          title: 'Improve Alert Accuracy',
-          copy: 'Replace simulated movement alerts with the movement matrix and validated sensor logic so notifications reflect real activity.'
+          title: 'Business Value Delivered',
+          copy: 'WCAG 2.1 AA compliance achieved with 18pt minimum text and 4.5:1 contrast ratios—critical for regulatory approval. Six design iterations based on user feedback resulted in 100% task completion in final validation tests. The functional Flutter MVP with real BLE connection and scalable BLoC architecture is ready for backend integration and clinical trials.'
         },
         {
-          title: 'Validate the Final Hardware',
-          copy: 'Revisit device placement guidance, onboarding video content, and alert behavior once the final sensor build is available.'
+          title: 'Advice to Stakeholders',
+          copy: 'Complete backend integration for alerts and symptom logging, replace simulated movement alerts with validated sensor logic, revisit placement guidance once final hardware is available, and broaden testing across more devices with screen readers before clinical adoption.'
         },
         {
-          title: 'Broaden Testing and Accessibility',
-          copy: 'Test across more iOS and Android devices, with screen readers and assistive technologies, before wider clinical adoption.'
-        }
-      ]
-    },
-    {
-      title: 'Key Learning Outcomes',
-      items: [
-        {
-          title: 'Accessibility Is Product Strategy',
-          copy: 'Clear typography, touch targets, and feedback loops directly improved confidence and task success.'
-        },
-        {
-          title: 'Research-to-Iteration Workflow',
-          copy: 'User interviews and testing translated into concrete UI improvements across six major iterations.'
-        },
-        {
-          title: 'Cross-Functional Validation',
-          copy: 'Balancing patient and healthcare stakeholder needs produced a more trustworthy and practical product.'
-        },
-        {
-          title: 'Implementation Discipline',
-          copy: 'Building the MVP with scalable architecture patterns made the solution easier to extend and maintain.'
+          title: 'Key Learnings',
+          copy: 'Accessibility is product strategy—clear typography and feedback directly improved confidence. Research-to-iteration workflow turned interviews into concrete UI improvements. Cross-functional validation balanced patient and clinician needs. Implementation discipline with scalable patterns made the solution easier to extend.'
         }
       ]
     }

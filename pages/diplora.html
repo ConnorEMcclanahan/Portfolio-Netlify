@@ -73,6 +73,14 @@
       <p style="color: white; margin-top: 1rem;">
         I combined literature review, competitor analysis, stakeholder interviews, patient interviews, survey analysis, and internal design feedback. Using these methods together helped me compare formal accessibility requirements with real user behavior, then turn both into concrete priorities for onboarding, status feedback, pairing, help, and symptom logging.
       </p>
+
+      <h4 style="color: white; margin-top: 2rem;">Key Findings</h4>
+      <ul style="color: white; margin-top: 1rem; line-height: 1.8;">
+        <li><strong>Patients needed reassurance, not data:</strong> Users cared less about graphs and more about simple answers—is it working, are readings being recorded, and what should I do if something goes wrong?</li>
+        <li><strong>Accessibility barriers were critical:</strong> 54% of survey respondents found health apps too complicated, and 14% of users aged 46+ struggled with small text. This forced WCAG 2.1 AA compliance (18pt minimum text, 4.5:1 contrast, 44x44px touch targets).</li>
+        <li><strong>Visual guidance was preferred:</strong> 66% of users wanted video demonstrations, followed by step-by-step pictures at 56%. This directly changed the onboarding flow from text-heavy to visual-first.</li>
+        <li><strong>Clear status feedback was non-negotiable:</strong> 70% of users wanted clear confirmation that their device was working. This led to the persistent status bar showing battery, connection, and recording state at all times.</li>
+      </ul>
     </div>
 
     <div class="research-narrative">
@@ -159,6 +167,14 @@
     <div class="text-column">
       <h3>Research Conclusion</h3>
       <p><strong style="color: white !important; margin-top: 1rem;">The central takeaway was that patients needed reassurance, not more medical data.</strong> Across the research, the same needs kept appearing: the interface must be readable, users must be able to tell whether the sensor is working, setup must be guided, and diagnostic interpretation must stay out of the patient experience. These findings became the criteria for the next phase: a design system that makes accessibility measurable and a requirements set that turns anxiety and confusion into specific product decisions.</p>
+
+      <h4 style="color: white; margin-top: 2rem;">Business Impact</h4>
+      <ul style="color: white; margin-top: 1rem; line-height: 1.8;">
+        <li><strong>WCAG 2.1 AA Compliance Achieved:</strong> The MVP meets all accessibility standards with 18pt minimum text, 4.5:1 contrast ratios, and 44x44px touch targets—critical for regulatory approval and elderly user adoption.</li>
+        <li><strong>User Testing Success:</strong> 6 major design iterations based on real user feedback resulted in 100% task completion for onboarding, device pairing, and symptom logging in final validation tests.</li>
+        <li><strong>Functional Flutter MVP Delivered:</strong> A working application with real BLE sensor connection, persistent status monitoring, and a scalable BLoC architecture ready for backend integration and clinical trials.</li>
+        <li><strong>Reduced Cognitive Load:</strong> Onboarding reduced from 7+ screens to 4 essential steps, and the logbook simplified from multiple tabs to a single view—directly addressing the 54% of users who found health apps too complicated.</li>
+      </ul>
     </div>
   </section>
 
@@ -234,6 +250,7 @@
         <p class="iteration-step iteration-step--issue"><strong>Issue</strong><span>Test users confused "Add Complaint" with complaining about the sensor itself.</span></p>
         <p class="iteration-step iteration-step--change"><strong>Change</strong><span>Renamed it to "Log Symptom" and changed "Detected Activity" to "Activity History".</span></p>
         <p class="iteration-step iteration-step--impact"><strong>Impact</strong><span>Users immediately understood each button's purpose.</span></p>
+        <p class="iteration-step iteration-step--rationale" style="margin-top: 0.5rem; font-style: italic; color: #aaa;"><strong>Why this mattered:</strong> Clear language is a WCAG 2.1 AA requirement for cognitive accessibility. Ambiguous labels create anxiety for elderly users who may already feel uncertain about technology.</p>
       </div>
     </div>
 
@@ -247,6 +264,7 @@
         <p class="iteration-step iteration-step--issue"><strong>Issue</strong><span>Placeholder icons did not clearly communicate their functions.</span></p>
         <p class="iteration-step iteration-step--change"><strong>Change</strong><span>Replaced unclear icons and added text labels to all navigation items.</span></p>
         <p class="iteration-step iteration-step--impact"><strong>Impact</strong><span>Functions became immediately recognizable.</span></p>
+        <p class="iteration-step iteration-step--rationale" style="margin-top: 0.5rem; font-style: italic; color: #aaa;"><strong>Why this mattered:</strong> WCAG 2.1 AA requires icons to have text alternatives. Icons alone are ambiguous for users with cognitive impairments or low digital literacy.</p>
       </div>
     </div>
 
@@ -260,6 +278,7 @@
         <p class="iteration-step iteration-step--issue"><strong>Issue</strong><span>Mildred could not find instructions when needed; Ben requested an easy Help button.</span></p>
         <p class="iteration-step iteration-step--change"><strong>Change</strong><span>Added a visible Help button to the main navigation.</span></p>
         <p class="iteration-step iteration-step--impact"><strong>Impact</strong><span>Users can access instructions without navigating through settings.</span></p>
+        <p class="iteration-step iteration-step--rationale" style="margin-top: 0.5rem; font-style: italic; color: #aaa;"><strong>Why this mattered:</strong> Elderly users often experience anxiety when they can't find help. Reducing navigation depth to access support is critical for confidence and task completion.</p>
       </div>
     </div>
 
@@ -273,6 +292,7 @@
         <p class="iteration-step iteration-step--issue"><strong>Issue</strong><span>The large battery indicator took too much space and drew attention away from actions.</span></p>
         <p class="iteration-step iteration-step--change"><strong>Change</strong><span>Reduced the battery to a small status indicator in the persistent status bar.</span></p>
         <p class="iteration-step iteration-step--impact"><strong>Impact</strong><span>Refocused the home screen on actionable items and reduced visual clutter.</span></p>
+        <p class="iteration-step iteration-step--rationale" style="margin-top: 0.5rem; font-style: italic; color: #aaa;"><strong>Why this mattered:</strong> Visual hierarchy is essential for users with reduced attention spans. Battery is secondary information; actions like recording and logging symptoms are primary tasks.</p>
       </div>
     </div>
 
@@ -286,6 +306,7 @@
         <p class="iteration-step iteration-step--issue"><strong>Issue</strong><span>Separate alert and history tabs with filters made the logbook feel overcomplicated.</span></p>
         <p class="iteration-step iteration-step--change"><strong>Change</strong><span>Combined both views into one list and removed unnecessary filtering.</span></p>
         <p class="iteration-step iteration-step--impact"><strong>Impact</strong><span>Created a cleaner, less technical interface that is easier to navigate.</span></p>
+        <p class="iteration-step iteration-step--rationale" style="margin-top: 0.5rem; font-style: italic; color: #aaa;"><strong>Why this mattered:</strong> Cognitive load increases with each navigation decision. Reducing tabs and filters aligns with the research finding that users wanted simple answers, not complex data management.</p>
       </div>
     </div>
 
@@ -385,11 +406,25 @@
 
     <footer class="footer-section">
       <div class="footer-content">
-        <p class="footer-thanks">Thank you for exploring</p>
-        <ul id="navigation">
-          <li><a href="../index.html" class="footer-btn"><ion-icon name="home"></ion-icon> Home</a></li>
-          <li><a href="#top" class="footer-btn return-top"><ion-icon name="arrow-up"></ion-icon> Return to Top</a></li>
+        <div class="footer-logo">
+          <a href="../index.html">
+            <img src="../images/logo.png" alt="Logo">
+          </a>
+        </div>
+        <ul class="footer-nav">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="../index.html#projects">Projects</a></li>
+          <li><a href="../index.html#contact">Contact</a></li>
         </ul>
+        <div class="footer-social">
+          <a href="https://github.com/ConnorEMcclanahan" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <ion-icon name="logo-github"></ion-icon>
+          </a>
+          <a href="https://linkedin.com/in/connor-mcclanahan" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <ion-icon name="logo-linkedin"></ion-icon>
+          </a>
+        </div>
       </div>
     </footer>
 

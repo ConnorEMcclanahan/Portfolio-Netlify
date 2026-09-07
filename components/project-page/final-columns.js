@@ -25,7 +25,7 @@
         const borderClass = columnIndex > 0 ? ' final-col--border' : '';
         return `
           <div class="final-col${borderClass}">
-            <h3 class="final-title">${escapeHtml(column.title)}</h3>
+            <h3 class="final-title" style="text-align: center !important; display: block !important;">${escapeHtml(column.title)}</h3>
             <div class="final-items">${items}</div>
           </div>
         `;

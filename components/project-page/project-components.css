@@ -511,6 +511,13 @@ body.project-page-standard .project-section h3 {
   letter-spacing: 0;
 }
 
+body.project-page-standard .project-section h3.final-title {
+  display: block !important;
+  text-align: center !important;
+  align-items: center;
+  gap: 0;
+}
+
 body.project-page-standard .text-column {
   max-width: 720px;
   margin: 0 0 2.5rem;
@@ -734,16 +741,19 @@ body.project-page-standard .intro-meta ul {
   flex-wrap: wrap;
   gap: 2rem;
   align-items: flex-start;
+  justify-content: center;
 }
 
 .final-col {
-  flex: 1;
+  flex: 0 0 auto;
   min-width: 300px;
+  max-width: 700px;
+  margin: 0 auto;
 }
 
 .final-col--border {
-  border-left: 3px solid #6E07F3;
-  padding-left: 2rem;
+  border-left: none;
+  padding-left: 0;
 }
 
 .final-title {
@@ -751,7 +761,6 @@ body.project-page-standard .intro-meta ul {
   font-size: 1.8rem;
   line-height: 1.25;
   color: #6E07F3;
-  text-align: left;
 }
 
 .final-items {
