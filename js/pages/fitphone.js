@@ -27,10 +27,6 @@ const introSummaryData = {
     background: 'FitPhone is a digital wellness app designed to help young adults build healthier relationships with their phones through community and reflection.',
     problem: 'Most digital wellness tools only track screen time. They rarely provide personalized guidance, social support, or reasons to change behavior.',
     goals: 'Design and build a motivating, community-driven experience with goals, progress tracking, educational content, and peer accountability.'
-  },
-  image: {
-    src: '../Images/sss.png',
-    alt: 'FitPhone key screens'
   }
 };
 
@@ -115,10 +111,52 @@ const mockupFlowData = {
   ]
 };
 
+function initPDF() {
+  if (!window.pdfjsLib) {
+    return;
+  }
+
+  window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js';
+
+  document.querySelectorAll('.pdf-container[data-pdf-url]').forEach((container) => {
+    const canvas = container.querySelector('.pdf-canvas');
+    const loading = container.querySelector('.pdf-loading');
+    if (!canvas) {
+      return;
+    }
+
+    window.pdfjsLib.getDocument(container.dataset.pdfUrl).promise.then((pdf) => {
+      return pdf.getPage(1);
+    }).then((page) => {
+      const viewport = page.getViewport({ scale: 1.2 });
+      canvas.width = viewport.width;
+      canvas.height = viewport.height;
+      return page.render({
+        canvasContext: canvas.getContext('2d'),
+        viewport
+      }).promise;
+    }).then(() => {
+      if (loading) {
+        loading.style.display = 'none';
+      }
+    }).catch(() => {
+      if (loading) {
+        loading.textContent = 'The MoSCoW document could not be loaded. Open this page through a local server.';
+      }
+    });
+  });
+}
+
 function reveal() {
   document.querySelectorAll('.reveal').forEach((el) => {
     const top = el.getBoundingClientRect().top;
     el.classList.toggle('active', top < window.innerHeight - 150);
+  });
+}
+
+function addContentReveals() {
+  document.querySelectorAll('body.project-page-standard .project-section p, body.project-page-standard .project-section h3, body.project-page-standard .project-section h4, body.project-page-standard .project-section li, body.project-page-standard .project-section img, body.project-page-standard .project-section iframe, body.project-page-standard .case-study-phase__title h2, body.project-page-standard .case-study-phase__overview h3, body.project-page-standard .case-study-phase__overview li, body.project-page-standard .case-study-process h2, body.project-page-standard .case-study-process__step, body.project-page-standard #intro-summary .intro-heading > *, body.project-page-standard #intro-summary .intro-summary-left > *, body.project-page-standard #intro-summary .intro-meta-item, body.project-page-standard #intro-summary .intro-story-block h2, body.project-page-standard #intro-summary .intro-story-block p').forEach((element) => {
+    element.classList.add('reveal', 'reveal-content');
   });
 }
 
@@ -130,6 +168,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   initScrollCue();
+  initPDF();
+  addContentReveals();
   window.addEventListener('scroll', reveal, { passive: true });
   reveal();
 });

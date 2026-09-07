@@ -42,9 +42,9 @@
       Implementation: ['Implementation & Delivery', 'Implementation Conclusion']
     } : isFitPhone ? {
       Research: ['Questions & Criteria', 'Ideation', 'Research Conclusion'],
-      Requirements: ['Client Feedback & User Research', 'MoSCoW Prioritization', 'Key Feedback Timeline', 'Requirements Conclusion'],
+      Requirements: ['Client Feedback & User Research', 'MoSCoW Prioritization', 'Agile Process', 'Agile Retrospective', 'Key Feedback Timeline', 'Requirements Conclusion'],
       'Design & Testing': ['Low-fidelity Sketches', 'High-fidelity Prototype', 'Final Design', 'Onboarding', 'Home Screen', 'Activities & Education', 'Journal Entry / Weekly Check-in', 'Stats', 'Design & Testing Conclusion'],
-      Implementation: ['Core Screens', 'Improvements', 'Implementation Conclusion']
+      Implementation: ['Core Screens', 'Improvements', 'Implementation Demo', 'Implementation Conclusion']
     } : {
       Research: ['Research Approach', 'Research Overview', 'Literature Review', 'Stakeholder Interviews', 'Patient Interviews', 'Survey Analysis', 'Internal Feedback', 'Competitor Analysis', 'Research Conclusion'],
       'Design System': ['Brand Identity', 'Accessible Design Standards', 'Scalable Components', 'Design System Takeaway'],
@@ -60,7 +60,7 @@
       : isMotivate
         ? [['pmt-research', 'competitor-analysis', 'research-question', 'customer-interviews', 'observational-studies', 'research-conclusion'], ['features-list', 'moscow-analysis', 'requirements-conclusion'], ['user-feedback', 'prototyping', 'low-fidelity', 'final-design', 'mockup-flow', 'prototyping-conclusion'], ['implementation-details', 'implementation-conclusion']]
       : isFitPhone
-        ? [['research'], ['requirements'], ['prototyping', 'final-design'], ['implementation']]
+        ? [['research'], ['requirements'], ['prototyping', 'final-design', 'design-testing-conclusion'], ['implementation']]
         : [];
     const phaseSections = phaseMatchers
       .map(([label, matcher], phaseIndex) => {

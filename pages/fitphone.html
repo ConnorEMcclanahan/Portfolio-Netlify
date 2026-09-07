@@ -70,7 +70,20 @@
       <article class="method-card">
         <h3>Questions &amp; Criteria</h3>
         <p>First I started the project by making questions and criteria, which allowed my group to clearly identify the problems the client wanted solved and explore multiple ways to address them.</p>
-        <img src="../Images/questionsFit.PNG" alt="FitPhone research questions" class="media-image-full" />
+        <div class="research-question-copy">
+          <h4>Main Research Question</h4>
+          <p>How can we design a cross-platform mobile application that helps young people aged 18 to 30 recognize unhealthy phone habits, improve their lifestyles, reduce screen time, and make better lifestyle decisions?</p>
+          <h4>Sub-Research Questions</h4>
+          <ol>
+            <li>How can we design engaging, diverse, and helpful educational content that is easy to digest and empowers users to make better decisions about their phone usage?</li>
+            <li>What strategies can motivate users to engage with FitPhone tools and interventions regularly?</li>
+            <li>What group dynamics, such as size, interaction frequency, and shared interests, are most effective in fostering supportive discussions about smartphone use?</li>
+            <li>How can FitPhone track and show its impact on users' focus and well-being over time?</li>
+            <li>What helps people stick to better smartphone habits, and how can FitPhone support that?</li>
+            <li>How can FitPhone improve users' focus and well-being through an educational process that feels seamless and effortless?</li>
+            <li>How can FitPhone make the educational experience engaging and fun, using elements like gamification to keep users motivated?</li>
+          </ol>
+        </div>
       </article>
 
       <article class="method-card">
@@ -123,20 +136,61 @@
         </div>
       </article>
 
+      <article class="method-card agile-process">
+        <h3>Agile Process</h3>
+        <p>FitPhone was developed through an iterative Agile process rather than one fixed sequence of handoffs. We moved between research, requirements, prototyping, testing, and implementation in short feedback cycles, using each round of learning to improve the next version.</p>
+        <p>Agile was useful because it kept the team close to the client and target users while the product was still changing. Our biweekly client meetings, user feedback sessions, and MoSCoW prioritization helped us decide what to build next, respond to new information, and avoid spending time on features that did not support the core goal.</p>
+      </article>
+
+      <article class="method-card agile-retrospective">
+        <h3>Agile Retrospective</h3>
+        <p>At the end of each cycle, the team reflected on what was working, what was creating friction, and what we wanted to carry into the next sprint. This made the process more intentional and gave us a practical way to improve our collaboration as well as the product.</p>
+        <img src="../Images/implement.jpeg" alt="FitPhone Agile Start Stop Continue retrospective" class="retrospective-image" />
+        <div class="retrospective-grid">
+          <section>
+            <h4>Start</h4>
+            <ul>
+              <li>Work from clear implementation guidelines.</li>
+              <li>Bring in more testers and gather feedback earlier.</li>
+              <li>Use smaller stories and clear acceptance criteria.</li>
+            </ul>
+          </section>
+          <section>
+            <h4>Stop</h4>
+            <ul>
+              <li>Working on tasks outside the sprint plan.</li>
+              <li>Leaving unused files and unfinished work in the project.</li>
+              <li>Building content outside the agreed scope.</li>
+            </ul>
+          </section>
+          <section>
+            <h4>Continue</h4>
+            <ul>
+              <li>Communicating openly and working as a group.</li>
+              <li>Using stand-ups, sprint reflections, and a shared planning board.</li>
+              <li>Getting regular feedback from testers and keeping the client involved in planning.</li>
+              <li>Releasing and reviewing improvements regularly.</li>
+            </ul>
+          </section>
+        </div>
+      </article>
+
       <article class="method-card">
         <h3>Key Feedback Timeline</h3>
-        <p><strong>Meeting 1:</strong> Outlined FitPhone’s 4-step structure and discussed core ideas.</p>
-        <p><strong>Meeting 2:</strong> User feedback session with 5+ participants; prioritized pickups over screentime.</p>
-        <p><strong>Meeting 3:</strong> Proposed lifestyle coaching, motivational stories, and location-based events.</p>
-        <p><strong>Meeting 4:</strong> Discussed user matchmaking, manual progress tracking, and offline incentives.</p>
-        <p><strong>Meeting 5:</strong> Confirmed stories as a key differentiator versus competitors.</p>
+        <ol class="feedback-timeline">
+          <li><strong>Meeting 1:</strong> Outlined FitPhone's 4-step structure and discussed core ideas.</li>
+          <li><strong>Meeting 2:</strong> User feedback session with 5+ participants; prioritized pickups over screentime.</li>
+          <li><strong>Meeting 3:</strong> Proposed lifestyle coaching, motivational stories, and location-based events.</li>
+          <li><strong>Meeting 4:</strong> Discussed user matchmaking, manual progress tracking, and offline incentives.</li>
+          <li><strong>Meeting 5:</strong> Confirmed stories as a key differentiator versus competitors.</li>
+        </ol>
       </article>
     </div>
 
     <div class="phase-conclusion">
       <h3>Requirements Conclusion</h3>
       <p>The requirements phase clarified which features mattered most and which ideas were nice-to-haves. We prioritized goals, reflection, accountability, and useful activities instead of trying to build every possible feature at once.</p>
-      <p>That prioritization gave us a focused product direction and a strong foundation for prototyping an experience that could be tested with real users.</p>
+      <p>Using Agile cycles made that prioritization practical: the team could test a focused direction, learn from feedback, and adjust before moving further into development. This gave us a stronger foundation for prototyping an experience that could be tested with real users.</p>
     </div>
   </section>
 
@@ -178,7 +232,10 @@
 
     <div id="mockup-flow" class="mockup-flow"></div>
 
-    <div class="phase-conclusion">
+  </section>
+
+  <section id="design-testing-conclusion" class="project-section reveal phase-conclusion">
+    <div class="text-column">
       <h3>Design &amp; Testing Conclusion</h3>
       <p>The prototype testing showed that the strongest version of FitPhone was one that felt supportive and motivating, not restrictive. The final design made progress visible while encouraging users to take manageable steps.</p>
       <p>These learnings translated directly into the implementation decisions, giving us a tested direction for building the product rather than simply handing development an unvalidated set of screens.</p>
@@ -196,7 +253,6 @@
       <article class="method-card">
         <h3>Core Screens</h3>
         <p>Onboarding helped users define the challenges they wanted to solve; the home screen displayed progress and personalized activities; the education and activities sections offered practical support; and the journal and stats screens reinforced reflection and habit tracking.</p>
-        <img src="../Images/implement.jpeg" alt="FitPhone implementation screens" class="media-image-full" />
       </article>
 
       <article class="method-card">
@@ -204,6 +260,21 @@
         <p>During user testing and feedback sessions, we decided against a full login system and instead used local storage to respect user privacy while simplifying the experience. We also refined the design based on what we learned while building and iterating through each step, making the final product more professional and aligned with the initial high-fidelity concept.</p>
       </article>
     </div>
+
+    <article class="method-card implementation-demo">
+      <h3>Implementation Demo</h3>
+      <p>This short demo shows the implemented FitPhone experience and how the core flow comes together in the built product.</p>
+      <div class="demo-video-frame">
+        <iframe
+          src="https://www.youtube.com/embed/LxwX2A38t3s"
+          title="FitPhone implementation demo"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </article>
 
     <div class="phase-conclusion">
       <h3>Implementation Conclusion</h3>
