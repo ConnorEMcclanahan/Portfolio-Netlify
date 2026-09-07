@@ -133,6 +133,29 @@
       margin-bottom: 1rem;
     }
 
+    .brand-identity-image {
+      display: block;
+      width: 100%;
+      max-width: 900px;
+      height: auto;
+      margin: 1rem auto 3rem;
+    }
+
+    .user-journey-embed {
+      position: relative;
+      width: 100%;
+      max-width: 900px;
+      aspect-ratio: 16 / 9;
+      margin: 1rem auto 3rem;
+    }
+
+    .user-journey-embed iframe {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
     /* Header main title */
     header h1 {
       margin-top: 20%; 
@@ -616,27 +639,68 @@
       margin-top: 0;
     }
 
+    body.project-page-standard .implementation-tech-stack {
+      margin-top: 2rem;
+    }
+
+    body.project-page-standard .implementation-tech-stack__card {
+      max-width: 34rem;
+      padding: 1.5rem 0;
+      border-top: 1px solid var(--case-line);
+      border-bottom: 1px solid var(--case-line);
+    }
+
+    body.project-page-standard .implementation-tech-stack__card h4 {
+      margin: 0 0 1.25rem;
+      color: #6E07F3;
+      font-size: 1.35rem !important;
+      line-height: 1.25;
+    }
+
+    body.project-page-standard .implementation-tech-stack__card ul {
+      margin: 0;
+    }
+
+    body.project-page-standard .implementation-tech-stack__card li {
+      margin-bottom: 0.7rem !important;
+      color: var(--case-muted) !important;
+      line-height: 1.5;
+    }
+
+    body.project-page-standard .implementation-tech-stack__card li:last-child {
+      margin-bottom: 0 !important;
+    }
+
+    body.project-page-standard .implementation-tech-stack__card strong {
+      color: #fff;
+    }
+
     body.project-page-standard .implementation-demo {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(13rem, 18rem);
+      align-items: start;
+      gap: 3rem;
       margin-top: 3rem;
       padding-top: 2rem;
       border-top: 1px solid var(--case-line);
     }
 
-    body.project-page-standard .implementation-demo h4 {
+    body.project-page-standard .implementation-demo__copy h4 {
       margin: 0 0 0.75rem;
       color: #6E07F3;
       font-size: 1.35rem !important;
       line-height: 1.25;
     }
 
-    body.project-page-standard .implementation-demo p {
+    body.project-page-standard .implementation-demo__copy p {
       color: var(--case-muted) !important;
     }
 
     body.project-page-standard .implementation-demo__frame {
       position: relative;
-      width: min(100%, 28rem);
-      margin-top: 1.5rem;
+      width: 100%;
+      max-width: 18rem;
+      justify-self: end;
       aspect-ratio: 9 / 16;
       overflow: hidden;
       border: 1px solid rgba(255, 255, 255, 0.12);
@@ -664,6 +728,16 @@
         flex-direction: column;
         align-items: center;
         gap: 2rem;
+      }
+
+      body.project-page-standard .implementation-demo {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      body.project-page-standard .implementation-demo__frame {
+        justify-self: start;
+        max-width: min(100%, 18rem);
       }
       
       .mockup-text {
@@ -885,6 +959,37 @@
     .reveal.active {
       opacity: 1;
       transform: translateY(0);
+    }
+
+    body.project-page-standard .reveal-content.active {
+      margin-top: 0;
+      margin-bottom: 1.25rem;
+    }
+
+    body.project-page-standard li.reveal-content.active {
+      margin-bottom: 0.7rem;
+    }
+
+    body.project-page-standard img.reveal-content.active,
+    body.project-page-standard iframe.reveal-content.active {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    body.project-page-standard #competitor-analysis-matrix .reveal-content.active {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    body.project-page-standard .case-study-phase__overview .reveal-content.active {
+      margin-top: 0;
+      margin-bottom: 0.7rem;
+    }
+
+    body.project-page-standard #intro-summary .reveal-content.active,
+    body.project-page-standard .case-study-process .reveal-content.active {
+      margin-top: 0;
+      margin-bottom: 1rem;
     }
 
     @media (max-width: 768px) {

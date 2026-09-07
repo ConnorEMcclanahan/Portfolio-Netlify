@@ -37,6 +37,7 @@ body.project-page-standard > .Overview {
 }
 
 body.project-page-standard .case-study-phase {
+  display: block;
   width: min(1400px, calc(100% - 3rem));
   max-width: 1400px;
   margin: 4rem auto 0;
@@ -87,13 +88,26 @@ body.project-page-standard .case-study-phase__lead h3 {
 
 body.project-page-standard .case-study-phase__overview ul {
   margin: 0;
-  padding-left: 1.25rem;
+  padding-left: 0;
+  list-style: none;
 }
 
 body.project-page-standard .case-study-phase__overview li {
+  position: relative;
   margin-bottom: 0.7rem;
+  padding-left: 0;
   color: var(--case-muted);
   font-size: 0.95rem;
+}
+
+body.project-page-standard .case-study-phase__overview li::before {
+  content: none;
+}
+
+body.project-page-standard .case-study-phase__overview {
+  position: static;
+  padding-right: 0;
+  border-right: 0;
 }
 
 body.project-page-standard .case-study-phase__content {

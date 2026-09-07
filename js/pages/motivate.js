@@ -107,36 +107,36 @@ const mockupFlowData = {
   items: [
     {
       title: 'Standard Form',
-      copy: 'A clear form flow allows users to quickly create a standard.',
-      image: '../Images/Motivate/mockup-1.png',
+      copy: 'The first step gives managers a focused way to start a new standard without leaving the PMT platform. The form establishes the instruction title, ownership, and core information before the user moves into the detailed content. Keeping the entry point simple reduces the amount of information users need to process at once and creates a clear beginning for the approval workflow.',
+      image: '../images/motivate/mockup-1.png',
       alt: 'Mockup Home',
       device: 'phone'
     },
     {
       title: 'Standard Form Pt2',
-      copy: 'The second step adds images and follows standard practices with safety and quality emphasized.',
-      image: '../Images/Motivate/mockup-2.png',
+      copy: 'The second step builds the standard around the real work being documented. Managers can add images, describe the task, and emphasize safety and quality requirements so the instruction is useful on the factory floor. Multimedia support also helps teams explain processes that are difficult to communicate through text alone.',
+      image: '../images/motivate/mockup-2.png',
       alt: 'Activity',
       device: 'phone'
     },
     {
       title: 'Standard Form Pt3',
-      copy: 'The final step provides an overview so users can make last-minute updates before submission.',
-      image: '../Images/Motivate/mockup-3.png',
+      copy: 'Before submission, the final form step gives the manager an overview of the complete standard. This review stage makes it possible to catch missing information, check the order of the instruction, and make last-minute changes before sending the work into approval.',
+      image: '../images/motivate/mockup-3.png',
       alt: 'Education',
       device: 'phone'
     },
     {
       title: 'Approval',
-      copy: 'Standards are routed for approval where authorized users can edit, accept, or reject.',
-      image: '../Images/Motivate/mockup-5.png',
+      copy: 'Once submitted, standards move into a controlled approval workflow. Authorized users can review the instruction, inspect its supporting media, and either approve it, request changes, or reject it. This keeps version control and responsibility inside PMT instead of relying on separate messages or files.',
+      image: '../images/motivate/mockup-5.png',
       alt: 'Journal Entry',
       device: 'tablet'
     },
     {
       title: 'Viewing Standard',
-      copy: 'After approval, standards are stored and available across factory tablets and PCs.',
-      image: '../Images/Motivate/mockup-4.png',
+      copy: 'After approval, the standard becomes available to the people who need it during production. The viewer is designed for factory tablets and PCs, making the latest approved instruction accessible at the point of work while preserving a consistent source for future updates.',
+      image: '../images/motivate/mockup-4.png',
       alt: 'Stats',
       device: 'tablet'
     }
@@ -313,6 +313,12 @@ function reveal() {
   });
 }
 
+function addContentReveals() {
+  document.querySelectorAll('body.project-page-standard .project-section p, body.project-page-standard .project-section h3, body.project-page-standard .project-section h4, body.project-page-standard .project-section li, body.project-page-standard .project-section img, body.project-page-standard .case-study-phase__overview h3, body.project-page-standard .case-study-phase__overview li, body.project-page-standard .case-study-process h2, body.project-page-standard .case-study-process__step').forEach((element) => {
+    element.classList.add('reveal', 'reveal-content');
+  });
+}
+
 function initThreeLoader() {
   if (!window.THREE) {
     return;
@@ -449,6 +455,8 @@ document.addEventListener('DOMContentLoaded', () => {
     window.ProjectPageComponents.renderMockupFlow('#mockup-flow', mockupFlowData);
     window.ProjectPageComponents.renderFinalColumns('#final-container', finalSectionData);
   }
+
+  addContentReveals();
 });
 
 window.addEventListener('scroll', reveal);

@@ -29,7 +29,6 @@
   }
 }
 
-
 /* Migrated from motivate.html */
 /* Base Typography */
     :root {
@@ -103,12 +102,6 @@
       max-width: var(--max-width);
       margin: 10vh auto; /* Consistent vertical spacing */
       padding: 0 var(--content-padding);
-    }
-
-    /* Ensure consistent spacing between sections */
-    .reveal.active {
-      margin-top: 10vh;
-      margin-bottom: 10vh;
     }
 
     /* Final container adjustments */
@@ -482,7 +475,7 @@ html {
   
     /* Parallax background */
     .parallax-1 {
-      background: url(../Images/Motivate/MotivateWall.png) center/cover fixed no-repeat;
+      background: url(../../images/motivate/motivatewall.png) center/cover fixed no-repeat;
     }
   
     /* GitHub corner */
@@ -537,43 +530,6 @@ html {
     @media(max-width:768px) {
       #final-container { flex-direction: column; }
     }
-  
-    /* Two-column flush center layout */
-    .reveal.active {
-      display: flex;
-      justify-content: center;  /* center the two columns */
-      padding: 0 2rem;          /* side gutters */
-      gap: 0;                   /* no gap between them */
-    }
-    
-  .media-column,
-    .text-column {
-    /* flex: 0 0 50%; */
-    /* max-width: 50%; */
-    float: none;
-    width: 80vh;
-    margin: 0;
-    /* width: 100%; */
-    padding: 2;
-    margin: 10px;
-    box-sizing: border-box;
-
-    }
-  
-    @media(max-width:768px) {
-      .reveal.active {
-        display: block;
-        padding: 0;
-      }
-      .reveal.active .media-column,
-      .reveal.active .text-column {
-        width: 100%;
-        margin-bottom: 1.5rem;
-      }
-    }
-  
-    /* Remove any residual gutter rule */
-    /* (delete or override your old .media-column, .text-column padding:0 1rem) */
   
     /* Phone frame */
     .phone-frame {
@@ -685,6 +641,7 @@ html {
     padding: 1rem;
   }
 }
+
 /* Prototype Buttons */
 .prototype-btn {
   display: inline-flex;
@@ -707,19 +664,6 @@ html {
   box-shadow: 0 6px 18px rgba(0,0,0,0.4);
 }
 
-/* Mobile Responsive */
-@media (max-width: 768px) {
-  .reveal.active {
-    flex-direction: column;
-    padding: 1rem;
-  }
-
-  .media-column,
-  .text-column {
-    width: 100%;
-    margin-bottom: 1.5rem;
-  }
-}
     /* Competitor Analysis Table */
     .competitor-table {
       width: 100%;
@@ -772,26 +716,8 @@ html {
       margin-bottom: 0;
     }
 
-    /* Ensure the media and text columns display properly side by side */
-    .project-section.reveal {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      align-items: flex-start;
-      gap: 2rem;
-    }
-
-    .media-column, .text-column {
-      flex: 1;
-      min-width: 45%;
-    }
-
     /* Mobile responsive adjustments */
     @media(max-width: 768px) {
-      .project-section.reveal {
-        flex-direction: column;
-      }
-      
       .competitor-row {
         grid-template-columns: 1fr;
       }
@@ -1159,5 +1085,223 @@ html {
     max-width: 400px;
     margin: 0 auto;
   }
+}
+
+/* Motivate-only compatibility rules for the shared Diplora phase component. */
+body.project-page-standard .case-study-phase__content > .project-section,
+body.project-page-standard .case-study-phase__content > .section-dark {
+  display: block;
+}
+
+body.project-page-standard .case-study-phase__content .text-column,
+body.project-page-standard .case-study-phase__content .media-column {
+  float: none;
+  width: auto;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+}
+
+body.project-page-standard .case-study-phase__content .reveal.active {
+  display: block;
+  padding: 0;
+}
+
+/* Motivate screen stories: explanation first, supporting app screen beside it. */
+body.project-page-standard #mockup-flow .mockup-step {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(18rem, 1fr);
+  align-items: stretch;
+  gap: 0;
+  max-width: none;
+  margin: 0 0 3rem;
+  padding: 2rem 0 3rem;
+  border-top: 1px solid var(--case-line);
+  background: transparent;
+}
+
+body.project-page-standard #mockup-flow .mockup-step-text {
+  display: block;
+  grid-column: 1;
+  align-self: start;
+}
+
+body.project-page-standard #mockup-flow .mockup-step-title {
+  margin: 0 0 1rem;
+  padding: 0.9rem 1.25rem;
+  border: 1px solid #6E07F3;
+  background: #050505;
+  color: #6E07F3;
+  font-family: "Syne", "Plus Jakarta Sans", sans-serif;
+  font-size: 1.35rem !important;
+  line-height: 1.2;
+  text-align: left;
+}
+
+body.project-page-standard #mockup-flow .mockup-step-copy {
+  margin: 0;
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #151515;
+  color: var(--case-muted);
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 1rem !important;
+  line-height: 1.75;
+}
+
+body.project-page-standard #mockup-flow .mockup-visual {
+  grid-column: 2;
+  align-self: center;
+  width: 100%;
+  min-width: 0;
+  max-width: none;
+  padding: 0;
+}
+
+body.project-page-standard #mockup-flow .mockup-visual--tablet {
+  max-width: none;
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+body.project-page-standard #mockup-flow .mockup-step-image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+body.project-page-standard #mockup-flow .mockup-step:first-child .mockup-step-text {
+  display: contents;
+}
+
+body.project-page-standard #mockup-flow .mockup-step:first-child .mockup-step-title {
+  grid-column: 1 / -1;
+  margin-bottom: 2rem;
+  padding: 1rem 1.5rem;
+  border: 1px solid #6E07F3;
+  font-size: 1.8rem !important;
+  text-align: center;
+}
+
+body.project-page-standard #mockup-flow .mockup-step:first-child .mockup-step-copy {
+  grid-column: 1;
+}
+
+/* Let the Final Design showcase break out of the phase's narrow content rail. */
+body.project-page-standard .case-study-phase--wide-final .case-study-phase__content {
+  display: contents;
+}
+
+body.project-page-standard .case-study-phase--wide-final .case-study-phase__content > .project-section {
+  grid-column: 2;
+}
+
+body.project-page-standard .case-study-phase--wide-final #final-design,
+body.project-page-standard .case-study-phase--wide-final #mockup-flow {
+  grid-column: 1 / -1;
+  width: 100%;
+  max-width: none;
+}
+
+body.project-page-standard .case-study-phase--wide-final #final-design {
+  margin-bottom: 2rem;
+  padding: 1rem 0;
+  border: 0;
+  text-align: center;
+}
+
+body.project-page-standard .case-study-phase--wide-final #final-design h3 {
+  margin: 0;
+  padding: 1rem 1.5rem;
+  border: 1px solid #6E07F3;
+  color: #6E07F3;
+  font-size: 1.8rem !important;
+  text-align: center;
+}
+
+body.project-page-standard .case-study-phase--wide-final .final-design-showcase {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 2rem 0 0;
+}
+
+@media (max-width: 768px) {
+  body.project-page-standard #mockup-flow .mockup-step {
+    display: block;
+    margin-bottom: 3rem;
+  }
+
+  body.project-page-standard #mockup-flow .mockup-step-title {
+    text-align: left;
+  }
+
+  body.project-page-standard #mockup-flow .mockup-step-copy {
+    display: block;
+    padding: 0;
+    margin-bottom: 0;
+  }
+
+  body.project-page-standard #mockup-flow .mockup-visual {
+    padding: 0;
+  }
+
+  body.project-page-standard .case-study-phase--wide-final .case-study-phase__content {
+    display: block;
+  }
+}
+
+body.project-page-standard .case-study-phase__content .comparison-layout {
+  display: block;
+}
+
+body.project-page-standard .case-study-phase__content .comparison-table-shell {
+  width: 100%;
+}
+
+body.project-page-standard .case-study-phase__content .comparison-layout > .text-column {
+  width: auto;
+  margin-top: 2rem;
+}
+
+body.project-page-standard .case-study-process__steps {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Motivate-only copy of Diplora's standard reveal animation. */
+body.project-page-standard .reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+body.project-page-standard .reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+body.project-page-standard .reveal-content.active {
+  margin-top: 0;
+  margin-bottom: 1.25rem;
+}
+
+body.project-page-standard li.reveal-content.active {
+  margin-bottom: 0.7rem;
+}
+
+body.project-page-standard img.reveal-content.active,
+body.project-page-standard iframe.reveal-content.active {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+body.project-page-standard .case-study-phase__overview .reveal.active,
+body.project-page-standard .case-study-phase__content .reveal.active {
+  display: block;
+  padding: 0;
 }
 

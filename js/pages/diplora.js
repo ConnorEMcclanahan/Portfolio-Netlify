@@ -85,6 +85,12 @@ function checkReveal() {
   });
 }
 
+function addContentReveals() {
+  document.querySelectorAll('body.project-page-standard .project-section p, body.project-page-standard .project-section h3, body.project-page-standard .project-section h4, body.project-page-standard .project-section li, body.project-page-standard .project-section img, body.project-page-standard .project-section iframe, body.project-page-standard #competitor-analysis-matrix .matrix-shell > *, body.project-page-standard .case-study-phase__overview h3, body.project-page-standard .case-study-phase__overview li, body.project-page-standard #intro-summary .intro-heading > *, body.project-page-standard #intro-summary .intro-summary-left > *, body.project-page-standard #intro-summary .intro-meta-item, body.project-page-standard #intro-summary .intro-story-block h2, body.project-page-standard #intro-summary .intro-story-block p, body.project-page-standard .case-study-process h2, body.project-page-standard .case-study-process__step').forEach((element) => {
+    element.classList.add('reveal', 'reveal-content');
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   if (window.pdfjsLib) {
     window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js';
@@ -96,6 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.ProjectPageComponents.renderFinalColumns('#final-container', finalSectionData);
   }
 
+  addContentReveals();
   window.addEventListener('scroll', checkReveal, { passive: true });
   checkReveal();
 });

@@ -2,16 +2,28 @@
   function addCaseStudyNav() {
     const intro = document.querySelector('#intro-summary');
     const sections = Array.from(document.querySelectorAll('body.project-page-standard section[id]'))
-      .filter((section) => section.id !== 'intro-summary' && (section.querySelector('h1, h2, h3') || ['competitor-analysis', 'final-container'].includes(section.id)));
+      .filter((section) => section.id !== 'intro-summary' && (section.querySelector('h1, h2, h3') || ['competitor-analysis', 'research-question', 'observational-studies', 'user-feedback', 'mockup-flow', 'implementation-showcase', 'final-container', 'high-fidelity-prototypes'].includes(section.id)));
 
-    const phaseMatchers = [
+    const isDiplora = window.location.pathname.toLowerCase().includes('diplora');
+    const isMotivate = window.location.pathname.toLowerCase().includes('motivate');
+    const phaseMatchers = isMotivate ? [
+      ['01 / Research - Understanding the User and Context', /research|question|interview|competitor|observational/i],
+      ['02 / Requirements - Translating Research into Features', /feature|moscow|requirement|priorit/i],
+      ['03 / Prototyping - Validating the Experience', /prototype|workflow|feedback|low-fidelity|mockup|test/i],
+      ['04 / Implementation - Bridging Design and Code', /implementation|mockup|final|vue|pdf/i]
+    ] : [
       ['01 / Research - Understanding the User and Context', /research|survey|interview|competitor/i],
       ['02 / Design System - Building a Scalable Foundation', /design-system|brand|accessib/i],
       ['03 / Requirements - Translating Research into Features', /requirement|persona|feature|priorit/i],
       ['04 / Prototyping - Validating the Experience', /prototype|design-iterations|high-fidelity|mockup|test/i],
       ['05 / Implementation - Bridging Design and Code', /implementation|development|flutter|bloc|bluetooth/i]
     ];
-    const phaseContents = {
+    const phaseContents = isMotivate ? {
+      Research: ['Manufacturing Research', 'Research Question', 'Stakeholder Interviews', 'Competitor Analysis', 'Observational Studies'],
+      Requirements: ['Features List', 'MoSCoW Method Analysis'],
+      Prototyping: ['User Feedback on Low-Fidelity Prototypes', 'Prototyping & User Testing', 'Low-Fidelity Prototypes', 'Final Design'],
+      Implementation: ['Implementation & Delivery']
+    } : {
       Research: ['Research Approach', 'Research Overview', 'Literature Review', 'Stakeholder Interviews', 'Patient Interviews', 'Survey Analysis', 'Internal Feedback', 'Competitor Analysis', 'Research Conclusion'],
       'Design System': ['Brand Identity', 'Accessible Design Standards', 'Scalable Components', 'Design System Takeaway'],
       Requirements: ['User Requirements & Features', 'User Journey Mapping', 'MoSCoW Prioritization', 'User Personas', 'Requirements Conclusion'],
@@ -19,10 +31,11 @@
       Implementation: ['Implementation & Development', 'Development Approach', 'Tech Stack', 'Completed Features', 'Technical Architecture', 'Technical Challenges', 'Quality Assurance', 'Known Limitations', 'Implementation Conclusion']
     };
     const usedSections = new Set();
-    const isDiplora = window.location.pathname.toLowerCase().includes('diplora');
     const preferredIds = isDiplora
       ? [['research', 'competitor-analysis', 'research-conclusion'], ['design-system'], ['requirements', 'personas', 'requirements-conclusion'], ['prototyping', 'design-iterations', 'high-fidelity-prototypes', 'prototyping-conclusion'], ['implementation']]
-      : [];
+      : isMotivate
+        ? [['pmt-research', 'competitor-analysis', 'research-question', 'customer-interviews', 'observational-studies'], ['features-list', 'moscow-analysis'], ['user-feedback', 'prototyping', 'low-fidelity', 'final-design', 'mockup-flow'], ['implementation-details']]
+        : [];
     const phaseSections = phaseMatchers
       .map(([label, matcher], phaseIndex) => {
         const preferredSectionIds = preferredIds[phaseIndex] || [];
@@ -48,10 +61,13 @@
         phaseHeader.id = phaseId;
         phaseHeader.className = 'case-study-phase';
         const phaseName = label.match(/^\d+ \/ ([^-]+)/)?.[1].trim() || label;
+        if (isMotivate && phaseName === 'Prototyping') {
+          phaseHeader.classList.add('case-study-phase--wide-final');
+        }
         const contents = phaseContents[phaseName] || [];
         const narratives = [];
         phaseHeader.innerHTML = `
-          <div class="case-study-phase__title"><h2>${label}</h2></div>
+          <div class="case-study-phase__title reveal"><h2>${label}</h2></div>
           <div class="case-study-phase__body">
             <aside class="case-study-phase__overview">
               <h3>Overview</h3>

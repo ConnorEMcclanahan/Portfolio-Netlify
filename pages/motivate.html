@@ -6,7 +6,7 @@
   <title>Motivate | Standard-Work Portfolio</title>
 
   <!-- Favicon & Global CSS -->
-  <link rel="icon" type="image/png" href="../Images/logo.png" />
+  <link rel="icon" type="image/png" href="../images/logo.png" />
   <link rel="stylesheet" href="../styles/style.css" />
   <link rel="stylesheet" href="../styles/frontend.css" />
   <link rel="stylesheet" href="../components/navbar/navbar.css"/>
@@ -26,7 +26,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js"></script>
 
   <!-- Site JS -->
-  <script src="../js/java.js" defer></script>
+  <script src="../js/script.js" defer></script>
 </head>
 <body class="project-page-standard">
   <!-- Loader -->
@@ -43,7 +43,7 @@
     <nav class="navbar">
       <div class="navbar-container">
         <a href="../index.html" class="navbar-logo">
-          <img src="../Images/logo.png" alt="logo" class="navbar-logo-img"/>
+          <img src="../images/logo.png" alt="logo" class="navbar-logo-img"/>
         </a>
         <button class="navbar-burger" aria-label="Toggle navigation menu">
           <span></span>
@@ -63,25 +63,16 @@
   <!-- Intro & Meta -->
   <section id="intro-summary" class="reveal"></section>
 
-      <!-- FULL-WIDTH: Key screens -->
-    <div class="IntroPic reveal" style="margin-top:3rem; text-align:center; ">
-      <img
-        src="../Images/topbar-motivate.png"
-        alt="Motivate key screens"
-        style="max-width:100%; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.4);"
-      />
-    </div>
-
   <!-- Overview section with reveal animation -->
-  <section class="Overview reveal" style="display: flex; justify-content: center; padding: 0 2rem; max-width: 1200px; margin: 10vh auto; flex-direction: column; align-items: center;">
+  <section class="Overview reveal">
   <h1>Overview</h1>
-  <p style="color: white;">
+  <p>
     Motivate's Platform Management Tool (PMT) is designed to streamline workflow management and boost operational efficiency in manufacturing environments. The new Instruction Creation Tool (ICT) empowers managers to seamlessly create, approve, and publish standard work instructions directly within the platform.
   </p>
-  <p style="color: white;">
+  <p>
     By consolidating various documentation formats (PDFs, images, videos) into a unified platform, ICT eliminates the need for multiple external tools while ensuring strict compliance with standardization requirements. This integration significantly reduces the time spent on instruction management and minimizes the risk of errors.
   </p>
-  <p style="color: white;">
+  <p>
     The tool's development focused on creating an intuitive interface that accommodates the unique challenges of factory environments, including considerations for noise levels, lighting conditions, and the need for quick, accurate information access. Through extensive user research and iterative testing, we've delivered a solution that enhances productivity while maintaining the highest standards of quality and safety.
   </p>
 </section>
@@ -90,10 +81,10 @@
 <section id="pmt-research" class="project-section reveal">
   <div class="text-column">
     <h3>Manufacturing Research</h3>
-    <p style="color: white; margin-top: 1rem;">
+    <p>
       Research conducted across three manufacturing plants helped identify key challenges and requirements. Through contextual inquiries and interviews, we gathered critical insights about user needs and system requirements.
     </p>
-        <ul style="color: white; list-style-type: disc; padding-left: 2rem;">
+        <ul class="body-list">
       <li>Operator needs</li>
       <li>Compliance requirements</li>
       <li>Multi-lingual workflow demands</li>
@@ -112,7 +103,7 @@
 
 
   <!-- RESEARCH FOCUS -->
-  <section class="section-dark reveal">
+  <section id="research-question" class="section-dark reveal">
     <div class="pov-container">
       <div class="pov-item">
         <h4>Main Research Question</h4>
@@ -131,6 +122,19 @@
   </section>
 <!-- CUSTOMER INTERVIEWS -->
 <section id="customer-interviews" class="project-section reveal">
+  <div class="text-column">
+    <h3>Stakeholder Interviews</h3>
+    <p>Interviewed key stakeholders to gather insights into system needs and challenges.</p>
+    <h4>Key Pain Points Identified:</h4>
+    <ul class="body-list">
+        <li>Difficulty in managing instructions</li>
+        <li>Heavy reliance on external files</li>
+        <li>Need for more integrated solutions</li>
+        <li>Challenges with version control</li>
+        <li>Limited accessibility on mobile devices</li>
+    </ul>
+  </div>
+
   <div class="media-column">
     <div class="interview-stats">
       <div class="stat-card">
@@ -151,28 +155,11 @@
       </div>
     </div>
   </div>
-
-  <div class="text-column">
-    <h3>Stakeholder Interviews</h3>
-    <p>Interviewed key stakeholders to gather insights into system needs and challenges.</p>
-    <h4>Key Pain Points Identified:</h4>
-    <ul style="color: white; list-style-type: disc; padding-left: 2rem;">
-        <li>Difficulty in managing instructions</li>
-        <li>Heavy reliance on external files</li>
-        <li>Need for more integrated solutions</li>
-        <li>Challenges with version control</li>
-        <li>Limited accessibility on mobile devices</li>
-    </ul>
-  </div>
 </section>
 
 
 <section id="observational-studies" class="project-section reveal">
   <div id="observational-mount"></div>
-</section>
-
-<section id="user-feedback" class="project-section reveal">
-  <div id="user-feedback-mount"></div>
 </section>
 
 <!-- FEATURES LIST -->
@@ -266,12 +253,6 @@
 </section>
 <!-- MOSCOW METHOD ANALYSIS -->
 <section id="moscow-analysis" class="project-section reveal">
-  <div class="media-column">
-    <div class="moscow-image" style="width: 100%;">
-      <img src="../Images/MoSCoW-motivate.png" alt="MOSCOW Analysis Diagram" style="width: 100%; height: auto;" />
-    </div>
-  </div>
-  
   <div class="text-column">
     <h3>MOSCOW Method Analysis</h3>
     <p>
@@ -284,6 +265,16 @@
       <li>Won't-have: Low-priority functionalities outside project scope</li>
     </ul>
   </div>
+
+  <div class="media-column">
+    <div class="moscow-image">
+      <img src="../images/moscow-motivate.png" alt="MOSCOW Analysis Diagram" />
+    </div>
+  </div>
+</section>
+
+<section id="user-feedback" class="project-section reveal">
+  <div id="user-feedback-mount"></div>
 </section>
 
 <!-- PROTOTYPING & USER TESTING -->
@@ -295,25 +286,36 @@
     </p>
   </div>
   
-  <div class="workflow-container" style="width: 100%; margin-top: 2rem;">
-    <img src="../Images/Workflow.png" alt="TWI Workflow Diagram" style="width: 100%; height: auto; max-width: 1000px; margin: 0 auto; display: block;" />
+  <div class="workflow-container">
+    <img src="../images/workflow.png" alt="TWI Workflow Diagram" />
   </div>
 </section>
 
 <!-- LOW FIDELITY PROTOTYPES -->
 <section id="low-fidelity" class="project-section reveal">
-  <div class="media-column">
-    <div class="sketch-image" style="width: 100%;">
-      <img src="../Images/sketches-motivate.PNG" alt="Low Fidelity Wireframe" style="width: 100%; height: auto;" />
-    </div>
-  </div>
-  
   <div class="text-column">
     <h3>Low-Fidelity Prototypes</h3>
     <p>
       Initial prototypes based on research findings focused on basic structure and functionality. These wireframes served as a foundation for iterative design improvements and stakeholder feedback sessions.
     </p>
   </div>
+
+  <div class="media-column">
+    <div class="sketch-image">
+      <img src="../images/sketches-motivate.png" alt="Low Fidelity Wireframe" />
+    </div>
+  </div>
+</section>
+
+<!-- IMPLEMENTATION -->
+<section id="implementation-details" class="project-section reveal">
+  <h3>Implementation & Delivery</h3>
+  <p>I translated the tested workflow into a Vue 3 front-end within the existing PMT platform. The implementation connected standard creation, multimedia content, approval, document viewing, and responsive access across factory devices.</p>
+</section>
+
+<section id="final-design" class="project-section reveal">
+  <h3>Final Design</h3>
+  <img class="final-design-showcase" src="../images/topbar-motivate.png" alt="Motivate final design screens" loading="lazy" />
 </section>
 
 <!-- MOCKUP SHOWCASE SECTIONS -->

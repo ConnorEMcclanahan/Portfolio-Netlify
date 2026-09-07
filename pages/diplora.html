@@ -108,6 +108,7 @@
     <div class="text-column">
       <h3>Brand Identity</h3>
       <p style="color: white; margin-top: 1rem;">I helped shape Diplora's visual identity around medical credibility, reassurance, and ease of use. The design needed to feel trustworthy and calm without making the interface feel clinical or intimidating, especially for older adults using the app at home.</p>
+    <img class="brand-identity-image" src="../images/diplora/DiploraIdentity.png" alt="Diplora brand identity" loading="lazy">
 
       <h4>Accessible Design Standards</h4>
       <p style="color: white; margin-top: 1rem;">I translated the research into practical standards: minimum 18pt body text, at least 4.5:1 contrast, 44x44px touch targets, clear hierarchy, readable language, and icons supported by text labels.</p>
@@ -130,6 +131,9 @@
 
       <h3>User Journey Mapping</h3>
       <p style="color: white; margin-top: 1rem;">I mapped the experience from unboxing and account setup through sensor placement, pairing, daily status checks, emergencies, and the end of the monitoring period. The map highlighted where users were most likely to feel lost or anxious, especially during setup and when checking whether the device was still working.</p>
+      <div class="user-journey-embed">
+        <iframe src="https://embed.figma.com/board/wX3KDHVs29GhhMFTMcefcS/Diplora-User-Journey?node-id=1-2&embed-host=share" title="Diplora user journey map" allowfullscreen></iframe>
+      </div>
 
       <h3>MoSCoW Prioritization</h3>
       <p style="color: white; margin-top: 1rem;">Must-haves were accessible onboarding, device pairing, persistent status feedback, emergency contact access, and a clear device-working confirmation. Video guidance, symptom logging, history, and haptic or audio feedback were prioritized as should-haves. Multi-language support, advanced filtering, 3D placement guidance, and family notifications were future enhancements. Diagnostic interpretation, AI recommendations, social features, and gamification were intentionally out of scope.</p>
@@ -201,7 +205,7 @@
   </section>
 
   <!-- Competitor Analysis section -->
-  <section id="competitor-analysis" class="project-section reveal">
+  <section id="competitor-analysis" class="project-section">
     <div id="competitor-analysis-matrix"></div>
   </section>
 
@@ -258,7 +262,7 @@
     <!-- Testing Results - Side by Side -->
     <div class="testing-results-grid">
       <div style="flex-basis: 100%;">
-        <h3 class="testing-intro-title">User Testing on High-Fidelity Prototypes</h3>
+        <h3>User Testing on High-Fidelity Prototypes</h3>
         <p style="color: var(--case-muted) !important; margin-top: 1rem;">I tested the main flows with older users using structured tasks, think-aloud feedback, observation, and short post-test interviews. The testing focused on onboarding, status checking, symptom logging, alerts, help, and sensor connection. This revealed where the accessibility decisions worked and where the language or hierarchy still created friction.</p>
       </div>
     </div>
@@ -345,7 +349,7 @@
   <section id="high-fidelity-prototypes" class="project-section reveal">
     <div class="mockup-section">
       <div class="mockup-text">
-        <h3 style="font-size: 2em; color: #6E07F3; text-align: left;">High-Fidelity Prototypes</h3>
+        <h3>High-Fidelity Prototypes</h3>
         <p style="color: white;">
           Designed high-fidelity prototypes based on feedback from low-fidelity testing. These detailed, interactive prototypes incorporated refined design elements and enhanced functionality, providing an accurate representation of the final product ready for user validation.
         </p>
@@ -374,26 +378,15 @@
     </div>
 
     <!-- Tech Stack & Features -->
-    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-top: 2rem;">
-      <div style="background: rgba(30, 30, 30, 0.85); border-radius: 12px; padding: 2rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
-        <h4 style="color: #6E07F3; margin-bottom: 1.5rem; font-size: 1.2rem;">🛠 Tech Stack</h4>
+    <div class="implementation-tech-stack">
+      <div class="implementation-tech-stack__card">
+        <h4>Tech Stack</h4>
         <ul style="color: white; list-style: none; padding: 0; margin: 0;">
           <li style="margin-bottom: 0.8rem;"><strong>Framework:</strong> Flutter (iOS & Android)</li>
           <li style="margin-bottom: 0.8rem;"><strong>Language:</strong> Dart</li>
           <li style="margin-bottom: 0.8rem;"><strong>Bluetooth:</strong> FlutterBluePlus BLE</li>
           <li style="margin-bottom: 0.8rem;"><strong>State:</strong> BLoC pattern</li>
           <li><strong>Storage:</strong> Local storage (Supabase ready)</li>
-        </ul>
-      </div>
-
-      <div style="background: rgba(30, 30, 30, 0.85); border-radius: 12px; padding: 2rem; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
-        <h4 style="color: #6E07F3; margin-bottom: 1.5rem; font-size: 1.2rem;">✓ Completed Features</h4>
-        <ul style="color: white; list-style: none; padding: 0; margin: 0;">
-          <li style="margin-bottom: 0.8rem;">Real BLE sensor connection & scanning</li>
-          <li style="margin-bottom: 0.8rem;">3D model for sensor movement visualization</li>
-          <li style="margin-bottom: 0.8rem;">Symptom logbook with local storage</li>
-          <li style="margin-bottom: 0.8rem;">Alert system for detected activity</li>
-          <li>Persistent status bar (battery, connection, recording)</li>
         </ul>
       </div>
     </div>
@@ -416,8 +409,10 @@
     </div>
 
     <div class="implementation-demo">
-      <h4>Final Working Demo</h4>
-      <p>Walkthrough of the completed Diplora application and its core functionality.</p>
+      <div class="implementation-demo__copy">
+        <h3>Final Working Demo</h3>
+        <p>Walkthrough of the completed Diplora application and its core functionality, including real BLE sensor connection and scanning, movement visualization, symptom logging, activity alerts, and the persistent battery, connection, and recording status bar.</p>
+      </div>
       <div class="implementation-demo__frame">
         <iframe
           src="https://www.youtube.com/embed/yP3T2WRFyq8?si=eUaP9y5u0aIjVqPu"
