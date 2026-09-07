@@ -680,6 +680,13 @@ body.project-page-standard .case-study-phase--wide-final #final-design #mockup-f
   gap: 0;
 }
 
+/* Keep generated case-study phases stacked: title first, overview/content below. */
+body.project-page-standard .case-study-phase.reveal.active {
+  display: block;
+  padding: 0;
+  margin-top: 4rem;
+}
+
 .media-column,
 .text-column {
   flex: 1 1 45%;

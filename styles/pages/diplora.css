@@ -98,6 +98,10 @@
       margin-bottom: 10vh;
     }
 
+    body.project-page-standard .case-study-phase.reveal.active {
+      margin-top: 4rem !important;
+    }
+
     #intro-summary.reveal.active {
       margin-top: 0;
       margin-bottom: 1.5rem;

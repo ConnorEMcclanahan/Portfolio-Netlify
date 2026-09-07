@@ -125,6 +125,24 @@ body.project-page-standard .case-study-phase__content > .project-section:last-ch
   padding-bottom: 0;
 }
 
+/* Shared case-study typography baseline, matching the Diplora presentation. */
+body.project-page-standard h1,
+body.project-page-standard h2,
+body.project-page-standard h3 {
+  font-size: 2rem !important;
+  font-weight: 700;
+}
+
+body.project-page-standard .project-section p,
+body.project-page-standard .case-study-phase__narrative p {
+  font-size: 1.125rem !important;
+  line-height: 1.6;
+}
+
+body.project-page-standard .project-section p {
+  margin-bottom: 2rem;
+}
+
 body.project-page-standard #design-system h4 {
   color: #6E07F3 !important;
   font-family: "Syne", "Plus Jakarta Sans", sans-serif;

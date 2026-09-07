@@ -919,6 +919,12 @@ body.project-page-standard .case-study-phase__content .reveal.active {
   padding: 0;
 }
 
+body.project-page-standard .case-study-phase.reveal.active {
+  display: block;
+  padding: 0;
+  margin-top: 4rem;
+}
+
 body.project-page-standard #implementation-details,
 body.project-page-standard #implementation-details p,
 body.project-page-standard #implementation-details ~ .implementation-demo p,
