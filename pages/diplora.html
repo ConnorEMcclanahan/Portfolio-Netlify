@@ -67,15 +67,15 @@
   <section id="research" class="project-section reveal">
     <div class="text-column">
       <h3>Research Approach</h3>
-      <p style="color: white; margin-top: 1rem;">
+      <p class="research-intro-copy">
         I used a mixed-methods research approach to understand the gap between Diplora's capable ECG hardware and the experience of using it at home. The research had to answer two connected questions: what do older adults need in order to feel confident using a monitoring device, and what can the patient-facing app communicate without crossing into diagnosis?
       </p>
-      <p style="color: white; margin-top: 1rem;">
+      <p class="research-intro-copy">
         I combined literature review, competitor analysis, stakeholder interviews, patient interviews, survey analysis, and internal design feedback. Using these methods together helped me compare formal accessibility requirements with real user behavior, then turn both into concrete priorities for onboarding, status feedback, pairing, help, and symptom logging.
       </p>
 
-      <h4 style="color: white; margin-top: 2rem;">Key Findings</h4>
-      <ul style="color: white; margin-top: 1rem; line-height: 1.8;">
+      <h4 class="research-findings-title">Key Findings</h4>
+      <ul class="research-findings">
         <li><strong>Patients needed reassurance, not data:</strong> Users cared less about graphs and more about simple answers—is it working, are readings being recorded, and what should I do if something goes wrong?</li>
         <li><strong>Accessibility barriers were critical:</strong> 54% of survey respondents found health apps too complicated, and 14% of users aged 46+ struggled with small text. This forced WCAG 2.1 AA compliance (18pt minimum text, 4.5:1 contrast, 44x44px touch targets).</li>
         <li><strong>Visual guidance was preferred:</strong> 66% of users wanted video demonstrations, followed by step-by-step pictures at 56%. This directly changed the onboarding flow from text-heavy to visual-first.</li>
@@ -117,17 +117,17 @@
   <section id="design-system" class="project-section reveal">
     <div class="text-column">
       <h3>Brand Identity</h3>
-      <p style="color: white; margin-top: 1rem;">I helped shape Diplora's visual identity around medical credibility, reassurance, and ease of use. The design needed to feel trustworthy and calm without making the interface feel clinical or intimidating, especially for older adults using the app at home.</p>
+      <p style="color: white; margin-top: 1rem;">I helped shape Diplora's visual identity around <strong>medical credibility, reassurance, and ease of use</strong>. The design needed to feel trustworthy and calm without making the interface feel clinical or intimidating, especially for older adults using the app at home.</p>
     <img class="brand-identity-image" src="../images/diplora/DiploraIdentity.png" alt="Diplora brand identity" loading="lazy">
 
       <h4>Accessible Design Standards</h4>
-      <p style="color: white; margin-top: 1rem;">I translated the research into practical standards: minimum 18pt body text, at least 4.5:1 contrast, 44x44px touch targets, clear hierarchy, readable language, and icons supported by text labels.</p>
+      <p style="color: white; margin-top: 1rem;">I translated the research into practical standards: <strong>minimum 18pt body text, at least 4.5:1 contrast, 44x44px touch targets, clear hierarchy, readable language, and icons supported by text labels.</strong></p>
 
       <h4>Scalable Components</h4>
-      <p style="color: white; margin-top: 1rem;">I established reusable patterns for buttons, cards, navigation, status feedback, spacing, and form controls. These components created a consistent foundation for the Flutter implementation and future development.</p>
+      <p style="color: white; margin-top: 1rem;">I established <strong>reusable patterns for buttons, cards, navigation, status feedback, spacing, and form controls</strong>. These components created a consistent foundation for the Flutter implementation and future development.</p>
 
       <h4>Design System Takeaway</h4>
-      <p style="color: white; margin-top: 1rem;">The design system turned research findings into rules that could be reused and checked throughout the product. With the visual and accessibility foundation in place, the next step was to decide which user needs were essential for the MVP and how those needs should shape the product flow.</p>
+      <p style="color: white; margin-top: 1rem;">The design system turned research findings into <strong>rules that could be reused and checked throughout the product</strong>. With the visual and accessibility foundation in place, the next step was to decide which user needs were essential for the MVP and how those needs should shape the product flow.</p>
     </div>
   </section>
 
@@ -136,23 +136,23 @@
     <div class="text-column">
       <h3>User Requirements & Features</h3>
       <p style="color: white; margin-top: 1rem;">
-        Using the MOSCOW method, I prioritized features based on accessibility and clinical validation requirements. Must-have features address the core needs identified in research.
+        Using the <strong>MOSCOW method</strong>, I prioritized features based on accessibility and clinical validation requirements. <strong>Must-have features address the core needs identified in research.</strong>
       </p>
 
       <h3>User Journey Mapping</h3>
-      <p style="color: white; margin-top: 1rem;">I mapped the experience from unboxing and account setup through sensor placement, pairing, daily status checks, emergencies, and the end of the monitoring period. The map highlighted where users were most likely to feel lost or anxious, especially during setup and when checking whether the device was still working.</p>
+      <p style="color: white; margin-top: 1rem;">I mapped the experience from <strong>unboxing and account setup through sensor placement, pairing, daily status checks, emergencies, and the end of the monitoring period</strong>. The map highlighted where users were most likely to feel lost or anxious, especially during setup and when checking whether the device was still working.</p>
       <div class="user-journey-embed">
         <iframe src="https://embed.figma.com/board/wX3KDHVs29GhhMFTMcefcS/Diplora-User-Journey?node-id=1-2&embed-host=share" title="Diplora user journey map" allowfullscreen></iframe>
       </div>
 
       <h3>MoSCoW Prioritization</h3>
-      <p style="color: white; margin-top: 1rem;">Must-haves were accessible onboarding, device pairing, persistent status feedback, emergency contact access, and a clear device-working confirmation. Video guidance, symptom logging, history, and haptic or audio feedback were prioritized as should-haves. Multi-language support, advanced filtering, 3D placement guidance, and family notifications were future enhancements. Diagnostic interpretation, AI recommendations, social features, and gamification were intentionally out of scope.</p>
+      <p style="color: white; margin-top: 1rem;"><strong>Must-haves were accessible onboarding, device pairing, persistent status feedback, emergency contact access, and a clear device-working confirmation.</strong> Video guidance, symptom logging, history, and haptic or audio feedback were prioritized as should-haves. Multi-language support, advanced filtering, 3D placement guidance, and family notifications were future enhancements. <strong>Diagnostic interpretation, AI recommendations, social features, and gamification were intentionally out of scope.</strong></p>
     </div>
 
     <div class="requirements-narrative">
       <div class="requirement-group"><h4>Accessibility Compliance</h4><p>The MVP followed WCAG 2.1 AA principles through large text and controls, high contrast, clear hierarchy, and touch targets that support older adults using the app.</p></div>
-      <div class="requirement-group"><h4>Simple Onboarding</h4><p>The onboarding flow was reduced to four essential screens with visual guidance so patients could set up the device without processing unnecessary information.</p></div>
-      <div class="requirement-group"><h4>Device Status and Bluetooth Pairing</h4><p>The interface needed to confirm that the device was working, show battery and connection status, and guide users through BLE pairing with clear recovery when something went wrong.</p></div>
+      <div class="requirement-group"><h4>Simple Onboarding</h4><p>The onboarding flow was reduced to <strong>four essential screens with visual guidance</strong> so patients could set up the device without processing unnecessary information.</p></div>
+      <div class="requirement-group"><h4>Device Status and Bluetooth Pairing</h4><p>The interface needed to <strong>confirm that the device was working, show battery and connection status, and guide users through BLE pairing</strong> with clear recovery when something went wrong.</p></div>
       <div class="requirement-group"><h4>Emergency Contact and Symptom Logging</h4><p>Emergency contact access was kept quick and easy to configure, while symptom logging used simple categories and local storage for low-friction entry during monitoring.</p></div>
     </div>
 
@@ -167,14 +167,6 @@
     <div class="text-column">
       <h3>Research Conclusion</h3>
       <p><strong style="color: white !important; margin-top: 1rem;">The central takeaway was that patients needed reassurance, not more medical data.</strong> Across the research, the same needs kept appearing: the interface must be readable, users must be able to tell whether the sensor is working, setup must be guided, and diagnostic interpretation must stay out of the patient experience. These findings became the criteria for the next phase: a design system that makes accessibility measurable and a requirements set that turns anxiety and confusion into specific product decisions.</p>
-
-      <h4 style="color: white; margin-top: 2rem;">Business Impact</h4>
-      <ul style="color: white; margin-top: 1rem; line-height: 1.8;">
-        <li><strong>WCAG 2.1 AA Compliance Achieved:</strong> The MVP meets all accessibility standards with 18pt minimum text, 4.5:1 contrast ratios, and 44x44px touch targets—critical for regulatory approval and elderly user adoption.</li>
-        <li><strong>User Testing Success:</strong> 6 major design iterations based on real user feedback resulted in 100% task completion for onboarding, device pairing, and symptom logging in final validation tests.</li>
-        <li><strong>Functional Flutter MVP Delivered:</strong> A working application with real BLE sensor connection, persistent status monitoring, and a scalable BLoC architecture ready for backend integration and clinical trials.</li>
-        <li><strong>Reduced Cognitive Load:</strong> Onboarding reduced from 7+ screens to 4 essential steps, and the logbook simplified from multiple tabs to a single view—directly addressing the 54% of users who found health apps too complicated.</li>
-      </ul>
     </div>
   </section>
 
@@ -217,7 +209,7 @@
     <div class="text-column">
       <h3>Low-Fidelity Prototypes</h3>
       <p style="color: white; margin-top: 1rem;">
-        I started with paper prototypes to test the structure before investing in high-fidelity screens. The onboarding flow was reduced from more than seven screens to four essential steps, accessibility options moved into setup, and the dashboard was stripped back to the information users needed most: device status, battery, connection, and reassurance.
+        I started with paper prototypes to test the structure before investing in high-fidelity screens. The onboarding flow was reduced from <strong>more than seven screens to four essential steps</strong>, accessibility options moved into setup, and the dashboard was stripped back to the information users needed most: <strong>device status, battery, connection, and reassurance.</strong>
       </p>
     </div>
 
@@ -225,7 +217,7 @@
     <div class="testing-results-grid">
       <div style="flex-basis: 100%;">
         <h3>User Testing on High-Fidelity Prototypes</h3>
-        <p style="color: var(--case-muted) !important; margin-top: 1rem;">I tested the main flows with older users using structured tasks, think-aloud feedback, observation, and short post-test interviews. The testing focused on onboarding, status checking, symptom logging, alerts, help, and sensor connection. This revealed where the accessibility decisions worked and where the language or hierarchy still created friction.</p>
+        <p style="color: var(--case-muted) !important; margin-top: 1rem;">I tested the main flows with older users using <strong>structured tasks, think-aloud feedback, observation, and short post-test interviews</strong>. The testing focused on onboarding, status checking, symptom logging, alerts, help, and sensor connection. This revealed where the accessibility decisions worked and where the language or hierarchy still created friction.</p>
       </div>
     </div>
 
@@ -318,7 +310,7 @@
       <div class="mockup-text">
         <h3>High-Fidelity Prototypes</h3>
         <p style="color: white;">
-          Designed high-fidelity prototypes based on feedback from low-fidelity testing. These detailed, interactive prototypes incorporated refined design elements and enhanced functionality, providing an accurate representation of the final product ready for user validation.
+          Designed high-fidelity prototypes based on feedback from low-fidelity testing. These detailed, interactive prototypes incorporated refined design elements and enhanced functionality, providing an accurate representation of the final product <strong>ready for user validation</strong>.
         </p>
       </div>
       <div class="mockup-image" style="display: flex; align-items: center; justify-content: center; flex: 1;">
