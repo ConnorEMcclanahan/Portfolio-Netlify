@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Phillips Wall | AI Feedback Timeline</title>
+  <title>Phillips Wall | AI-Powered Museum Feedback</title>
   <link rel="icon" type="image/png" href="../images/logo.png" />
   <link rel="stylesheet" href="../styles/style.css" />
   <link rel="stylesheet" href="../styles/frontend.css" />
@@ -38,40 +38,97 @@
 
   <section id="research" class="project-section reveal">
     <div class="text-column">
-      <h3>Understanding the Visitor Feedback Problem</h3>
-      <p>Phillips Museum visitors were already leaving opinions on physical sticky notes, but the feedback was difficult to organize, compare, or revisit over time. The project asked how those scattered responses could become an interactive record of changing public perspectives.</p>
-      <p>The concept focused on turning handwritten notes into structured, searchable insight without removing the human character of the original feedback. The system needed to help visitors see how their thoughts compared with others while giving curators a clearer view of recurring themes and shifts in sentiment.</p>
+      <h3>Research</h3>
+      <p>We began by understanding what already existed before designing something new. The previous group had built an early handwriting scanner and collected hundreds of Post-it responses, but some files and documentation were corrupted. We restored access, inspected the inherited code and dataset, and arranged a conversation with a former team member to understand how the scanner was intended to work.</p>
+      <p>We also visited the Philips Museum to study the physical feedback wall and the wider exhibition context. Seeing visitors move through the space helped us identify the UX problem: the exhibition encouraged active interaction with AI, but the final feedback activity became a static wall. The notes were personal and engaging, but visitors could not easily compare them, revisit them, or see how their thoughts connected to others.</p>
+      <p>As a team, we combined system review, museum observation, stakeholder conversations, team-canvas exercises, project questions, concept research, and feedback sessions. We used these activities to define the audience, understand the existing technical constraints, identify privacy and accessibility risks, and decide what the museum actually needed from the experience.</p>
+      <div class="phillips-image-grid">
+        <figure><img src="../images/phillipswall/team-brainstorming.jpeg" alt="Team members brainstorming with Post-it notes" loading="lazy"><figcaption>Team brainstorming session using physical Post-it notes.</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="proposal" class="project-section reveal">
+    <div class="text-column">
+      <h3>Proposal and UX direction</h3>
+      <p>Only after the research did we create the proposal, “Your thoughts connected.” We explored a guided visitor journey, a feedback station, and an interactive wall that could process and display responses over time.</p>
+      <p>Optional ideas such as printed summaries and a future time capsule helped us explore the wider opportunity. The core UX direction stayed focused on making every visitor feel that their contribution had been noticed and connected.</p>
+      <div class="phillips-image-feature">
+        <figure><img src="../images/phillipswall/whiteboard-ideation.jpeg" alt="Early hand-drawn visualization concept" loading="lazy"><figcaption>Early proposal work translating research findings into a visitor journey.</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="research-conclusion" class="project-section reveal">
+    <div class="text-column">
+      <h3>Research conclusion</h3>
+      <p>The research and museum visit led us to focus on an interactive feedback wall that kept the physical Post-it activity but made the growing collection easier to explore. Visitors would not just leave a note; they would see how their answer sat within a larger public conversation about AI.</p>
+      <p>We then chose a flexible Disciplined Agile Delivery approach and worked in short sprints. The first sprint focused on understanding the inherited work and defining the MVP; later sprints improved the functionality, visitor experience, and final delivery.</p>
+      <p>My design focus was translating that direction into an interface people could understand quickly, balancing an ambitious AI concept with a clear and approachable visitor experience.</p>
     </div>
   </section>
 
   <section id="data-preparation" class="project-section reveal">
     <div class="text-column">
-      <h3>Data Preparation and AI Pipeline</h3>
-      <p>The pipeline digitizes sticky-note responses, transcribes handwritten text, translates it when needed, and prepares each response for categorization and visualization. During development, the team improved the earlier OCR approach by moving to OpenAI-based text recognition for more consistent results.</p>
-      <p>This stage made the difference between a static collection of notes and a usable data source. Better transcription meant more reliable sentiment analysis, clearer categories, and fewer misleading patterns in the final timeline.</p>
+      <h3>AI pipeline, data quality, and frontend integration</h3>
+      <p>We inherited an earlier scanner and around 650 existing Post-it responses, but the original files were partly corrupted and the previous OCR approach produced inconsistent transcriptions. I helped the team understand the existing system, then we moved the handwriting recognition to OpenAI Vision to improve the quality of the data entering the application.</p>
+      <p>The pipeline recognizes and transcribes a note, checks it for personal or inappropriate content, identifies the question it answers, translates the response between Dutch and English, and assigns an AI stance score. That result is stored with the response and used by the frontend to place it on the visualization.</p>
+      <p>By the end of the project, we had processed approximately 700 notes. The important design decision was to treat the model output as a useful interpretation, not an unquestionable truth.</p>
+      <p>On the frontend, I connected the response data to the graph, refined the interaction states, and worked with the backend developers whenever the data structure or endpoints needed to change for testing. This kept the AI output connected to a usable visitor experience.</p>
     </div>
   </section>
 
   <section id="requirements" class="project-section reveal">
     <div class="text-column">
-      <h3>Requirements and Responsible AI</h3>
-      <p>The timeline needed real-time updates, AI-powered categorization, sentiment and emotion analysis, and predictive insights based on feedback over time. It also needed to remain understandable for visitors and useful for researchers and educators who would interpret the data.</p>
-      <p>Responsible use was part of the product definition. Visitor notes may contain private or sensitive information, handwriting can be misread by AI, and automated classifications should support human interpretation rather than replace it. Clear terms, content moderation, and transparency about how notes are processed are essential next steps.</p>
+      <h3>Visitor journey and concepts</h3>
+      <p>We explored multiple ways to connect physical notes with a digital display, including timelines, clustered responses, and an interactive two-axis map. Early concepts were sketched and turned into Figma prototypes so we could compare the visitor journey before committing to implementation.</p>
+      <h4>The design challenge</h4>
+      <p>The interface had to explain an unfamiliar AI process in seconds. A visitor needed to know what to write, what would happen after scanning, and where their response appeared, without being confronted by a complex dashboard or technical language.</p>
+      <h4>The UX decision</h4>
+      <p>We reduced the experience to a simple visual promise: a visitor contributes one response and sees it become part of a shared map. The question screen, language switch, confirmation flow, and response visualization were designed as one continuous journey. Privacy guidance was placed before scanning so anonymity and content limits were clear at the moment they mattered.</p>
+      <p>I shaped the interaction flow and translated the concept into frontend behavior. The visitor's own response needed to be easy to recognize, while color, position, scale, and a visible language control communicated the result without requiring visitors to understand the AI behind it.</p>
+      <div class="phillips-image-grid">
+        <figure><img src="../images/phillipswall/prototype-question-screen.jpeg" alt="Prototype screen showing AI feedback questions" loading="lazy"><figcaption>Prototype exploration of the question-selection experience.</figcaption></figure>
+        <figure><img src="../images/phillipswall/prototype-response-screen.jpeg" alt="Prototype screen showing grouped visitor responses" loading="lazy"><figcaption>Prototype exploration of grouped responses.</figcaption></figure>
+        <figure><img src="../images/phillipswall/sentiment-map-sketch.jpeg" alt="Hand-drawn sentiment map with x and y axes" loading="lazy"><figcaption>Sketch defining the sentiment map's two axes.</figcaption></figure>
+      </div>
     </div>
   </section>
 
   <section id="prototyping" class="project-section reveal">
     <div class="text-column">
-      <h3>Exploring the Interactive Timeline</h3>
-      <p>Early concepts explored how visitor opinions could be placed on a timeline and grouped into themes. The interface needed to make change visible without turning the exhibit into another dense dashboard. The most important design question was how to let people move between individual responses, recurring topics, and broader emotional patterns.</p>
-      <p>Feedback from the museum and project reviews pushed the design toward clearer visual hierarchy, more accessible language, and stronger emphasis on where a visitor's input appears in the larger conversation.</p>
+      <h3>Interaction model and responsible design</h3>
+      <p>The final concept maps each answer onto two axes. The horizontal axis represents how optimistic or concerned a visitor feels about the future of AI. The vertical axis represents their current attitude toward AI, from sceptical to enthusiastic. A color and saturation level identify the question that the visitor answered.</p>
+      <p>Responses that land close together merge into larger clusters. This makes repeated ideas visible without requiring visitors to read hundreds of individual notes. A timeline filter adds another layer, letting people explore how perspectives change as more responses are collected.</p>
+      <p>I translated the interaction model into the frontend experience, connected incoming response data to the graph, and refined the interaction states. Working closely with the backend developers meant that a visitor's position could appear clearly and consistently as the prototype changed.</p>
+      <div class="phillips-image-grid">
+        <figure><img src="../images/phillipswall/live-sentiment-graph.jpeg" alt="Live sentiment graph displaying clustered responses" loading="lazy"><figcaption>Live graph showing responses clustered by sentiment.</figcaption></figure>
+        <figure><img src="../images/phillipswall/system-architecture.jpeg" alt="System architecture diagram connecting the web app, API, database, and OpenAI" loading="lazy"><figcaption>High-level architecture connecting the interface, API, database, and AI service.</figcaption></figure>
+        <figure><img src="../images/phillipswall/statistics-dashboard.jpeg" alt="Statistics dashboard showing PostWall response data" loading="lazy"><figcaption>Internal statistics view for monitoring collected responses.</figcaption></figure>
+      </div>
     </div>
   </section>
 
   <section id="implementation" class="project-section reveal">
     <div class="text-column">
-      <h3>Prototype and Museum Testing</h3>
-      <p>The prototype connected the visitor input flow to a visual representation of the collected responses. The group tested the concept at the Phillips Museum and used visitor reactions to improve the interface for people with different levels of technical confidence.</p>
+      <h3>Museum testing and A/B testing</h3>
+      <p>We tested the prototype with visitors at the Philips Museum and used the session to observe where people hesitated, what they understood immediately, and whether they could find their own response on the graph. The feedback pushed us toward clearer instructions, stronger visual hierarchy, and more emphasis on showing a visitor where their answer had landed.</p>
+      <p>We also coordinated the frontend and backend during testing so newly submitted responses could appear without a page refresh. That connection was essential: the experience only feels participatory when a visitor can see the result of their contribution.</p>
+      <p>I helped prepare the visitor test, explained the interface during the session, and used the feedback to simplify the presentation of the graph. During the final presentation, I demonstrated the working frontend and communicated how the interface, data pipeline, and visualization worked together.</p>
+      <h4>What the testing changed</h4>
+      <p>At the event, we presented the working PostWall system at our table and used A/B testing with visitors to compare how people understood the experience and the visual feedback. This gave us direct evidence about what was clear, what needed explanation, and how people interacted with the live prototype.</p>
+      <h4>Recognition</h4>
+      <p>Our team won first place for the best table and showcase at the event. The award recognized how we combined a functioning AI system, an interactive visualization, and a clear visitor demonstration. <a class="phillips-inline-link" href="https://www.instagram.com/p/DJjPYFPtfuS/?igsh=ZXcwOWc5aGt4eHI4" target="_blank" rel="noreferrer">View the event recognition</a>.</p>
+      <div class="phillips-award" role="note">
+        <strong>1st place: Best table and showcase</strong>
+        <span>Spring 2025 AI &amp; Data Event</span>
+      </div>
+      <div class="phillips-image-grid phillips-event-gallery">
+        <figure><img src="../images/phillipswall/event-room-wide.jpeg" alt="Event table with the PostWall installation and two display screens" loading="lazy"><figcaption>The event setup connected the physical Post-it wall with two live visualizations.</figcaption></figure>
+        <figure><img src="../images/phillipswall/event-live-demonstration.jpeg" alt="Visitors and team members viewing the live PostWall visualization" loading="lazy"><figcaption>Demonstrating the working system and its live response graph.</figcaption></figure>
+        <figure><img src="../images/phillipswall/event-visitor-testing.jpeg" alt="Visitors testing the PostWall experience at the event" loading="lazy"><figcaption>Visitors testing the experience and comparing the two interface views.</figcaption></figure>
+        <figure><img src="../images/phillipswall/museum-installation.jpeg" alt="Philips Museum installation showing the physical Post-it wall and digital visualization" loading="lazy"><figcaption>The final installation brought the physical and digital feedback spaces together.</figcaption></figure>
+      </div>
     </div>
     <div class="phillips-demo">
       <div class="phillips-demo__copy">
@@ -86,16 +143,19 @@
 
   <section id="impact" class="project-section reveal">
     <div class="text-column">
-      <h3>Impact and Next Steps</h3>
-      <p>The project offers visitors a more active way to engage with an exhibit and gives curators evidence they can use for longer-term planning. Instead of treating feedback as a one-time archive, the timeline makes public perception visible as something that evolves.</p>
-      <p>The main risks are privacy, inaccurate interpretation of handwriting or emotion, and over-reliance on automated conclusions. Future work should strengthen consent and data-retention language, improve human review tools, and test whether the visualizations help visitors understand the data without oversimplifying it.</p>
+      <h3>Delivery, recognition, and next steps</h3>
+      <p>The final prototype turned a passive feedback wall into an evolving, shared visualization. Visitors could contribute to the exhibition and compare their perspective with the responses around them, while the museum gained a more structured way to understand engagement and recurring themes.</p>
+      <p>The project was presented at the Spring 2025 AI & Data Event, where our team won first place for the best table and showcase after demonstrating the working system and testing it with visitors. The Philips Museum also considered the concept for a future exhibition. The next version would benefit from a dedicated scanning station, stronger administrative tools, better handling of duplicate answers, broader language support, and a clearer human-review flow for uncertain classifications.</p>
     </div>
   </section>
 
   <footer class="footer-section">
     <div class="footer-content">
       <p class="footer-thanks">Thank you for exploring</p>
-      <ul id="navigation"><li><a href="../index.html" class="footer-btn"><ion-icon name="home"></ion-icon> Home</a></li><li><a href="#top" class="footer-btn return-top"><ion-icon name="arrow-up"></ion-icon> Return to Top</a></li></ul>
+      <ul id="navigation">
+        <li><a href="../index.html" class="footer-btn"><ion-icon name="home"></ion-icon> Home</a></li>
+        <li><a href="#top" class="footer-btn return-top"><ion-icon name="arrow-up"></ion-icon> Return to Top</a></li>
+      </ul>
     </div>
   </footer>
 
