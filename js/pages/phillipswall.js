@@ -5,13 +5,14 @@ const introSummaryData = {
   meta: [
     { label: 'Role', value: 'Frontend Developer and UI/UX Designer' },
     { label: 'Context', value: 'AI for Society Minor group project' },
-    { label: 'Timeline', value: 'Spring 2025' },
-    { label: 'Tools', value: 'React, JavaScript, Python, SQLite, OpenAI Vision' }
+    { label: 'Timeline', value: '20 weeks (Spring 2025)' },
+    { label: 'Tools', value: 'React, JavaScript, Python, SQLite, OpenAI Vision' },
+    { label: 'GitHub', value: 'github.com/ConnorEMcclanahan/PhillipsWall', href: 'https://github.com/ConnorEMcclanahan/PhillipsWall' }
   ],
   story: {
-    background: 'The Philips Museum exhibition invited visitors to reflect on artificial intelligence, but the experience ended with handwritten notes on a static wall.',
-    problem: 'We needed to turn those notes into an interactive experience without losing the spontaneity of the physical wall or exposing visitors to unnecessary privacy risks.',
-    goals: 'Create a clear, accessible visualization where visitors could see their response in relation to the wider conversation and the museum could learn from the collected feedback.'
+    background: 'The Philips Museum exhibition successfully immersed visitors in exploring and reflecting upon artificial intelligence, yet the physical visitor journey historically terminated at a passive, static sticky-note wall. This conventional setup limited visitor engagement, offering no digital mechanism for people to explore how individual viewpoints connected conceptually across the broader exhibition space.',
+    problem: 'The multidisciplinary development team faced the complex challenge of transforming these spontaneous handwritten notes into a dynamic digital experience without sacrificing the raw authenticity and tactile charm of the physical medium. Simultaneously, the solution had to adhere strictly to General Data Protection Regulation compliance boundaries, ensuring visitors were never exposed to unnecessary privacy risks or identity retention hazards.',
+    goals: 'The initiative aimed to engineer a clear, highly accessible spatial data visualization that allowed visitors to immediately see their individual responses positioned in direct relation to the wider public dialogue. In parallel, the project needed to furnish museum stakeholders with structured, actionable insights and automated analytics derived from ongoing feedback collection, eliminating the need for manual sorting.'
   }
 };
 

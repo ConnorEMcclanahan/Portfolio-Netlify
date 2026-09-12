@@ -1,4 +1,4 @@
-/* Footer Styles */
+/* Default Footer — shared by every page (same as the index.html footer) */
 footer {
   background: #000;
   color: #fff;
@@ -6,94 +6,81 @@ footer {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.footer-content {
-  max-width: 1200px;
+.footer-cta {
+  max-width: 900px;
   margin: 0 auto;
-  padding: 0 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
+  padding: 4.5rem 1.5rem 3.5rem;
+  text-align: center;
 }
 
-/* Logo on left */
-.footer-logo {
-  flex-shrink: 0;
+.footer-cta__eyebrow {
+  margin: 0 0 1rem;
+  color: rgba(255, 255, 255, 0.62);
+  font-family: "Syne", "Plus Jakarta Sans", sans-serif;
+  font-size: 0.75rem !important;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
 }
 
-.footer-logo img {
-  width: 50px;
-  height: 50px;
-  transition: transform 0.2s ease;
-}
-
-.footer-logo img:hover {
-  transform: scale(1.05);
-}
-
-/* Navigation in middle */
-.footer-nav {
-  display: flex;
-  gap: 2rem;
-  list-style: none;
-  padding: 0;
+.footer-cta h2 {
+  max-width: 100%;
   margin: 0;
-}
-
-.footer-nav a {
   color: #fff;
-  text-decoration: none;
-  font-size: 1rem;
-  font-weight: 500;
-  transition: color 0.2s ease;
-  font-family: "Plus Jakarta Sans", sans-serif;
+  font-family: "Syne", "Plus Jakarta Sans", sans-serif;
+  font-size: clamp(3rem, 7vw, 5.5rem) !important;
+  font-weight: 800;
+  line-height: 0.95;
+  overflow-wrap: normal;
+  text-wrap: balance;
 }
 
-.footer-nav a:hover {
-  color: #6E07F3;
-}
-
-/* Social links on right */
-.footer-social {
+.footer-cta__actions {
   display: flex;
-  gap: 1rem;
-  flex-shrink: 0;
-}
-
-.footer-social a {
-  display: flex;
-  align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 50%;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2.5rem;
+}
+
+.footer-cta__actions a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 44px;
+  padding: 0.75rem 1.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
   color: #fff;
+  font-weight: 700;
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
 }
 
-.footer-social a:hover {
-  background: #6E07F3;
+.footer-cta__actions a:hover {
   transform: translateY(-2px);
+  border-color: #6E07F3;
 }
 
-.footer-social ion-icon {
-  font-size: 1.2rem;
+.footer-cta__primary {
+  background: #6E07F3;
+  border-color: #6E07F3 !important;
 }
 
-/* Mobile responsive */
-@media (max-width: 768px) {
-  .footer-content {
-    flex-direction: column;
-    gap: 1.5rem;
-    padding: 1.5rem 1rem;
-    text-align: center;
-  }
+.footer-cta__primary:hover {
+  background: #5206b8;
+}
 
-  .footer-nav {
-    gap: 1rem;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
+.footer-cta__email {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 3rem;
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.footer-cta__email:hover {
+  color: #fff;
 }

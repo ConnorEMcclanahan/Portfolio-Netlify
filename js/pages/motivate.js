@@ -1,18 +1,16 @@
 const introSummaryData = {
   title: 'Instruction Creation Tool',
   subtitle: 'Creating clearer work instructions for factory teams',
-  lead: 'As UX/UI Designer and Front-end Developer, I led the development of an intuitive instruction management system within PMT that meets industry standardization requirements while optimizing user experience for factory environments.',
+  lead: 'An intuitive tool embedded in Motivate\u0027s Platform Management Tool (PMT) that streamlines standard work instructions for factory environments.',
   meta: [
     { label: 'Role', value: 'UX/UI Designer and Front-end Developer' },
-    { label: 'Duration', value: 'Feb 19 - Jun 28, 2024 (18 weeks)' },
-    { label: 'Stack', value: 'Vue 3, PDF.js, Node.js, Figma' },
-    { label: 'Deliverables', value: 'Research Report, Competitive Analysis, Hi-fi Prototype, ICT' },
-    { label: 'Release', value: 'Integrated PMT Branch' }
+    { label: 'Timeline', value: 'Feb 19 - Jun 28, 2024 (18 weeks)' },
+    { label: 'Tools Used', value: 'Vue 3, PDF.js, Node.js, Figma' }
   ],
   story: {
-    background: 'The Instruction Creation Tool extends Motivate\'s Platform Management Tool for teams creating standard work instructions in factory environments.',
-    problem: 'Managers relied on scattered files and external tools, making instruction creation, approval, version control, and access harder to manage.',
-    goals: 'Create one clear workflow for authoring, reviewing, publishing, and viewing multimedia work instructions across factory devices.'
+    background: 'The Instruction Creation Tool directly extends Motivate\u0027s Platform Management Tool to empower manufacturing and assembly teams tasked with authoring standardized work instructions within demanding factory environments. By integrating deeply into Motivate\u0027s existing architecture, the project supports a continuous push toward paperless, efficient shop floor operations and real-time data accessibility.',
+    problem: 'Prior to this system, managers and operators struggled with significant operational friction caused by their reliance on scattered files and disparate external tools. This fragmentation made critical tasks\u2014such as instruction creation, formal approval routing, strict version control, and rapid multi-device access\u2014unnecessarily difficult to manage across the production floor.',
+    goals: 'The core objective was to establish a unified, frictionless workflow for authoring, reviewing, publishing, and viewing rich multimedia work instructions across diverse factory devices. Key targets included refining the platform\u0027s interface for maximum usability, optimizing the high-definition PDF viewer within an iframe to streamline document handling, and fully meeting industry compliance and standardization requirements.'
   }
 };
 

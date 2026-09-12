@@ -27,7 +27,7 @@ const finalSectionData = {
         },
         {
           title: 'Business Value Delivered',
-          copy: 'WCAG 2.1 AA compliance achieved with 18pt minimum text and 4.5:1 contrast ratios—critical for regulatory approval. Six design iterations based on user feedback resulted in 100% task completion in final validation tests. The functional Flutter MVP with real BLE connection and scalable BLoC architecture is ready for backend integration and clinical trials.'
+          copy: 'WCAG 2.1 AA compliance achieved with 18pt minimum text and 4.5:1 contrast ratios—critical for regulatory approval. Six design iterations based on user feedback resulted in 100% task completion in final validation tests. The functional Flutter MVP with real BLE connection and scalable BLoC architecture is ready for backend integration and clinical trials. Simplifying onboarding from 7+ screens to 4 and consolidating the logbook into one view also reduced cognitive load for users.'
         },
         {
           title: 'Advice to Stakeholders',

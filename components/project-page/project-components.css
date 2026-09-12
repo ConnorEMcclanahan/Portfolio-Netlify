@@ -62,13 +62,13 @@ body.project-page-standard .case-study-phase h2 {
 body.project-page-standard .case-study-phase h3,
 body.project-page-standard .case-study-phase h4,
 body.project-page-standard .case-study-phase__overview li {
-  font-family: "Syne", "Plus Jakarta Sans", sans-serif;
+  font-family: "Plus Jakarta Sans", sans-serif;
 }
 
 body.project-page-standard .case-study-phase__overview h3,
 body.project-page-standard .case-study-phase__content h3,
 body.project-page-standard .case-study-phase__content h4 {
-  font-family: "Syne", "Plus Jakarta Sans", sans-serif;
+  font-family: "Plus Jakarta Sans", sans-serif;
 }
 
 body.project-page-standard .case-study-phase__body {
@@ -81,7 +81,7 @@ body.project-page-standard .case-study-phase__body {
 body.project-page-standard .case-study-phase__overview h3,
 body.project-page-standard .case-study-phase__lead h3 {
   margin: 0 0 1.25rem;
-  color: #fff;
+  color: #6E07F3;
   font-size: 1.5rem;
   text-align: left;
 }
@@ -172,6 +172,18 @@ body.project-page-standard .case-study-phase__narrative p {
   color: var(--case-muted) !important;
   font-size: 1rem;
   line-height: 1.75;
+}
+
+body.project-page-standard #phase-02 .case-study-phase__title h2,
+body.project-page-standard #phase-03 .case-study-phase__title h2,
+body.project-page-standard #phase-04 .case-study-phase__title h2,
+body.project-page-standard #phase-02 .case-study-phase__overview h3,
+body.project-page-standard #phase-03 .case-study-phase__overview h3,
+body.project-page-standard #phase-04 .case-study-phase__overview h3,
+body.project-page-standard #phase-02 .case-study-phase__narrative h3,
+body.project-page-standard #phase-03 .case-study-phase__narrative h3,
+body.project-page-standard #phase-04 .case-study-phase__narrative h3 {
+  font-weight: 800;
 }
 
 body.project-page-standard .case-study-phase__content > .project-section > div[style*="background"] {
@@ -352,6 +364,21 @@ body.project-page-standard #intro-summary .intro-meta-item span {
   color: #b8b8b8 !important;
 }
 
+body.project-page-standard #intro-summary .intro-meta-item a {
+  color: #6E07F3 !important;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(110, 7, 243, 0.55);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+body.project-page-standard #intro-summary .intro-meta-item a:hover,
+body.project-page-standard #intro-summary .intro-meta-item a:focus-visible {
+  color: #9a53ff !important;
+  border-bottom-color: #9a53ff;
+}
+
 body.project-page-standard .intro-summary-grid {
   align-items: start;
 }
@@ -374,11 +401,11 @@ body.project-page-standard .case-study-nav__inner {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
-  gap: 0.75rem;
+  gap: 1.25rem;
   width: 100%;
   max-width: none;
   margin: 0 auto;
-  padding: 0.8rem 1.25rem;
+  padding: 0.7rem 1.5rem;
   box-sizing: border-box;
 }
 
@@ -407,20 +434,35 @@ body.project-page-standard .case-study-nav a {
   white-space: nowrap;
 }
 
-body.project-page-standard .case-study-nav__top {
+/* Back-to-top: proper pill button so its purpose is obvious */
+body.project-page-standard .case-study-nav a.case-study-nav__top {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 0.25rem;
+  gap: 0.45rem;
+  padding: 0.45rem 1.1rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
   color: #fff;
-  font-size: 1.15rem;
   flex-shrink: 0;
+  transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
 }
 
-body.project-page-standard .case-study-nav__top span {
+body.project-page-standard .case-study-nav a.case-study-nav__top ion-icon {
+  font-size: 1rem;
+}
+
+body.project-page-standard .case-study-nav a.case-study-nav__top span {
   font-size: 0.72rem;
   font-weight: 700;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
+}
+
+body.project-page-standard .case-study-nav a.case-study-nav__top:hover {
+  border-color: #6E07F3;
+  background: #6E07F3;
+  transform: translateY(-1px);
 }
 
 body.project-page-standard .case-study-nav__toggle {
@@ -445,6 +487,49 @@ body.project-page-standard .case-study-nav__toggle span {
   height: 2px;
   border-radius: 999px;
   background: currentColor;
+}
+
+body.project-page-standard .case-study-nav__links a {
+  transition: color 0.2s ease;
+}
+
+body.project-page-standard .case-study-nav__links a:hover {
+  color: #fff;
+}
+
+/* Small screens: collapse the section links behind the toggle */
+@media (max-width: 900px) {
+  body.project-page-standard .case-study-nav__inner {
+    grid-template-columns: auto 1fr;
+  }
+
+  body.project-page-standard .case-study-nav__toggle {
+    display: inline-flex;
+  }
+
+  body.project-page-standard .case-study-nav__top {
+    justify-self: end;
+  }
+
+  body.project-page-standard .case-study-nav__links {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.9rem;
+    padding: 1rem 1.5rem 1.25rem;
+    background: rgba(5, 5, 5, 0.97);
+    border-top: 1px solid var(--case-line);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  body.project-page-standard .case-study-nav__links.is-open {
+    display: flex;
+  }
 }
 
 body.project-page-standard .case-study-process {

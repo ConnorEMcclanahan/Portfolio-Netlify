@@ -1547,3 +1547,100 @@ body.project-page-standard .case-study-phase__content .reveal.active {
   padding: 0;
 }
 
+/* ============================================================
+   INTRO SECTION PARITY WITH DIPLORA
+   Every project page presents the overview/intro section exactly
+   like the Diplora case study: same fonts, sizes, colors,
+   alignment, and grid proportions. Extends the color-only rules
+   above with the sizes/layout so Motivate matches Diplora.
+   ============================================================ */
+body.project-page-standard #intro-summary .intro-heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+body.project-page-standard #intro-summary .intro-heading .intro-title {
+  color: #6E07F3 !important;
+  font-family: "Syne", sans-serif;
+  font-size: 2.75rem !important;
+  font-weight: 800;
+  line-height: 1.1;
+  text-align: center;
+}
+
+body.project-page-standard #intro-summary .intro-subtitle {
+  color: #fff !important;
+  font-size: 1.125rem !important;
+  width: fit-content;
+  max-width: 100%;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center;
+}
+
+body.project-page-standard #intro-summary .intro-heading .intro-lead {
+  color: #6E07F3 !important;
+  font-size: 1.875rem !important;
+  font-weight: 600;
+  line-height: 1.2;
+  width: fit-content;
+  max-width: 100%;
+  text-align: center;
+}
+
+body.project-page-standard #intro-summary .intro-overview-title,
+body.project-page-standard #intro-summary .intro-story-block h2,
+body.project-page-standard #intro-summary .intro-meta-item strong {
+  color: #fff !important;
+}
+
+body.project-page-standard #intro-summary .intro-story-block p,
+body.project-page-standard #intro-summary .intro-meta-item span {
+  color: #b8b8b8 !important;
+}
+
+body.project-page-standard #intro-summary .intro-summary-grid {
+  width: min(100%, 1200px);
+  box-sizing: border-box;
+  grid-template-columns: minmax(220px, 0.7fr) minmax(0, 2fr);
+}
+
+body.project-page-standard #intro-summary .intro-meta ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+body.project-page-standard #intro-summary .intro-meta-item {
+  width: 100%;
+}
+
+body.project-page-standard #intro-summary .intro-meta-item a {
+  color: #6E07F3 !important;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(110, 7, 243, 0.55);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+body.project-page-standard #intro-summary .intro-meta-item a:hover,
+body.project-page-standard #intro-summary .intro-meta-item a:focus-visible {
+  color: #9a53ff !important;
+  border-bottom-color: #9a53ff;
+}
+/* ============================================================
+   FINAL COLUMNS: force the two columns side by side on desktop
+   (Motivate-only — scoped by the #final-container id).
+   The shared .final-col rule is `flex: 0 0 auto; max-width: 700px`
+   inside a wrapping flex container, so a ~700px second column
+   wraps below the first inside the 1200px container. Equal
+   flex-basis keeps both columns in one row.
+   ============================================================ */
+#final-container.final-section .final-col {
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: none;
+  margin: 0;
+}

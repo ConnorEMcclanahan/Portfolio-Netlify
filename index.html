@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="components/footer/footer.css"/>
     <link rel="stylesheet" href="styles/pages/index.css"/>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
@@ -29,7 +30,7 @@
           <span></span>
         </button>
         <ul class="navbar-menu">
-          <li><a href="pages/about.html">About</a></li>
+          <li><a href="#about">About</a></li>
           <li><a href="#projects">Projects</a></li>
           <li><a href="pdfs/resume.pdf">Resume</a></li>
           <li><a href="#contact">Contact</a></li>
@@ -132,52 +133,40 @@
           </a>
         </div>
       </section>
-      
-      <section id="contact" class="reveal">
-        <h1 class="title">Contact Me</h1>
-        <h2 class="subtitle">Want to see more of what I can do? Contact me here!</h2>
-        <div class="container">
-          <form action="https://formspree.io/f/mpqbvknz" method="POST">
-            <div class="field">
-              <label class="label">Name</label>
-              <input class="input is-large" name="name" type="text" required>
+
+      <section id="about" class="about-section reveal">
+        <div class="about-layout">
+          <div class="about-portrait">
+            <img src="images/me.jpeg" alt="Connor McClanahan" loading="lazy">
+          </div>
+          <div class="about-copy">
+            <h1 class="title about-title">About Me</h1>
+            <p>I'm a Californian by origin and a Dutch-trained designer and developer, recently wrapping up my BSc in ICT Media &amp; Design at Fontys University (2021–2026) here in Eindhoven. Moving across the world taught me how to adapt fast and design with empathy for people from all walks of life.</p>
+            <p>I don't just hand off Figma mockups and walk away. My sweet spot is closing the gap between research and real, shipped code. Whether I'm building an accessible Bluetooth ECG app for elderly patients at Diplora that passed every user validation test, applying strict WCAG accessibility standards from day one, or deploying rugged PWAs directly onto factory floors for Motivate.nl, I focus on software that actually survives the messy real world.</p>
+            <p>That hands-on approach to stripping away hype and building genuinely useful, accessible interfaces comes from my minor in AI for Society, and it's become central to how I work.</p>
+            <p>Away from the screen, I'm usually cooking or exploring city architecture. Restaurant work taught me how to operate as part of a tight team under pressure. That collaborative, move-fast mentality has carried through my university projects, internships, and into how I work with developers, researchers, and stakeholders now.</p>
+            <div class="about-links">
+              <a href="https://github.com/ConnorEMcclanahan?tab=repositories" target="_blank" rel="noopener noreferrer">GitHub <ion-icon name="arrow-up-right-outline" aria-hidden="true"></ion-icon></a>
+              <a href="mailto:connor.e.mcclanahan@gmail.com">Email <ion-icon name="arrow-up-right-outline" aria-hidden="true"></ion-icon></a>
             </div>
-            <div class="field">
-              <label class="label">Email</label>
-              <input class="input is-large" name="email" type="email" required>
-            </div>
-            <div class="field">
-              <label class="label">Message</label>
-              <textarea class="textarea is-large" name="message" rows="5" required></textarea>
-            </div>
-            <div class="field">
-              <button type="submit" class="button is-primary is-outlined is-medium is-fullwidth is-rounded">Submit</button>
-            </div>
-          </form>
+          </div>
         </div>
       </section>
+      
     </main>
-    <footer class="footer-section">
-      <div class="footer-content">
-        <div class="footer-logo">
-          <a href="index.html">
-            <img src="images/logo.png" alt="Logo">
-          </a>
+    <footer id="contact" class="footer-section reveal">
+      <div class="footer-cta">
+        <p class="footer-cta__eyebrow">Like what you see?</p>
+        <h2>Let's Connect!</h2>
+        <div class="footer-cta__actions">
+          <a class="footer-cta__primary" href="mailto:connor.e.mcclanahan@gmail.com">Email me <ion-icon name="arrow-up-right-outline" aria-hidden="true"></ion-icon></a>
+          <a class="footer-cta__secondary" href="https://www.linkedin.com/in/connor-mcclanahan" target="_blank" rel="noopener noreferrer">LinkedIn <ion-icon name="arrow-up-right-outline" aria-hidden="true"></ion-icon></a>
+          <a class="footer-cta__secondary" href="pdfs/resume.pdf" target="_blank" rel="noopener noreferrer">Resume <ion-icon name="arrow-down-outline" aria-hidden="true"></ion-icon></a>
         </div>
-        <ul class="footer-nav">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="pages/about.html">About</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-        <div class="footer-social">
-          <a href="https://github.com/ConnorEMcclanahan" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-            <ion-icon name="logo-github"></ion-icon>
-          </a>
-          <a href="https://linkedin.com/in/connor-mcclanahan" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-            <ion-icon name="logo-linkedin"></ion-icon>
-          </a>
-        </div>
+        <a class="footer-cta__email" href="mailto:connor.e.mcclanahan@gmail.com">
+          <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
+          <span>connor.e.mcclanahan@gmail.com</span>
+        </a>
       </div>
     </footer>
     

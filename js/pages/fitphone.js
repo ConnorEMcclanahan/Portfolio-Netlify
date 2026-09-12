@@ -15,18 +15,16 @@ function initScrollCue() {
 const introSummaryData = {
   title: 'FitPhone Case Study',
   subtitle: 'Digital wellness for healthier phone habits',
-  lead: 'I designed and built FitPhone, a community-focused digital wellness app that helps young adults build healthier relationships with their phones.',
+  lead: 'A cross-platform app that helps young adults build healthier smartphone habits through self-awareness and mindful usage.',
   meta: [
     { label: 'Role', value: 'UI/UX Designer & Front-end Engineer' },
-    { label: 'Duration', value: '4 weeks' },
-    { label: 'Tech', value: 'Flutter, Dart' },
-    { label: 'Design', value: 'Figma, Canva' },
-    { label: 'Release', value: 'App Store & Play Store' }
+    { label: 'Timeline', value: '4 weeks' },
+    { label: 'Tools Used', value: 'Flutter, Dart' }
   ],
   story: {
-    background: 'FitPhone is a digital wellness app designed to help young adults build healthier relationships with their phones through community and reflection.',
-    problem: 'Most digital wellness tools only track screen time. They rarely provide personalized guidance, social support, or reasons to change behavior.',
-    goals: 'Design and build a motivating, community-driven experience with goals, progress tracking, educational content, and peer accountability.'
+    background: 'FitPhone is an innovative project designed to empower young adults aged 18 to 30 to cultivate intentional smartphone habits through heightened self-awareness. While mobile technology provides undeniable everyday utility, unmonitored device usage directly drives widespread challenges including acute sleep deprivation, reduced cognitive focus, and chronic procrastination. The application addresses these modern friction points by introducing structured behavioral frameworks that turn passive screen interaction into active, mindful choices.',
+    problem: 'Most legacy digital wellness applications fail to sustain meaningful, long-term user engagement because they rely exclusively on passive screen-time tracking and restrictive usage caps. These solutions present users with raw metrics without offering actionable strategies, personalized behavioral guidance, or social incentive structures. Consequently, users are left with data about their negative habits but lack the motivation, tools, or community support necessary to drive actual behavioral change.',
+    goals: 'The core objective was to design and engineer a comprehensive digital ecosystem that enables users to take control of their digital well-being through shared accountability and personal milestone tracking. FitPhone fulfills this by pairing robust front-end functionality with community-driven features: empowering users to set clear, measurable goals, visualize their focus metrics over time, engage with digestible behavioral education, and participate in peer-led accountability groups.'
   }
 };
 

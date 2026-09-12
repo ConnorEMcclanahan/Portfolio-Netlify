@@ -137,6 +137,49 @@
       margin-bottom: 1rem;
     }
 
+    body.project-page-standard .project-section h4 {
+      color: #6E07F3;
+      font-family: "Syne", "Plus Jakarta Sans", sans-serif;
+      font-weight: 700;
+    }
+
+    body.project-page-standard .project-section strong {
+      color: #fff;
+      font-weight: 700;
+    }
+
+    body.project-page-standard #research .research-intro-copy {
+      margin-top: 1rem;
+      color: var(--case-muted) !important;
+    }
+
+    body.project-page-standard #research .research-findings-title {
+      margin: 2.5rem 0 1.25rem;
+      color: #6E07F3 !important;
+      font-size: 1.35rem !important;
+      line-height: 1.25;
+      text-align: left;
+    }
+
+    body.project-page-standard #research .research-findings {
+      display: grid;
+      gap: 1rem;
+      margin: 0;
+      padding: 1.5rem 0 0;
+      color: var(--case-muted) !important;
+      line-height: 1.7;
+    }
+
+    body.project-page-standard #research .research-findings li {
+      margin: 0;
+      padding: 0 0 1rem;
+      color: var(--case-muted) !important;
+    }
+
+    body.project-page-standard #research .research-findings li:last-child {
+      padding-bottom: 0;
+    }
+
     .brand-identity-image {
       display: block;
       width: 100%;
@@ -753,6 +796,10 @@
 
     body.project-page-standard #research .research-narrative strong {
       color: #fff;
+    }
+
+    body.project-page-standard #research .text-column strong {
+      color: #fff !important;
     }
 
     body.project-page-standard #prototyping > div[style*="display: flex"] h4 {

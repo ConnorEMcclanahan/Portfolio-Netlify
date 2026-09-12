@@ -1099,3 +1099,92 @@ body.project-page-standard #intro-summary .intro-heading .intro-lead {
     font-size: 2.5rem;
   }
 }
+/* ============================================================
+   INTRO SECTION PARITY WITH DIPLORA
+   Every project page presents the overview/intro section exactly
+   like the Diplora case study: same fonts, sizes, colors,
+   alignment, and grid proportions (body.project-page-standard
+   rules load last and override any legacy intro styles).
+   ============================================================ */
+body.project-page-standard #intro-summary {
+  background: #000 !important;
+  color: #fff;
+}
+
+body.project-page-standard #intro-summary .intro-heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+body.project-page-standard #intro-summary .intro-heading .intro-title {
+  color: #6E07F3 !important;
+  font-family: "Syne", sans-serif;
+  font-size: 2.75rem !important;
+  font-weight: 800;
+  line-height: 1.1;
+  text-align: center;
+}
+
+body.project-page-standard #intro-summary .intro-subtitle {
+  color: #fff !important;
+  font-size: 1.125rem !important;
+  width: fit-content;
+  max-width: 100%;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center;
+}
+
+body.project-page-standard #intro-summary .intro-heading .intro-lead {
+  color: #6E07F3 !important;
+  font-size: 1.875rem !important;
+  font-weight: 600;
+  line-height: 1.2;
+  width: fit-content;
+  max-width: 100%;
+  text-align: center;
+}
+
+body.project-page-standard #intro-summary .intro-overview-title,
+body.project-page-standard #intro-summary .intro-story-block h2,
+body.project-page-standard #intro-summary .intro-meta-item strong {
+  color: #fff !important;
+}
+
+body.project-page-standard #intro-summary .intro-story-block p,
+body.project-page-standard #intro-summary .intro-meta-item span {
+  color: #b8b8b8 !important;
+}
+
+body.project-page-standard #intro-summary .intro-summary-grid {
+  width: min(100%, 1200px);
+  box-sizing: border-box;
+  grid-template-columns: minmax(220px, 0.7fr) minmax(0, 2fr);
+}
+
+body.project-page-standard #intro-summary .intro-meta ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+body.project-page-standard #intro-summary .intro-meta-item {
+  width: 100%;
+}
+/* Project Goals bullet list in the intro story (FitPhone-specific structured content) */
+body.project-page-standard #intro-summary .intro-story-list {
+  margin: 1rem 0 2rem;
+  padding-left: 1.5rem;
+}
+
+body.project-page-standard #intro-summary .intro-story-list li {
+  color: #b8b8b8 !important;
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
+}
+
+body.project-page-standard #intro-summary .intro-story-list li strong {
+  color: #6E07F3 !important;
+  font-weight: 600;
+}

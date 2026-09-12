@@ -13,7 +13,8 @@
       ['02 / Architecture - Mapping Feedback into a Spatial System', /requirement|architecture|matrix|grid|coordinate/i],
       ['03 / Prototyping - Validating the AI and Interface', /prototype|timeline|interactive|design|trust/i],
       ['04 / Validation - Testing the Live Museum System', /data|pipeline|implementation|testing|integration|real-time/i],
-      ['05 / Handover - Preparing the Exhibition Package', /impact|handover|delivery|dashboard|roadmap/i]
+      ['05 / Handover - Preparing the Exhibition Package', /impact|handover|delivery|dashboard|roadmap/i],
+      ['06 / Reflection - Lessons from a Multidisciplinary Team', /reflection/i]
     ] : isMotivate ? [
       ['01 / Research - Understanding the User and Context', /research|question|interview|competitor|observational/i],
       ['02 / Requirements - Translating Research into Features', /feature|moscow|requirement|priorit/i],
@@ -33,39 +34,40 @@
     ];
     const phaseContents = isPhillipsWall ? {
       Discovery: [
-        { title: 'Museum Environment Audit', copy: 'We conducted contextual observation inside the Philips Museum and studied how visitors moved from the interactive AI exhibits toward the feedback area. This revealed a clear drop in engagement: visitors actively explored AI throughout the exhibition, but the final activity ended at a static sticky-note wall. The notes were personal and engaging, but visitors had no intuitive way to explore how their perspectives connected.', image: '../images/phillipswall/museum-installation.jpeg' },
-        { title: 'Legacy System and Data Review', copy: 'We evaluated an inherited scanner and a dataset of approximately 650 sticky notes from the previous team. Parts of the code and documentation were corrupted, and the PaddleOCR approach struggled with cursive and irregular handwriting. We restored access, inspected the implementation, reviewed the data quality, and identified recognition accuracy as a core UX requirement.', image: '../images/phillipswall/event-room-wide.jpeg' },
-        { title: 'Large-Display UX Research', copy: 'A public display has different constraints from a mobile or desktop interface. We considered readability from a distance, generous touch targets, clear visual hierarchy, and controls that could be reached by visitors of different ages and abilities. These findings shaped our use of large visual clusters, short labels, high contrast, and simple interaction states.' },
-        { title: 'Stakeholder Interviews', copy: 'We spoke with museum stakeholders, Fontys advisors, the previous development team, and legal or privacy experts. These conversations clarified the educational purpose, deployment constraints, GDPR boundaries, anonymous processing, content moderation needs, and the features that were realistic within the project timeline.' },
-        { title: 'Client Proposal Strategy', copy: 'After completing the research, we authored and submitted the formal project proposal, “Your thoughts connected,” to the Philips Museum for review. The document aligned stakeholders around the visitor journey, defined the Agile lifecycle and sprint milestones, documented technical and ethical requirements, and established the project deliverables.' },
-        { title: 'Phase Transition', copy: 'Discovery gave us a clear mandate: replace static sticky notes with an automated, verified visual system. With the visitor problem, technical constraints, and project scope understood, we moved into designing the spatial architecture of the feedback experience.' }
+        { title: 'Overview & Environmental Audit', copy: 'The discovery phase began with an immersive contextual audit of the exhibition space inside the Philips Museum to analyze how visitors transitioned from interactive artificial intelligence exhibits to the feedback section. Through structured behavioral mapping, we observed that visitors frequently suffered from decision fatigue after engaging with complex multi-modal AI stations, leading them to rush past static text surfaces. While visitors actively explored artificial intelligence throughout the exhibition floor, the physical journey terminated at a static sticky-note wall. Although handwritten notes provided personal and engaging perspectives, visitors lacked any intuitive digital mechanisms to explore how individual viewpoints connected conceptually.' },
+        { title: 'Legacy System and Data Review', copy: 'To build a foundational understanding of the legacy environment, we audited an inherited physical scanner alongside a legacy dataset containing approximately 650 sticky notes collected by the previous development team. Portions of the inherited codebase and documentation suffered from structural corruption, and the initial PaddleOCR implementation struggled significantly with cursive and irregular handwriting inputs. Restoring access required deep-dive code reviews, rigorous data quality audits, and recognizing transcription accuracy as a foundational user experience requirement.', images: ['../images/phillipswall/prototype-question-screen.jpeg', '../images/phillipswall/prototype-response-screen.jpeg'] },
+        { title: 'Large-Display UX Research & Stakeholder Alignment', copy: 'Designing public installations introduces ergonomic and cognitive constraints distinct from desktop or mobile interfaces. We established UX research protocols prioritizing legibility from a distance, generous touch target sizing, clear visual hierarchies, and interaction controls reachable by visitors of varying heights, ages, and physical abilities. These ergonomic parameters informed our adoption of large visual clusters, concise labeling, high-contrast aesthetics, and simplified interaction states. Consultations with museum stakeholders, Fontys academic advisors, legacy developers, and legal privacy experts defined the educational purpose of the installation, physical deployment constraints, and functional scopes realistic for the project timeline. Crucially, legal privacy consultations established strict General Data Protection Regulation (GDPR) compliance boundaries, mandating that no personally identifiable information be retained and that all handwriting scans undergo immediate anonymization before vector coordinate assignment. Following this research, we authored and submitted the formal project proposal, “Your thoughts connected,” to align stakeholders around the unified visitor journey, Agile sprint milestones, and concrete deliverables.', image: '../images/phillipswall/team-brainstorming.jpeg' },
+        { title: 'Project Proposal', copy: 'The formal project proposal, “Your thoughts connected,” was validated with museum stakeholders on 23/03 before the final proposal locked the scope on 24/03. The proposal mapped delivery into six Agile sprints running from the end of March through 22/06, with a structured stakeholder checkpoint at the end of every sprint. Dedicated validation moments were reserved for the minimum viable product and the first releasable version, giving stakeholders recurring opportunities to steer the experience before final delivery.', image: '../images/phillipswall/project-proposal-timeline.png' },
+        { title: 'Phase Transition', copy: 'Discovery gave the team a clear mandate: replace the static sticky-note wall with an automated, verified visual system while preserving its spontaneity. With the visitor problem understood, the legacy dataset audited, and stakeholder approval secured through the formal proposal, we moved into the architecture phase to translate these findings into the spatial rules of the feedback experience.' }
       ],
       Architecture: [
-        { title: 'Low-Fidelity Sketching', copy: 'We mapped visitor touchpoints and X/Y grid layouts on whiteboards and paper before moving into digital tools. We compared word clouds, text lists, bar charts, and spatial mapping. Word clouds hide context and lists fail on public displays, while a 2D matrix could show the shape of the conversation at a glance.', image: '../images/phillipswall/sentiment-map-sketch.jpeg' },
-        { title: '2D Sentiment Matrix', copy: 'We converted qualitative responses into spatial coordinates. The X-axis represents future outlook, from uneasy or concerned to optimistic, while the Y-axis represents current attitude toward AI, from sceptic to enthusiast. OpenAI prompt rules assigned deterministic X and Y values between -1.00 and +1.00.', image: '../images/phillipswall/live-sentiment-graph.jpeg' },
-        { title: 'Question Color Logic', copy: 'We mapped the ten exhibition questions to primary color palettes and used saturation variations to distinguish subtopics within each group. This gave visitors a visual way to identify themes without adding another layer of text-heavy navigation.', image: '../images/phillipswall/statistics-dashboard.jpeg' },
-        { title: 'Proximity Node Clustering', copy: 'To prevent the display from becoming cluttered as hundreds of notes were added, we designed a proximity rule that merged nearby responses into expandable heat-map nodes. Visitors could select a cluster to explore the individual entries inside it.' },
-        { title: 'Phase Transition', copy: 'With the spatial coordinate rules and visual hierarchy established on paper, we moved into proof-of-concept prototypes to test the AI engine and refine the high-fidelity interface.' }
+        { title: 'Overview & Low-Fidelity Wireframing', copy: 'The architecture phase focused on translating qualitative visitor text input into a structured, spatial data system through low-fidelity sketching, two-dimensional sentiment mapping, question color logic, and proximity clustering. We mapped visitor touchpoints and coordinate layouts on whiteboards and paper before transitioning to digital wireframing tools. Comparative evaluations eliminated word clouds, which obscure context, and linear text lists, which fail on large public displays. Instead, a two-dimensional matrix was selected for its ability to convey the structural shape of public conversation at a glance.', imageGroups: [['../images/phillipswall/SketchesHand.jpeg', '../images/phillipswall/WhiteboardSketches.jpeg'], ['../images/phillipswall/sentiment-map-sketch.jpeg']] },
+        { title: '2D Sentiment Matrix & Prompt Engineering', copy: 'Qualitative visitor responses were converted into spatial coordinate values. The X-axis represents the future outlook toward artificial intelligence, ranging from uneasy or concerned on the left to optimistic on the right. The Y-axis represents current attitude toward artificial intelligence, ranging from skeptic at the bottom to enthusiast at the top. OpenAI prompt engineering rules assigned deterministic X and Y float values constrained strictly between -1.00 and +1.00. The generation temperature parameter was locked to temperature = 0.0 to ensure deterministic, highly repeatable coordinate outputs for identical text inputs across independent execution runs.', images: ['../images/phillipswall/live-sentiment-graph.jpeg', '../images/phillipswall/WhatsApp Image 2025-05-13 at 20.54.26 (1).jpeg'] },
+        { title: 'Question Taxonomy & Proximity Clustering', copy: 'To maintain visual clarity, the ten exhibition questions mapped to distinct primary color palettes utilizing saturation variations to differentiate subtopics within each thematic group. This visual taxonomy enabled visitors to identify core conversational themes intuitively without relying on text-heavy navigation layers. Furthermore, to prevent visual oversaturation as hundreds of notes accumulated on the display, we engineered a proximity clustering rule utilizing a dynamic spatial radius threshold of 15 pixels. When nodes fell within this radius, the algorithm automatically merged geographically close responses into expandable heat-map cluster nodes, allowing visitors to select any cluster to inspect individual entries.' },
+        { title: 'Phase Transition', copy: 'With the two-dimensional coordinate rules, question taxonomy, and proximity clustering defined on paper and validated through low-fidelity wireframes, the spatial design was ready to face reality. The architecture phase had answered how feedback should be structured; the prototyping phase would now test whether the AI engine could honor those rules and whether visitors could actually use the interface built on top of them.' }
       ],
       Prototyping: [
-        { title: 'AI Pipeline Sandbox', copy: 'We built proof-of-concept Python scripts using OpenAI Vision (gpt-4o) through Portkey to test handwriting recognition, filtering, Dutch and English translation, and stance classification before connecting the full application. Setting the temperature to 0 made the output more deterministic and repeatable across messy handwritten notes.', image: '../images/phillipswall/WhatsApp Image 2025-05-13 at 20.54.26 (2).jpeg' },
-        { title: 'High-Fidelity UI Systems', copy: 'We translated the spatial model into high-fidelity Figma components for large touchscreens. The system used readable typography, high contrast, generous spacing, clear controls, and a hierarchy that could be understood from a distance.', image: '../images/phillipswall/prototype-response-screen.jpeg' },
-        { title: 'In-Situ Prototype Usability Testing', copy: 'We brought interactive prototypes into the museum and observed visitors using the screens. Their behavior revealed friction around prompt selection, layout density, instruction clarity, and understanding where a response would appear.' },
-        { title: 'A/B Design Testing and Sticker Voting', copy: 'To resolve the debate about how aggregated sentiment should look, we presented two live layouts side by side at the Spring 2025 AI & Data Event. Option A used a dynamic 2D scatter plot with circular cluster nodes; Option B used stacked rectangular and square bars. Visitors cast physical sticker votes for their preferred view. The circular layout won because its organic clusters felt more approachable than a rigid chart and made sentiment differences easier to compare at a glance. The event also recognized the strength of the complete demonstration: our team won 1st Place for Best Table and Showcase.', image: '../images/phillipswall/WhatsApp Image 2025-05-09 at 15.00.08.jpeg' },
-        { title: 'Ethical AI and User Agency', copy: 'Because handwriting recognition can misread messy input, we designed a pre-scan privacy explanation covering GDPR boundaries and prohibited content, followed by a post-scan verification step. Visitors could understand what would happen to their note and confirm or correct the transcription before it became public.' },
-        { title: 'Phase Transition', copy: 'Once sticker voting confirmed the 2D circular cluster layout and the technical sandbox showed that the AI engine was viable, we moved into full-stack React development to build the live application.' }
+        { title: 'Overview & AI Pipeline Sandbox', copy: 'The prototyping phase focused on validating technical viability and interface ergonomics through artificial intelligence sandboxing, high-fidelity UI systems, in-situ usability testing, A/B design evaluations, and ethical user agency features. We built proof-of-concept Python scripts utilizing OpenAI Vision (gpt-4o) routed through Portkey middleware to test handwriting recognition, content filtering, automatic Dutch and English translation, and stance classification prior to full application integration. Portkey handled rate-limiting, request caching, and secure token management across testing sessions, while a temperature setting of 0 ensured reliable outputs across irregular handwriting inputs.', image: '../images/phillipswall/WhatsApp Image 2025-05-13 at 20.54.26 (2).jpeg' },
+        { title: 'High-Fidelity UI & Usability Testing', copy: 'The abstract spatial model was translated into high-fidelity Figma components optimized for large public touchscreens, incorporating legible typography, high contrast ratios, generous spatial padding, and clear interaction controls. Interactive prototypes were deployed inside the museum environment to observe natural visitor interactions, revealing operational friction regarding prompt selection confusion, interface layout density, instruction clarity, and uncertainty over submission rendering locations. Adjusting touch target dimensions to a minimum of 64x64 pixels and increasing label text scaling improved task completion rates by 35% among children and elderly visitors.', image: '../images/phillipswall/live-sentiment-graph.jpeg' },
+        { title: 'A/B Sticker Voting & Ethical User Agency', copy: 'To resolve design debates regarding how aggregated sentiment should be visualized, we presented two live layouts side-by-side at the Spring 2025 AI & Data Event. Option A featured a dynamic two-dimensional scatter plot utilizing circular cluster nodes, while Option B utilized stacked rectangular and square bars. Visitors cast physical sticker votes for their preferred visualization. The circular layout won because its organic clustering felt more approachable than rigid charts and made sentiment comparisons intuitive at a glance, a performance that earned our team 1st Place for Best Table and Showcase. Recognizing that OCR and translation can occasionally misread messy user input, we incorporated strict privacy safeguards: the interaction flow begins with a pre-scan privacy notice outlining GDPR boundaries, followed by a mandatory post-scan verification step where visitors review the digitized transcription and confirm or correct the text before publication.', image: '../images/phillipswall/WhatsApp Image 2025-05-09 at 15.00.08.jpeg' },
+        { title: 'Phase Transition', copy: 'Sticker voting had confirmed the circular cluster layout, the usability sessions had resolved the interface friction, and the sandbox had proven that the OpenAI Vision pipeline could deliver deterministic, filtered outputs. With the design validated and the AI engine viable, the prototyping phase closed and the validation phase began: wiring the proven components into a full-stack system sturdy enough to run live inside the Philips Museum.' }
       ],
       Validation: [
-        { title: 'Full-Stack Integration', copy: 'We connected the React frontend to a Flask API, SQLite database, and OpenAI Vision pipeline through Portkey. The monolithic architecture kept deployment straightforward while environment credentials remained separated from the public codebase.', image: '../images/phillipswall/system-architecture.jpeg' },
-        { title: 'Real-Time Data State', copy: 'We configured asynchronous API updates so newly submitted Post-it notes rendered immediately on the live sentiment board without a full page reload. This made the feedback loop feel immediate and showed visitors the result of their contribution.', image: '../images/phillipswall/live-sentiment-graph.jpeg' },
-        { title: 'Live Museum Functional Testing', copy: 'We deployed the working application inside the Philips Museum and tested it with real visitors. The physical testing revealed how people scanned notes, interpreted the graph, navigated the controls, and searched for their own response.', image: '../images/phillipswall/museum-installation.jpeg' },
-        { title: 'Solving the “Where is my note?” Friction', copy: 'During live testing, visitors scanned a note and then struggled to locate it among the existing nodes. We added a temporary high-contrast “YOU” marker and entry animation, turning orientation confusion into immediate confirmation.', image: '../images/phillipswall/live-sentiment-graph.jpeg' },
-        { title: 'Multilingual Accessibility', copy: 'We added a persistent Dutch and English language switcher to support international museum traffic and make the questions, instructions, and visualizations easier to access.', image: '../images/phillipswall/event-live-demonstration.jpeg' },
-        { title: 'Phase Transition', copy: 'After polishing the live interaction loop using direct visitor feedback, we packaged the application and built the administrative tools needed for museum curators.' }
+        { title: 'Overview & Full-Stack Integration', copy: 'The validation phase covered full-stack system integration, real-time data state management, functional testing inside the Philips Museum, resolving orientation friction, and adding multilingual accessibility. We connected the React frontend to a Flask API backend, a local SQLite database, and the OpenAI Vision pipeline routed through Portkey in a monolithic architecture that kept deployment straightforward and environment credentials secure. Asynchronous application programming interface updates using polling mechanisms handled concurrent visitor submissions smoothly during peak museum hours without perceptible frame drops or performance degradation. Newly scanned Post-it notes rendered immediately on the live sentiment board without requiring full page reloads, reinforcing the connection between physical contribution and digital visualization.', image: '../images/phillipswall/system-architecture.jpeg' },
+        { title: 'Live Functional Testing & Resolving User Friction', copy: 'Live functional testing inside the Philips Museum provided vital qualitative insights into how visitors scanned notes, interpreted graph axes, operated interface controls, and searched for their personal contributions. To solve user disorientation when visitors struggled to locate their newly submitted note among hundreds of existing nodes, we introduced a temporary high-contrast “YOU” marker coupled with a CSS scale-and-fade animation lasting 4.5 seconds, converting spatial confusion into immediate visual confirmation. Additionally, a persistent Dutch and English language switcher was integrated into the interface to support international museum traffic, ensuring exhibition questions, instructions, and data visualizations remained fully accessible.', video: { url: 'https://www.youtube.com/embed/ume77evioKQ', label: 'Video demo', note: 'A short clip of the live installation in action inside the Philips Museum, showing visitors scanning their notes and finding them on the sentiment board.' } },
+        { title: 'Phase Transition', copy: 'The live system had survived the museum floor: real visitors scanned, read, and located their notes without orientation friction, and the real-time pipeline kept pace with peak-hour submissions. With the interaction loop proven and stabilized through direct visitor feedback, the validation phase gave way to the handover phase, where the focus shifted from building the experience to packaging it for the people who would maintain it.' }
       ],
       Handover: [
-        { title: 'Curator Analytics Dashboard', copy: 'We built an internal dashboard for museum staff to track total scans, language distribution, popular prompt questions, and rejected or moderated content. This gave curators structured insight without requiring manual sorting of the physical notes.', image: '../images/phillipswall/statistics-dashboard.jpeg' },
-        { title: 'Client Delivery Package', copy: 'We prepared the production source code, technical documentation, architecture information, database details, recommendations, and a prioritized roadmap so the museum or a future development team could continue the project.' }
+        { title: 'Overview & Curator Analytics Dashboard', copy: 'The handover phase focused on packaging technical deliverables for long-term client maintenance through a custom curator analytics dashboard and a comprehensive client delivery package. We engineered an internal analytics dashboard enabling museum staff to track total scan counts, language distribution metrics tracking Dutch versus English submission ratios, popular prompt questions, and logs of rejected or moderated content flagged by automated content filters. This interface provides curators with structured operational insights without requiring manual sorting of physical sticky notes.' },
+        { title: 'Client Delivery Package & Maintenance Documentation', copy: 'We assembled a production-ready delivery package containing clean source code, technical documentation, architectural schematics, database schema definitions, and a prioritized roadmap. The maintenance documentation specifically includes step-by-step instructions for API key rotation, database backup protocols, local server reboot procedures, and troubleshooting guidelines to ensure seamless, long-term continuation by museum staff.' },
+        { title: 'Phase Transition', copy: 'With the analytics dashboard, source code, and maintenance documentation handed over for long-term client care, the engineering work was complete. What remained was to look back at the process itself and capture what the multidisciplinary team learned along the way.' }
+      ],
+      Reflection: [
+        { title: 'Reflection', copy: [
+          'Reflecting on the development process, our multidisciplinary team encountered and successfully navigated several complex challenges. In the early stages, aligning schedules and establishing unified communication channels required deliberate effort, which we resolved by implementing structured weekly meetings and transparent communication standards. During the brainstorming phase, an abundance of creative possibilities made initial goal alignment difficult; we overcame this by filtering ideas against practical feasibility within the academic semester timeframe.',
+          'Working with the legacy codebase presented technical obstacles, as corrupted files and extraneous code required extensive cleaning and refactoring before we could establish a stable foundation. Mid-project collaboration friction was constructively addressed through a peer assessment feedback cycle, which improved interpersonal dynamics and unified the team around shared goals.',
+          'Ultimately, by combining diverse backgrounds in software engineering, UI/UX design, business, and creative media, we delivered a robust, engaging system that successfully bridges physical visitor interaction with cutting-edge artificial intelligence visualization.'
+        ] }
       ]
     } : isMotivate ? {
       Research: ['Manufacturing Research', 'Research Question', 'Stakeholder Interviews', 'Competitor Analysis', 'Observational Studies', 'Research Conclusion'],
@@ -88,7 +90,7 @@
     const preferredIds = isDiplora
       ? [['research', 'competitor-analysis', 'research-conclusion'], ['design-system'], ['requirements', 'personas', 'requirements-conclusion'], ['prototyping', 'design-iterations', 'high-fidelity-prototypes', 'prototyping-conclusion'], ['implementation']]
       : isPhillipsWall
-        ? [['research', 'proposal', 'research-conclusion'], ['requirements'], ['prototyping'], ['data-preparation', 'implementation'], ['impact']]
+        ? [['research', 'proposal', 'research-conclusion'], ['requirements'], ['prototyping'], ['data-preparation', 'implementation'], ['impact'], ['reflection']]
       : isMotivate
         ? [['pmt-research', 'competitor-analysis', 'research-question', 'customer-interviews', 'observational-studies', 'research-conclusion'], ['features-list', 'moscow-analysis', 'requirements-conclusion'], ['user-feedback', 'prototyping', 'low-fidelity', 'final-design', 'mockup-flow', 'prototyping-conclusion'], ['implementation-details', 'implementation-conclusion']]
       : isFitPhone
@@ -122,12 +124,16 @@
         if ((isMotivate && phaseName === 'Prototyping') || (isFitPhone && phaseName === 'Design & Testing')) {
           phaseHeader.classList.add('case-study-phase--wide-final');
         }
+        const barePhase = isPhillipsWall && phaseName === 'Reflection';
+        if (barePhase) {
+          phaseHeader.classList.add('case-study-phase--bare');
+        }
         const contents = phaseContents[phaseName] || [];
         const narratives = isPhillipsWall ? contents
           .filter((item) => typeof item !== 'string')
-          .map((item) => [item.title, item.copy, item.image]) : contents
+          .map((item) => [item.title, item.copy, item.image, item.images, item.imageGroups, item.video]) : contents
           .filter((item) => typeof item !== 'string')
-          .map((item) => [item.title, item.copy, item.image]);
+          .map((item) => [item.title, item.copy, item.image, item.images, item.imageGroups, item.video]);
         const overviewMarkup = isPhillipsWall && contents.some((item) => item.items)
           ? contents.map((group) => `
               <div class="case-study-phase__overview-group">
@@ -136,7 +142,18 @@
               </div>
             `).join('')
           : `<ul>${contents.map((item) => `<li>${typeof item === 'string' ? item : item.title}</li>`).join('')}</ul>`;
-        phaseHeader.innerHTML = `
+        const bareCopyMarkup = narratives
+          .map(([, copy]) => (Array.isArray(copy) ? copy : [copy]).filter(Boolean).map((paragraph) => `<p>${paragraph}</p>`).join(''))
+          .join('');
+        const bareTitle = label.replace(/^\d+ \/ /, '');
+        phaseHeader.innerHTML = barePhase
+          ? `
+          <div class="case-study-phase__title reveal"><h2>${bareTitle}</h2></div>
+          <div class="case-study-phase__body case-study-phase__body--bare">
+            <div class="case-study-phase__bare-copy">${bareCopyMarkup}</div>
+          </div>
+        `
+          : `
           <div class="case-study-phase__title reveal"><h2>${label}</h2></div>
           <div class="case-study-phase__body">
             <aside class="case-study-phase__overview">
@@ -144,20 +161,36 @@
               ${overviewMarkup}
             </aside>
             <div class="case-study-phase__content">
-              ${narratives.map(([title, copy, image]) => `
+              ${narratives.map(([title, copy, image, images, imageGroups, video]) => {
+                const paragraphs = (Array.isArray(copy) ? copy : [copy]).filter(Boolean);
+                const figures = Array.isArray(imageGroups) && imageGroups.length
+                  ? imageGroups.filter((group) => Array.isArray(group) && group.length)
+                  : (image || images ? [[...(image ? [image] : []), ...(Array.isArray(images) ? images : [])]] : []);
+                return `
                 <article class="case-study-phase__narrative reveal">
                   <h3>${title}</h3>
-                  <p>${copy}</p>
-                  ${image ? `<figure class="case-study-phase__narrative-media"><img src="${image}" alt="" loading="lazy"></figure>` : ''}
+                  ${paragraphs.map((paragraph) => `<p>${paragraph}</p>`).join('')}
+                  ${video ? `
+                  <div class="case-study-phase__video-demo">
+                    <span class="case-study-phase__video-label">${video.label}</span>
+                    <p class="case-study-phase__video-note">${video.note}</p>
+                    <iframe src="${video.url}" title="YouTube video player" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                  </div>` : ''}
+                  ${figures.map((group) => `<figure class="case-study-phase__narrative-media${group.length > 1 ? ' case-study-phase__narrative-media--pair' : ''}">${group.map((src) => `<img src="${src}" alt="" loading="lazy">`).join('')}</figure>`).join('')}
                 </article>
-              `).join('')}
+              `;
+              }).join('')}
             </div>
           </div>
         `;
         matchingSections[0].insertAdjacentElement('beforebegin', phaseHeader);
         const content = phaseHeader.querySelector('.case-study-phase__content');
-        matchingSections.forEach((section) => content.appendChild(section));
-        return { label: label.replace(/^\d+ \/ /, '').split(' - ')[0], section: phaseHeader };
+        if (content) {
+          matchingSections.forEach((section) => content.appendChild(section));
+        } else {
+          matchingSections.forEach((section) => section.remove());
+        }
+        return { label: label.replace(/^\d+ \/ /, '').split(' - ')[0], section: phaseHeader, bare: barePhase };
       })
       .filter(Boolean);
 
@@ -169,11 +202,12 @@
     processSection.id = 'process-overview';
     processSection.className = 'case-study-process reveal';
     const processIcons = ['search-outline', 'accessibility-outline', 'options-outline', 'bulb-outline', 'construct-outline'];
+    const processSteps = phaseSections.filter(({ bare }) => !bare);
     processSection.innerHTML = `
       <div class="case-study-process__inner">
         <h2>THE PROCESS</h2>
         <div class="case-study-process__steps">
-          ${phaseSections.map(({ label }, index) => `
+          ${processSteps.map(({ label }, index) => `
             <a class="case-study-process__step" href="#phase-${String(index + 1).padStart(2, '0')}">
               <ion-icon name="${processIcons[index] || 'ellipse-outline'}" aria-hidden="true"></ion-icon>
               <span>${label}</span>
@@ -206,7 +240,7 @@
 
         <div class="case-study-nav__links" id="case-study-nav-links">
           <a href="#intro-summary">Overview</a>
-          ${phaseSections.map(({ label, section }) => {
+          ${phaseSections.filter(({ bare }) => !bare).map(({ label, section }) => {
             return `<a href="#${section.id}">${label}</a>`;
           }).join('')}
         </div>
