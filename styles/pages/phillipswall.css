@@ -65,6 +65,70 @@ body.project-page-standard #intro-summary .intro-meta-item a:focus-visible {
   border-bottom-color: #9a53ff;
 }
 
+/* Overview/intro heading treatment (parity with the Diplora case study) */
+body.project-page-standard #intro-summary .intro-heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+body.project-page-standard #intro-summary .intro-heading .intro-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 2.75rem !important;
+  font-weight: 800;
+  line-height: 1.1;
+  text-align: center;
+}
+
+body.project-page-standard #intro-summary .intro-subtitle {
+  font-size: 1.125rem !important;
+  width: fit-content;
+  max-width: 100%;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center;
+}
+
+body.project-page-standard #intro-summary .intro-heading .intro-lead {
+  font-size: 1.875rem !important;
+  font-weight: 600;
+  line-height: 1.2;
+  width: fit-content;
+  max-width: 100%;
+  text-align: center;
+}
+
+body.project-page-standard #intro-summary .intro-summary-grid {
+  width: min(100%, 1200px);
+  box-sizing: border-box;
+  grid-template-columns: minmax(220px, 0.7fr) minmax(0, 2fr);
+}
+
+body.project-page-standard #intro-summary .intro-meta ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+body.project-page-standard #intro-summary .intro-meta-item {
+  width: 100%;
+}
+
+/* Phase titles scale with the viewport instead of jumping between sizes */
+body.project-page-standard .case-study-phase__title {
+  overflow: hidden;
+}
+
+body.project-page-standard .case-study-phase__title h2 {
+  max-width: 100%;
+  padding: 0 1rem;
+  box-sizing: border-box;
+  font-size: clamp(1.35rem, 3vw, 1.8rem) !important;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+
 body.project-page-standard .project-section {
   max-width: 1200px;
   margin: 0 auto;
@@ -151,8 +215,59 @@ body.project-page-standard .case-study-phase__narrative-media {
 body.project-page-standard .case-study-phase__narrative-media img {
   display: block;
   width: min(100%, 760px);
-  max-height: 360px;
+  border-radius: 4px;
+}
+
+body.project-page-standard .case-study-phase__narrative-media--pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+body.project-page-standard .case-study-phase__narrative-media--pair img {
+  display: block;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+  border-radius: 4px;
+}
+
+body.project-page-standard .case-study-phase__video-demo {
+  margin: 1.25rem 0 0 0;
+}
+
+body.project-page-standard .case-study-phase__video-label {
+  display: inline-block;
+  color: #6E07F3;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+body.project-page-standard .case-study-phase__video-label::after {
+  content: '';
+  display: block;
+  width: 2.5rem;
+  height: 3px;
+  margin: 0.4rem 0 0;
+  background: #6E07F3;
+  border-radius: 2px;
+}
+
+body.project-page-standard .case-study-phase__video-note {
+  margin: 0.75rem 0 0.5rem;
+  color: var(--case-muted);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+body.project-page-standard .case-study-phase__video-demo iframe {
+  display: block;
+  width: min(100%, 760px);
+  aspect-ratio: 16 / 9;
+  border: 0;
   border-radius: 4px;
 }
 
