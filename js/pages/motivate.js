@@ -325,124 +325,6 @@ function addContentReveals() {
   });
 }
 
-function initThreeLoader() {
-  if (!window.THREE) {
-    return;
-  }
-
-  const loader = document.getElementById('loader');
-  if (!loader) {
-    return;
-  }
-
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 1000);
-  camera.position.set(0, 0, 200);
-
-  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setPixelRatio(window.devicePixelRatio);
-  loader.appendChild(renderer.domElement);
-
-  scene.add(new THREE.AmbientLight(0xffffff, 0.3));
-  const dir = new THREE.DirectionalLight(0xffffff, 0.7);
-  dir.position.set(1, 1, 1);
-  scene.add(dir);
-
-  const rand = (min, max) => min + Math.random() * (max - min);
-
-  const createGlobe = (radius) => {
-    const group = new THREE.Group();
-    const edges = new THREE.EdgesGeometry(new THREE.SphereGeometry(radius, 16, 16));
-    group.add(new THREE.LineSegments(edges, new THREE.LineBasicMaterial({ color: 0x6E07F3, transparent: true, opacity: 0.8 })));
-
-    const spikeVerts = new Float32Array(40 * 2 * 3);
-    let idx = 0;
-    for (let i = 0; i < 40; i += 1) {
-      const theta = Math.acos(rand(-1, 1));
-      const phi = rand(0, Math.PI * 2);
-      const x = radius * Math.sin(theta) * Math.cos(phi);
-      const y = radius * Math.sin(theta) * Math.sin(phi);
-      const z = radius * Math.cos(theta);
-      spikeVerts[idx++] = x;
-      spikeVerts[idx++] = y;
-      spikeVerts[idx++] = z;
-
-      const scale = 1 + rand(0.15, 0.35);
-      spikeVerts[idx++] = x * scale;
-      spikeVerts[idx++] = y * scale;
-      spikeVerts[idx++] = z * scale;
-    }
-
-    group.add(new THREE.LineSegments(
-      new THREE.BufferGeometry().setAttribute('position', new THREE.BufferAttribute(spikeVerts, 3)),
-      new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.3 })
-    ));
-
-    const points = [];
-    for (let i = 0; i < 80; i += 1) {
-      const t = rand(-radius * 0.6, radius * 0.6);
-      const h = rand(-radius * 0.2, radius * 0.2) * (1 - Math.abs(t) / (radius * 0.6));
-      points.push(new THREE.Vector3(t, h, 0), new THREE.Vector3(t, -h, 0));
-    }
-
-    const waveGeo = new THREE.BufferGeometry().setFromPoints(points);
-    const waveMat = new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.6 });
-    const wave1 = new THREE.LineSegments(waveGeo, waveMat);
-    group.add(wave1, wave1.clone().rotateX(Math.PI / 2), wave1.clone().rotateY(Math.PI / 2));
-
-    return group;
-  };
-
-  const radius = 40;
-  const placed = [];
-  const globes = [];
-
-  for (let i = 0; i < 5; i += 1) {
-    let x;
-    let y;
-    let scale;
-    let globeRadius;
-    let attempts = 0;
-
-    do {
-      x = rand(-100, 100);
-      y = rand(-60, 60);
-      scale = rand(0.6, 1.2);
-      globeRadius = radius * scale;
-      attempts += 1;
-    } while (placed.some((p) => Math.hypot(p.x - x, p.y - y) < p.radius + globeRadius) && attempts < 1000);
-
-    placed.push({ x, y, radius: globeRadius });
-    const globe = createGlobe(radius);
-    globe.position.set(x, y, 0);
-    globe.scale.set(scale, scale, scale);
-    scene.add(globe);
-    globes.push({ globe, speed: rand(0.1, 0.3) });
-  }
-
-  let prev = 0;
-  const animate = (time = 0) => {
-    const dt = (time - prev) / 1000;
-    prev = time;
-
-    globes.forEach((obj) => {
-      obj.globe.rotation.y += dt * obj.speed;
-      obj.globe.rotation.x += dt * obj.speed * 0.4;
-    });
-
-    renderer.render(scene, camera);
-    requestAnimationFrame(animate);
-  };
-
-  requestAnimationFrame(animate);
-
-  window.addEventListener('resize', () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-  });
-}
 
 document.addEventListener('DOMContentLoaded', () => {
   if (window.pdfjsLib) {
@@ -451,7 +333,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initScrollCue();
   initSmoothScroll();
-  initThreeLoader();
 
   if (window.ProjectPageComponents) {
     window.ProjectPageComponents.renderIntroSummary('#intro-summary', introSummaryData);

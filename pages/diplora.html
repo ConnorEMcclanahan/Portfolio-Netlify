@@ -28,12 +28,14 @@
 
   <!-- Site JS -->
   <script src="../js/script.js" defer></script>
+  <script src="../components/loading-screen/loading-screen.js" defer></script>
+  <link rel="stylesheet" href="../components/loading-screen/loading-screen.css" />
 </head>
 
 <body class="project-page-standard">
-  <!-- Loader -->
-  <div id="loader">
-    <div class="loading-text">Loading...</div>
+  <!-- Shared Loading Screen Component -->
+  <div id="loader" class="loading-screen">
+    <div class="loading-screen__text">Loading...</div>
   </div>
 
   <!-- Main Content -->
@@ -433,6 +435,7 @@
   <script src="../components/project-page/case-study-nav.js" defer></script>
   <script src="../js/pages/diplora.js" defer></script>
   <script src="../components/navbar/navbar.js" defer></script>
+  <script src="../components/loading-screen/loading-screen.js" defer></script>
 </body>
 
 </html>

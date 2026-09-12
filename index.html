@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="components/navbar/navbar.css"/>
     <link rel="stylesheet" href="components/footer/footer.css"/>
     <link rel="stylesheet" href="styles/pages/index.css"/>
+    <link rel="stylesheet" href="components/loading-screen/loading-screen.css" />
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
@@ -20,6 +21,11 @@
     <script src="js/vantaglobe.js"></script>
   </head>
   <body>
+    <!-- Shared Loading Screen Component -->
+    <div id="loader" class="loading-screen">
+      <div class="loading-screen__text">Loading...</div>
+    </div>
+
     <nav class="navbar">
       <div class="navbar-container">
         <a href="index.html" class="navbar-logo">
@@ -186,6 +192,7 @@
     </footer>
     
     <script src="js/pages/index.js" defer></script>
+    <script src="components/loading-screen/loading-screen.js" defer></script>
     <script src="components/navbar/navbar.js" defer></script>
   </body>
 </html>
