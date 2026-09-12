@@ -131,7 +131,8 @@
     /* scroll-down indicator — purple + attention-grabbing */
     .scroll-down{
       position:absolute;
-      bottom:32px;
+     
+  bottom:32px;
       left:50%;
       transform:translateX(-50%);
       font-size:3.25rem;
@@ -384,41 +385,7 @@ html {
     flex-direction: column;
 }
 
-#loader {
-      position: absolute; top:0; left:0;
-      width:100%; height:100%;
-      z-index: 10;
-      margin: 0; padding: 0;
-      width: 100%; height: 100%;
-      overflow: hidden;
-      background: #000;
-    }
-    .loading-text {
-      position: absolute;
-      bottom: 5%;
-      width: 100%;
-      text-align: center;
-      color: #ccc;
-      font-family: 'Raleway', sans-serif;
-      font-size: 1.2rem;
-      letter-spacing: 1px;
-      animation: pulse 1.2s ease-in-out infinite;
-      z-index: 11;
-    }
-    @keyframes pulse {
-      0%,100% { opacity: 0.6; }
-      50%     { opacity: 1;   }
-    }
-    #loader.hidden {
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    @keyframes rotate {
-      to { transform: rotate(360deg); }
-    }
-
-    .pov-container {
+.pov-container {
   display: flex;
   flex-direction: column;
   gap: 2rem;

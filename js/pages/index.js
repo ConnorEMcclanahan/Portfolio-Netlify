@@ -66,3 +66,14 @@ document.addEventListener('DOMContentLoaded', () => {
   initReveal();
   initPortraitAnimation();
 });
+
+// Hide the shared loading screen once everything is loaded.
+// (The shared component's loading-screen.js already does this,
+// but index.html loads Vanta Globe which can be slow, so do it
+// explicitly here too for consistency.)
+window.addEventListener('load', () => {
+  const loader = document.getElementById('loader');
+  if (loader) {
+    loader.style.display = 'none';
+  }
+});

@@ -22,6 +22,7 @@
   <!-- PDF.js library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
   
+  <link rel="stylesheet" href="../components/loading-screen/loading-screen.css" />
 </head>
 
 
@@ -29,7 +30,7 @@
 
   <div class="parallax-1" id="top">
     <a href="#intro-summary" class="scroll-down" aria-label="Scroll down">
-      <!-- you’re already loading Ionicons, so we can reuse it -->
+      <!-- youâ€™re already loading Ionicons, so we can reuse it -->
       <ion-icon name="chevron-down-outline"></ion-icon>
     </a>
     <nav class="navbar">
@@ -51,8 +52,9 @@
       </div>
     </nav>
     <header>
-      <div id="loader">
-        <div class="loading-text">Loading....</div>
+      <!-- Shared Loading Screen Component -->
+      <div id="loader" class="loading-screen">
+        <div class="loading-screen__text">Loading...</div>
       </div>
       <h1 class="white-text hero-title-spacer"></h1>
     </header>
@@ -279,8 +281,8 @@
 
     <div class="phase-conclusion">
       <h3>Implementation Conclusion</h3>
-      <p>The final implementation brought together the project’s core lessons: clarity, accountability, and habit support mattered more than adding more tracking features.</p>
-      <p>FitPhone’s value came from helping users build healthier habits in a way that felt encouraging, personal, and sustainable. The final product reflects the full process from research and requirements through design, testing, and development.</p>
+      <p>The final implementation brought together the projectâ€™s core lessons: clarity, accountability, and habit support mattered more than adding more tracking features.</p>
+      <p>FitPhoneâ€™s value came from helping users build healthier habits in a way that felt encouraging, personal, and sustainable. The final product reflects the full process from research and requirements through design, testing, and development.</p>
     </div>
   </section>
 
@@ -324,7 +326,7 @@
     </svg>
   </a>
   <!-- Three.js loader: non-overlapping spheres -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  
   <script src="../components/project-page/utils.js" defer></script>
   <script src="../components/project-page/intro-summary.js" defer></script>
   <script src="../components/project-page/final-columns.js" defer></script>
@@ -332,5 +334,6 @@
   <script src="../components/project-page/case-study-nav.js" defer></script>
   <script src="../js/pages/fitphone.js" defer></script>
   <script src="../components/navbar/navbar.js" defer></script>
+  <script src="../components/loading-screen/loading-screen.js" defer></script>
 </body>
 </html>

@@ -15,9 +15,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <link rel="stylesheet" href="../components/loading-screen/loading-screen.css" />
 </head>
 <body class="project-page-standard">
-  <div id="loader"><div class="loading-text">Loading...</div></div>
+  <!-- Shared Loading Screen Component -->
+  <div id="loader" class="loading-screen">
+    <div class="loading-screen__text">Loading...</div>
+  </div>
 
   <div class="parallax-1 phillips-hero" id="top">
     <a href="#intro-summary" class="scroll-down" aria-label="Scroll down"><ion-icon name="chevron-down-outline"></ion-icon></a>
@@ -194,5 +198,6 @@
   <script src="../components/project-page/case-study-nav.js" defer></script>
   <script src="../js/pages/phillipswall.js" defer></script>
   <script src="../components/navbar/navbar.js" defer></script>
+  <script src="../components/loading-screen/loading-screen.js" defer></script>
 </body>
 </html>
