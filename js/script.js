@@ -70,9 +70,28 @@ function initRotatingSquareIcon() {
   });
 }
 
+function initProfileImageAnimation() {
+  const profileImage = document.querySelector('.profile-image');
+  if (!profileImage) {
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        profileImage.classList.add('loaded');
+        observer.unobserve(profileImage);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  observer.observe(profileImage);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   initSmoothAnchorLinks();
   initRevealOnScroll();
   initDataLinkCards();
   initRotatingSquareIcon();
+  initProfileImageAnimation();
 });
