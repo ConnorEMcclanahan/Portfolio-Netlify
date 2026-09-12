@@ -18,8 +18,10 @@
     }
   </style>
 
-  <!-- External Resources -->
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- External Resources -->
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
@@ -138,7 +140,7 @@
         <span></span>
       </button>
       <ul class="navbar-menu">
-        <li><a href="about.html">About</a></li>
+        <li><a href="../index.html#about">About</a></li>
         <li><a href="index.html#projects">Projects</a></li>
         <li><a href="../PDFS/Resume.pdf">Resume</a></li>
         <li><a href="index.html#contact">Contact</a></li>
@@ -178,28 +180,20 @@
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="footer-section">
-    <div class="footer-content">
-      <div class="footer-logo">
-        <a href="../index.html">
-          <img src="../Images/logo.png" alt="Logo">
-        </a>
+  <!-- Default footer (same as index.html) -->
+  <footer id="contact" class="footer-section reveal active">
+    <div class="footer-cta">
+      <p class="footer-cta__eyebrow">Like what you see?</p>
+      <h2>Let's Connect!</h2>
+      <div class="footer-cta__actions">
+        <a class="footer-cta__primary" href="mailto:connor.e.mcclanahan@gmail.com">Email me <ion-icon name="arrow-up-right-outline" aria-hidden="true"></ion-icon></a>
+        <a class="footer-cta__secondary" href="https://www.linkedin.com/in/connor-mcclanahan" target="_blank" rel="noopener noreferrer">LinkedIn <ion-icon name="arrow-up-right-outline" aria-hidden="true"></ion-icon></a>
+        <a class="footer-cta__secondary" href="../pdfs/resume.pdf" target="_blank" rel="noopener noreferrer">Resume <ion-icon name="arrow-down-outline" aria-hidden="true"></ion-icon></a>
       </div>
-      <ul class="footer-nav">
-        <li><a href="../index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="../index.html#projects">Projects</a></li>
-        <li><a href="../index.html#contact">Contact</a></li>
-      </ul>
-      <div class="footer-social">
-        <a href="https://github.com/ConnorEMcclanahan" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-          <ion-icon name="logo-github"></ion-icon>
-        </a>
-        <a href="https://linkedin.com/in/connor-mcclanahan" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-          <ion-icon name="logo-linkedin"></ion-icon>
-        </a>
-      </div>
+      <a class="footer-cta__email" href="mailto:connor.e.mcclanahan@gmail.com">
+        <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
+        <span>connor.e.mcclanahan@gmail.com</span>
+      </a>
     </div>
   </footer>
 

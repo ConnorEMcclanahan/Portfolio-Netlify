@@ -4,10 +4,9 @@ body.project-page-standard {
   font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
-body.project-page-standard h1,
-body.project-page-standard h2,
-body.project-page-standard h3,
-body.project-page-standard h4 {
+/* Only the phase titles use the Syne display font. All sub-headings
+   (Overview, methods h3s) stay in Plus Jakarta Sans. */
+body.project-page-standard .case-study-phase__title h2 {
   font-family: 'Syne', sans-serif;
 }
 
@@ -49,6 +48,21 @@ body.project-page-standard #intro-summary .intro-meta-item strong {
 body.project-page-standard #intro-summary .intro-story-block p,
 body.project-page-standard #intro-summary .intro-meta-item span {
   color: #b8b8b8 !important;
+}
+
+body.project-page-standard #intro-summary .intro-meta-item a {
+  color: #6E07F3 !important;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(110, 7, 243, 0.55);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+body.project-page-standard #intro-summary .intro-meta-item a:hover,
+body.project-page-standard #intro-summary .intro-meta-item a:focus-visible {
+  color: #9a53ff !important;
+  border-bottom-color: #9a53ff;
 }
 
 body.project-page-standard .project-section {
@@ -93,8 +107,41 @@ body.project-page-standard .case-study-phase__content > #requirements,
 body.project-page-standard .case-study-phase__content > #prototyping,
 body.project-page-standard .case-study-phase__content > #data-preparation,
 body.project-page-standard .case-study-phase__content > #implementation,
-body.project-page-standard .case-study-phase__content > #impact {
+body.project-page-standard .case-study-phase__content > #impact,
+body.project-page-standard .case-study-phase__content > #reflection {
   display: none !important;
+}
+
+/* The Reflection phase breaks out of the boxed phase rail as a closing statement. */
+body.project-page-standard .case-study-phase--bare {
+  border: 0;
+  margin-top: 6rem;
+}
+
+body.project-page-standard .case-study-phase--bare .case-study-phase__title {
+  padding: 0;
+  border-bottom: 0;
+}
+
+body.project-page-standard .case-study-phase--bare .case-study-phase__body--bare {
+  display: block;
+  padding: 2.5rem 2rem 0;
+}
+
+body.project-page-standard .case-study-phase--bare .case-study-phase__bare-copy {
+  max-width: 78ch;
+  margin: 0 auto;
+}
+
+body.project-page-standard .case-study-phase--bare .case-study-phase__bare-copy p {
+  margin: 0 0 1.5rem;
+  color: var(--case-muted) !important;
+  font-size: 1.125rem !important;
+  line-height: 1.75;
+}
+
+body.project-page-standard .case-study-phase--bare .case-study-phase__bare-copy p:last-child {
+  margin-bottom: 0;
 }
 
 body.project-page-standard .case-study-phase__narrative-media {

@@ -12,12 +12,19 @@
     const metaLabels = [
       ['Role', /role/i],
       ['Timeline', /duration|timeline/i],
-      ['Tools Used', /tools|tech|stack|design/i]
+      ['Tools Used', /tools|tech|stack|design/i],
+      ['GitHub', /github|repository|source/i]
     ];
     const metaItems = metaLabels
       .map(([label, matcher]) => {
         const item = (data.meta || []).find((candidate) => matcher.test(candidate.label));
-        return item ? `<li class="intro-meta-item"><strong>${escapeHtml(label)}</strong><span>${escapeHtml(item.value)}</span></li>` : '';
+        if (!item) {
+          return '';
+        }
+        const valueMarkup = item.href
+          ? `<span><a class="intro-meta-link" href="${escapeHtml(item.href)}" target="_blank" rel="noopener noreferrer">${escapeHtml(item.value || item.href)}</a></span>`
+          : `<span>${escapeHtml(item.value)}</span>`;
+        return `<li class="intro-meta-item"><strong>${escapeHtml(label)}</strong>${valueMarkup}</li>`;
       })
       .join('');
 
