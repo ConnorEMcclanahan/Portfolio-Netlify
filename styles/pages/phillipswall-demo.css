@@ -423,8 +423,8 @@
 
 .answer-card {
   position: absolute;
-  width: 450px;
-  height: 450px;
+  width: 320px;
+  height: 360px;
   border-radius: 12px;
   cursor: pointer;
   transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -435,8 +435,8 @@
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   top: 50%;
   left: 50%;
-  margin-top: -225px;
-  margin-left: -225px;
+  margin-top: -180px;
+  margin-left: -160px;
 }
 
 .answer-card::before {
@@ -454,10 +454,10 @@
 
 .answer-card.focused {
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-  width: 600px;
-  height: 550px;
-  margin-top: -275px;
-  margin-left: -300px;
+  width: 500px;
+  height: 430px;
+  margin-top: -215px;
+  margin-left: -250px;
 }
 
 .answer-card.hovered {
@@ -468,7 +468,7 @@
   position: relative;
   z-index: 2;
   color: white;
-  font-size: clamp(0.7rem, 1.3vw, 0.95rem);
+  font-size: clamp(0.85rem, 1.6vw, 1.1rem);
   line-height: 1.5;
   text-align: center;
   padding: clamp(1rem, 3vw, 2rem);
@@ -476,7 +476,7 @@
   align-items: center;
   justify-content: center;
   flex: 1;
-  overflow: hidden;
+  overflow-y: auto;
 }
 
 .answer-card__num {
@@ -491,14 +491,14 @@
 
 @media (max-width: 768px) {
   .active-question { width: 10rem; height: 10rem; font-size: 0.75rem; }
-  .answer-card { width: 320px; height: 320px; margin-top: -160px; margin-left: -160px; }
-  .answer-card.focused { width: 380px; height: 380px; margin-top: -190px; margin-left: -190px; }
+  .answer-card { width: 210px; height: 250px; margin-top: -125px; margin-left: -105px; }
+  .answer-card.focused { width: 340px; height: 360px; margin-top: -180px; margin-left: -170px; }
 }
 
 @media (max-width: 480px) {
   .active-question { width: 8rem; height: 8rem; font-size: 0.65rem; }
-  .answer-card { width: 240px; height: 240px; margin-top: -120px; margin-left: -120px; }
-  .answer-card.focused { width: 300px; height: 300px; margin-top: -150px; margin-left: -150px; }
+  .answer-card { width: 170px; height: 210px; margin-top: -105px; margin-left: -85px; }
+  .answer-card.focused { width: 300px; height: 330px; margin-top: -165px; margin-left: -150px; }
 }
 
 .cluster-group:hover .answer-bubble { transform: translate(-50%, -50%) scale(1.15); box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25); }
