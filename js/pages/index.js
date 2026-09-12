@@ -42,7 +42,27 @@ function initReveal() {
   window.addEventListener('scroll', checkReveal, { passive: true });
 }
 
+function initPortraitAnimation() {
+  const portrait = document.querySelector('.about-portrait');
+  if (!portrait) {
+    return;
+  }
+
+  // Trigger fade-in animation when portrait comes into view
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        portrait.classList.add('loaded');
+        observer.unobserve(portrait);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  observer.observe(portrait);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   initVantaBackground();
   initReveal();
+  initPortraitAnimation();
 });
