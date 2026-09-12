@@ -5,7 +5,7 @@ const introSummaryData = {
   meta: [
     { label: 'Role', value: 'Frontend Developer and UI/UX Designer' },
     { label: 'Context', value: 'AI for Society Minor group project' },
-    { label: 'Timeline', value: 'Spring 2025' },
+    { label: 'Timeline', value: '20 weeks (Spring 2025)' },
     { label: 'Tools', value: 'React, JavaScript, Python, SQLite, OpenAI Vision' },
     { label: 'GitHub', value: 'github.com/ConnorEMcclanahan/PhillipsWall', href: 'https://github.com/ConnorEMcclanahan/PhillipsWall' }
   ],

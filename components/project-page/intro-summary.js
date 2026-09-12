@@ -37,6 +37,24 @@
       : '';
 
     const story = data.story || {};
+    const renderStoryCopy = (copy) => {
+      if (typeof copy === 'object' && copy !== null) {
+        const intro = copy.intro ? `<p>${escapeHtml(copy.intro)}</p>` : '';
+        const list = Array.isArray(copy.items) && copy.items.length
+          ? `<ul class="intro-story-list">${copy.items.map((item) => {
+            const colon = item.indexOf(':');
+            if (colon > -1) {
+              const heading = escapeHtml(item.slice(0, colon + 1));
+              const rest = escapeHtml(item.slice(colon + 1).trim());
+              return `<li><strong>${heading}</strong> ${rest}</li>`;
+            }
+            return `<li>${escapeHtml(item)}</li>`;
+          }).join('')}</ul>`
+          : '';
+        return `${intro}${list}`;
+      }
+      return `<p>${escapeHtml(copy)}</p>`;
+    };
     const storyBlocks = [
       ['Background', story.background],
       ['Problem', story.problem],
@@ -46,7 +64,7 @@
       .map(([title, copy]) => `
         <div class="intro-story-block">
           <h2>${escapeHtml(title)}</h2>
-          <p>${escapeHtml(copy)}</p>
+          ${renderStoryCopy(copy)}
         </div>
       `)
       .join('');
