@@ -9,6 +9,17 @@ body {
   margin: 0;
   padding: 0;
   background: #000;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+/* Improve scroll performance with Vanta globe */
+#top {
+  will-change: auto;
+}
+
+#top canvas {
+  will-change: transform;
 }
 
 section {
