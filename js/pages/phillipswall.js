@@ -1,5 +1,5 @@
 const introSummaryData = {
-  title: 'Phillips Wall',
+  title: 'Philips',
   subtitle: 'Turning handwritten museum feedback into a living conversation',
   lead: 'An AI-powered feedback wall that helps visitors see how people think about the future of AI',
   meta: [

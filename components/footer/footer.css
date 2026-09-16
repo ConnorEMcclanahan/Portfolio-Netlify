@@ -113,3 +113,9 @@
 #contact .footer-cta__email:hover {
   color: #fff !important;
 }
+
+/* Smooth-scroll the navbar "Contact" link down to this footer
+   instead of jumping straight to it. */
+html {
+  scroll-behavior: smooth;
+}

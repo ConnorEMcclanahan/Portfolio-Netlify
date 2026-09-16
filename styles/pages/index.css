@@ -770,7 +770,8 @@ section {
   box-shadow: 0 0 0 1.5px rgba(0, 0, 0, 0.55);
 }
 
-/* Over links/buttons the ring opens up and brightens; the JS scales it too. */
+/* Over links/buttons the ring opens up and brightens; the JS scales it too,
+   and tugs the ring gently toward the element's centre (magnetic pull). */
 .custom-cursor.is-over .custom-cursor__ring {
   border-color: rgba(200, 182, 255, 0.85);
   background-color: rgba(110, 7, 243, 0.12);
@@ -820,6 +821,7 @@ body.has-custom-cursor * {
     rgba(110, 7, 243, 0.07) 40%,
     rgba(110, 7, 243, 0) 72%
   );
+  transition: width 0.35s ease, height 0.35s ease, margin 0.35s ease;
 }
 
 @media screen and (max-width: 768px) {

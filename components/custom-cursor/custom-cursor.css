@@ -1,0 +1,202 @@
+/* Shared custom cursor + ambient halo — the same dot / ring / halo effect as
+   index.html (see styles/pages/index.css). Loaded by every page in /pages/ via
+   components/custom-cursor/custom-cursor.js, which drives it with
+   initCustomCursor().
+
+   The native pointer is replaced by a 6px dot (tracked 1:1 for exact clicking)
+   with a thin ring trailing just behind it. Behind both sits a soft halo, used
+   as light rather than paint.
+
+   Three details matter for correctness:
+     1. `position: fixed` + clientX/clientY keeps every layer pinned to the
+        viewport, so none of them can lag behind or "stick" while scrolling.
+     2. The halo is deliberately its OWN root-level layer using
+        `mix-blend-mode: screen`, so it can only ever LIGHTEN what is beneath it
+        and can never paint over or hide text. It is not nested inside
+        .custom-cursor because a blended element is confined by its parent's
+        stacking context — nesting it would render the dot invisible over light
+        mockups and photographs.
+     3. The native pointer is hidden via `body.has-custom-cursor`, a class JS
+        adds only AFTER it has painted the replacement. So the cursor can never
+        blink out on load, and devices that opt out keep their real one.
+   Each layer is offset by a negative margin so its centre lands on the
+   element's transform origin, letting the JS write a plain translate3d. */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+  display: none;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Enabled by initCustomCursor() only when a real hovering pointer is present. */
+.custom-cursor.is-enabled,
+.pointer-glow.is-enabled {
+  display: block;
+}
+
+.custom-cursor.is-active {
+  opacity: 1;
+}
+
+.custom-cursor__ring,
+.custom-cursor__dot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* Thin ring that trails the dot. */
+.custom-cursor__ring {
+  width: 34px;
+  height: 34px;
+  margin: -17px 0 0 -17px;
+  border: 1px solid rgba(167, 139, 255, 0.45);
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+/* 6px dot written straight from the pointer position — the actual click point.
+   The dark shadow ring keeps it legible over light photos and mockups, where a
+   pale dot alone would wash out. */
+.custom-cursor__dot {
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+  background: #c8b6ff;
+  box-shadow: 0 0 0 1.5px rgba(0, 0, 0, 0.55);
+}
+
+/* Over links, buttons, and images the ring opens up and brightens; the JS
+   scales it up slightly and tugs it gently toward the element's centre
+   (magnetic pull) — a subtle "lift" like the mockup hover. */
+.custom-cursor.is-over .custom-cursor__ring {
+  border-color: rgba(200, 182, 255, 0.85);
+  background-color: rgba(110, 7, 243, 0.12);
+}
+
+.custom-cursor.is-over .custom-cursor__dot {
+  background: #fff;
+}
+
+/* The native pointer is hidden only once JS has positioned its replacement. */
+body.has-custom-cursor,
+body.has-custom-cursor * {
+  cursor: none !important;
+}
+
+/* Ambient halo — a wide, very faint wash of the site's purple accent that
+   drifts along well behind the cursor. Kept subtle on purpose. */
+.pointer-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 900;
+  display: none;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.pointer-glow.is-active {
+  opacity: 1;
+}
+
+.pointer-glow__halo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 280px;
+  height: 280px;
+  margin: -140px 0 0 -140px;
+  border-radius: 50%;
+  pointer-events: none;
+  will-change: transform;
+  background: radial-gradient(
+    circle,
+    rgba(110, 7, 243, 0.16) 0%,
+    rgba(110, 7, 243, 0.07) 40%,
+    rgba(110, 7, 243, 0) 72%
+  );
+  transition: width 0.35s ease, height 0.35s ease, margin 0.35s ease;
+}
+
+/* Image hover has moved to styles/pages/project-image-hover.css — one shared
+   file referenced by every /pages/ project page so the lift + one-at-a-time
+   spotlight stay consistent everywhere. */
+
+/* About portrait: it already lifts via its own rule — extend it with the
+   same purple glow so it feels identical to the index mockups.
+   Specificity (0,3,0) beats the inline about.html rule (0,2,0), and the
+   opacity transition is kept so the load fade-in still animates. */
+body .profile-section .profile-image.profile-image {
+  transition: opacity 0.6s ease, transform 0.45s ease, filter 0.45s ease, box-shadow 0.45s ease;
+}
+
+body .profile-section .profile-image.profile-image:hover {
+  transform: translateY(-6px) rotate(0.5deg) scale(1.03);
+  box-shadow:
+    0 12px 32px rgba(0, 0, 0, 0.6),
+    0 0 28px rgba(110, 7, 243, 0.4);
+}
+
+/* Safety: the navbar logo must never scale or glow. */
+.navbar img,
+.navbar .navbar-logo-img {
+  transform: none !important;
+  filter: none !important;
+}
+
+/* Suggested cards already lift — match the index timing/glow so they feel identical.
+   body-prefix boosts specificity above the per-page rules so this wins. */
+body .suggested-project-card {
+  transition: transform 0.45s ease, box-shadow 0.45s ease, border-color 0.45s ease;
+}
+
+body .suggested-project-card:hover,
+body .suggested-project-card:focus-visible {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow:
+    0 18px 44px rgba(0, 0, 0, 0.45),
+    0 0 28px rgba(110, 7, 243, 0.4);
+}
+
+@media screen and (max-width: 768px) {
+  /* No hover on touch — never show the custom cursor or halo. */
+  .custom-cursor,
+  .pointer-glow {
+    display: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Project-page image hover now lives in project-image-hover.css,
+     which carries its own reduced-motion rules. */
+  body .profile-section .profile-image.profile-image,
+  body .suggested-project-card {
+    transition: none;
+  }
+
+  body .profile-section .profile-image.profile-image:hover,
+  .suggested-project-card:hover {
+    transform: none;
+    filter: none;
+  }
+
+  .custom-cursor,
+  .pointer-glow {
+    display: none !important;
+  }
+
+  /* Belt and braces: never leave the visitor with no pointer at all. */
+  body.has-custom-cursor,
+  body.has-custom-cursor * {
+    cursor: auto !important;
+  }
+}

@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="components/navbar/navbar.css"/>
     <link rel="stylesheet" href="components/footer/footer.css"/>
     <link rel="stylesheet" href="styles/pages/index.css"/>
+    <link rel="stylesheet" href="styles/pages/index-phillips-tv.css"/>
     <link rel="stylesheet" href="components/loading-screen/loading-screen.css" />
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
@@ -40,7 +41,7 @@
           <li><a href="#about">About</a></li>
           <li><a href="#projects">Projects</a></li>
           <li><a href="pdfs/resume.pdf">Resume</a></li>
-          <li><a href="mailto:connor.e.mcclanahan@gmail.com">Contact</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
     </nav>
@@ -133,46 +134,12 @@
               <a class="project-showcase__link" href="pages/motivate.html">View case study <span class="project-showcase__arrow" aria-hidden="true">⟶</span></a>
             </div>
           </article>
-        <!-- FitPhone: text left, mockup right -->
+        <!-- Philips: text left, auto-playing TV demo right (03) -->
           <article class="project-showcase__row reveal">
             <div class="project-showcase__text">
               <span class="project-showcase__index">03</span>
               <h3 class="project-showcase__title">
-                <a href="pages/fitphone.html">Fontys <span class="project-showcase__dash" aria-hidden="true">—</span> FitPhone App</a>
-              </h3>
-              <span class="project-showcase__date">Sep 2023 – Oct 2023</span>
-              <p class="project-showcase__desc">Designing and engineering a cross-platform wellness app for young adults aged 18 to 30 — from goal setting and focus metrics to behavioural education and peer accountability groups — replacing screen-time dashboards that show people their habits without ever giving them a reason, or a way, to change them.</p>
-              <div class="project-showcase__meta">
-                <div class="project-showcase__tags">
-                  <span class="tag">Cross-Platform</span>
-                  <span class="tag">Flutter</span>
-                  <span class="tag">Behavioural Design</span>
-                </div>
-              </div>
-              <a class="project-showcase__link" href="pages/fitphone.html">View case study <span class="project-showcase__arrow" aria-hidden="true">⟶</span></a>
-            </div>
-            <div class="project-showcase__media project-showcase__media--fan">
-              <a class="project-showcase__media-link" href="pages/fitphone.html" aria-label="Fontys FitPhone App case study">
-                <span class="project-showcase__fan">
-                  <img class="project-showcase__fan-back project-showcase__fan-back--left" src="images/mockups/stats.png" alt="" aria-hidden="true" loading="lazy" />
-                  <img class="project-showcase__fan-back project-showcase__fan-back--right" src="images/mockups/activty/whatsapp image 2025-04-27 at 23.57.23-portrait.png" alt="" aria-hidden="true" loading="lazy" />
-                  <img class="project-showcase__fan-main" src="images/mockups/home/whatsapp image 2025-04-27 at 23.59.48-portrait.png" alt="Fontys FitPhone home screen mockup with the stats and activity screens behind it" loading="lazy" />
-                </span>
-              </a>
-            </div>
-          </article>
-
-          <!-- Philips Wall: mockup left, text right -->
-          <article class="project-showcase__row project-showcase__row--alt reveal">
-            <div class="project-showcase__media project-showcase__media--cover">
-              <a class="project-showcase__media-link" href="pages/phillipswall.html" aria-label="Philips Post-it Sentiment Wall case study">
-                <img src="images/phillipswall/museum-installation.jpeg" alt="Philips Wall museum interactive installation" loading="lazy" />
-              </a>
-            </div>
-            <div class="project-showcase__text">
-              <span class="project-showcase__index">04</span>
-              <h3 class="project-showcase__title">
-                <a href="pages/phillipswall.html">Philips <span class="project-showcase__dash" aria-hidden="true">—</span> Post-it Sentiment Wall</a>
+                <a href="pages/phillipswall.html">Philips <span class="project-showcase__dash" aria-hidden="true">—</span> AI-Powered Museum Feedback</a>
               </h3>
               <span class="project-showcase__date">20 weeks (Spring 2025)</span>
               <p class="project-showcase__desc">Designing and building an AI-powered feedback wall for the Philips Museum — from OpenAI Vision transcription of handwritten visitor notes to a spatial data visualisation of the wider public debate — turning a static sticky-note wall into a living conversation, with GDPR-safe data handling and automated analytics in place of manual sorting. Built as my AI for Society minor project.</p>
@@ -187,7 +154,60 @@
               </div>
               <a class="project-showcase__link" href="pages/phillipswall.html">View case study <span class="project-showcase__arrow" aria-hidden="true">⟶</span></a>
             </div>
+            <div class="project-showcase__media project-showcase__media--walltv">
+              <a class="project-showcase__media-link" href="pages/phillipswall.html" aria-label="Philips AI-powered museum feedback case study">
+                <span class="phillips-tv" aria-hidden="true">
+                  <span class="phillips-tv__frame">
+                    <span class="phillips-tv__screen">
+                      <span class="mini-wall" data-mini-wall>
+                        <span class="mini-grid" data-mini-grid>
+                          <span class="mini-axis mini-axis--t">AI Enthusiastic</span>
+                          <span class="mini-axis mini-axis--b">AI Skeptical</span>
+                          <span class="mini-axis mini-axis--l">Looking Bright</span>
+                          <span class="mini-axis mini-axis--r">A Little Scared</span>
+                        </span>
+                        <span class="mini-fan" data-mini-fan>
+                          <span class="mini-question" data-mini-question></span>
+                          <span class="mini-cards" data-mini-cards></span>
+                        </span>
+                      </span>
+                    </span>
+                  </span>
+                  <span class="phillips-tv__stand"><span class="phillips-tv__neck"></span><span class="phillips-tv__base"></span></span>
+                </span>
+              </a>
+            </div>
           </article>
+
+          <!-- FitPhone: media left, text right (04) -->
+          <article class="project-showcase__row project-showcase__row--alt reveal">
+            <div class="project-showcase__media project-showcase__media--fan">
+              <a class="project-showcase__media-link" href="pages/fitphone.html" aria-label="Fontys FitPhone App case study">
+                <span class="project-showcase__fan">
+                  <img class="project-showcase__fan-back project-showcase__fan-back--left" src="images/mockups/stats.png" alt="" aria-hidden="true" loading="lazy" />
+                  <img class="project-showcase__fan-back project-showcase__fan-back--right" src="images/mockups/activty/whatsapp image 2025-04-27 at 23.57.23-portrait.png" alt="" aria-hidden="true" loading="lazy" />
+                  <img class="project-showcase__fan-main" src="images/mockups/home/whatsapp image 2025-04-27 at 23.59.48-portrait.png" alt="Fontys FitPhone home screen mockup with the stats and activity screens behind it" loading="lazy" />
+                </span>
+              </a>
+            </div>
+            <div class="project-showcase__text">
+              <span class="project-showcase__index">04</span>
+              <h3 class="project-showcase__title">
+                <a href="pages/fitphone.html">Fontys <span class="project-showcase__dash" aria-hidden="true">—</span> FitPhone App</a>
+              </h3>
+              <span class="project-showcase__date">Sep 2023 – Oct 2023</span>
+              <p class="project-showcase__desc">Designing and engineering a cross-platform wellness app for young adults aged 18 to 30 — from goal setting and focus metrics to behavioural education and peer accountability groups — replacing screen-time dashboards that show people their habits without ever giving them a reason, or a way, to change them.</p>
+              <div class="project-showcase__meta">
+                <div class="project-showcase__tags">
+                  <span class="tag">Cross-Platform</span>
+                  <span class="tag">Flutter</span>
+                  <span class="tag">Behavioural Design</span>
+                </div>
+              </div>
+              <a class="project-showcase__link" href="pages/fitphone.html">View case study <span class="project-showcase__arrow" aria-hidden="true">⟶</span></a>
+            </div>
+          </article>
+
         </div>
       </section>
 
@@ -258,6 +278,7 @@
     </div>
 
     <script src="js/pages/index.js" defer></script>
+    <script src="js/pages/index-phillips-tv.js" defer></script>
     <script src="components/loading-screen/loading-screen.js" defer></script>
     <script src="components/navbar/navbar.js" defer></script>
   </body>

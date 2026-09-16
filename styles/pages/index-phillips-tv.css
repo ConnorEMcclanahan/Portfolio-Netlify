@@ -1,0 +1,39 @@
+/* Philips Wall TV mini demo (index row 03). Fake monitor + live coded replica. */
+.project-showcase__media--walltv { --tv-bezel: clamp(8px, 1.4vw, 14px); }
+.project-showcase__media--walltv .project-showcase__media-link { width: 100%; flex-direction: column; }
+.phillips-tv { width: min(100%, 620px); margin-inline: auto; filter: drop-shadow(0 24px 36px rgba(0,0,0,0.7)); transition: transform .45s ease, filter .45s ease; }
+.project-showcase__media--walltv .project-showcase__media-link:hover .phillips-tv { transform: scale(1.02); filter: drop-shadow(0 28px 42px rgba(0,0,0,0.75)) drop-shadow(0 0 28px rgba(110,7,243,0.4)); }
+.phillips-tv__frame { position: relative; display: block; border-radius: 18px; padding: var(--tv-bezel); background: linear-gradient(155deg,#3a3a44 0%,#17171c 45%,#08080b 100%); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.16), inset 0 0 0 2px rgba(0,0,0,0.55); }
+.phillips-tv__frame::before { content: ""; position: absolute; top: calc(var(--tv-bezel) * 0.32); left: 50%; transform: translateX(-50%); width: 5px; height: 5px; border-radius: 50%; background: #05070c; box-shadow: inset 0 0 0 1px rgba(130,150,200,0.5), 0 0 6px rgba(110,7,243,0.6); }
+.phillips-tv__screen { position: relative; display: block; aspect-ratio: 16 / 10; border-radius: calc(var(--tv-bezel) * 0.6); overflow: hidden; background: #fff; isolation: isolate; }
+.phillips-tv__screen::after { content: ""; position: absolute; inset: 0; z-index: 40; pointer-events: none; background: linear-gradient(115deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.04) 22%, transparent 35%); }
+.mini-wall { position: absolute; inset: 0; display: block; pointer-events: none; user-select: none; font-family: "Plus Jakarta Sans", sans-serif; background: #fff; }
+.mini-wall::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(to right, rgba(15,23,42,0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(15,23,42,0.06) 1px, transparent 1px); background-size: 26px 26px; }
+.mini-grid { position: absolute; top: 14px; left: 14px; right: 14px; bottom: 12px; display: block; }
+.mini-grid::before, .mini-grid::after { content: ""; position: absolute; background: rgba(15,23,42,0.28); }
+.mini-grid::before { left: 50%; top: 0; bottom: 0; width: 1px; transform: translateX(-50%); }
+.mini-grid::after { top: 50%; left: 0; right: 0; height: 1px; transform: translateY(-50%); }
+.mini-axis { position: absolute; font-size: 5.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #1a1a2e; text-shadow: none; white-space: nowrap; }
+.mini-axis--t { top: -8px; left: 50%; transform: translateX(-50%); }
+.mini-axis--b { bottom: -8px; left: 50%; transform: translateX(-50%); }
+.mini-axis--l { left: -6px; top: 50%; transform: translateY(-50%) rotate(-90deg); }
+.mini-axis--r { right: -6px; top: 50%; transform: translateY(-50%) rotate(90deg); }
+.mini-bubble { position: absolute; border-radius: 50%; transform: translate(-50%,-50%); box-shadow: 0 2px 8px rgba(15,23,42,0.18), inset 0 0 12px rgba(255,255,255,0.25); transition: box-shadow .5s ease, opacity .5s ease; animation: miniFloat 7s ease-in-out infinite; }
+@keyframes miniFloat { 0%,100% { margin-top: 0; } 50% { margin-top: -3px; } }
+.mini-bubble.is-spot { box-shadow: 0 0 0 2px #6e07f3, 0 0 16px rgba(110,7,243,0.55), 0 4px 14px rgba(15,23,42,0.25); z-index: 6 !important; }
+.mini-bubble.is-spot::after { content: ""; position: absolute; inset: -7px; border-radius: 50%; border: 1.5px solid rgba(110,7,243,0.8); animation: tvPing 1.1s ease-out infinite; }
+@keyframes tvPing { 0% { transform: scale(0.7); opacity: 1; } 100% { transform: scale(1.25); opacity: 0; } }
+.mini-fan { position: absolute; inset: 0; z-index: 10; display: block; background: rgba(255,255,255,0.88); opacity: 0; visibility: hidden; transition: opacity .45s ease, visibility .45s ease; }
+.mini-fan.is-open { opacity: 1; visibility: visible; }
+.mini-question { position: absolute; top: 32px; left: 50%; transform: translateX(-50%) scale(0.6); width: 86px; height: 86px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-align: center; padding: 10px; color: #fff; font-size: 7px; font-weight: 600; line-height: 1.3; box-shadow: 0 0 22px rgba(255,255,255,0.25), inset 0 0 24px rgba(255,255,255,0.12); opacity: 0; transition: opacity .45s ease, transform .55s cubic-bezier(0.175,0.885,0.32,1.275); }
+.mini-fan.is-open .mini-question { opacity: 1; transform: translateX(-50%) scale(1); }
+.mini-cards { position: absolute; left: 0; right: 0; bottom: 24px; height: 118px; display: block; }
+.mini-card { position: absolute; left: 50%; bottom: 0; width: 108px; height: 108px; margin-left: -54px; border-radius: 7px; border: 1.5px solid rgba(255,255,255,0.85); box-shadow: 0 6px 14px rgba(15,23,42,0.22); display: flex; align-items: center; justify-content: center; padding: 10px 8px 14px; color: #fff; font-size: 6.4px; line-height: 1.45; text-align: center; transition: transform .55s cubic-bezier(0.175,0.885,0.32,1.275), opacity .4s ease, box-shadow .4s ease; opacity: 0; }
+.mini-fan.is-open .mini-card { opacity: 1; }
+.mini-card.is-focus { box-shadow: 0 12px 26px rgba(15,23,42,0.35), 0 0 18px rgba(110,7,243,0.45); border-color: #fff; z-index: 30 !important; }
+.mini-card__num { position: absolute; top: 4px; right: 5px; font-size: 5px; font-weight: 700; background: rgba(0,0,0,0.4); border-radius: 999px; padding: 1px 5px; }
+.phillips-tv__stand { display: flex; flex-direction: column; align-items: center; }
+.phillips-tv__neck { display: block; width: clamp(56px, 12%, 90px); height: 22px; background: linear-gradient(180deg,#2c2c34,#101014); clip-path: polygon(12% 0, 88% 0, 100% 100%, 0% 100%); }
+.phillips-tv__base { display: block; width: clamp(180px, 46%, 300px); height: 10px; border-radius: 999px; background: linear-gradient(180deg,#3d3d48,#0c0c10); box-shadow: 0 10px 22px rgba(0,0,0,0.6); }
+@media (max-width: 768px) { .phillips-tv { width: min(100%, 380px); } }
+@media (prefers-reduced-motion: reduce) { .mini-bubble, .mini-bubble.is-spot::after { animation: none !important; } .mini-card, .mini-question, .mini-fan { transition: none !important; } }

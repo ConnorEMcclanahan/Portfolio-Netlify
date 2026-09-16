@@ -12,8 +12,10 @@
   <link rel="stylesheet" href="../styles/frontend.css" />
   <link rel="stylesheet" href="../components/navbar/navbar.css"/>
   <link rel="stylesheet" href="../components/footer/footer.css"/>
+  <link rel="stylesheet" href="../components/custom-cursor/custom-cursor.css"/>
   <link rel="stylesheet" href="../components/project-page/project-components.css"/>
   <link rel="stylesheet" href="../styles/pages/motivate.css"/>
+  <link rel="stylesheet" href="../styles/pages/project-image-hover.css"/>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <!-- External Resources -->
@@ -57,7 +59,7 @@
           <li><a href="../index.html#about">About</a></li>
           <li><a href="index.html#projects">Projects</a></li>
           <li><a href="Resume.pdf">Resume</a></li>
-          <li><a href="mailto:connor.e.mcclanahan@gmail.com">Contact</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
     </nav>
@@ -302,6 +304,23 @@
   <script src="../js/pages/motivate.js" defer></script>
   <script src="../components/navbar/navbar.js" defer></script>
   <script src="../components/loading-screen/loading-screen.js" defer></script>
+  <script src="../components/custom-cursor/custom-cursor.js" defer></script>
+
+  <!-- Custom cursor — the dot replaces the native pointer (hidden by
+       body.has-custom-cursor), the ring trails it. Driven by
+       initCustomCursor() in ../components/custom-cursor/custom-cursor.js. -->
+  <div class="custom-cursor" aria-hidden="true">
+    <span class="custom-cursor__ring"></span>
+    <span class="custom-cursor__dot"></span>
+  </div>
+
+  <!-- Ambient halo behind the cursor. Kept as its own root-level layer
+       because mix-blend-mode: screen must live on the layer itself — a
+       blended child would be confined by its parent's stacking context.
+       Driven by initCustomCursor() too. -->
+  <div class="pointer-glow" aria-hidden="true">
+    <span class="pointer-glow__halo"></span>
+  </div>
 </body>
 </html>
 
