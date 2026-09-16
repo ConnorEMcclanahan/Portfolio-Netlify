@@ -63,10 +63,168 @@ function initPortraitAnimation() {
   observer.observe(portrait);
 }
 
+// Custom cursor — replaces the native pointer, which the stylesheet hides via
+// `body.has-custom-cursor`. That class is only added once the replacement has
+// actually been painted, so the pointer can never blink out on load, and any
+// device that opts out below keeps its real cursor.
+//
+//  * A 6px dot is written straight from the pointer position with no easing, so
+//    the click target is always exactly under the cursor; a 34px ring trails
+//    slightly behind it. That pairing is what stops it feeling laggy.
+//  * clientX/clientY + position: fixed keeps every layer pinned to the viewport,
+//    so they cannot lag behind or "stick" while the page scrolls.
+//  * The halo is its own root-level layer using mix-blend-mode: screen, so it
+//    can only ever brighten what is beneath it, never cover text.
+//  * Transforms are written in a single rAF loop using translate3d only, and the
+//    loop parks itself once everything has settled.
+function initCustomCursor() {
+  const cursor = document.querySelector('.custom-cursor');
+  const glow = document.querySelector('.pointer-glow');
+  if (!cursor || !glow) {
+    return;
+  }
+
+  const dot = cursor.querySelector('.custom-cursor__dot');
+  const ring = cursor.querySelector('.custom-cursor__ring');
+  const halo = glow.querySelector('.pointer-glow__halo');
+  if (!dot || !ring || !halo) {
+    return;
+  }
+
+  // Skip touch devices (no real hover) and anyone who asked for less motion.
+  const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (!finePointer.matches || reducedMotion.matches) {
+    return;
+  }
+
+  // The stylesheet keeps these layers display:none until this point, so devices
+  // that bail out above never pay for rendering them.
+  cursor.classList.add('is-enabled');
+  glow.classList.add('is-enabled');
+
+  const RING_EASE = 0.28;     // slight trail — alive, but still feels precise
+  const HALO_EASE = 0.08;     // much slower, so the halo only whispers
+  const SCALE_EASE = 0.16;
+  const SCROLL_SETTLE = 120;  // ms of scroll quiet before the cursor may return
+
+  let pointerX = 0;
+  let pointerY = 0;
+  let ringX = 0;
+  let ringY = 0;
+  let haloX = 0;
+  let haloY = 0;
+  let scale = 1;
+  let targetScale = 1;
+  let visible = false;
+  let overInteractive = false;
+  let snapNext = false;
+  let scrollBurst = false;
+  let scrollTimer = null;
+  let frame = null;
+  let nativeHidden = false;
+
+  const settled = () => (
+    Math.abs(pointerX - ringX) < 0.1
+    && Math.abs(pointerY - ringY) < 0.1
+    && Math.abs(pointerX - haloX) < 0.1
+    && Math.abs(pointerY - haloY) < 0.1
+    && Math.abs(targetScale - scale) < 0.002
+  );
+
+  const frameStep = () => {
+    frame = null;
+
+    if (snapNext) {
+      // Land exactly on the pointer instead of sweeping across the viewport.
+      ringX = haloX = pointerX;
+      ringY = haloY = pointerY;
+      snapNext = false;
+    } else {
+      ringX += (pointerX - ringX) * RING_EASE;
+      ringY += (pointerY - ringY) * RING_EASE;
+      haloX += (pointerX - haloX) * HALO_EASE;
+      haloY += (pointerY - haloY) * HALO_EASE;
+    }
+
+    scale += (targetScale - scale) * SCALE_EASE;
+
+    dot.style.transform = `translate3d(${pointerX}px, ${pointerY}px, 0)`;
+    ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0) scale(${scale})`;
+    halo.style.transform = `translate3d(${haloX}px, ${haloY}px, 0)`;
+
+    // Only now is it safe to hide the native pointer: the replacement has been
+    // painted in this very frame, so there is never a moment with no cursor.
+    if (visible && !nativeHidden) {
+      nativeHidden = true;
+      document.body.classList.add('has-custom-cursor');
+    }
+
+    if (!settled()) {
+      frame = window.requestAnimationFrame(frameStep);
+    }
+  };
+
+  const start = () => {
+    if (frame === null && !settled()) {
+      frame = window.requestAnimationFrame(frameStep);
+    }
+  };
+
+  const setVisible = (next) => {
+    if (visible === next) {
+      return;
+    }
+    visible = next;
+    cursor.classList.toggle('is-active', next);
+    glow.classList.toggle('is-active', next);
+    if (next) {
+      snapNext = true;
+      start();
+    }
+  };
+
+  const onPointerMove = (event) => {
+    pointerX = event.clientX;
+    pointerY = event.clientY;
+
+    const target = event.target;
+    const enlarged = target instanceof Element
+      && target.closest('a, button, .tag') !== null;
+    if (enlarged !== overInteractive) {
+      overInteractive = enlarged;
+      cursor.classList.toggle('is-over', enlarged);
+      targetScale = enlarged ? 1.55 : 1;
+    }
+
+    // Stays put while a scroll gesture is in progress; returns on the next move.
+    if (!scrollBurst) {
+      setVisible(true);
+    }
+    start();
+  };
+
+  const onScroll = () => {
+    // Release the cursor for the duration of the scroll gesture.
+    scrollBurst = true;
+    setVisible(false);
+    window.clearTimeout(scrollTimer);
+    scrollTimer = window.setTimeout(() => {
+      scrollBurst = false;
+    }, SCROLL_SETTLE);
+  };
+
+  document.addEventListener('mousemove', onPointerMove, { passive: true });
+  window.addEventListener('scroll', onScroll, { passive: true });
+  document.addEventListener('mouseleave', () => setVisible(false));
+  window.addEventListener('blur', () => setVisible(false));
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   initVantaBackground();
   initReveal();
   initPortraitAnimation();
+  initCustomCursor();
 });
 
 // Hide the shared loading screen once everything is loaded.
