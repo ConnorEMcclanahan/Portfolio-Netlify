@@ -62,6 +62,22 @@ section {
   transform: translateY(0);
 }
 
+/* Every project row carries .reveal itself (the showcase section no longer
+   does), so each project fades in on its own as it reaches the viewport. The
+   mockup starts a beat after its copy, which reads as one entrance per project
+   instead of two separate swaps. This animates the media column, so the
+   positioning transforms inside the mockup clusters are left untouched. */
+.project-showcase__row.reveal .project-showcase__media {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s ease 0.12s, transform 0.8s ease 0.12s;
+}
+
+.project-showcase__row.reveal.active .project-showcase__media {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .hero.hero-shell {
   /* Keep the hero content left-aligned over the full-screen Vanta globe
      instead of Bulma's centered layout. */
@@ -103,12 +119,12 @@ section {
   color: #6e07f3;
 }
 
-/* Scroll-down indicator — the same parallax arrow as the project pages. Sits
-   low in the hero so the reduced gap between the hero and the first project
-   row still leaves the arrow clear of the showcase. */
+/* Scroll-down indicator — the same parallax arrow as the project pages. Lifted
+   well clear of the hero base so it reads immediately on load instead of
+   hugging the viewport edge, and clear of the tightened showcase lead-in. */
 .scroll-down {
   position: absolute;
-  bottom: clamp(24px, 4vh, 48px);
+  bottom: clamp(88px, 12vh, 132px);
   left: 50%;
   transform: translateX(-50%);
   font-size: 3.25rem;
@@ -164,13 +180,13 @@ section {
 }
 
 /* The hero already ends on a full screen of trailing space, so the showcase only
-   has to add one more unit of the rhythm: together with the first row's own top
-   padding that is the same 2x gap the rows use between themselves. The bottom is
-   left to the last row's own padding for the same reason, which keeps both ends
-   of the showcase symmetrical and hands the space above About Me over to that
-   section instead (see #about.about-section). */
+   needs a short lead-in: just enough to clear the lifted scroll cue without
+   stacking a full rhythm unit on top of the first row's own padding. The bottom
+   is still left to the last row's own padding, which keeps both ends
+   symmetrical and hands the space above About Me over to that section instead
+   (see #about.about-section). */
 #previous-work {
-  padding-top: var(--row-space);
+  padding-top: clamp(1.25rem, 3.5vh, 2.5rem);
   padding-bottom: 0;
   margin-bottom: 0;
 }
@@ -209,19 +225,25 @@ section {
 
 .project-showcase__index {
   display: inline-block;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
   font-family: "Syne", "Plus Jakarta Sans", sans-serif;
-  font-size: 0.85rem;
+  /* Sized up so the number reads as a label above the title rather than as a
+     footnote to it. */
+  font-size: clamp(1.05rem, 1.4vw, 1.4rem);
   color: #6e07f3;
   letter-spacing: 0.14em;
 }
 
+/* Deliberately the About Me heading's type: the same Syne display face at the
+   same 800 weight, 2.25rem size and 1.1 line-height, so the project titles and
+   the About Me heading read as one family of headings down the page. Only the
+   colour differs — the titles stay white and keep their purple hover. */
 .project-showcase__title {
-  margin: 0 0 1rem;
+  margin: 0 0 0.75rem;
   font-family: "Syne", "Plus Jakarta Sans", sans-serif;
-  font-size: clamp(1.75rem, 3.2vw, 2.6rem);
-  font-weight: 700;
-  line-height: 1.15;
+  font-size: 2.25rem;
+  font-weight: 800;
+  line-height: 1.1;
   letter-spacing: -0.01em;
   color: #fff;
 }
@@ -263,15 +285,24 @@ section {
   gap: 8px;
 }
 
+/* Bulma's own .tag paints its text a mid grey (#4a4a4a). On the dark glass
+   background here that left the labels nearly invisible, so the colour is
+   stated explicitly and the chips read as white text on a soft white fill. */
 .project-showcase__tags .tag {
   background: rgba(255, 255, 255, 0.1);
+  color: #fff;
   padding: 5px 10px;
   border-radius: 20px;
   font-size: 0.78rem;
   white-space: nowrap;
 }
 
+/* The date range now sits on its own line directly under the title, above the
+   description, so the timeline is read before the summary. It stays a <span>
+   in the markup and is simply given a line of its own here. */
 .project-showcase__date {
+  display: block;
+  margin: 0 0 1.25rem;
   font-size: 0.82rem;
   color: rgba(255, 255, 255, 0.5);
   white-space: nowrap;
@@ -324,7 +355,10 @@ section {
   width: auto;
   height: auto;
   max-width: 100%;
-  max-height: clamp(300px, 48vh, 560px);
+  /* Raised so the one row still sized by this rule — the Philips Wall photo,
+     which is a full-width 16:9 card — keeps its aspect ratio on shorter windows
+     instead of being clipped by the cap. Every device cluster overrides this. */
+  max-height: clamp(340px, 56vh, 620px);
   object-fit: contain;
   object-position: center;
   filter: drop-shadow(0 24px 36px rgba(0, 0, 0, 0.7));
@@ -377,7 +411,7 @@ section {
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: clamp(320px, 46vh, 520px);
+  height: clamp(360px, 56vh, 600px);
 }
 
 .project-showcase__media--fan .project-showcase__fan img {
@@ -393,7 +427,7 @@ section {
 .project-showcase__media--fan .project-showcase__fan-main {
   position: relative;
   z-index: 3;
-  height: clamp(300px, 44vh, 500px);
+  height: clamp(340px, 54vh, 580px);
   filter: drop-shadow(0 24px 36px rgba(0, 0, 0, 0.7));
 }
 
@@ -403,7 +437,7 @@ section {
   top: 50%;
   left: 50%;
   z-index: 1;
-  height: clamp(240px, 35vh, 400px);
+  height: clamp(265px, 43vh, 470px);
   transform: translate(-50%, -50%) translateX(var(--fan-x, 0)) scale(var(--fan-back-scale, 0.94));
   filter: drop-shadow(0 16px 26px rgba(0, 0, 0, 0.55));
 }
@@ -436,14 +470,16 @@ section {
    proportionally identical at every width. */
 .project-showcase__media--deck {
   /* The front screen sets the scale of the deck; the two behind it are
-     proportionally smaller so the group reads as depth. The 31vh cap stops a
+     proportionally smaller so the group reads as depth. The 34vh cap stops a
      short, wide window from stretching the cluster down the whole row. */
-  --deck-front-w: min(44%, 31vh);
+  --deck-front-w: min(46%, 34vh);
   --deck-mid-w: calc(var(--deck-front-w) * 0.91);
   --deck-back-w: calc(var(--deck-front-w) * 0.82);
-  /* Each screen is pulled back over the one before it, leaving roughly three
-     quarters of every screen visible so all three still read as screens. */
-  --deck-overlap: calc(var(--deck-front-w) * -0.27);
+  /* Each screen is pulled back over the one before it, leaving roughly 70% of
+     every screen visible so all three still read as screens. A little more
+     overlap than before also keeps the three boxes inside the column while the
+     front screen itself is larger. */
+  --deck-overlap: calc(var(--deck-front-w) * -0.3);
   /* The mockups are rendered around 10deg clockwise, so the deck steps down as
      it moves right — a purely horizontal step would slide the screens across
      their own baseline instead of sitting on it. */
@@ -524,13 +560,19 @@ section {
    tablet bezel is drawn here; mockup-2/3 already ship with their own dark phone
    bezel, so those only need placing. As with the fan and the deck, every size
    hangs off a single knob (--devices-tablet-w) expressed as a share of the
-   column with a vh guard, so the lineup stays proportional and inside the
-   column at any width: the widths and overlaps below total 1.39x the knob, and
-   the knob never exceeds 70% of the column, so the cluster peaks at ~97% of it. */
+   column with a vh guard, so the lineup stays proportional at any width: the
+   three widths minus the two tucks total ~1.59x the knob, and the knob is
+   capped at 62% of the column, so the cluster lands at ~98% of it — as large
+   as possible without bleeding onto the neighbouring text. */
 .project-showcase__media--devices {
-  --devices-tablet-w: min(70%, 48vh);
-  /* The phone screens are 588x1185, so their height follows from their width. */
-  --devices-phone-w: calc(var(--devices-tablet-w) * 0.32);
+  --devices-tablet-w: min(62%, 50vh);
+  /* The phone screens are 588x1185, so their height follows from their width.
+     The phones sit at 0.48x the tablet — up from the original 0.36x, so they
+     stay ~20% bigger and readable — while the tablet knob drops to 62% to
+     compensate. The three widths minus the two tucks total ~1.59x the knob, so
+     the whole lineup lands at ~98% of the column: as large as possible without
+     bleeding onto the neighbouring text column. */
+  --devices-phone-w: calc(var(--devices-tablet-w) * 0.48);
   --devices-phone-h: calc(var(--devices-phone-w) * 2.015);
   /* Bezel thickness rides the tablet width, so the frame never reads as a
      hairline on a wide screen or as a fat slab on a narrow one. Kept at ~5% of
@@ -1071,15 +1113,15 @@ body.has-custom-cursor * {
   }
 
   .project-showcase__media--fan .project-showcase__fan {
-    height: clamp(280px, 40vh, 420px);
+    height: clamp(310px, 48vh, 500px);
   }
 
   .project-showcase__media--fan .project-showcase__fan-main {
-    height: clamp(260px, 38vh, 400px);
+    height: clamp(290px, 46vh, 470px);
   }
 
   .project-showcase__media--fan .project-showcase__fan-back {
-    height: clamp(200px, 30vh, 320px);
+    height: clamp(225px, 36vh, 380px);
   }
 
   /* Deck cluster: the same one-knob setup, retuned for a single column. The
@@ -1087,19 +1129,15 @@ body.has-custom-cursor * {
      with it so the three screens still total ~100% of the column instead of
      spilling past the page edge. */
   .project-showcase__media--deck {
-    --deck-front-w: min(50%, 26vh);
+    --deck-front-w: min(50%, 30vh);
     --deck-overlap: calc(var(--deck-front-w) * -0.365);
     --deck-step: clamp(0.25rem, 0.9vh, 0.6rem);
   }
 
-  /* Devices cluster: the tablet takes a little more of the column here while
-     the phones take less, which keeps the whole lineup inside a phone-width
-     viewport without spilling past the page edge. Only the one knob changes —
-     every derived size follows it. Kept at the same share as the desktop
-     layout: the cluster's own total works out at ~1.39x the knob, so 70% of
-     the column can never add up to more than the column itself. */
+  /* Devices cluster: same phone share as desktop, only capped harder so the
+     whole lineup still fits a phone-width viewport. */
   .project-showcase__media--devices {
-    --devices-tablet-w: min(70%, 42vh);
+    --devices-tablet-w: min(62%, 42vh);
   }
 
   .project-showcase__title {

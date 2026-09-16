@@ -55,30 +55,35 @@
       </a>
     </section>
     <main>
-      <section id="previous-work" class="reveal">
+      <!-- Each project row below carries .reveal itself, so every project fades
+           in on its own as it reaches the viewport instead of the whole
+           showcase appearing in one block. -->
+      <section id="previous-work">
         <span id="projects" aria-hidden="true"></span>
 
         <div class="project-showcase">
           <!-- Diplora: text left, tilted mockup deck right -->
-          <article class="project-showcase__row">
+          <article class="project-showcase__row reveal">
             <div class="project-showcase__text">
               <span class="project-showcase__index">01</span>
               <h3 class="project-showcase__title">
-                <a href="pages/diplora.html">Diplora <span class="project-showcase__dash" aria-hidden="true">—</span> Internship Project</a>
+                <a href="pages/diplora.html">Diplora <span class="project-showcase__dash" aria-hidden="true">—</span> ECG Companion App</a>
               </h3>
+              <span class="project-showcase__date">Sep 2025 – Jan 2026</span>
               <p class="project-showcase__desc">Designing the Flutter companion app for a wearable ECG sensor — from accessible Bluetooth pairing and persistent battery and connection status to a focused symptom logbook — turning daily heart monitoring into something patients aged 75 and over can do confidently, while keeping clinical interpretation with healthcare professionals.</p>
               <div class="project-showcase__meta">
                 <div class="project-showcase__tags">
                   <span class="tag">UI/UX</span>
                   <span class="tag">Flutter</span>
                   <span class="tag">BLE</span>
+                  <span class="tag">Accessibility</span>
+                  <span class="tag">HealthTech</span>
                 </div>
-                <span class="project-showcase__date">Sep 2025 – Jan 2026</span>
               </div>
               <a class="project-showcase__link" href="pages/diplora.html">View case study <span class="project-showcase__arrow" aria-hidden="true">⟶</span></a>
             </div>
             <div class="project-showcase__media project-showcase__media--deck">
-              <a class="project-showcase__media-link" href="pages/diplora.html" aria-label="Diplora Internship Project case study">
+              <a class="project-showcase__media-link" href="pages/diplora.html" aria-label="Diplora ECG Companion App case study">
                 <span class="project-showcase__deck">
                   <img class="project-showcase__deck-screen project-showcase__deck-screen--onboarding" src="images/mockups/diplora/omnboarding-tilt.png" alt="" aria-hidden="true" loading="lazy" />
                   <img class="project-showcase__deck-screen project-showcase__deck-screen--log" src="images/mockups/diplora/log-tilt.png" alt="" aria-hidden="true" loading="lazy" />
@@ -93,9 +98,9 @@
                portrait authoring screens on phones standing in front of the
                landscape point-of-work screen, which is wrapped in a tablet
                bezel drawn in CSS because the asset is a flat capture. -->
-          <article class="project-showcase__row project-showcase__row--alt">
+          <article class="project-showcase__row project-showcase__row--alt reveal">
             <div class="project-showcase__media project-showcase__media--devices">
-              <a class="project-showcase__media-link" href="pages/motivate.html" aria-label="Motivate.nl Internship Project case study">
+              <a class="project-showcase__media-link" href="pages/motivate.html" aria-label="Motivate instruction builder case study">
                 <span class="project-showcase__devices">
                   <span class="project-showcase__device project-showcase__device--phone project-showcase__device--phone-back">
                     <img src="images/motivate/mockup-2.png" alt="" aria-hidden="true" loading="lazy" />
@@ -112,34 +117,37 @@
             <div class="project-showcase__text">
               <span class="project-showcase__index">02</span>
               <h3 class="project-showcase__title">
-                <a href="pages/motivate.html">Motivate.nl <span class="project-showcase__dash" aria-hidden="true">—</span> Internship Project</a>
+                <a href="pages/motivate.html">Motivate <span class="project-showcase__dash" aria-hidden="true">—</span> Instruction Builder</a>
               </h3>
+              <span class="project-showcase__date">Feb 2024 – Jun 2024</span>
               <p class="project-showcase__desc">Designing and building an instruction authoring tool inside Motivate's Platform Management Tool — from writing and approving rich multimedia work instructions to version control and multi-device viewing — replacing scattered files and disconnected external tools with one workflow that factory and assembly teams can rely on at the workstation.</p>
               <div class="project-showcase__meta">
                 <div class="project-showcase__tags">
                   <span class="tag">UI/UX</span>
                   <span class="tag">Vue.js</span>
                   <span class="tag">PWA</span>
+                  <span class="tag">Factory Tooling</span>
+                  <span class="tag">Design System</span>
                 </div>
-                <span class="project-showcase__date">Feb 2024 – Jun 2024</span>
               </div>
               <a class="project-showcase__link" href="pages/motivate.html">View case study <span class="project-showcase__arrow" aria-hidden="true">⟶</span></a>
             </div>
           </article>
         <!-- FitPhone: text left, mockup right -->
-          <article class="project-showcase__row">
+          <article class="project-showcase__row reveal">
             <div class="project-showcase__text">
               <span class="project-showcase__index">03</span>
               <h3 class="project-showcase__title">
-                <a href="pages/fitphone.html">Fontys FitPhone <span class="project-showcase__dash" aria-hidden="true">—</span> App</a>
+                <a href="pages/fitphone.html">Fontys <span class="project-showcase__dash" aria-hidden="true">—</span> FitPhone App</a>
               </h3>
+              <span class="project-showcase__date">Sep 2023 – Oct 2023</span>
               <p class="project-showcase__desc">Designing and engineering a cross-platform wellness app for young adults aged 18 to 30 — from goal setting and focus metrics to behavioural education and peer accountability groups — replacing screen-time dashboards that show people their habits without ever giving them a reason, or a way, to change them.</p>
               <div class="project-showcase__meta">
                 <div class="project-showcase__tags">
                   <span class="tag">Cross-Platform</span>
-                  <span class="tag">App Dev</span>
+                  <span class="tag">Flutter</span>
+                  <span class="tag">Behavioural Design</span>
                 </div>
-                <span class="project-showcase__date">Sep 2023 – Oct 2023</span>
               </div>
               <a class="project-showcase__link" href="pages/fitphone.html">View case study <span class="project-showcase__arrow" aria-hidden="true">⟶</span></a>
             </div>
@@ -155,25 +163,27 @@
           </article>
 
           <!-- Philips Wall: mockup left, text right -->
-          <article class="project-showcase__row project-showcase__row--alt">
+          <article class="project-showcase__row project-showcase__row--alt reveal">
             <div class="project-showcase__media project-showcase__media--cover">
-              <a class="project-showcase__media-link" href="pages/phillipswall.html" aria-label="Philips Wall project case study">
+              <a class="project-showcase__media-link" href="pages/phillipswall.html" aria-label="Philips Post-it Sentiment Wall case study">
                 <img src="images/phillipswall/museum-installation.jpeg" alt="Philips Wall museum interactive installation" loading="lazy" />
               </a>
             </div>
             <div class="project-showcase__text">
               <span class="project-showcase__index">04</span>
               <h3 class="project-showcase__title">
-                <a href="pages/phillipswall.html">Philips Wall <span class="project-showcase__dash" aria-hidden="true">—</span> Interactive Installation</a>
+                <a href="pages/phillipswall.html">Philips <span class="project-showcase__dash" aria-hidden="true">—</span> Post-it Sentiment Wall</a>
               </h3>
-              <p class="project-showcase__desc">Designing and building an AI-powered feedback wall for the Philips Museum — from OpenAI Vision transcription of handwritten visitor notes to a spatial data visualisation of the wider public debate — turning a static sticky-note wall into a living conversation, with GDPR-safe data handling and automated analytics in place of manual sorting.</p>
+              <span class="project-showcase__date">20 weeks (Spring 2025)</span>
+              <p class="project-showcase__desc">Designing and building an AI-powered feedback wall for the Philips Museum — from OpenAI Vision transcription of handwritten visitor notes to a spatial data visualisation of the wider public debate — turning a static sticky-note wall into a living conversation, with GDPR-safe data handling and automated analytics in place of manual sorting. Built as my AI for Society minor project.</p>
               <div class="project-showcase__meta">
                 <div class="project-showcase__tags">
                   <span class="tag">AI</span>
                   <span class="tag">Data Vis</span>
-                  <span class="tag">Frontend</span>
+                  <span class="tag">React</span>
+                  <span class="tag">Museum Installation</span>
+                  <span class="tag">GDPR</span>
                 </div>
-                <span class="project-showcase__date">AI for Society Minor</span>
               </div>
               <a class="project-showcase__link" href="pages/phillipswall.html">View case study <span class="project-showcase__arrow" aria-hidden="true">⟶</span></a>
             </div>
