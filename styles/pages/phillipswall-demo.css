@@ -1,11 +1,12 @@
-/* Phillips Wall Demo - Sentiment Index */
+/* Phillips Wall Demo - Sentiment Index (hero replacement) */
 .phillips-demo-hero {
   position: relative;
   width: 100%;
   height: 100vh;
-  min-height: 700px;
+  height: 100svh;
+  min-height: 640px;
   overflow: hidden;
-  background: #faf9f6;
+  background: #000;
   font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
@@ -14,45 +15,85 @@
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
+    linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px);
   background-size: 50px 50px;
   z-index: 0;
   pointer-events: none;
 }
 
+/* Subtle purple glow to match portfolio branding */
+.phillips-demo-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 40% at 50% 40%, rgba(110,7,243,0.12) 0%, transparent 70%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.phillips-demo-hero .navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 50;
+  background: transparent;
+}
+
 .phillips-demo-header {
   position: absolute;
-  top: 20px;
+  top: 104px;
   left: 0;
   right: 0;
   z-index: 10;
   text-align: center;
   padding: 0 2rem;
   pointer-events: none;
+  /* Hidden until the demo is activated — fades in with the wall. */
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.phillips-demo-hero.demo-live .phillips-demo-header {
+  opacity: 1;
+  transform: none;
 }
 
 .phillips-demo-header h2 {
   font-family: 'Syne', sans-serif;
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: #333;
-  margin: 0 0 0.3rem;
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #fff;
+  margin: 0 0 0.4rem;
 }
 
 .phillips-demo-header p {
-  font-size: 0.85rem;
-  color: rgba(0,0,0,0.5);
+  font-size: 1rem;
+  color: rgba(255,255,255,0.6);
   margin: 0;
 }
 
 .sentiment-grid {
   position: absolute;
-  top: 80px;
-  left: 80px;
-  right: 80px;
-  bottom: 80px;
+  top: 200px;
+  left: 130px;
+  right: 130px;
+  bottom: 96px;
   z-index: 1;
+  /* Soft/faded until the demo is activated. */
+  opacity: 0.35;
+  filter: saturate(0.7) brightness(0.85);
+  transition: opacity 0.9s ease, filter 0.9s ease;
+}
+
+.phillips-demo-hero.demo-live .sentiment-grid {
+  opacity: 1;
+  filter: none;
 }
 
 .axis-lines {
@@ -69,7 +110,7 @@
   width: 2px;
   height: 100%;
   transform: translateX(-50%);
-  background: rgba(0, 0, 0, 0.182);
+  background: rgba(255, 255, 255, 0.22);
 }
 
 .axis-lines::after {
@@ -80,31 +121,32 @@
   height: 2px;
   width: 100%;
   transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.182);
+  background: rgba(255, 255, 255, 0.22);
 }
 
 .axis-label {
   position: absolute;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: #333;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #fff;
   z-index: 2;
   text-align: center;
   pointer-events: none;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.8);
 }
 
-.axis-label--top { top: -40px; left: 50%; transform: translateX(-50%); }
-.axis-label--bottom { bottom: -40px; left: 50%; transform: translateX(-50%); }
-.axis-label--left { left: -70px; top: 50%; transform: translateY(-50%); width: 120px; }
-.axis-label--right { right: -70px; top: 50%; transform: translateY(-50%); width: 120px; }
+.axis-label--top { top: 10px; left: 50%; transform: translateX(-50%); }
+.axis-label--bottom { bottom: 10px; left: 50%; transform: translateX(-50%); }
+.axis-label--left { left: 12px; top: 50%; transform: translateY(-50%); width: 120px; }
+.axis-label--right { right: 12px; top: 50%; transform: translateY(-50%); width: 120px; }
 
 .quadrant-label {
   position: absolute;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: rgba(0,0,0,0.08);
+  color: rgba(255,255,255,0.22);
   pointer-events: none;
   z-index: 2;
 }
@@ -143,195 +185,9 @@
 
 .cluster-group { position: absolute; width: 0; height: 0; z-index: 5; cursor: pointer; }
 
-.cluster-group .answer-bubble { position: absolute; animation: none; transform: translate(-50%, -50%); transition: transform 0.3s ease, box-shadow 0.3s ease; }`n`n.cluster-group:hover .answer-bubble { transform: translate(-50%, -50%) scale(1.15); box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25); }
+.cluster-group .answer-bubble { position: absolute; animation: none; transform: translate(-50%, -50%); transition: transform 0.3s ease, box-shadow 0.3s ease; }
 
-.stack-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.5);
-  backdrop-filter: blur(4px);
-  z-index: 99;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-}
-
-.stack-overlay.active { opacity: 1; pointer-events: auto; }
-
-.expanded-stack {
-  position: fixed;
-  inset: 0;
-  z-index: 100;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-}
-
-.expanded-stack.active { opacity: 1; pointer-events: auto; }
-
-.active-question {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 14rem;
-  height: 14rem;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-  text-align: center;
-  color: white;
-  font-weight: 500;
-  font-size: 0.9rem;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  z-index: 30;
-}
-
-.answer-box {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 17rem;
-  height: 16rem;
-  padding: 1.5rem;
-  color: white;
-  text-align: center;
-  transition: all 0.3s ease;
-  border-radius: 0.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  overflow: auto;
-  cursor: pointer;
-}
-
-.answer-box::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, transparent 50%, rgba(0,0,0,0.05) 100%);
-  pointer-events: none;
-  border-radius: 0.5rem;
-}
-
-.answer-box:hover {
-  z-index: 40;
-  box-shadow: 0 0 40px rgba(255,255,255,0.3);
-}
-
-.answer-box__text {
-  position: relative;
-  z-index: 1;
-  font-size: 0.85rem;
-  line-height: 1.5;
-}
-
-.demo-back-btn {
-  position: absolute;
-  top: 2rem;
-  left: 2rem;
-  padding: 0.75rem 1.5rem;
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
-  border: none;
-  border-radius: 0.75rem;
-  display: flex;
-  align-items: center;
-  backdrop-filter: blur(8px);
-  transition: all 0.3s ease;
-  font-weight: 500;
-  z-index: 50;
-  cursor: pointer;
-  font-size: 0.85rem;
-}
-
-.demo-back-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
-}
-
-.demo-scroll-hint {
-  position: absolute;
-  bottom: 24px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  pointer-events: none;
-}
-
-.demo-scroll-hint span {
-  font-size: 0.65rem;
-  color: rgba(0,0,0,0.4);
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  font-weight: 500;
-}
-
-.demo-scroll-hint .scroll-arrow {
-  animation: scrollBounce 2s ease-in-out infinite;
-  color: rgba(0,0,0,0.3);
-  font-size: 1.2rem;
-}
-
-@keyframes scrollBounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(6px); }
-}
-
-.demo-instruction {
-  position: absolute;
-  bottom: 70px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
-  font-size: 0.75rem;
-  color: rgba(0,0,0,0.4);
-  background: rgba(0,0,0,0.04);
-  padding: 8px 18px;
-  border-radius: 20px;
-  border: 1px solid rgba(0,0,0,0.06);
-  pointer-events: none;
-  white-space: nowrap;
-  animation: fadeInOut 4s ease-in-out forwards;
-}
-
-@keyframes fadeInOut {
-  0% { opacity: 0; transform: translateX(-50%) translateY(10px); }
-  15% { opacity: 1; transform: translateX(-50%) translateY(0); }
-  75% { opacity: 1; transform: translateX(-50%) translateY(0); }
-  100% { opacity: 0; transform: translateX(-50%) translateY(-10px); }
-}
-
-@media (max-width: 768px) {
-  .sentiment-grid { top: 60px; left: 40px; right: 40px; bottom: 60px; }
-  .answer-bubble { width: 36px; height: 36px; }
-  .active-question { width: 10rem; height: 10rem; font-size: 0.75rem; }
-  .answer-box { width: 14rem; height: 13rem; padding: 1rem; }
-  .phillips-demo-header h2 { font-size: 1.1rem; }
-}
-
-@media (max-width: 480px) {
-  .answer-bubble { width: 28px; height: 28px; }
-  .active-question { width: 8rem; height: 8rem; font-size: 0.65rem; }
-  .answer-box { width: 12rem; height: 11rem; }
-}
-
-`n.cluster-group:hover .answer-bubble { transform: translate(-50%, -50%) scale(1.15); box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25); }
-@media (max-width: 480px) {
-  .answer-bubble { width: 28px; height: 28px; }
-  .active-question { width: 8rem; height: 8rem; font-size: 0.65rem; }
-  .answer-box { width: 12rem; height: 11rem; }
-}
-
-/* ===== SWIPE-THROUGH CARD STACK (Phillips Wall style) ===== */
+.cluster-group:hover .answer-bubble { transform: translate(-50%, -50%) scale(1.15); box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25); }
 
 .stack-overlay {
   position: fixed;
@@ -366,28 +222,33 @@
   pointer-events: auto;
 }
 
-.demo-back-btn {
+.demo-close-btn {
   position: absolute;
   top: clamp(1rem, 3vh, 2rem);
-  left: clamp(1rem, 3vw, 2rem);
-  padding: 0.5rem 1rem;
+  right: clamp(1rem, 3vw, 2rem);
+  width: clamp(2.5rem, 5vw, 3.25rem);
+  height: clamp(2.5rem, 5vw, 3.25rem);
+  padding: 0;
   background: rgba(255, 255, 255, 0.1);
   color: white;
   border: none;
-  border-radius: 0.75rem;
+  border-radius: 50%;
   display: flex;
   align-items: center;
+  justify-content: center;
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  font-weight: 300;
+  line-height: 1;
   backdrop-filter: blur(8px);
   transition: all 0.3s ease;
-  font-weight: 500;
   z-index: 1001;
   cursor: pointer;
-  font-size: clamp(0.7rem, 1.5vw, 0.85rem);
   font-family: inherit;
 }
 
-.demo-back-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
+.demo-close-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.08);
 }
 
 .active-question {
@@ -432,6 +293,9 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  /* Light border so each card's edge reads as a distinct card even when
+     multiple same-coloured cards overlap in the idle fan. */
+  border: 2px solid rgba(255, 255, 255, 0.7);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   top: 50%;
   left: 50%;
@@ -462,6 +326,7 @@
 
 .answer-card.hovered {
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+  border-color: rgba(255, 255, 255, 0.95);
 }
 
 .answer-card__content {
@@ -481,21 +346,124 @@
 
 .answer-card__num {
   position: absolute;
-  bottom: 8px;
+  top: 8px;
   right: 12px;
-  color: rgba(255, 255, 255, 0.6);
-  font-size: clamp(0.55rem, 1vw, 0.7rem);
-  font-weight: 500;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: clamp(0.6rem, 1vw, 0.75rem);
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.35);
   z-index: 2;
 }
 
+
+/* "Try the demo" pill — centered over the faded wall */
+.demo-activate {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 15;
+  appearance: none;
+  border: 1px solid rgba(255,255,255,0.16);
+  cursor: pointer;
+  font-family: 'Syne', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+  background: rgba(110,7,243,0.92);
+  padding: 1rem 2.8rem;
+  border-radius: 999px;
+  box-shadow: 0 8px 32px rgba(110,7,243,0.55);
+  transition: opacity 0.6s ease, background 0.2s ease, visibility 0.6s ease;
+  white-space: nowrap;
+}
+
+.demo-activate:hover {
+  background: #9a53ff;
+}
+
+.phillips-demo-hero.demo-live .demo-activate {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Hide the bottom case-study nav bar while cards are open */
+body.demo-locked .case-study-nav {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+
+/* Scroll cue: "Scroll for case study" + bouncing chevron.
+   Slim + subtle — sits at the bottom of the hero, in view. */
+.demo-scroll-cue {
+  position: absolute;
+  bottom: 42px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 14;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0px;
+  text-decoration: none;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.demo-scroll-cue__text {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  white-space: nowrap;
+}
+
+.demo-scroll-cue__arrow {
+  color: #6E07F3;
+  font-size: 1.7rem;
+  line-height: 1;
+  display: flex;
+  animation: demoCueBounce 2s ease-in-out infinite;
+}
+
+.demo-scroll-cue:hover .demo-scroll-cue__text {
+  color: #fff;
+}
+
+.demo-scroll-cue:hover .demo-scroll-cue__arrow {
+  color: #9a53ff;
+}
+
+@keyframes demoCueBounce {
+  0%, 100% { transform: translateY(0); opacity: 0.7; }
+  50% { transform: translateY(7px); opacity: 1; }
+}
+
+/* Hide the cue while cards are open (page scroll is locked anyway). */
+body.demo-locked .demo-scroll-cue {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+
 @media (max-width: 768px) {
+  .phillips-demo-hero { height: 100svh; min-height: 620px; }
+  .phillips-demo-header { top: 92px; }
+  .phillips-demo-header h2 { font-size: 1.5rem; }
+  .sentiment-grid { top: 180px; left: 40px; right: 40px; bottom: 88px; }
   .active-question { width: 10rem; height: 10rem; font-size: 0.75rem; }
   .answer-card { width: 210px; height: 250px; margin-top: -125px; margin-left: -105px; }
   .answer-card.focused { width: 340px; height: 360px; margin-top: -180px; margin-left: -170px; }
 }
 
 @media (max-width: 480px) {
+  .sentiment-grid { top: 170px; left: 26px; right: 26px; bottom: 80px; }
   .active-question { width: 8rem; height: 8rem; font-size: 0.65rem; }
   .answer-card { width: 170px; height: 210px; margin-top: -105px; margin-left: -85px; }
   .answer-card.focused { width: 300px; height: 330px; margin-top: -165px; margin-left: -150px; }

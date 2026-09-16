@@ -3,6 +3,8 @@ function initVantaBackground() {
     return;
   }
 
+  // Full-screen Vanta globe behind the whole hero — the big parallax ball,
+  // same setup as the original design.
   window.VANTA.GLOBE({
     el: '#top',
     mouseControls: true,

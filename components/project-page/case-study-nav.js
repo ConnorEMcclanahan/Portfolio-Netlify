@@ -231,6 +231,9 @@
     nav.className = 'case-study-nav';
     nav.setAttribute('aria-label', 'Case study sections');
     nav.innerHTML = `
+      <div class="case-study-nav__progress" aria-hidden="true">
+        <div class="case-study-nav__progress-fill"></div>
+      </div>
       <div class="case-study-nav__inner">
         <button class="case-study-nav__toggle" type="button" aria-label="Toggle section menu" aria-expanded="false">
           <span></span>
@@ -254,6 +257,31 @@
 
     const toggle = nav.querySelector('.case-study-nav__toggle');
     const links = nav.querySelector('.case-study-nav__links');
+    const progressFill = nav.querySelector('.case-study-nav__progress-fill');
+
+    function updateProgress() {
+      if (!progressFill) return;
+      const scrollTop = window.scrollY || document.documentElement.scrollTop || 0;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? Math.min(1, Math.max(0, scrollTop / docHeight)) : 0;
+      progressFill.style.transform = `scaleX(${progress})`;
+    }
+
+    let progressTicking = false;
+    function requestProgressUpdate() {
+      if (progressTicking) return;
+      progressTicking = true;
+      window.requestAnimationFrame(() => {
+        updateProgress();
+        progressTicking = false;
+      });
+    }
+
+    window.addEventListener('scroll', requestProgressUpdate, { passive: true });
+    window.addEventListener('resize', requestProgressUpdate);
+    // Re-run after images/fonts settle so scrollHeight is accurate.
+    window.addEventListener('load', requestProgressUpdate);
+    requestProgressUpdate();
 
     if (toggle && links) {
       toggle.addEventListener('click', () => {

@@ -57,10 +57,32 @@
 
     groupEl.addEventListener("click", function (e) {
       e.stopPropagation();
+      var heroEl = groupEl.closest(".phillips-demo-hero");
+      if (heroEl && !heroEl.classList.contains("demo-live")) {
+        heroEl.classList.add("demo-live");
+      }
       expandCluster(cluster);
     });
 
     gridEl.appendChild(groupEl);
+  }
+
+  function lockPageScroll() {
+    document.documentElement.classList.add("demo-locked");
+    document.body.classList.add("demo-locked");
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
+    var hero = document.querySelector(".phillips-demo-hero");
+    if (hero) hero.classList.add("demo-cards-open");
+  }
+
+  function unlockPageScroll() {
+    document.documentElement.classList.remove("demo-locked");
+    document.body.classList.remove("demo-locked");
+    document.documentElement.style.overflow = "";
+    document.body.style.overflow = "";
+    var hero = document.querySelector(".phillips-demo-hero");
+    if (hero) hero.classList.remove("demo-cards-open");
   }
 
   function expandCluster(cluster) {
@@ -68,16 +90,21 @@
     activeCluster = cluster;
     focusedCard = null;
     hoveredCard = null;
+    lockPageScroll();
 
     overlayEl.classList.add("active");
     stackEl.classList.add("active");
     stackEl.innerHTML = "";
 
-    var backBtn = document.createElement("button");
-    backBtn.className = "demo-back-btn";
-    backBtn.textContent = "? Back";
-    backBtn.addEventListener("click", closeExpanded);
-    stackEl.appendChild(backBtn);
+    var closeBtn = document.createElement("button");
+    closeBtn.className = "demo-close-btn";
+    closeBtn.setAttribute("aria-label", "Close");
+    closeBtn.textContent = "\u00D7";
+    closeBtn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      closeExpanded();
+    });
+    stackEl.appendChild(closeBtn);
 
     var questionCircle = document.createElement("div");
     questionCircle.className = "active-question";
@@ -89,17 +116,18 @@
     cardStack.className = "card-stack";
 
     var totalCards = cluster.a.length;
-    // Pixel spacing between card centers — ~70% of the (big) card width
-    // keeps cards fanned with visible overlap. Shrink to fit so even the
+    // Pixel spacing between card centers. Wide enough that each card
+    // clearly peeks out from behind its neighbour in the idle fan (no
+    // hovering needed to read the deck). Shrink to fit so even the
     // 9-card hero cluster stays on screen.
     var narrowScreen = window.innerWidth < 768;
     var baseCardW = narrowScreen ? 210 : 320;
-    var baseSpacing = narrowScreen ? 140 : 220;
-    var maxFanW = Math.min(window.innerWidth * 0.92, 1250);
+    var baseSpacing = narrowScreen ? 150 : 240;
+    var maxFanW = Math.min(window.innerWidth * 0.94, 1400);
     var fitSpacing = totalCards > 1
       ? (maxFanW - baseCardW) / (totalCards - 1)
       : baseSpacing;
-    var cardSpacing = Math.max(95, Math.min(baseSpacing, fitSpacing));
+    var cardSpacing = Math.max(120, Math.min(baseSpacing, fitSpacing));
 
     for (var i = 0; i < totalCards; i++) {
       (function(idx) {
@@ -142,29 +170,46 @@
       })(i);
     }
 
+    stackEl.addEventListener("click", function (e) {
+      // Clicking the dark backdrop (outside cards/question/close btn) closes.
+      if (e.target === stackEl) closeExpanded();
+    });
+    // Cards must be mounted inside stackEl BEFORE updateCards runs,
+    // otherwise querySelectorAll finds no cards and the fan transforms are
+    // never applied (all cards left perfectly stacked). This was the
+    // "stacks weirdly until you mouse over" bug.
     stackEl.appendChild(cardStack);
     updateCards(cluster, totalCards, cardSpacing);
   }
 
   function updateCards(cluster, totalCards, cardSpacing) {
     var cards = stackEl.querySelectorAll(".answer-card");
-    var isNarrow = window.innerWidth < 768;
-    // cardSpacing is computed in expandCluster so big cards still fan.
     var center = (totalCards - 1) / 2;
 
-    cards.forEach(function(card, idx) {
+    // Match the original PhillipsWall fan geometry but with a slightly
+    // wider arc so the fan is obvious even without hovering:
+    //   maxAngle = min(35, totalCards * 3)
+    //   angle    = (idx - center) * (maxAngle / totalCards)
+    // No downward arc on idle cards (the original sits them flat),
+    // only a gentle lift on hover.
+    var maxAngle = Math.min(35, totalCards * 3);
+    var angleStep = maxAngle / totalCards;
+
+    cards.forEach(function (card, idx) {
       var offset = idx - center;
       var isHovered = hoveredCard === idx;
       var isFocused = focusedCard === idx;
 
+      var angle = offset * angleStep;
       var tx = isFocused ? 0 : offset * cardSpacing;
-      var ty = isFocused ? -110 : (isHovered ? -45 : Math.abs(offset) * 10);
-      var rot = isFocused ? 0 : offset * (isNarrow ? 5 : 6);
-      var scale = isFocused ? 1 : (isHovered ? 1.06 : 1);
-      var zIndex = isFocused ? 100 : (isHovered ? 50 + idx : idx);
-      var opacity = 1;
-      if (isFocused) opacity = 1;
-      else if (focusedCard !== null) opacity = 0;
+      var ty = isFocused ? -110 : (isHovered ? -40 : 0);
+      var rot = isFocused ? 0 : angle;
+      var scale = isFocused ? 1 : (isHovered ? 1.05 : 1);
+      // z-index peaks at the CENTER card and decreases outward. This keeps
+      // the fanned tops from poking up above their neighbours on the outer
+      // cards (the left-side corner-raising problem) — clean fan on both sides.
+      var zIndex = isFocused ? 100 : (isHovered ? 50 + idx : 10 + (totalCards - Math.abs(idx - center)));
+      var opacity = isFocused ? 1 : (focusedCard !== null ? 0 : 1);
 
       card.style.transform = "translateX(" + tx + "px) translateY(" + ty + "px) rotate(" + rot + "deg) scale(" + scale + ")";
       card.style.zIndex = zIndex;
@@ -179,6 +224,7 @@
     focusedCard = null;
     hoveredCard = null;
     resizeRefreshPending = false;
+    unlockPageScroll();
     overlayEl.classList.remove("active");
     stackEl.classList.remove("active");
     setTimeout(function () { stackEl.innerHTML = ""; }, 300);
@@ -190,8 +236,22 @@
     gridEl = hero.querySelector(".sentiment-grid");
     if (!gridEl) return;
 
-    var axisLines = document.createElement("div");
+var axisLines = document.createElement("div");
     axisLines.className = "axis-lines";
+
+    // Activation: wall starts faded; "Try the demo" (or first bubble
+    // click) fades everything in.
+    var activateBtn = hero.querySelector("#demo-activate-btn");
+    function activateDemo() {
+      hero.classList.add("demo-live");
+    }
+    if (activateBtn) {
+      activateBtn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        activateDemo();
+      });
+    }
+
     axisLines.innerHTML =
       '<span class="axis-label axis-label--top">AI Enthusiastic</span>' +
       '<span class="axis-label axis-label--bottom">AI Skeptical</span>' +
@@ -219,6 +279,16 @@
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape") closeExpanded();
     });
+
+    // Swallow wheel/touch scrolling while a cluster is open so the
+    // page behind the cards stays put.
+    function swallowIfOpen(e) {
+      if (activeCluster) {
+        e.preventDefault();
+      }
+    }
+    document.addEventListener("wheel", swallowIfOpen, { passive: false });
+    document.addEventListener("touchmove", swallowIfOpen, { passive: false });
 
     window.addEventListener("resize", function () {
       if (activeCluster && !resizeRefreshPending) {

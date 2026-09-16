@@ -10,13 +10,9 @@ body.project-page-standard .case-study-phase__title h2 {
   font-family: 'Syne', sans-serif;
 }
 
+/* NOTE: .phillips-hero parallax removed — the sentiment wall is now the page hero. */
 .phillips-hero {
-  height: 100vh !important;
-  min-height: 100vh;
-  position: relative;
-  background:
-    linear-gradient(rgba(0, 0, 0, 0.34), rgba(0, 0, 0, 0.58)),
-    url('../../images/phillipswall/event-room-wide.jpeg') center / cover fixed no-repeat;
+  display: none !important;
 }
 
 .phillips-hero .navbar {
@@ -395,10 +391,6 @@ body.project-page-standard .project-section h4 + p {
 }
 
 @media (max-width: 768px) {
-  .phillips-hero {
-    min-height: 60vh;
-  }
-
   .phillips-demo {
     display: block;
   }

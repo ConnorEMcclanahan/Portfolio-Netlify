@@ -24,8 +24,7 @@
     <div class="loading-screen__text">Loading...</div>
   </div>
 
-  <div class="parallax-1 phillips-hero" id="top">
-    <a href="#intro-summary" class="scroll-down" aria-label="Scroll down"><ion-icon name="chevron-down-outline"></ion-icon></a>
+  <div class="phillips-demo-hero" id="top">
     <nav class="navbar">
       <div class="navbar-container">
         <a href="../index.html" class="navbar-logo"><img src="../images/logo.png" alt="logo" class="navbar-logo-img" /></a>
@@ -38,20 +37,16 @@
         </ul>
       </div>
     </nav>
-  </div>
-
-  <!-- Interactive Sentiment Wall Demo -->
-  <div class="phillips-demo-hero">
     <div class="phillips-demo-header">
       <h2>Try the Sentiment Wall</h2>
-      <p>Click any cluster of notes to explore visitor responses</p>
+      <p>Click any cluster to explore real visitor responses</p>
     </div>
-    <div class="sentiment-grid"></div>
-    <div class="demo-instruction">Click a stack of notes to expand</div>
-    <div class="demo-scroll-hint">
-      <span>Scroll for case study</span>
-      <span class="scroll-arrow">&#8964;</span>
-    </div>
+    <div class="sentiment-grid" aria-hidden="false"></div>
+    <button class="demo-activate" id="demo-activate-btn" type="button">Try the demo</button>
+    <a href="#intro-summary" class="demo-scroll-cue" aria-label="Scroll down to the case study">
+      <span class="demo-scroll-cue__text">Scroll for case study</span>
+      <span class="demo-scroll-cue__arrow"><ion-icon name="chevron-down-outline"></ion-icon></span>
+    </a>
   </div>
 
   <section id="intro-summary" class="reveal"></section>
