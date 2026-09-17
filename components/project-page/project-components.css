@@ -1003,6 +1003,21 @@ body.project-page-standard .intro-meta ul {
   font-size: 1.05rem;
 }
 
+/* Conclusion items must look the same on every project page. The page-level
+   heading rules differ (Diplora and Phillips both define their own
+   `.project-section h4` treatment), so the conclusion treatment is pinned here
+   with enough specificity to win on all of them. */
+body.project-page-standard .final-col h4.final-item-title {
+  color: #6E07F3;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+body.project-page-standard .final-col .final-item-copy {
+  color: var(--case-muted);
+  margin-bottom: 1.5rem;
+}
+
 .final-item-copy {
   color: var(--case-muted);
   font-family: "Plus Jakarta Sans", sans-serif;

@@ -2,32 +2,8 @@
   background: rgba(0, 0, 0, 0.5) !important;
 }
 
-#final-container.final-section {
-  position: relative;
-  gap: 4rem;
-}
-
-#final-container.final-section::before {
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background: #6E07F3;
-  transform: translateX(-50%);
-}
-
-#final-container .final-col--border {
-  border-left: none;
-  padding-left: 0;
-}
-
-@media (max-width: 768px) {
-  #final-container.final-section::before {
-    display: none;
-  }
-}
+/* The conclusion renders as a single centred column and inherits the shared
+   final-columns styles from components/project-page/project-components.css. */
 
 /* ============================================================
    SUGGESTED PROJECT SECTION — sits beside the reflection
@@ -1666,16 +1642,8 @@ body.project-page-standard #intro-summary .intro-meta-item a:focus-visible {
   border-bottom-color: #9a53ff;
 }
 /* ============================================================
-   FINAL COLUMNS: force the two columns side by side on desktop
-   (Motivate-only — scoped by the #final-container id).
-   The shared .final-col rule is `flex: 0 0 auto; max-width: 700px`
-   inside a wrapping flex container, so a ~700px second column
-   wraps below the first inside the 1200px container. Equal
-   flex-basis keeps both columns in one row.
+   CONCLUSION: single centred column, matching the shared
+   final-columns styles used across the project pages (see
+   components/project-page/project-components.css). No
+   side-by-side columns.
    ============================================================ */
-#final-container.final-section .final-col {
-  flex: 1 1 0;
-  min-width: 0;
-  max-width: none;
-  margin: 0;
-}

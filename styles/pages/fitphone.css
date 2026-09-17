@@ -947,47 +947,12 @@ body.project-page-standard #intro-summary .intro-heading .intro-lead {
   max-height: none;
 }
 
-.final-section {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  align-items: flex-start;
-}
-
-.final-col {
-  flex: 1;
-  min-width: 300px;
-}
-
-.final-col--border {
-  border-left: 3px solid #6E07F3;
-  padding-left: 2rem;
-}
-
-.final-title {
-  font-size: 2em;
-  color: #6E07F3;
-  text-align: left;
-}
-
-.final-items {
-  margin-top: 1.5rem;
-}
-
-.final-item-title {
-  color: #6E07F3;
-  margin-bottom: 0.5rem;
-  font-size: 1.05rem;
-}
-
-.final-item-copy {
-  color: white;
-  font-size: 0.95rem;
-}
-
-.final-item-copy--spaced {
-  margin-bottom: 1.5rem;
-}
+/* ============================================================
+   CONCLUSION: single centred column. The column layout and the
+   item styles come from the shared final-columns component (see
+   components/project-page/project-components.css) — no
+   side-by-side columns on this page.
+   ============================================================ */
 
 @keyframes pulse {
   0%, 100% {
