@@ -54,6 +54,8 @@
     groupEl.className = "cluster-group";
     groupEl.style.left = cluster.x + "%";
     groupEl.style.top = cluster.y + "%";
+    // Sweep spatially across the wall, rather than following the data order.
+    groupEl.style.setProperty("--cluster-enter-delay", (0.05 + cluster.x * 0.005 + cluster.y * 0.001).toFixed(3) + "s");
     groupEl.setAttribute("data-cluster-id", cluster.id);
 
     var bubbleCount = cluster.a.length;
