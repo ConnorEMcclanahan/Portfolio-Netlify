@@ -218,6 +218,45 @@
   display: none;
 }
 
+/* ============================================================
+   ENTRANCE
+   The same open-the-page animation as the Motivate cascade hero: as the
+   loading screen clears, every frame fades in and rises into place, sweeping
+   left to right. The wave offsets live on .staggered-mockup__item, so only
+   the frame (and its label) animates — each device keeps the exact position
+   it already had.
+   ============================================================ */
+.staggered-mockup__frame {
+  opacity: 0;
+  transform: translateY(34px);
+  transition:
+    opacity 0.65s ease,
+    transform 0.75s cubic-bezier(0.22, 0.7, 0.3, 1),
+    box-shadow 0.3s ease;
+}
+
+body.loaded .staggered-mockup__frame {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.staggered-mockup__label {
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+body.loaded .staggered-mockup__label {
+  opacity: 0.6;
+}
+
+/* Reading order, so the wave arrives one device at a time. */
+.staggered-mockup__item:nth-child(1) > * { transition-delay: 0.05s; }
+.staggered-mockup__item:nth-child(2) > * { transition-delay: 0.15s; }
+.staggered-mockup__item:nth-child(3) > * { transition-delay: 0.25s; }
+.staggered-mockup__item:nth-child(4) > * { transition-delay: 0.35s; }
+.staggered-mockup__item:nth-child(5) > * { transition-delay: 0.45s; }
+.staggered-mockup__item:nth-child(6) > * { transition-delay: 0.55s; }
+
 /* Responsive */
 @media (max-width: 1200px) {
   .staggered-mockup__track {
@@ -284,5 +323,19 @@
 
   .staggered-mockup__track {
     gap: 1.5rem;
+  }
+}
+
+/* Reduced motion: devices appear straight away, with no entrance sweep. */
+@media (prefers-reduced-motion: reduce) {
+  .staggered-mockup__frame {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .staggered-mockup__label {
+    opacity: 0.6;
+    transition: none;
   }
 }
