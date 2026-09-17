@@ -337,3 +337,15 @@ body.loaded .device-cascade__item > .device-cascade__frame--phone {
     --cascade-tablet-w: min(88vw, 260px);
   }
 }
+
+/* Reduced motion: devices sit straight in their final positions, with no
+   entrance slide and no scroll parallax (device-cascade.js skips the
+   listener for the same reason). */
+@media (prefers-reduced-motion: reduce) {
+  .device-cascade__item > .device-cascade__frame--tablet,
+  .device-cascade__item > .device-cascade__frame--phone {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

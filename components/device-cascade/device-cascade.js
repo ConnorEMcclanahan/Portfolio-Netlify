@@ -1,6 +1,39 @@
 (function () {
   const api = window.ProjectPageComponents = window.ProjectPageComponents || {};
 
+  // Scroll-linked reveal for the cascade hero.
+  // The CSS reads --cascade-reveal (0 -> 1) to sink the tablets slightly and
+  // lift the phones by more, so scrolling pulls more of every phone out from
+  // under the tablet edges. The hero owns the first slice of the scroll, so
+  // the effect lands right around the point the scroll cue fades out.
+  function initCascadeReveal(section) {
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (reducedMotion.matches) {
+      return;
+    }
+
+    let ticking = false;
+
+    const update = () => {
+      ticking = false;
+      const viewport = window.innerHeight || 0;
+      const progress = viewport > 0
+        ? Math.min(1, Math.max(0, window.scrollY / (viewport * 0.45)))
+        : 0;
+      section.style.setProperty('--cascade-reveal', progress.toFixed(3));
+    };
+
+    const request = () => {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener('scroll', request, { passive: true });
+    window.addEventListener('resize', request);
+  }
+
   api.renderDeviceCascade = function renderDeviceCascade(targetSelector, data) {
     const target = document.querySelector(targetSelector);
     if (!target || !data || !Array.isArray(data.items)) {
@@ -19,9 +52,9 @@
       const isPhone = !isTablet;
       let frameClass = isTablet ? 'device-cascade__frame--tablet' : 'device-cascade__frame--phone';
       
-      // Phone roles: the two phones that overlap the tablets share the same
-      // treatment (slightly smaller, softer shadow) so the cascade mirrors,
-      // and the middle phone stays the focus.
+      // Phone roles: every phone is the same width — the two phones that
+      // overlap the tablets just carry a softer shadow so the middle phone
+      // still reads as the focus. Mirrored, so the cascade stays symmetrical.
       if (isPhone) {
         if (index === 1 || index === 4) {
           frameClass += ' device-cascade__frame--phone-back';
@@ -66,5 +99,7 @@
       </div>
       <div id="scroll-cue-mount"></div>
     `;
+
+    initCascadeReveal(target);
   };
 })();
