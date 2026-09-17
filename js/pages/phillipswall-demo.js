@@ -34,6 +34,21 @@
   var hoveredCard = null;
   var resizeRefreshPending = false;
 
+  // Shared pastel palette keeps each bubble and its cards the same color.
+  function clusterPastelColor(g) {
+    if (!g) return "#BFE3FF";
+    var hex = (g.match(/#([0-9a-fA-F]{6})/) || [])[1];
+    if (!hex) return "#BFE3FF";
+    hex = hex.toLowerCase();
+    var map = {
+      "008ce9": "#BFE3FF",
+      "8e00c5": "#E4C6FF",
+      "c90035": "#FFC4C4",
+      "0a7c53": "#C6F2D4"
+    };
+    return map[hex] || "#BFE3FF";
+  }
+
   function createCluster(cluster) {
     var groupEl = document.createElement("div");
     groupEl.className = "cluster-group";
@@ -106,12 +121,6 @@
     });
     stackEl.appendChild(closeBtn);
 
-    var questionCircle = document.createElement("div");
-    questionCircle.className = "active-question";
-    questionCircle.style.background = cluster.g;
-    questionCircle.textContent = cluster.q;
-    stackEl.appendChild(questionCircle);
-
     var cardStack = document.createElement("div");
     cardStack.className = "card-stack";
 
@@ -121,30 +130,66 @@
     // hovering needed to read the deck). Shrink to fit so even the
     // 9-card hero cluster stays on screen.
     var narrowScreen = window.innerWidth < 768;
-    var baseCardW = narrowScreen ? 210 : 320;
-    var baseSpacing = narrowScreen ? 150 : 240;
+    var baseCardW = narrowScreen ? 210 : 360;
+    var baseSpacing = narrowScreen ? 150 : 260;
     var maxFanW = Math.min(window.innerWidth * 0.94, 1400);
     var fitSpacing = totalCards > 1
       ? (maxFanW - baseCardW) / (totalCards - 1)
       : baseSpacing;
     var cardSpacing = Math.max(120, Math.min(baseSpacing, fitSpacing));
 
+    // Card background color: map the cluster's gradient to a soft pastel so
+    // cards are easy to read on. The bubble itself keeps the full gradient;
+    // cards use the pastel equivalent so text stays high-contrast.
+    function clusterPastelColor(g) {
+      if (!g) return "#BFE3FF";
+      var hex = (g.match(/#([0-9a-fA-F]{6})/) || [])[1];
+      if (!hex) return "#BFE3FF";
+      hex = hex.toLowerCase();
+      var map = {
+        "008ce9": "#BFE3FF",
+        "8e00c5": "#E4C6FF",
+        "c90035": "#FFC4C4",
+        "0a7c53": "#C6F2D4"
+      };
+      return map[hex] || "#BFE3FF";
+    }
+    var cardBg = clusterPastelColor(cluster.g);
+    var textColor = "#1e1b4b";
+    var textColorMuted = "#4b5563";
+
     for (var i = 0; i < totalCards; i++) {
       (function(idx) {
         var card = document.createElement("div");
         card.className = "answer-card";
-        card.style.background = cluster.g;
+        card.style.background = cardBg;
         card.setAttribute("data-index", idx);
 
-        var cardContent = document.createElement("div");
-        cardContent.className = "answer-card__content";
-        cardContent.textContent = cluster.a[idx];
-        card.appendChild(cardContent);
+        // Top-center dot indicator
+        var dot = document.createElement("div");
+        dot.className = "answer-card__dot";
+        card.appendChild(dot);
 
-        var cardNum = document.createElement("div");
-        cardNum.className = "answer-card__num";
-        cardNum.textContent = (idx + 1) + " / " + totalCards;
-        card.appendChild(cardNum);
+        // Pill badge — "YOU" only shown on the focused card (the one the
+        // user selected). In the idle fan no card carries the YOU tag; the
+        // cluster/bubble on the graph already signals ownership.
+        var badge = document.createElement("div");
+        badge.className = "answer-card__badge";
+        badge.textContent = "YOU";
+        badge.style.display = "none";
+        card.appendChild(badge);
+
+        // Question (upper third of card)
+        var questionEl = document.createElement("div");
+        questionEl.className = "answer-card__question";
+        questionEl.textContent = cluster.q;
+        card.appendChild(questionEl);
+
+        // Answer (fluid middle block)
+        var answerEl = document.createElement("div");
+        answerEl.className = "answer-card__answer";
+        answerEl.textContent = cluster.a[idx];
+        card.appendChild(answerEl);
 
         card.addEventListener("click", function (e) {
           e.stopPropagation();
@@ -179,6 +224,30 @@
     // never applied (all cards left perfectly stacked). This was the
     // "stacks weirdly until you mouse over" bug.
     stackEl.appendChild(cardStack);
+
+    // Footer counter pill — shows total card count
+    var footerCounter = document.createElement("div");
+    footerCounter.className = "card-footer-counter active";
+    if (totalCards === 1) {
+      footerCounter.textContent = "1 card";
+    } else {
+      footerCounter.textContent = totalCards + " cards";
+    }
+    stackEl.appendChild(footerCounter);
+
+    // Keep counter state in sync when focus changes
+    updateCounterText = function () {
+      if (!footerCounter) return;
+      var currentTotal = cluster ? cluster.a.length : 0;
+      if (focusedCard !== null && currentTotal > 1) {
+        footerCounter.textContent = "1 / " + currentTotal;
+      } else if (currentTotal === 1) {
+        footerCounter.textContent = "1 card";
+      } else {
+        footerCounter.textContent = currentTotal + " cards";
+      }
+    };
+
     updateCards(cluster, totalCards, cardSpacing);
   }
 
@@ -216,7 +285,14 @@
       card.style.opacity = opacity;
       card.classList.toggle("focused", isFocused);
       card.classList.toggle("hovered", isHovered);
+      // YOU badge: only the focused card carries it
+      var badge = card.querySelector(".answer-card__badge");
+      if (badge) badge.style.display = isFocused ? "" : "none";
+      // Color state: cards inherit their background from the cluster gradient
+      // (set at creation time); no card-single/card-multi class toggling needed.
     });
+    // Sync counter text after each update
+    if (updateCounterText) updateCounterText();
   }
 
   function closeExpanded() {
@@ -228,6 +304,9 @@
     overlayEl.classList.remove("active");
     stackEl.classList.remove("active");
     setTimeout(function () { stackEl.innerHTML = ""; }, 300);
+    if (footerCounter && footerCounter.parentNode) footerCounter.parentNode.removeChild(footerCounter);
+    footerCounter = null;
+    startAutoHoverTimer();
   }
 
   function init() {

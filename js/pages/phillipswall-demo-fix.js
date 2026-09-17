@@ -108,9 +108,11 @@
     var fs = '1rem';
     if (answer.length > 300) fs = '0.9rem';
     if (answer.length > 500) fs = '0.82rem';
-    var h = '<div class="expanded-card" style="background:' + activeCluster.g + '">' +
+    var h = '<div class="expanded-card" style="background:#BFE3FF">' +
       '<button class="expanded-card__close" aria-label="Close">&times;</button>' +
-      '<span class="expanded-card__tag">' + activeCluster.q + '</span>' +
+      '<div class="expanded-card__dot"></div>' +
+      '<div class="expanded-card__badge">YOU</div>' +
+      '<div class="expanded-card__question">' + activeCluster.q + '</div>' +
       '<div class="expanded-card__text" style="font-size:' + fs + '">' + answer + '</div>' +
       '<div class="expanded-card__nav">' +
       '<button class="nav-prev" aria-label="Prev">&#8249;</button>' +
