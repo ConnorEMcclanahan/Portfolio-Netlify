@@ -24,7 +24,7 @@ Legacy root-level URLs (e.g. `/about.html`) are 301-redirected to their current 
 
 - HTML5
 - CSS3 (native custom properties for design tokens)
-- Vanilla JavaScript (ES modules, one component per feature)
+- Vanilla JavaScript (classic scripts and shared component APIs)
 - Fonts & icons: Google Fonts (Plus Jakarta Sans, Syne), Ionicons, Font Awesome
 - Three.js + Vanta.js — animated globe behind the homepage hero
 
@@ -87,6 +87,8 @@ The site deploys to Netlify by connecting this repository and publishing from th
 - Components in `components/` are self-contained: each ships its own CSS and JS and can be dropped into any page.
 - Case-study pages are assembled from shared modules in `components/project-page/` (intro summaries, persona grids, POV/HMW boards, comparison tables/matrices, insights, final columns, etc.) so every project page stays consistent.
 - Page-specific behavior lives in `js/pages/`; page-specific styling lives in `styles/pages/`.
+- Shared case-study CSS loads through an ordered import entry point and is split by responsibility. See [the case-study editing guide](components/project-page/README.md) for file ownership and cascade constraints.
+- Run `python scripts/validate-project-css.py` to check shared stylesheet imports and local HTTP delivery without installing dependencies.
 - The Philips case study embeds an interactive parallax version of the feedback wall (`js/pages/phillipswall-demo.js`), and the homepage shows an auto-playing mini version inside a TV mockup (`js/pages/index-phillips-tv.js`).
 
 ## Author

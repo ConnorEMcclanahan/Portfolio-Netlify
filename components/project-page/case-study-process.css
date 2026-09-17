@@ -1,0 +1,160 @@
+body.project-page-standard .case-study-process {
+  max-width: none;
+  margin: 0;
+  padding: 3.5rem 2rem 3rem;
+  background: var(--case-surface);
+  border-top: 1px solid var(--case-line);
+  border-bottom: 1px solid var(--case-line);
+  color: #fff;
+}
+
+body.project-page-standard .case-study-process__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* "THE PROCESS" heading — same Syne Extra Bold display cut as the phase
+   headers so the two never drift apart again. */
+body.project-page-standard .case-study-process h2 {
+  margin: 0 0 3rem;
+  color: #6E07F3;
+  font-family: "Syne", "Plus Jakarta Sans", sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-align: center;
+}
+
+body.project-page-standard .case-study-process__steps {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+body.project-page-standard .case-study-process__step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  color: #fff;
+  text-align: center;
+}
+
+body.project-page-standard .case-study-process__step ion-icon {
+  color: #6E07F3;
+  font-size: 4.5rem;
+}
+
+body.project-page-standard .case-study-process__step span {
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+/* ------------------------------------------------------------------
+   THE PROCESS — hover effects.
+   Each step is its own anchor, so hovering one card animates only
+   that card: the icon lifts + spins into place, the card rises with
+   a purple glow, and a light "shine" sweeps across it.
+   ------------------------------------------------------------------ */
+body.project-page-standard .case-study-process__step {
+  position: relative;
+  padding: 1.5rem 1rem;
+  border-radius: 14px;
+  border: 1px solid transparent;
+  background: rgba(255, 255, 255, 0.02);
+  overflow: hidden;
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.45s ease,
+    background-color 0.45s ease,
+    box-shadow 0.45s ease;
+  will-change: transform;
+}
+
+/* Light sweep that stays hidden until hovered. */
+body.project-page-standard .case-study-process__step::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    105deg,
+    rgba(255, 255, 255, 0) 20%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(255, 255, 255, 0) 80%
+  );
+  transform: skewX(-20deg);
+  transition: left 0.75s ease;
+  pointer-events: none;
+}
+
+body.project-page-standard .case-study-process__step:hover {
+  transform: translateY(-8px);
+  border-color: rgba(110, 7, 243, 0.55);
+  background: rgba(110, 7, 243, 0.08);
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.5),
+    0 0 28px rgba(110, 7, 243, 0.35);
+}
+
+body.project-page-standard .case-study-process__step:hover::before {
+  left: 125%;
+}
+
+body.project-page-standard .case-study-process__step ion-icon {
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.3s ease;
+}
+
+body.project-page-standard .case-study-process__step:hover ion-icon {
+  transform: translateY(-6px) rotate(-8deg) scale(1.15);
+  color: #9a53ff;
+}
+
+/* Label: swap the static underline for an animated one that grows on hover. */
+body.project-page-standard .case-study-process__step span {
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 0.2rem;
+}
+
+body.project-page-standard .case-study-process__step span::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: #9a53ff;
+  transform: translateX(-50%);
+  transition: width 0.35s ease;
+}
+
+body.project-page-standard .case-study-process__step:hover span::after {
+  width: 100%;
+}
+
+/* Keyboard users get the same feedback as pointer users. */
+body.project-page-standard .case-study-process__step:focus-visible {
+  transform: translateY(-8px);
+  border-color: rgba(110, 7, 243, 0.55);
+  background: rgba(110, 7, 243, 0.08);
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.5),
+    0 0 28px rgba(110, 7, 243, 0.35);
+  outline: 2px solid #9a53ff;
+  outline-offset: 2px;
+}
+
+body.project-page-standard .case-study-process__step:focus-visible ion-icon {
+  transform: translateY(-6px) rotate(-8deg) scale(1.15);
+  color: #9a53ff;
+}
+
+body.project-page-standard .case-study-process__step:focus-visible span::after {
+  width: 100%;
+}
+

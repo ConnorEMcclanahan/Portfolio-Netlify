@@ -1,0 +1,49 @@
+.mockup-step {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto 2rem;
+  padding: 1rem 0;
+}
+
+.mockup-step-text {
+  flex: 0 1 40%;
+}
+
+.mockup-step-title {
+  color: #4475e2;
+  text-align: left;
+  font-size: 2em;
+}
+
+.mockup-step-inline-title {
+  display: none;
+}
+
+.mockup-step-copy {
+  color: #fff;
+}
+
+.mockup-visual {
+  flex: 0 1 360px;
+  min-width: 320px;
+}
+
+.mockup-visual--tablet {
+  flex: 0 1 800px;
+  min-width: 600px;
+  max-width: 800px;
+  background: #222;
+  border-radius: 24px;
+  box-shadow: 0 8px 24px #0007, 0 0 0 6px #333;
+  padding: 1.5rem 1rem;
+}
+
+.mockup-step-image {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px #0006;
+}
+

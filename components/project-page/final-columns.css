@@ -1,0 +1,71 @@
+.final-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.final-col {
+  flex: 0 0 auto;
+  min-width: 300px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.final-col--border {
+  border-left: none;
+  padding-left: 0;
+}
+
+.final-title {
+  font-family: "Syne", "Plus Jakarta Sans", sans-serif;
+  font-size: 1.8rem;
+  line-height: 1.25;
+  color: #6E07F3;
+}
+
+.final-items {
+  margin-top: 1.5rem;
+}
+
+.final-item-title {
+  font-family: "Syne", "Plus Jakarta Sans", sans-serif;
+  color: #fff;
+  margin-bottom: 0.5rem;
+  font-size: 1.05rem;
+}
+
+/* Conclusion items must look the same on every project page. The page-level
+   heading rules differ (Diplora and Phillips both define their own
+   `.project-section h4` treatment), so the conclusion treatment is pinned here
+   with enough specificity to win on all of them. Sub-headings match the phase
+   narrative h3 ("Client Delivery Package & Maintenance Documentation"):
+   Plus Jakarta Sans at 2rem/700 in the accent color. */
+body.project-page-standard .final-col h4.final-item-title {
+  color: #6E07F3;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 2rem !important;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 0.75rem;
+}
+
+body.project-page-standard .final-col .final-item-copy {
+  color: var(--case-muted) !important;
+  font-size: 1.125rem;
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
+}
+
+.final-item-copy {
+  color: var(--case-muted);
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.final-item-copy--spaced {
+  margin-bottom: 1.5rem;
+}
+

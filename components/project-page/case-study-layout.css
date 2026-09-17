@@ -1,0 +1,359 @@
+/* Shared project-page components */
+body.project-page-standard {
+  --case-bg: #050505;
+  --case-surface: #101010;
+  --case-line: rgba(255, 255, 255, 0.14);
+  --case-muted: #b8b8b8;
+  padding-bottom: 4rem;
+}
+
+body.project-page-standard section {
+  clear: both;
+  overflow: hidden;
+  font-size: 17px;
+}
+
+body.project-page-standard #intro-summary {
+  padding: 7rem 2rem 5rem;
+  background: var(--case-bg);
+  color: #fff;
+  margin-top: 0;
+}
+
+body.project-page-standard .Overview {
+  display: flex;
+  justify-content: center;
+  padding: 0 2rem;
+  gap: 2rem;
+  flex-direction: column;
+  margin: 0 auto;
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+  max-width: 1200px;
+}
+
+body.project-page-standard > .Overview {
+  display: none;
+}
+
+body.project-page-standard .case-study-phase {
+  display: block;
+  width: min(1400px, calc(100% - 3rem));
+  max-width: 1400px;
+  margin: 4rem auto 0;
+  padding: 0;
+  border: 1px solid #6E07F3;
+}
+
+body.project-page-standard .case-study-phase__title {
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid rgba(110, 7, 243, 0.6);
+}
+
+/* Single source of truth for every phase header (01-06) on every project page.
+   Syne ships two different designs: the regular cut (400-700) and the Extra
+   Bold display cut (800). The 800 cut is the case-study display style, so it is
+   applied once here instead of per phase. Previously only phases 02-04 carried
+   the 800 weight, which left the 01 and 05 headers (and the 06 headers) falling
+   back to the legacy-looking regular cut. */
+body.project-page-standard .case-study-phase h2 {
+  margin: 0;
+  color: #6E07F3;
+  font-family: "Syne", "Plus Jakarta Sans", sans-serif;
+  font-size: 1.8rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+body.project-page-standard .case-study-phase h3,
+body.project-page-standard .case-study-phase h4,
+body.project-page-standard .case-study-phase__overview li {
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+body.project-page-standard .case-study-phase__overview h3,
+body.project-page-standard .case-study-phase__content h3,
+body.project-page-standard .case-study-phase__content h4 {
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+body.project-page-standard .case-study-phase__body {
+  display: grid;
+  grid-template-columns: minmax(180px, 0.7fr) 2fr;
+  gap: 3rem;
+  padding: 2rem 4rem 3rem;
+}
+
+body.project-page-standard .case-study-phase__overview h3,
+body.project-page-standard .case-study-phase__lead h3 {
+  margin: 0 0 1.25rem;
+  color: #6E07F3;
+  font-size: 1.5rem;
+  text-align: left;
+}
+
+body.project-page-standard .case-study-phase__overview ul {
+  margin: 0;
+  width: 100%;
+  max-width: none;
+  list-style: none;
+}
+
+body.project-page-standard .case-study-phase__overview li {
+  position: relative;
+  margin-bottom: 0.7rem;
+  padding-left: 0;
+  color: var(--case-muted);
+  font-size: 0.95rem;
+}
+
+body.project-page-standard .case-study-phase__overview li::before {
+  content: none;
+}
+
+body.project-page-standard .case-study-phase__overview {
+  position: static;
+  padding-right: 0;
+  border-right: 0;
+}
+
+body.project-page-standard .case-study-phase__content {
+  min-width: 0;
+}
+
+body.project-page-standard .case-study-phase__content > .project-section {
+  max-width: none;
+  margin: 0;
+  padding: 0 0 3rem;
+}
+
+body.project-page-standard .case-study-phase__content > .project-section:last-child {
+  padding-bottom: 0;
+}
+
+/* Shared case-study typography baseline, matching the Diplora presentation. */
+body.project-page-standard h1,
+body.project-page-standard h2,
+body.project-page-standard h3 {
+  font-size: 2rem !important;
+  font-weight: 700;
+}
+
+/* Smaller case-study headings follow Motivate's "Creation of Standards"
+   treatment. More specific section rules may retain larger heading sizes.
+   Keep the reading font and 700 weight consistent across page overrides. */
+body.project-page-standard .project-section :is(h4, h5, h6) {
+  font-family: "Plus Jakarta Sans", sans-serif !important;
+  font-size: max(1.25rem, 20px) !important;
+  font-weight: 700 !important;
+  color: #6E07F3;
+  line-height: 1.3;
+  margin: 0 0 0.5rem;
+}
+
+/* Generated labels are not always h4-h6 elements. Give comparison names,
+   persona/POV labels and supporting purple labels the same readable baseline.
+   Scope to case-study content, not navigation or the interactive demo UI. */
+body.project-page-standard :is(
+  .comparison-name,
+  .comparison-head,
+  .matrix-cell--name,
+  .matrix-head,
+  .accent-label,
+  .pov-title,
+  .persona-caption-title,
+  .case-study-phase__video-label,
+  .suggested-projects-eyebrow,
+  .suggested-project-number,
+  .intro-kicker
+) {
+  font-family: "Plus Jakarta Sans", sans-serif !important;
+  font-size: max(1.25rem, 20px) !important;
+  font-weight: 700 !important;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+
+body.project-page-standard :is(
+  .comparison-name,
+  .matrix-cell--name,
+  .accent-label,
+  .pov-title,
+  .persona-caption-title
+) {
+  color: #6E07F3;
+}
+
+body.project-page-standard .project-section p,
+body.project-page-standard .case-study-phase__narrative p {
+  font-size: 1.125rem !important;
+  line-height: 1.6;
+}
+
+body.project-page-standard .project-section p {
+  margin-bottom: 2rem;
+}
+
+body.project-page-standard #design-system h4 {
+  color: #6E07F3 !important;
+  font-family: "Syne", "Plus Jakarta Sans", sans-serif;
+  font-size: 2rem !important;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+body.project-page-standard .case-study-phase__narrative {
+  padding-bottom: 2rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--case-line);
+}
+
+body.project-page-standard .case-study-phase__narrative h3 {
+  margin: 0 0 0.75rem;
+  color: #6E07F3;
+  font-size: 2rem !important;
+  line-height: 1.2;
+  text-align: left;
+}
+
+body.project-page-standard .case-study-phase__narrative p {
+  margin: 0;
+  color: var(--case-muted) !important;
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+/* Smaller Plus Jakarta Sans headings stay at 700; phase titles retain the
+   Syne display weight of 800 defined above. */
+body.project-page-standard .case-study-phase__overview h3,
+body.project-page-standard .case-study-phase__narrative h3 {
+  font-weight: 700;
+}
+
+body.project-page-standard .case-study-phase__content > .project-section > div[style*="background"] {
+  background: transparent !important;
+  border: 0;
+  padding: 0 !important;
+}
+
+body.project-page-standard #research-methods > div[style*="display: grid"] {
+  display: block !important;
+}
+
+body.project-page-standard #research-methods > div[style*="display: grid"] > div[style*="background"] {
+  margin: 0 0 2rem;
+}
+
+body.project-page-standard #research-methods div[style*="background"] {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+body.project-page-standard #research-methods > div[style*="display: grid"] > div[style*="background"] h4 {
+  color: #fff !important;
+  font-size: 1.25rem !important;
+  font-weight: 700;
+}
+
+body.project-page-standard #research-methods > div[style*="display: grid"] > div[style*="background"] p {
+  color: var(--case-muted) !important;
+}
+
+body.project-page-standard #research-methods .research-methods-copy {
+  max-width: 78ch;
+  margin-top: 2rem;
+}
+
+body.project-page-standard #research-methods .research-methods-copy p {
+  max-width: none;
+  margin: 0 0 1.25rem;
+  color: var(--case-muted) !important;
+  line-height: 1.75;
+}
+
+body.project-page-standard #research-methods .research-methods-copy p:last-child {
+  margin-bottom: 0;
+}
+
+body.project-page-standard #research-methods .research-methods-copy strong {
+  color: #6E07F3;
+}
+
+body.project-page-standard #research-methods {
+  display: none !important;
+}
+
+body.project-page-standard #research .research-narrative {
+  max-width: 78ch;
+  margin-top: 2rem;
+}
+
+body.project-page-standard #research .research-narrative p {
+  max-width: none;
+  margin: 0 0 1.25rem;
+  color: var(--case-muted) !important;
+  line-height: 1.75;
+}
+
+body.project-page-standard #research .research-narrative p:last-child {
+  margin-bottom: 0;
+}
+
+body.project-page-standard #research .research-narrative strong {
+  color: #fff;
+}
+
+body.project-page-standard #research .research-narrative h4 {
+  margin: 2.5rem 0 0.75rem;
+  color: #6E07F3;
+  font-size: 2rem !important;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+body.project-page-standard #research .research-narrative h4 + p {
+  margin-bottom: 0;
+}
+
+body.project-page-standard .project-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+body.project-page-standard p + p {
+  margin-top: 1.5rem !important;
+}
+
+body.project-page-standard strong {
+  margin-inline: 0.08em;
+}
+
+body.project-page-standard .reveal.active {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+body.project-page-standard #intro-summary.reveal.active {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+}
+
+body.project-page-standard h1,
+body.project-page-standard h2,
+body.project-page-standard h3 {
+  font-size: 2rem;
+}
+
+body.project-page-standard section p {
+  display: block;
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 1.25rem;
+  max-width: 68ch;
+}
+

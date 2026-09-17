@@ -1,0 +1,38 @@
+.split-insights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.split-left,
+.split-right {
+  flex: 1;
+  min-width: 300px;
+}
+
+.split-right {
+  border-left: 3px solid #6E07F3;
+  padding-left: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.split-main-title,
+.split-card-title {
+  color: #6E07F3;
+}
+
+.split-main-copy,
+.split-copy,
+.split-list {
+  color: #fff;
+}
+
+.split-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
