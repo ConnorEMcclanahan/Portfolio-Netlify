@@ -15,10 +15,14 @@
   text-align: center;
 }
 
+/* Footer typography matches the index page's system:
+   Syne Extra Bold (800) for the display heading, Plus Jakarta Sans for every
+   smaller UI element (eyebrow, buttons, email). Syne's lighter cuts (400-700)
+   are a different, legacy-looking design, so they are no longer used here. */
 #contact .footer-cta__eyebrow {
   margin: 0 0 1rem;
   color: rgba(255, 255, 255, 0.62);
-  font-family: "Syne", "Plus Jakarta Sans", sans-serif;
+  font-family: "Plus Jakarta Sans", "Helvetica Neue", sans-serif;
   font-size: 0.75rem !important;
   font-weight: 700;
   letter-spacing: 0.18em;
@@ -33,6 +37,7 @@
   font-size: clamp(3rem, 7vw, 5.5rem) !important;
   font-weight: 800 !important;
   line-height: 0.95 !important;
+  letter-spacing: -0.01em;
   overflow-wrap: normal;
   text-wrap: balance;
 }
@@ -54,10 +59,12 @@
   border: 1px solid rgba(255, 255, 255, 0.35);
   border-radius: 999px;
   color: #fff !important;
-  font-weight: 700 !important;
+  font-family: "Plus Jakarta Sans", "Helvetica Neue", sans-serif !important;
+  font-size: 0.95rem;
+  font-weight: 600 !important;
+  letter-spacing: 0.01em;
   text-decoration: none;
   transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
-  font-family: "Syne", "Plus Jakarta Sans", sans-serif !important;
 }
 
 #contact .footer-cta__actions a ion-icon {
@@ -105,9 +112,10 @@
   gap: 0.45rem;
   margin-top: 3rem;
   color: rgba(255, 255, 255, 0.58);
+  font-family: "Plus Jakarta Sans", "Helvetica Neue", sans-serif;
   font-size: 0.9rem;
+  font-weight: 500;
   text-decoration: none;
-  font-family: "Syne", "Plus Jakarta Sans", sans-serif;
 }
 
 #contact .footer-cta__email:hover {

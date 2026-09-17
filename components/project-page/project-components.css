@@ -50,12 +50,18 @@ body.project-page-standard .case-study-phase__title {
   border-bottom: 1px solid rgba(110, 7, 243, 0.6);
 }
 
+/* Single source of truth for every phase header (01-06) on every project page.
+   Syne ships two different designs: the regular cut (400-700) and the Extra
+   Bold display cut (800). The 800 cut is the case-study display style, so it is
+   applied once here instead of per phase. Previously only phases 02-04 carried
+   the 800 weight, which left the 01 and 05 headers (and the 06 headers) falling
+   back to the legacy-looking regular cut. */
 body.project-page-standard .case-study-phase h2 {
   margin: 0;
   color: #6E07F3;
   font-family: "Syne", "Plus Jakarta Sans", sans-serif;
   font-size: 1.8rem;
-  font-weight: 700;
+  font-weight: 800;
   text-align: center;
 }
 
@@ -174,15 +180,12 @@ body.project-page-standard .case-study-phase__narrative p {
   line-height: 1.75;
 }
 
-body.project-page-standard #phase-02 .case-study-phase__title h2,
-body.project-page-standard #phase-03 .case-study-phase__title h2,
-body.project-page-standard #phase-04 .case-study-phase__title h2,
-body.project-page-standard #phase-02 .case-study-phase__overview h3,
-body.project-page-standard #phase-03 .case-study-phase__overview h3,
-body.project-page-standard #phase-04 .case-study-phase__overview h3,
-body.project-page-standard #phase-02 .case-study-phase__narrative h3,
-body.project-page-standard #phase-03 .case-study-phase__narrative h3,
-body.project-page-standard #phase-04 .case-study-phase__narrative h3 {
+/* Phase 02-04 used to be the only phases with the heavier 800 weight on their
+   headings. The same weight now applies to every phase, so the 01/05/06
+   overview and narrative headings match the 02 phase exactly. */
+body.project-page-standard .case-study-phase__title h2,
+body.project-page-standard .case-study-phase__overview h3,
+body.project-page-standard .case-study-phase__narrative h3 {
   font-weight: 800;
 }
 
@@ -567,10 +570,14 @@ body.project-page-standard .case-study-process__inner {
   margin: 0 auto;
 }
 
+/* "THE PROCESS" heading — same Syne Extra Bold display cut as the phase
+   headers so the two never drift apart again. */
 body.project-page-standard .case-study-process h2 {
   margin: 0 0 3rem;
   color: #6E07F3;
+  font-family: "Syne", "Plus Jakarta Sans", sans-serif;
   font-size: 2rem;
+  font-weight: 800;
   letter-spacing: 0.04em;
   text-align: center;
 }
@@ -728,6 +735,16 @@ body.project-page-standard .project-section h3.final-title {
   text-align: center !important;
   align-items: center;
   gap: 0;
+}
+
+/* Conclusion / reflection headings ("Conclusion", "Medical Compliance &
+   Safety", ...) render in the same Syne Extra Bold display cut as the phase
+   headers, not the lighter legacy cut. */
+body.project-page-standard .final-title,
+body.project-page-standard .project-section h3.final-title,
+body.project-page-standard .final-col h3.final-title {
+  font-family: "Syne", "Plus Jakarta Sans", sans-serif;
+  font-weight: 800;
 }
 
 body.project-page-standard .text-column {
