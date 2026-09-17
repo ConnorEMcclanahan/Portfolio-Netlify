@@ -1,0 +1,50 @@
+.mockup-step {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto 2rem;
+  padding: 1rem 0;
+}
+
+.mockup-step-text {
+  flex: 0 1 40%;
+}
+
+.mockup-step-title {
+  color: #4475e2;
+  text-align: left;
+  font-size: 2em;
+}
+
+.mockup-step-inline-title {
+  display: none;
+}
+
+.mockup-step-copy {
+  color: #fff;
+}
+
+.mockup-visual {
+  flex: 0 1 360px;
+  min-width: 320px;
+}
+
+.mockup-visual--tablet {
+  flex: 0 1 800px;
+  min-width: 600px;
+  max-width: 800px;
+  background: transparent;
+  padding: 1.5rem 1rem;
+}
+
+/* Follow the PNG silhouette instead of shadowing its rectangular image box.
+   The shared image-hover stylesheet keeps its stronger hover shadow/glow. */
+.mockup-step-image {
+  width: 100%;
+  background: transparent;
+  box-shadow: none;
+  filter: drop-shadow(0 4px 24px #0006);
+}
+

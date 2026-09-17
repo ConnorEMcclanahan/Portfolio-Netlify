@@ -45,6 +45,7 @@
 .navbar-menu li a {
   color: #6E07F3;
   text-decoration: none;
+  font-family: "Plus Jakarta Sans", "Helvetica Neue", sans-serif;
   font-size: 1.2em;
   font-weight: 500;
   transition: color 0.3s ease;

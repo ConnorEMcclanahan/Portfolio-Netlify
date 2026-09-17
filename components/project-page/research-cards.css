@@ -1,0 +1,150 @@
+.component-section {
+  background: #000;
+  color: #bbb;
+  padding: 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.component-wrap {
+  width: 100%;
+  max-width: 1100px;
+}
+
+.component-heading {
+  color: #6E07F3;
+  margin-bottom: 0.75rem;
+}
+
+.component-lead {
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 800px;
+  margin-bottom: 2rem;
+  color: #bbb;
+}
+
+.persona-grid {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.persona-col {
+  flex: 1;
+  min-width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.persona-card {
+  background: #111;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+.persona-top {
+  display: flex;
+}
+
+.persona-photo {
+  width: 140px;
+  height: 180px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.persona-meta {
+  padding: 1rem;
+  background: #1a1a2e;
+  flex: 1;
+}
+
+.mini-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #888;
+  margin-bottom: 0.25rem;
+}
+
+.persona-goal {
+  font-size: 0.85rem;
+  color: #ccc;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.persona-facts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  color: #aaa;
+}
+
+.persona-fact-key {
+  color: #888;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+}
+
+.persona-fact-val {
+  color: #ddd;
+}
+
+.persona-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid #222;
+}
+
+.persona-col-split {
+  padding: 1rem;
+}
+
+.persona-col-split.left {
+  border-right: 1px solid #222;
+}
+
+.accent-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #6E07F3;
+  margin-bottom: 0.5rem;
+}
+
+.persona-list {
+  list-style: disc inside;
+  font-size: 0.82rem;
+  color: #bbb;
+  margin: 0;
+  padding: 0;
+}
+
+.persona-quote {
+  padding: 0.75rem 1rem;
+  background: #0d0d1a;
+  border-top: 1px solid #222;
+  font-style: italic;
+  font-size: 0.82rem;
+  color: #888;
+}
+
+.persona-caption-title {
+  color: #6E07F3;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.persona-caption-copy {
+  font-size: 0.92rem;
+  line-height: 1.5;
+  margin: 0;
+}
+

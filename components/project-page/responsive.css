@@ -1,0 +1,190 @@
+@media (max-width: 768px) {
+  body.project-page-standard .case-study-nav__inner {
+    grid-template-columns: auto 1fr auto;
+    padding: 0.6rem 0.8rem;
+  }
+
+  body.project-page-standard .case-study-nav__toggle {
+    display: flex;
+  }
+
+  body.project-page-standard .case-study-nav__links {
+    position: absolute;
+    left: 0.8rem;
+    right: 0.8rem;
+    bottom: calc(100% + 0.5rem);
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.8rem 0.9rem;
+    background: rgba(15, 15, 15, 0.96);
+    border: 1px solid rgba(110, 7, 243, 0.45);
+    border-radius: 10px;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+  }
+
+  body.project-page-standard .case-study-nav__links.is-open {
+    display: flex;
+  }
+
+  body.project-page-standard .case-study-nav__links a {
+    width: 100%;
+    padding: 0.15rem 0;
+    font-size: 0.8rem;
+    text-align: left;
+  }
+
+  body.project-page-standard .case-study-nav__top {
+    justify-self: end;
+    font-size: 1rem;
+  }
+
+  body.project-page-standard #intro-summary {
+    padding: 4rem 1rem 3rem;
+  }
+
+  body.project-page-standard .project-section {
+    padding: 4rem 1rem;
+  }
+
+  body.project-page-standard .case-study-phase {
+    width: calc(100% - 2rem);
+    margin-top: 2rem;
+  }
+
+  body.project-page-standard .case-study-phase__title {
+    padding: 1rem;
+  }
+
+  body.project-page-standard .case-study-phase__body {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 1.5rem 1rem 2rem;
+  }
+
+  body.project-page-standard .case-study-phase__content > .project-section {
+    padding-bottom: 2rem;
+  }
+
+  body.project-page-standard .case-study-phase h2 {
+    font-size: 1.1rem;
+  }
+
+  body.project-page-standard .case-study-nav__inner {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.5rem;
+    padding: 0.7rem 0.9rem;
+  }
+
+  body.project-page-standard .case-study-nav__links {
+    gap: 0.35rem;
+    justify-content: space-between;
+    overflow: hidden;
+    min-width: 0;
+  }
+
+  body.project-page-standard .case-study-nav__links a {
+    font-size: 0.72rem;
+    line-height: 1.2;
+  }
+
+  body.project-page-standard .case-study-nav__top {
+    font-size: 1rem;
+  }
+
+  body.project-page-standard .case-study-nav__top span {
+    display: none;
+  }
+
+  body.project-page-standard .case-study-process {
+    padding: 2.5rem 1rem;
+  }
+
+  body.project-page-standard .case-study-process__steps {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  body.project-page-standard .case-study-process__step {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  body.project-page-standard .case-study-process__step ion-icon {
+    font-size: 2.5rem;
+  }
+
+  .intro-summary-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .intro-heading {
+    margin-bottom: 2.5rem;
+  }
+
+  .final-col--border {
+    padding: 0;
+    border-left: none;
+  }
+
+  .final-section {
+    flex-direction: column;
+  }
+
+  .pov-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pov-hmw {
+    flex-direction: column;
+  }
+
+  .split-right {
+    border-left: none;
+    padding-left: 0;
+  }
+
+  .mockup-step {
+    flex-direction: column;
+  }
+
+  .mockup-step-text {
+    flex: 1;
+  }
+
+  .mockup-visual,
+  .mockup-visual--tablet {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .comparison-row {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .matrix-row {
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+  }
+}
+
+/* Reduced motion: keep the process cards legible but drop every movement. */
+@media (prefers-reduced-motion: reduce) {
+  body.project-page-standard .case-study-process__step,
+  body.project-page-standard .case-study-process__step::before,
+  body.project-page-standard .case-study-process__step ion-icon,
+  body.project-page-standard .case-study-process__step span::after {
+    transition: none;
+  }
+
+  body.project-page-standard .case-study-process__step:hover,
+  body.project-page-standard .case-study-process__step:focus-visible,
+  body.project-page-standard .case-study-process__step:hover ion-icon,
+  body.project-page-standard .case-study-process__step:focus-visible ion-icon {
+    transform: none;
+  }
+}
+

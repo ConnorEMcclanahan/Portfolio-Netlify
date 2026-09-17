@@ -1,0 +1,112 @@
+.comparison-layout {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.comparison-table-shell {
+  flex: 1;
+  min-width: 300px;
+  background: rgba(30, 30, 30, 0.85);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.comparison-row {
+  display: grid;
+  grid-template-columns: minmax(150px, 1fr) minmax(200px, 2fr) minmax(200px, 2fr);
+  padding: 1rem;
+}
+
+.comparison-row--header {
+  background: #6E07F3;
+}
+
+.comparison-row--border {
+  border-bottom: 1px solid rgba(110, 7, 243, 0.2);
+}
+
+.comparison-head {
+  color: #fff;
+  font-weight: 600;
+}
+
+.comparison-name {
+  color: #6E07F3;
+  font-weight: 600;
+}
+
+.comparison-list {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.comparison-item {
+  margin-bottom: 0.5rem;
+}
+
+.comparison-item--border {
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.comparison-focus-title {
+  color: #6E07F3;
+  margin: 1.5rem 0 1rem;
+}
+
+.comparison-focus-list {
+  color: #fff;
+  list-style-type: disc;
+  padding-left: 2rem;
+}
+
+.matrix-copy {
+  color: #fff;
+  margin-top: 1rem;
+}
+
+.matrix-shell {
+  margin-top: 2.5rem;
+  background: rgba(30, 30, 30, 0.85);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.matrix-row {
+  display: grid;
+  grid-template-columns: 1.5fr 1.5fr 1.5fr 2fr 2fr;
+  column-gap: 1rem;
+  padding: 1rem;
+  align-items: start;
+}
+
+.matrix-row--header {
+  background: #6E07F3;
+  padding: 1.2rem;
+}
+
+.matrix-row--border {
+  border-bottom: 1px solid rgba(110, 7, 243, 0.2);
+}
+
+.matrix-head {
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.matrix-cell {
+  color: #fff;
+  font-size: 0.9rem;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.matrix-cell--name {
+  color: #6E07F3;
+  font-weight: 600;
+}
+

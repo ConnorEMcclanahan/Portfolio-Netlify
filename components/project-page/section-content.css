@@ -1,0 +1,57 @@
+body.project-page-standard .case-study-nav a:hover,
+body.project-page-standard .case-study-nav a:focus-visible {
+  color: #fff;
+}
+
+body.project-page-standard .project-section h3 {
+  display: flex;
+  align-items: baseline;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+  color: #fff;
+  text-align: left;
+  letter-spacing: 0;
+}
+
+body.project-page-standard .project-section h3.final-title {
+  display: block !important;
+  text-align: center !important;
+  align-items: center;
+  gap: 0;
+}
+
+/* Conclusion / reflection headings ("Conclusion", "Medical Compliance &
+   Safety", ...) render exactly like the phase headers ("05 / Handover - ..."):
+   the Syne Extra Bold display cut at the same 1.8rem size and accent color.
+   Font-size and color are pinned with !important because the shared h1-h3
+   baseline (2rem !important) and the `.project-section h3` white color would
+   otherwise win the cascade on every project page. */
+body.project-page-standard .final-title,
+body.project-page-standard .project-section h3.final-title,
+body.project-page-standard .final-col h3.final-title {
+  font-family: "Syne", "Plus Jakarta Sans", sans-serif;
+  font-weight: 800;
+  line-height: 1.25;
+  color: #6E07F3 !important;
+}
+
+body.project-page-standard .text-column {
+  max-width: 720px;
+  margin: 0 0 2.5rem;
+}
+
+body.project-page-standard .text-column p {
+  color: var(--case-muted) !important;
+}
+
+body.project-page-standard .project-section > [style*="display: grid"],
+body.project-page-standard .project-section > [style*="display: flex"] {
+  margin-top: 2rem !important;
+}
+
+body.project-page-standard .project-section > div[style*="background"] {
+  background: var(--case-surface) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: none !important;
+}
+

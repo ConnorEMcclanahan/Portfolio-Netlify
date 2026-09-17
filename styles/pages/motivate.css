@@ -982,7 +982,7 @@ body.project-page-standard #mockup-flow.mockup-flow--editorial .mockup-step {
   align-items: stretch;
   margin: 0 0 3rem;
   padding: 2rem;
-  background: #151515;
+  background: transparent;
 }
 
 body.project-page-standard #mockup-flow.mockup-flow--editorial .mockup-step-text {
@@ -1009,7 +1009,7 @@ body.project-page-standard #mockup-flow.mockup-flow--editorial .mockup-step-inli
   padding: 1.5rem 1.5rem 0;
   color: #6E07F3;
   font-family: "Syne", "Plus Jakarta Sans", sans-serif;
-  font-size: 1.05rem !important;
+  font-size: max(1.25rem, 20px) !important;
   text-align: left;
 }
 
@@ -1046,11 +1046,13 @@ body.project-page-standard #mockup-flow.mockup-flow--editorial .mockup-step-imag
   height: auto;
 }
 
-body.project-page-standard #mockup-flow.mockup-flow--editorial .mockup-step--standard-form-pt3 .mockup-step-image,
+/* Tablet screens fill their bezel frame edge to edge; the frame itself
+   carries the size (see .mockup-visual--tablet below). Phones — Standard
+   Form Pt3 included — stay on the single shared phone width above. */
 body.project-page-standard #mockup-flow.mockup-flow--editorial .mockup-step--approval .mockup-step-image,
 body.project-page-standard #mockup-flow.mockup-flow--editorial .mockup-step--viewing-standard .mockup-step-image {
-  width: 92%;
-  max-width: 900px;
+  width: 100%;
+  max-width: none;
 }
 
 /* Match Diplora's dark intro presentation while keeping Motivate's content. */
@@ -1363,7 +1365,7 @@ body.project-page-standard #mockup-flow .mockup-step {
   margin: 0 0 3rem;
   padding: 2rem;
   border-top: 1px solid var(--case-line);
-  background: #151515;
+  background: transparent;
 }
 
 body.project-page-standard #mockup-flow .mockup-step-text {
@@ -1405,12 +1407,23 @@ body.project-page-standard #mockup-flow .mockup-visual {
   padding: 0;
 }
 
+/* Preserve tablet sizing without a painted frame around the image.
+   Shadows are applied to the PNG itself by the shared mockup stylesheet. */
 body.project-page-standard #mockup-flow .mockup-visual--tablet {
+  --tablet-bezel: clamp(14px, 1.7vw, 28px);
   max-width: none;
-  padding: 0;
-  border-radius: 0;
+  width: 100%;
+  box-sizing: border-box;
+  padding: var(--tablet-bezel);
+  overflow: visible;
   background: transparent;
   box-shadow: none;
+}
+
+body.project-page-standard #mockup-flow .mockup-visual--tablet .mockup-step-image {
+  width: 100%;
+  max-width: none;
+  margin: 0 auto;
 }
 
 body.project-page-standard #mockup-flow .mockup-step-image {
@@ -1499,6 +1512,12 @@ body.project-page-standard .case-study-phase--wide-final .final-design-showcase 
 
   body.project-page-standard #mockup-flow .mockup-visual {
     padding: 0;
+  }
+
+  /* Keep the tablet bezel (same specificity as the rule above, but later in
+     source, so it wins for the tablet visuals only) at a proportional size. */
+  body.project-page-standard #mockup-flow .mockup-visual--tablet {
+    padding: calc(var(--tablet-bezel) * 0.75);
   }
 
   body.project-page-standard .case-study-phase--wide-final .case-study-phase__content {

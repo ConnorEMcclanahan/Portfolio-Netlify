@@ -42,7 +42,7 @@
     <div class="loading-screen__text">Loading...</div>
   </div>
 
-  <div class="staggered-mockup" id="staggered-mockup-hero" id="top">
+  <div class="staggered-mockup" id="staggered-mockup-hero">
     <nav class="navbar">
       <div class="navbar-container">
         <a href="../index.html" class="navbar-logo">
@@ -55,8 +55,8 @@
         </button>
         <ul class="navbar-menu">
           <li><a href="../index.html#about">About</a></li>
-          <li><a href="index.html#projects">Projects</a></li>
-          <li><a href="../PDFS/Resume.pdf">Resume</a></li>
+          <li><a href="https://connormcclanahan.com/#projects">Projects</a></li>
+          <li><a href="https://connormcclanahan.com/pdfs/resume.pdf">Resume</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
@@ -144,7 +144,17 @@
       <h3>User Journey Mapping</h3>
       <p style="color: white; margin-top: 1rem;">I mapped the experience from <strong>unboxing and account setup through sensor placement, pairing, daily status checks, emergencies, and the end of the monitoring period</strong>. The map highlighted where users were most likely to feel lost or anxious, especially during setup and when checking whether the device was still working.</p>
       <div class="user-journey-embed">
-        <iframe src="https://embed.figma.com/board/wX3KDHVs29GhhMFTMcefcS/Diplora-User-Journey?node-id=1-2&embed-host=share" title="Diplora user journey map" allowfullscreen></iframe>
+        <!-- Figma embed: click-to-load poster (components/project-page/figma-embed.js). -->
+        <div
+          class="figma-embed figma-embed--fill"
+          data-figma-src="https://embed.figma.com/board/wX3KDHVs29GhhMFTMcefcS/Diplora-User-Journey?node-id=1-2&embed-host=share"
+          data-title="Diplora user journey map"
+          data-eyebrow="Figma board"
+          data-cta="Open the journey map"
+          data-note="The journey map only loads when you click."
+          data-poster="../images/diplora/DiploraUserJourney.png"
+          data-poster-position="center top"
+        ></div>
       </div>
 
       <h3>MoSCoW Prioritization</h3>
@@ -308,16 +318,37 @@
 
   <!-- High-Fidelity Prototypes section -->
   <section id="high-fidelity-prototypes" class="project-section reveal">
-    <div class="mockup-section">
-      <div class="mockup-text">
-        <h3>High-Fidelity Prototypes</h3>
-        <p style="color: white;">
-          Designed high-fidelity prototypes based on feedback from low-fidelity testing. These detailed, interactive prototypes incorporated refined design elements and enhanced functionality, providing an accurate representation of the final product <strong>ready for user validation</strong>.
-        </p>
-      </div>
-      <div class="mockup-image" style="display: flex; align-items: center; justify-content: center; flex: 1;">
-        <iframe style="border: 1px solid rgba(0, 0, 0, 0.1); border-radius: 12px; width: 100%; max-width: 600px; height: 700px;" src="https://embed.figma.com/proto/eqd6DAeBVrZMSbTEye6kas/Diplora-Mobile-MVP---Connor?page-id=301%3A391&node-id=302-3041&p=f&viewport=1532%2C-314%2C0.6&scaling=scale-down&content-scaling=fixed&starting-point-node-id=302%3A3041&embed-host=share" allowfullscreen></iframe>
-      </div>
+    <div class="text-column">
+      <h3>High-Fidelity Prototypes</h3>
+      <p style="color: white;">
+        Designed high-fidelity prototypes based on feedback from low-fidelity testing. These detailed, interactive prototypes incorporated refined design elements and enhanced functionality, providing an accurate representation of the final product <strong>ready for user validation</strong>.
+      </p>
+    </div>
+
+    <div style="margin-top: 1rem;">
+      <!-- Figma embed: click-to-load poster (components/project-page/figma-embed.js). -->
+      <div
+        class="figma-embed"
+        data-figma-src="https://embed.figma.com/proto/eqd6DAeBVrZMSbTEye6kas/Diplora-Mobile-MVP---Connor?page-id=301%3A391&node-id=302-3041&p=f&viewport=1532%2C-314%2C0.6&scaling=scale-down&content-scaling=fixed&starting-point-node-id=302%3A3041&embed-host=share"
+        data-title="Diplora mobile MVP interactive prototype"
+        data-eyebrow="Figma prototype"
+        data-cta="Try the interactive prototype"
+        data-note="The prototype only loads when you click."
+        data-poster="../images/diplora/diploraecgapplicationinterface.png"
+      ></div>
+    </div>
+  </section>
+
+  <section id="final-design" class="project-section reveal diplora-final-design">
+    <div class="text-column">
+      <h3>Final Design</h3>
+    </div>
+    <img class="final-design-showcase" src="../images/diplora/mainrounded.png" alt="Diplora key screens" loading="lazy" />
+    <div id="mockup-flow" class="mockup-flow"></div>
+    <div class="final-design-prototype-link">
+      <h4>Explore the full experience</h4>
+      <p>Want to see more screens and try the interactive flows? Explore the remaining designs in the high-fidelity prototype.</p>
+      <a href="#high-fidelity-prototypes">Explore the interactive prototype <span aria-hidden="true">&uarr;</span></a>
     </div>
   </section>
 
@@ -327,6 +358,7 @@
       <p style="color: white; margin-top: 1rem;">Testing confirmed that accessibility was more than a visual specification. Large targets and clear status feedback worked, but vague labels, hidden help, oversized battery information, and excessive scrolling still created uncertainty. The validated prototype balanced reassurance with restraint and gave implementation a focused, testable direction.</p>
     </div>
   </section>
+
   <section id="implementation" class="project-section reveal">
     <div class="text-column">
       <h3>Implementation & Development</h3>
@@ -387,14 +419,6 @@
     </div>
   </section>
 
-  <div class="IntroPic reveal diplora-final-image" style="margin-top:3rem; text-align:center;">
-    <img
-      src="../images/diplora/mainrounded.png"
-      alt="Diplora key screens"
-      class="diplora-intro-image"
-    />
-  </div>
-
   <div class="suggestion-row">
     <section id="final-container" class="project-section reveal"></section>
 
@@ -442,9 +466,11 @@
     </footer>
 
   <script src="../components/project-page/utils.js" defer></script>
+  <script src="../components/project-page/figma-embed.js" defer></script>
   <script src="../components/project-page/intro-summary.js" defer></script>
   <script src="../components/project-page/final-columns.js" defer></script>
   <script src="../components/project-page/comparison-matrix.js" defer></script>
+  <script src="../components/project-page/mockup-flow.js" defer></script>
   <script src="../components/project-page/case-study-nav.js" defer></script>
   <script src="../components/staggered-mockup/staggered-mockup.js" defer></script>
   <script src="../js/pages/diplora.js" defer></script>

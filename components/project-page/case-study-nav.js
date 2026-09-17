@@ -83,12 +83,12 @@
       Research: ['Research Approach', 'Research Overview', 'Literature Review', 'Stakeholder Interviews', 'Patient Interviews', 'Survey Analysis', 'Internal Feedback', 'Competitor Analysis', 'Research Conclusion'],
       'Design System': ['Brand Identity', 'Accessible Design Standards', 'Scalable Components', 'Design System Takeaway'],
       Requirements: ['User Requirements & Features', 'User Journey Mapping', 'MoSCoW Prioritization', 'User Personas', 'Requirements Conclusion'],
-      Prototyping: ['Low-Fidelity Prototypes', 'User Testing on High-Fidelity Prototypes', 'What Worked Well', 'Key Iterations', 'Design Iterations Based on Feedback', 'High-Fidelity Prototypes', 'Prototyping Conclusion'],
+      Prototyping: ['Low-Fidelity Prototypes', 'User Testing on High-Fidelity Prototypes', 'What Worked Well', 'Key Iterations', 'Design Iterations Based on Feedback', 'High-Fidelity Prototypes', 'Final Design', 'Onboarding', 'Device Placement', 'Home Overview', 'Logbook & Alerts', 'Low Battery Feedback', 'Activity Logging', 'Prototyping Conclusion'],
       Implementation: ['Implementation & Development', 'Development Approach', 'Tech Stack', 'Completed Features', 'Technical Architecture', 'Technical Challenges', 'Quality Assurance', 'Known Limitations', 'Implementation Conclusion']
     };
     const usedSections = new Set();
     const preferredIds = isDiplora
-      ? [['research', 'competitor-analysis', 'research-conclusion'], ['design-system'], ['requirements', 'personas', 'requirements-conclusion'], ['prototyping', 'design-iterations', 'high-fidelity-prototypes', 'prototyping-conclusion'], ['implementation']]
+      ? [['research', 'competitor-analysis', 'research-conclusion'], ['design-system'], ['requirements', 'personas', 'requirements-conclusion'], ['prototyping', 'design-iterations', 'high-fidelity-prototypes', 'final-design', 'prototyping-conclusion'], ['implementation']]
       : isPhillipsWall
         ? [['research', 'proposal', 'research-conclusion'], ['requirements'], ['prototyping'], ['data-preparation', 'implementation'], ['impact'], ['reflection']]
       : isMotivate
@@ -121,7 +121,7 @@
         phaseHeader.id = phaseId;
         phaseHeader.className = 'case-study-phase reveal';
         const phaseName = label.match(/^\d+ \/ ([^-]+)/)?.[1].trim() || label;
-        if ((isMotivate && phaseName === 'Prototyping') || (isFitPhone && phaseName === 'Design & Testing')) {
+        if (((isDiplora || isMotivate) && phaseName === 'Prototyping') || (isFitPhone && phaseName === 'Design & Testing')) {
           phaseHeader.classList.add('case-study-phase--wide-final');
         }
         const barePhase = isPhillipsWall && phaseName === 'Reflection';
@@ -294,6 +294,15 @@
           links.classList.remove('is-open');
           toggle.setAttribute('aria-expanded', 'false');
         });
+      });
+    }
+
+    const topLink = nav.querySelector('.case-study-nav__top');
+    if (topLink) {
+      topLink.addEventListener('click', (event) => {
+        event.preventDefault();
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
       });
     }
 

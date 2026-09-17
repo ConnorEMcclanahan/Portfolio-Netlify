@@ -186,6 +186,33 @@
 
 .cluster-group { position: absolute; width: 0; height: 0; z-index: 5; cursor: pointer; }
 
+/* Match the other project entrances without changing the wall composition.
+   Animate the zero-size anchor, not the bubble's centring/hover transform.
+   A single soft overshoot gives the circles a little spring, then releases
+   all animation styles so the demo behaves exactly as before. */
+@media (prefers-reduced-motion: no-preference) {
+  html.js body:not(.loaded) .phillips-demo-hero .cluster-group {
+    opacity: 0;
+    transform: translateY(34px) scale(0.78);
+  }
+
+  body.loaded .phillips-demo-hero .cluster-group {
+    animation: wall-cluster-enter 0.85s cubic-bezier(0.22, 0.7, 0.3, 1)
+      var(--cluster-enter-delay, 0.05s) backwards;
+  }
+
+  /* Early activation should never leave someone waiting for a click target. */
+  body.loaded .phillips-demo-hero.demo-live .cluster-group {
+    animation: none;
+  }
+}
+
+@keyframes wall-cluster-enter {
+  0% { opacity: 0; transform: translateY(34px) scale(0.78); }
+  65% { opacity: 1; transform: translateY(-4px) scale(1.04); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
 .cluster-group .answer-bubble { position: absolute; animation: none; transform: translate(-50%, -50%); transition: transform 0.3s ease, box-shadow 0.3s ease; }
 
 .cluster-group:hover .answer-bubble { transform: translate(-50%, -50%) scale(1.15); box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25); }

@@ -4,7 +4,7 @@ A personal portfolio site showcasing UI/UX and front-end development work, with 
 
 ## Overview
 
-This repository contains a static multi-page portfolio built with HTML, CSS/SCSS, and vanilla JavaScript, deployed on Netlify straight from the repository root — no build step, bundler, or package manager required.
+This repository contains a static multi-page portfolio built with HTML, CSS, and vanilla JavaScript, deployed on Netlify straight from the repository root — no build step, bundler, or package manager required.
 
 The site is assembled from small self-contained components (each ships its own CSS + JS), shared case-study modules that build every project page, and page-specific scripts/styles for anything unique to a single page.
 
@@ -23,8 +23,8 @@ Legacy root-level URLs (e.g. `/about.html`) are 301-redirected to their current 
 ## Tech Stack
 
 - HTML5
-- CSS3 + SCSS (Sass)
-- Vanilla JavaScript (ES modules, one component per feature)
+- CSS3 (native custom properties for design tokens)
+- Vanilla JavaScript (classic scripts and shared component APIs)
 - Fonts & icons: Google Fonts (Plus Jakarta Sans, Syne), Ionicons, Font Awesome
 - Three.js + Vanta.js — animated globe behind the homepage hero
 
@@ -54,8 +54,7 @@ Legacy root-level URLs (e.g. `/about.html`) are 301-redirected to their current 
 ├── pdfs/                        # Resume, research and project documents
 ├── styles/
 │   ├── pages/                   # Page-specific stylesheets
-│   ├── style.scss               # Main SCSS source
-│   ├── style.css                # Compiled main stylesheet (committed)
+│   ├── style.css                # Main stylesheet
 │   ├── frontend.css
 │   └── mobile-responsive.css
 ├── _redirects                   # Netlify 301s for legacy URLs
@@ -79,20 +78,6 @@ Option C (Python):
 python -m http.server
 ```
 
-## SCSS Workflow (Optional)
-
-The compiled `styles/style.css` is committed, so you only need Sass if you edit `styles/style.scss`:
-
-```bash
-npx sass styles/style.scss styles/style.css
-```
-
-Watch mode:
-
-```bash
-npx sass --watch styles/style.scss:styles/style.css
-```
-
 ## Deployment
 
 The site deploys to Netlify by connecting this repository and publishing from the root directory. The `_redirects` file handles 301 redirects from legacy root-level routes to the current `pages/` locations.
@@ -102,6 +87,8 @@ The site deploys to Netlify by connecting this repository and publishing from th
 - Components in `components/` are self-contained: each ships its own CSS and JS and can be dropped into any page.
 - Case-study pages are assembled from shared modules in `components/project-page/` (intro summaries, persona grids, POV/HMW boards, comparison tables/matrices, insights, final columns, etc.) so every project page stays consistent.
 - Page-specific behavior lives in `js/pages/`; page-specific styling lives in `styles/pages/`.
+- Shared case-study CSS loads through an ordered import entry point and is split by responsibility. See [the case-study editing guide](components/project-page/README.md) for file ownership and cascade constraints.
+- Run `python scripts/validate-project-css.py` to check shared stylesheet imports and local HTTP delivery without installing dependencies.
 - The Philips case study embeds an interactive parallax version of the feedback wall (`js/pages/phillipswall-demo.js`), and the homepage shows an auto-playing mini version inside a TV mockup (`js/pages/index-phillips-tv.js`).
 
 ## Author
