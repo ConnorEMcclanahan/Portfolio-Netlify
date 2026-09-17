@@ -14,11 +14,25 @@
     const subtitleHtml = data.subtitle ? `<p class="device-cascade__subtitle">${escapeHtml(data.subtitle)}</p>` : '';
 
     // Build items HTML - cascade order: back to front
-    const itemsHtml = data.items.map((item) => {
-      const deviceClass = item.device === 'tablet' ? 'device-cascade__frame--tablet' : 'device-cascade__frame--phone';
+    const itemsHtml = data.items.map((item, index) => {
+      const isTablet = item.device === 'tablet';
+      const isPhone = !isTablet;
+      let frameClass = isTablet ? 'device-cascade__frame--tablet' : 'device-cascade__frame--phone';
+      
+      // Phone roles: the two phones that overlap the tablets share the same
+      // treatment (slightly smaller, softer shadow) so the cascade mirrors,
+      // and the middle phone stays the focus.
+      if (isPhone) {
+        if (index === 1 || index === 4) {
+          frameClass += ' device-cascade__frame--phone-back';
+        } else if (index === 2) {
+          frameClass += ' device-cascade__frame--phone-front';
+        }
+      }
+      
       return `
         <figure class="device-cascade__item">
-          <div class="${deviceClass}">
+          <div class="${frameClass}">
             <img src="${escapeHtml(item.src)}" alt="${escapeHtml(item.alt || '')}" loading="lazy" />
           </div>
         </figure>
