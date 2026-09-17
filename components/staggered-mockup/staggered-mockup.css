@@ -1,0 +1,240 @@
+/* ============================================================
+   STAGGERED MOCKUP PARALLAX — Reusable component
+   Clean screens as-is, no bezel, staggered wave, large scale
+   ============================================================ */
+.staggered-mockup {
+  position: relative;
+  min-height: 100vh;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.staggered-mockup[data-bg] {
+  background: var(--staggered-bg, #000);
+}
+
+/* Subtle radial gradient overlay for depth - purple to match site */
+.staggered-mockup::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 100% 80% at 50% 50%, 
+    rgba(110, 7, 243, 0.22) 0%, 
+    rgba(110, 7, 243, 0.15) 35%, 
+    rgba(110, 7, 243, 0.08) 60%,
+    transparent 80%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Also add a vignette for more depth */
+.staggered-mockup::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.35) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Navbar inside staggered-mockup - absolute positioned like phillips-hero */
+.staggered-mockup .navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 10;
+}
+
+.staggered-mockup__content {
+  position: relative;
+  z-index: 5;
+  text-align: center;
+  padding-top: 3vh;
+  pointer-events: none;
+}
+
+.staggered-mockup__title {
+  margin: 0 0 0.5rem;
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  color: var(--staggered-title-color, #000);
+  letter-spacing: -0.02em;
+}
+
+.staggered-mockup__subtitle {
+  margin: 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(1rem, 1.8vw, 1.125rem);
+  font-weight: 400;
+  color: var(--staggered-subtitle-color, #333);
+  opacity: 0.7;
+}
+
+.staggered-mockup__row {
+  position: relative;
+  z-index: 3;
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 0.5rem 0;
+  pointer-events: none;
+}
+
+.staggered-mockup__track {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 1.8vw, 2.2rem);
+  width: 100%;
+  max-width: none;
+  padding: 0 3%;
+  /* Allow first/last items to bleed off edges symmetrically */
+  margin: 0 -3%;
+  justify-content: center;
+}
+
+.staggered-mockup__item {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  pointer-events: auto;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  will-change: transform;
+}
+
+.staggered-mockup__item:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 32px 64px rgba(0, 0, 0, 0.25);
+}
+
+.staggered-mockup__frame {
+  position: relative;
+  width: clamp(250px, 18.5vw, 320px);
+  aspect-ratio: 9 / 19.5;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, 0.22),
+    0 6px 20px rgba(0, 0, 0, 0.18);
+  transition: box-shadow 0.3s ease;
+}
+
+.staggered-mockup__frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 24px;
+}
+
+.staggered-mockup__label {
+  margin: 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(0.7rem, 1vw, 0.8rem);
+  font-weight: 500;
+  color: var(--staggered-label-color, #1a1a1a);
+  text-align: center;
+  white-space: nowrap;
+  opacity: 0.6;
+}
+
+/* Wave stagger: custom positions for FitPhone - Journal & Activities high, Home middle, Stats & Education lower */
+.staggered-mockup__item:nth-child(1) { transform: translateY(var(--stagger-1, clamp(60px, 5vw, 85px))); }       /* Stats - lower */
+.staggered-mockup__item:nth-child(2) { transform: translateY(var(--stagger-2, clamp(-100px, -8vw, -140px))); }  /* Journal - high up, bleeds */
+.staggered-mockup__item:nth-child(3) { transform: translateY(var(--stagger-3, clamp(10px, 1vw, 25px))); }      /* Home - slightly lower middle */
+.staggered-mockup__item:nth-child(4) { transform: translateY(var(--stagger-4, clamp(-100px, -8vw, -140px))); }  /* Activities - inline with Journal */
+.staggered-mockup__item:nth-child(5) { transform: translateY(var(--stagger-5, clamp(50px, 4vw, 70px))); }       /* Education - lower */
+
+.staggered-mockup__item:nth-child(1):hover { transform: translateY(calc(var(--stagger-1, clamp(60px, 5vw, 85px)) - 12px)); }
+.staggered-mockup__item:nth-child(2):hover { transform: translateY(calc(var(--stagger-2, clamp(-100px, -8vw, -140px)) - 12px)); }
+.staggered-mockup__item:nth-child(3):hover { transform: translateY(calc(var(--stagger-3, clamp(10px, 1vw, 25px)) - 12px)); }
+.staggered-mockup__item:nth-child(4):hover { transform: translateY(calc(var(--stagger-4, clamp(-100px, -8vw, -140px)) - 12px)); }
+.staggered-mockup__item:nth-child(5):hover { transform: translateY(calc(var(--stagger-5, clamp(50px, 4vw, 70px)) - 12px)); }
+.staggered-mockup__item:nth-child(6):hover { transform: translateY(calc(var(--stagger-6, clamp(-40px, -3vw, -60px)) - 12px)); }
+
+/* Hide labels when requested */
+.staggered-mockup--no-labels .staggered-mockup__label {
+  display: none;
+}
+
+/* Hide title/subtitle when requested */
+.staggered-mockup--no-text .staggered-mockup__content {
+  display: none;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .staggered-mockup__track {
+    gap: clamp(1rem, 2vw, 2rem);
+    padding: 0 3%;
+    margin: 0 -3%;
+  }
+
+  .staggered-mockup__frame {
+    width: clamp(220px, 20vw, 280px);
+  }
+}
+
+@media (max-width: 900px) {
+  .staggered-mockup {
+    min-height: auto;
+    height: auto;
+    padding-bottom: 3rem;
+  }
+
+  .staggered-mockup__content {
+    padding-top: 4vh;
+  }
+
+  .staggered-mockup__row {
+    flex: none;
+    padding: 1rem 1.5rem 3rem;
+  }
+
+  .staggered-mockup__track {
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    margin: 0;
+    padding: 0 5%;
+  }
+
+  .staggered-mockup__item {
+    width: 45%;
+    min-width: 180px;
+  }
+
+  /* Reset stagger on tablet - subtle wave */
+  .staggered-mockup__item:nth-child(1),
+  .staggered-mockup__item:nth-child(3),
+  .staggered-mockup__item:nth-child(5) {
+    transform: translateY(20px);
+  }
+  .staggered-mockup__item:nth-child(2),
+  .staggered-mockup__item:nth-child(4),
+  .staggered-mockup__item:nth-child(6) {
+    transform: translateY(-15px);
+  }
+
+  .staggered-mockup__item:hover {
+    transform: translateY(-12px);
+  }
+}
+
+@media (max-width: 600px) {
+  .staggered-mockup__item {
+    width: 85%;
+  }
+
+  .staggered-mockup__track {
+    gap: 1.5rem;
+  }
+}

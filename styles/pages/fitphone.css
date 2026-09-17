@@ -608,16 +608,6 @@ body.project-page-standard .case-study-phase--wide-final #final-design #mockup-f
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-#top.parallax-1 {
-  min-height: 100vh;
-  height: 100vh;
-  background-image: url("../../images/fitphone 412 copy-1.png");
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-}
-
 .github-corner {
   position: fixed;
   bottom: 96px;
