@@ -297,6 +297,15 @@
       });
     }
 
+    const topLink = nav.querySelector('.case-study-nav__top');
+    if (topLink) {
+      topLink.addEventListener('click', (event) => {
+        event.preventDefault();
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+      });
+    }
+
     intro.insertAdjacentElement('afterend', nav);
   }
 

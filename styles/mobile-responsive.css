@@ -116,7 +116,7 @@
 
   /* SVG text elements */
   svg text {
-    font-size: 12px !important;
+    font-size: 1.2rem !important;
   }
 
   /* Tables and grids */
@@ -598,7 +598,7 @@
   }
 
   svg text {
-    font-size: 8px !important;
+    font-size: 0.8rem !important;
   }
 
   .metric-card,
@@ -644,11 +644,15 @@
     font-size: 0.7rem !important;
   }
 
-  /* Further reduce figma-container on tiny screens */
-  .figma-container {
-    height: 200px !important;
+  /* Ensure embedded iframes scale and never overflow on extra small phones */
+  @media (max-width: 480px) {
+    iframe {
+      display: block;
+      max-width: 100%;
+      width: 100%;
+      height: auto;
+    }
   }
-}
 
 /* Tablet optimization (768px - 1024px) */
 @media (max-width: 1024px) and (min-width: 769px) {
@@ -712,10 +716,12 @@
     overflow-wrap: break-word;
   }
 
-  /* Ensure embedded iframes scale */
+  /* Ensure embedded iframes scale and never overflow */
   iframe {
+    display: block;
     max-width: 100%;
     width: 100%;
+    height: auto;
   }
 
   /* Navigation doesn't overlap content */

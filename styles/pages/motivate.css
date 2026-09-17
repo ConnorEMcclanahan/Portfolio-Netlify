@@ -1046,11 +1046,13 @@ body.project-page-standard #mockup-flow.mockup-flow--editorial .mockup-step-imag
   height: auto;
 }
 
-body.project-page-standard #mockup-flow.mockup-flow--editorial .mockup-step--standard-form-pt3 .mockup-step-image,
+/* Tablet screens fill their bezel frame edge to edge; the frame itself
+   carries the size (see .mockup-visual--tablet below). Phones — Standard
+   Form Pt3 included — stay on the single shared phone width above. */
 body.project-page-standard #mockup-flow.mockup-flow--editorial .mockup-step--approval .mockup-step-image,
 body.project-page-standard #mockup-flow.mockup-flow--editorial .mockup-step--viewing-standard .mockup-step-image {
-  width: 92%;
-  max-width: 900px;
+  width: 100%;
+  max-width: none;
 }
 
 /* Match Diplora's dark intro presentation while keeping Motivate's content. */
@@ -1405,11 +1407,51 @@ body.project-page-standard #mockup-flow .mockup-visual {
   padding: 0;
 }
 
+/* Tablet frames — identical treatment to the device-cascade hero tablets:
+   brushed-metal gradient slab, inset screen ring, camera dot on the top
+   bezel, soft drop shadow. --tablet-bezel mirrors the hero's
+   --cascade-bezel formula (clamp(16px, frame-width * 0.045, cap)); the
+   in-column frames are ~half the hero's width, so the vw term is scaled
+   to land on the same proportional thickness (~24px at a 536px frame). */
 body.project-page-standard #mockup-flow .mockup-visual--tablet {
+  --tablet-bezel: clamp(14px, 1.7vw, 28px);
+  position: relative;
   max-width: none;
-  padding: 0;
-  border-radius: 0;
-  background: transparent;
+  width: 100%;
+  box-sizing: border-box;
+  padding: var(--tablet-bezel);
+  border-radius: calc(var(--tablet-bezel) * 1.6);
+  overflow: hidden;
+  background: linear-gradient(155deg, #43434e 0%, #1b1b21 42%, #09090c 100%);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.16),
+    inset 0 0 0 2px rgba(0, 0, 0, 0.55);
+  filter: drop-shadow(0 24px 36px rgba(0, 0, 0, 0.7));
+}
+
+/* Front camera on the top bezel — the same dot the hero tablets carry. */
+body.project-page-standard #mockup-flow .mockup-visual--tablet::before {
+  content: "";
+  position: absolute;
+  top: calc(var(--tablet-bezel) * 0.3);
+  left: 50%;
+  width: max(3px, calc(var(--tablet-bezel) * 0.32));
+  height: max(3px, calc(var(--tablet-bezel) * 0.32));
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: #05070c;
+  box-shadow: inset 0 0 0 1px rgba(130, 150, 200, 0.45);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Screen sits flush between the bezels and eases into the frame — hero
+   tablets round their screenshot with the same fraction of the bezel. */
+body.project-page-standard #mockup-flow .mockup-visual--tablet .mockup-step-image {
+  width: 100%;
+  max-width: none;
+  margin: 0 auto;
+  border-radius: calc(var(--tablet-bezel) * 0.6);
   box-shadow: none;
 }
 
@@ -1499,6 +1541,12 @@ body.project-page-standard .case-study-phase--wide-final .final-design-showcase 
 
   body.project-page-standard #mockup-flow .mockup-visual {
     padding: 0;
+  }
+
+  /* Keep the tablet bezel (same specificity as the rule above, but later in
+     source, so it wins for the tablet visuals only) at a proportional size. */
+  body.project-page-standard #mockup-flow .mockup-visual--tablet {
+    padding: calc(var(--tablet-bezel) * 0.75);
   }
 
   body.project-page-standard .case-study-phase--wide-final .case-study-phase__content {

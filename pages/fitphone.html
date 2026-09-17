@@ -37,14 +37,14 @@
     <div class="loading-screen__text">Loading...</div>
   </div>
 
-  <div class="staggered-mockup" id="staggered-mockup-hero" id="top">
+  <div class="staggered-mockup" id="staggered-mockup-hero">
     <nav class="navbar">
       <div class="navbar-container">
         <a href="../index.html" class="navbar-logo"><img src="../images/logo.png" alt="logo" class="navbar-logo-img" /></a>
         <button class="navbar-burger" aria-label="Toggle navigation menu"><span></span><span></span><span></span></button>
         <ul class="navbar-menu">
           <li><a href="../index.html#about">About</a></li>
-          <li><a href="../index.html#projects">Projects</a></li>
+          <li><a href="https://connormcclanahan.com/#projects">Projects</a></li>
           <li><a href="../pdfs/resume.pdf">Resume</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
@@ -84,7 +84,7 @@
       <article class="method-card">
         <h3>Ideation</h3>
         <p>This approach allowed us to develop our core concept, which became the cornerstone of the project. By refining our ideas based on the research question and creative brainstorming, we were able to focus on the key aspects that would best address the challenges we aimed to solve.</p>
-        <img src="../Images/ideation.jpeg" alt="FitPhone ideation board" class="media-image-full" />
+        <img src="../images/ideation.jpeg" alt="FitPhone ideation board" class="media-image-full" />
       </article>
     </div>
 
@@ -140,7 +140,7 @@
       <article class="method-card agile-retrospective">
         <h3>Agile Retrospective</h3>
         <p>At the end of each cycle, the team reflected on what was working, what was creating friction, and what we wanted to carry into the next sprint. This made the process more intentional and gave us a practical way to improve our collaboration as well as the product.</p>
-        <img src="../Images/implement.jpeg" alt="FitPhone Agile Start Stop Continue retrospective" class="retrospective-image" />
+        <img src="../images/implement.jpeg" alt="FitPhone Agile Start Stop Continue retrospective" class="retrospective-image" />
         <div class="retrospective-grid">
           <section>
             <h4>Start</h4>
@@ -200,18 +200,24 @@
       <article class="method-card">
         <h3>Low-fidelity Sketches</h3>
         <p>Initial sketches focused on core functionalities like matchmaking and education, helping the team test the structure before investing in high-fidelity design.</p>
-        <img src="../Images/sketches.jpeg" alt="FitPhone low-fidelity sketches" class="media-image-full" />
+        <img src="../images/sketches.jpeg" alt="FitPhone low-fidelity sketches" class="media-image-full" />
       </article>
 
       <article class="method-card">
         <h3>High-fidelity Prototype</h3>
         <p>Refinements included polished UI elements and interactive features like meeting flows, home activity cards, and more consistent visual language.</p>
         <div class="phone-frame">
-          <iframe
-            src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FVNYZuVYNzZYa0zUX52hilc%2FMain%3Fpage-id%3D0%253A1%26node-id%3D134%253A447%26viewport%3D508%252C298%252C0.2%26scaling%3Dscale-down%26content-scaling%3Dfixed%26starting-point-node-id%3D134%253A447&chromeless=1"
-            title="FitPhone high-fidelity prototype"
-            allowfullscreen
-          ></iframe>
+          <!-- Figma embed: click-to-load poster (components/project-page/figma-embed.js).
+               Nothing is fetched from Figma until the visitor taps the poster. -->
+          <div
+            class="figma-embed figma-embed--fill"
+            data-figma-src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FVNYZuVYNzZYa0zUX52hilc%2FMain%3Fpage-id%3D0%253A1%26node-id%3D134%253A447%26viewport%3D508%252C298%252C0.2%26scaling%3Dscale-down%26content-scaling%3Dfixed%26starting-point-node-id%3D134%253A447&chromeless=1"
+            data-title="FitPhone high-fidelity prototype"
+            data-eyebrow="Figma prototype"
+            data-cta="Explore the prototype"
+            data-note="The interactive prototype only loads when you tap."
+            data-poster="../images/mockups/onboarding.png"
+          ></div>
         </div>
       </article>
     </div>
@@ -223,7 +229,7 @@
       <h3>Final Design</h3>
     </div>
 
-    <img class="final-design-showcase" src="../Images/sss.png" alt="FitPhone final design screen collage" loading="lazy" />
+    <img class="final-design-showcase" src="../images/sss.png" alt="FitPhone final design screen collage" loading="lazy" />
 
     <div id="mockup-flow" class="mockup-flow"></div>
 
@@ -273,8 +279,8 @@
 
     <div class="phase-conclusion">
       <h3>Implementation Conclusion</h3>
-      <p>The final implementation brought together the projectâ€™s core lessons: clarity, accountability, and habit support mattered more than adding more tracking features.</p>
-      <p>FitPhoneâ€™s value came from helping users build healthier habits in a way that felt encouraging, personal, and sustainable. The final product reflects the full process from research and requirements through design, testing, and development.</p>
+      <p>The final implementation brought together the project's core lessons: clarity, accountability, and habit support mattered more than adding more tracking features.</p>
+      <p>FitPhone's value came from helping users build healthier habits in a way that felt encouraging, personal, and sustainable. The final product reflects the full process from research and requirements through design, testing, and development.</p>
     </div>
   </section>
 
@@ -329,6 +335,7 @@
   <!-- Three.js loader: non-overlapping spheres -->
   
   <script src="../components/project-page/utils.js" defer></script>
+  <script src="../components/project-page/figma-embed.js" defer></script>
   <script src="../components/project-page/intro-summary.js" defer></script>
   <script src="../components/project-page/final-columns.js" defer></script>
   <script src="../components/project-page/mockup-flow.js" defer></script>
