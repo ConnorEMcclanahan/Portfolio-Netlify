@@ -1,17 +1,3 @@
-function initScrollCue() {
-  const scrollCue = document.querySelector('.scroll-down');
-  if (!scrollCue) {
-    return;
-  }
-
-  function toggleCue() {
-    scrollCue.style.opacity = window.scrollY > window.innerHeight * 0.3 ? '0' : '1';
-  }
-
-  window.addEventListener('scroll', toggleCue, { passive: true });
-  toggleCue();
-}
-
 const introSummaryData = {
   title: 'FitPhone Case Study',
   subtitle: 'Digital wellness for healthier phone habits',
@@ -165,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.ProjectPageComponents.renderMockupFlow('#mockup-flow', mockupFlowData);
   }
 
-  initScrollCue();
+  initScrollCue({ threshold: 0.3 });
   initPDF();
   addContentReveals();
   window.addEventListener('scroll', reveal, { passive: true });

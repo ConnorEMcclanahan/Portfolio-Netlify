@@ -7,7 +7,7 @@ const introSummaryData = {
     { label: 'Context', value: 'AI for Society Minor group project' },
     { label: 'Timeline', value: '20 weeks (Spring 2025)' },
     { label: 'Tools', value: 'React, JavaScript, Python, SQLite, OpenAI Vision' },
-    { label: 'GitHub', value: 'github.com/ConnorEMcclanahan/PhillipsWall', href: 'https://github.com/ConnorEMcclanahan/PhillipsWall' }
+    { label: 'GitHub', value: 'github.com/ConnorEMcclanahan/PhilipsWall', href: 'https://github.com/ConnorEMcclanahan/PhilipsWall' }
   ],
   story: {
     background: 'The Philips Museum exhibition successfully immersed visitors in exploring and reflecting upon artificial intelligence, yet the physical visitor journey historically terminated at a passive, static sticky-note wall. This conventional setup limited visitor engagement, offering no digital mechanism for people to explore how individual viewpoints connected conceptually across the broader exhibition space.',
@@ -20,6 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
   if (window.ProjectPageComponents) {
     window.ProjectPageComponents.renderIntroSummary('#intro-summary', introSummaryData);
   }
+
+  initScrollCue({ threshold: 0.3 });
 
   const checkReveal = () => {
     document.querySelectorAll('.reveal').forEach((element) => {

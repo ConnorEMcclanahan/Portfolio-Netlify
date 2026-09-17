@@ -662,6 +662,34 @@ body.demo-locked .demo-scroll-cue {
   pointer-events: none;
 }
 
+/* Hide mini-axis labels until demo is activated */
+.phillips-demo-hero .mini-axis {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.phillips-demo-hero.demo-live .mini-axis {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Hide axis lines, axis labels, and quadrant labels until demo is activated */
+.phillips-demo-hero .axis-lines,
+.phillips-demo-hero .axis-label,
+.phillips-demo-hero .quadrant-label {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.phillips-demo-hero.demo-live .axis-lines,
+.phillips-demo-hero.demo-live .axis-label,
+.phillips-demo-hero.demo-live .quadrant-label {
+  opacity: 1;
+  visibility: visible;
+}
+
 
 @media (max-width: 768px) {
   .phillips-demo-hero { height: 100svh; min-height: 620px; }

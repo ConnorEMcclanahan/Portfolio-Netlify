@@ -81,6 +81,8 @@ document.addEventListener('DOMContentLoaded', () => {
     window.ProjectPageComponents.renderFinalColumns('#final-container', finalSectionData);
   }
 
+  initScrollCue({ threshold: 0.3 });
+
   addContentReveals();
   window.addEventListener('scroll', checkReveal, { passive: true });
   checkReveal();

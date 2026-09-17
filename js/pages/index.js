@@ -247,6 +247,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initReveal();
   initPortraitAnimation();
   initCustomCursor();
+  initScrollCue({ target: '#previous-work', threshold: 0.3 });
 });
 
 // Hide the shared loading screen once everything is loaded.

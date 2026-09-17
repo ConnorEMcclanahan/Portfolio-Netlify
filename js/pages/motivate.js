@@ -276,20 +276,6 @@ function initPDF() {
   });
 }
 
-function initScrollCue() {
-  const scrollCue = document.querySelector('.scroll-down');
-  if (!scrollCue) {
-    return;
-  }
-
-  const toggleCue = () => {
-    scrollCue.style.opacity = window.scrollY > window.innerHeight * 0.3 ? '0' : '1';
-  };
-
-  toggleCue();
-  window.addEventListener('scroll', toggleCue, { passive: true });
-}
-
 function initSmoothScroll() {
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener('click', function onClick(e) {
@@ -331,7 +317,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js';
   }
 
-  initScrollCue();
+  initScrollCue({ threshold: 0.3 });
   initSmoothScroll();
 
   if (window.ProjectPageComponents) {

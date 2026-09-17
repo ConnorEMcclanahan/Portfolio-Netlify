@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="styles/pages/index.css"/>
     <link rel="stylesheet" href="styles/pages/index-phillips-tv.css"/>
     <link rel="stylesheet" href="components/loading-screen/loading-screen.css" />
+    <link rel="stylesheet" href="components/scroll-cue/scroll-cue.css" />
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
@@ -45,16 +46,14 @@
         </ul>
       </div>
     </nav>
-    <section id="top">
+<section id="top">
       <div class="hero hero-shell">
         <div class="hero__content">
-          <h1 class="hero-title">I'm Connor — bridging the gap between <em>design &amp; development</em>.</h1>
+          <h1 class="hero-title">I'm Connor — bridging the gap between <em>design & development</em>.</h1>
         </div>
       </div>
-      <a href="#previous-work" class="scroll-down" aria-label="Scroll down">
-        <ion-icon name="chevron-down-outline"></ion-icon>
-      </a>
     </section>
+          <div id="scroll-cue-mount"></div>
     <main>
       <!-- Each project row below carries .reveal itself, so every project fades
            in on its own as it reaches the viewport instead of the whole
@@ -281,5 +280,6 @@
     <script src="js/pages/index-phillips-tv.js" defer></script>
     <script src="components/loading-screen/loading-screen.js" defer></script>
     <script src="components/navbar/navbar.js" defer></script>
+    <script src="components/scroll-cue/scroll-cue.js" defer></script>
   </body>
 </html>

@@ -32,6 +32,7 @@
   <script src="../js/script.js" defer></script>
   <script src="../components/loading-screen/loading-screen.js" defer></script>
   <link rel="stylesheet" href="../components/loading-screen/loading-screen.css" />
+  <link rel="stylesheet" href="../components/scroll-cue/scroll-cue.css" />
 </head>
 <body class="project-page-standard">
   <!-- Shared Loading Screen Component -->
@@ -41,10 +42,7 @@
 
   <!-- Main Content -->
   <div class="parallax-1" id="top">
-
-    <a href="#intro-summary" class="scroll-down" aria-label="Scroll down">
-      <ion-icon name="chevron-down-outline"></ion-icon>
-    </a>
+    <div id="scroll-cue-mount"></div>
     <nav class="navbar">
       <div class="navbar-container">
         <a href="../index.html" class="navbar-logo">
@@ -305,6 +303,7 @@
   <script src="../components/navbar/navbar.js" defer></script>
   <script src="../components/loading-screen/loading-screen.js" defer></script>
   <script src="../components/custom-cursor/custom-cursor.js" defer></script>
+  <script src="../components/scroll-cue/scroll-cue.js" defer></script>
 
   <!-- Custom cursor — the dot replaces the native pointer (hidden by
        body.has-custom-cursor), the ring trails it. Driven by
