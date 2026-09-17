@@ -23,7 +23,7 @@
 }
 
 .mockup-step-copy {
-  color: #fff;
+  color: var(--case-muted);
 }
 
 .mockup-visual {
