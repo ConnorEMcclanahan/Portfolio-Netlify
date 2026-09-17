@@ -1,67 +1,70 @@
 # Connor McClanahan Portfolio
 
-A personal portfolio site showcasing UI/UX and front-end development work, with detailed case-study pages for academic, internship, and personal projects.
+A personal portfolio site showcasing UI/UX and front-end development work, with detailed case-study pages for internship, university, and minor projects.
 
 ## Overview
 
-This repository contains a static multi-page portfolio built with HTML, CSS/SCSS, and vanilla JavaScript. It includes shared reusable components (navbar, footer, project-page modules), project-specific styles/scripts, and media assets used throughout the case studies.
+This repository contains a static multi-page portfolio built with HTML, CSS/SCSS, and vanilla JavaScript, deployed on Netlify straight from the repository root — no build step, bundler, or package manager required.
 
-## Featured Pages
+The site is assembled from small self-contained components (each ships its own CSS + JS), shared case-study modules that build every project page, and page-specific scripts/styles for anything unique to a single page.
+
+## Pages
 
 - Home: `index.html`
-- About: `about.html`
-- FitPhone case study: `fitphone.html`
-- Urban Sports case study: `urbansports.html`
-- Kahuna case study: `kahuna.html`
-- Motivate case study: `motivate.html`
-- Diplora case study: `diplora.html`
-- Petica case study: `petica.html`
-- Thank You page: `thankyou.html`
+- About: `pages/about.html`
+- Diplora — ECG companion app (internship): `pages/diplora.html`
+- Philips — AI-powered museum feedback wall (AI for Society minor): `pages/phillipswall.html`
+- Fontys FitPhone — community wellness app: `pages/fitphone.html`
+- Motivate — factory-floor PWA: `pages/motivate.html`
+- Thank You: `pages/thankyou.html`
+
+Legacy root-level URLs (e.g. `/about.html`) are 301-redirected to their current `pages/` locations through Netlify's `_redirects` file.
 
 ## Tech Stack
 
 - HTML5
 - CSS3 + SCSS (Sass)
-- Vanilla JavaScript (modular page scripts)
-- External libraries:
-  - Bulma CSS
-  - Ionicons
-  - Three.js
-  - Vanta Globe effect
+- Vanilla JavaScript (ES modules, one component per feature)
+- Fonts & icons: Google Fonts (Plus Jakarta Sans, Syne), Ionicons, Font Awesome
+- Three.js + Vanta.js — animated globe behind the homepage hero
 
 ## Project Structure
 
 ```text
 .
-├── components/
+├── components/                  # Reusable components (each with its own CSS/JS)
 │   ├── navbar/
 │   ├── footer/
-│   └── project-page/
+│   ├── loading-screen/          # Fade-out loading screen
+│   ├── custom-cursor/           # Custom cursor on case-study pages
+│   ├── scroll-cue/
+│   ├── device-cascade/          # Cascading phone/tablet mockups
+│   ├── staggered-mockup/        # Staggered wave of device screens
+│   └── project-page/            # Shared case-study section modules
 ├── images/
+│   ├── diplora/
+│   ├── mockups/                 # Homepage mockup fans (home, activity, journal, ...)
+│   ├── motivate/
+│   └── phillipswall/
 ├── js/
-│   ├── pages/
-│   └── vantaglobe.js
+│   ├── pages/                   # Page-specific scripts (incl. Philips wall demos)
+│   ├── script.js
+│   └── vantaglobe.js            # Vanta globe for the hero
+├── pages/                       # All secondary pages (about, case studies, thankyou)
+├── pdfs/                        # Resume, research and project documents
 ├── styles/
-│   ├── pages/
-│   ├── style.css
-│   ├── style.scss
-│   └── fancy.scss
-├── pdfs/
-├── index.html
-└── [project pages].html
+│   ├── pages/                   # Page-specific stylesheets
+│   ├── style.scss               # Main SCSS source
+│   ├── style.css                # Compiled main stylesheet (committed)
+│   ├── frontend.css
+│   └── mobile-responsive.css
+├── _redirects                   # Netlify 301s for legacy URLs
+└── index.html                   # Homepage
 ```
 
 ## Local Development
 
-### 1) Install dependencies
-
-```bash
-npm install
-```
-
-### 2) Run locally
-
-This is a static site, so you can run it with any local server.
+This is a fully static site — there is nothing to install. Serve the root folder with any static server.
 
 Option A (VS Code):
 - Use the Live Server extension and open `index.html`.
@@ -71,38 +74,37 @@ Option B (Node):
 npx serve .
 ```
 
+Option C (Python):
+```bash
+python -m http.server
+```
+
 ## SCSS Workflow (Optional)
 
-If you want to recompile Sass into the main stylesheet:
+The compiled `styles/style.css` is committed, so you only need Sass if you edit `styles/style.scss`:
 
 ```bash
-npx sass styles/fancy.scss styles/style.css
+npx sass styles/style.scss styles/style.css
 ```
 
 Watch mode:
 
 ```bash
-npx sass --watch styles/fancy.scss:styles/style.css
+npx sass --watch styles/style.scss:styles/style.css
 ```
 
 ## Deployment
 
-The project is configured as a static portfolio and can be deployed directly to Netlify by connecting this repository and publishing from the root directory.
+The site deploys to Netlify by connecting this repository and publishing from the root directory. The `_redirects` file handles 301 redirects from legacy root-level routes to the current `pages/` locations.
 
-## Notes
+## Architecture Notes
 
-- Shared project-page sections are generated by reusable modules in `components/project-page/`.
-- Page-specific behavior is centralized in `js/pages/`.
-- Page-specific styling is centralized in `styles/pages/`.
+- Components in `components/` are self-contained: each ships its own CSS and JS and can be dropped into any page.
+- Case-study pages are assembled from shared modules in `components/project-page/` (intro summaries, persona grids, POV/HMW boards, comparison tables/matrices, insights, final columns, etc.) so every project page stays consistent.
+- Page-specific behavior lives in `js/pages/`; page-specific styling lives in `styles/pages/`.
+- The Philips case study embeds an interactive parallax version of the feedback wall (`js/pages/phillipswall-demo.js`), and the homepage shows an auto-playing mini version inside a TV mockup (`js/pages/index-phillips-tv.js`).
 
 ## Author
 
 Connor McClanahan
-
----
-
-If you want, I can also add:
-
-- A screenshot section with preview images
-- A concise "How I built this" section for recruiters
-- A changelog summary section pulled from `changelog.md`
+- GitHub: https://github.com/ConnorEMcclanahan
