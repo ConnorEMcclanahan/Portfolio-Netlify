@@ -8,11 +8,10 @@
 .phillips-tv__screen { position: relative; display: block; aspect-ratio: 16 / 10; border-radius: calc(var(--tv-bezel) * 0.6); overflow: hidden; background: #fff; isolation: isolate; }
 .phillips-tv__screen::after { content: ""; position: absolute; inset: 0; z-index: 40; pointer-events: none; background: linear-gradient(115deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.04) 22%, transparent 35%); }
 .mini-wall { position: absolute; inset: 0; display: block; pointer-events: none; user-select: none; font-family: "Plus Jakarta Sans", sans-serif; background: #fff; }
-.mini-wall::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(to right, rgba(15,23,42,0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(15,23,42,0.06) 1px, transparent 1px); background-size: 26px 26px; }
 .mini-grid { position: absolute; top: 14px; left: 14px; right: 14px; bottom: 12px; display: block; }
 .mini-grid::before, .mini-grid::after { content: ""; position: absolute; background: rgba(15,23,42,0.28); }
-.mini-grid::before { left: 50%; top: 0; bottom: 0; width: 1px; transform: translateX(-50%); }
-.mini-grid::after { top: 50%; left: 0; right: 0; height: 1px; transform: translateY(-50%); }
+.mini-grid::before { left: 50%; top: 18px; bottom: 18px; width: 1px; transform: translateX(-50%); }
+.mini-grid::after { top: 50%; left: 28px; right: 28px; height: 1px; transform: translateY(-50%); }
 .mini-axis { position: absolute; font-size: 5.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #1a1a2e; text-shadow: none; white-space: nowrap; }
 .mini-axis--t { top: -8px; left: 50%; transform: translateX(-50%); }
 .mini-axis--b { bottom: -8px; left: 50%; transform: translateX(-50%); }
