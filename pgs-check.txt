@@ -1,3 +1,0 @@
-﻿motivate.html:18: <link rel="stylesheet" href="../components/device-cascade/device-cascade.css"/>
-motivate.html:44: <div class="device-cascade" id="staggered-mockup-hero" id="top">
-motivate.html:300: <script src="../components/device-cascade/device-cascade.js" defer></script>

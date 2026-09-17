@@ -32,3 +32,6 @@ build/
 # Cache
 .cache/
 .eslintcache
+
+# Scratch / temp files
+pgs-check.txt
