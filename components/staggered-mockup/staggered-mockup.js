@@ -34,9 +34,11 @@
 
     // Build item HTML
     const itemsHtml = data.items.map((item, index) => {
+      const deviceClass = item.device === 'tablet' ? 'staggered-mockup__frame--tablet' : '';
+      const staggerValue = item.stagger || (data.staggers ? data.staggers[index] : '0');
       return `
-        <figure class="staggered-mockup__item" style="--stagger-${index + 1}: ${item.stagger || 'var(--stagger-' + (index + 1) + ')'};">
-          <div class="staggered-mockup__frame">
+        <figure class="staggered-mockup__item" style="--stagger: ${staggerValue};">
+          <div class="staggered-mockup__frame ${deviceClass}">
             <img src="${escapeHtml(item.src)}" alt="${escapeHtml(item.alt || '')}" loading="lazy" />
           </div>
           ${item.label ? `<figcaption class="staggered-mockup__label">${escapeHtml(item.label)}</figcaption>` : ''}

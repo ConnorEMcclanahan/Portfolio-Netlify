@@ -354,6 +354,13 @@
           subtitle: '',
           ariaLabel: 'FitPhone app screens',
           noLabels: true,
+          staggers: [
+            'clamp(60px, 5vw, 85px)',        /* Stats - lower */
+            'clamp(-180px, -13vw, -240px)',  /* Journal - VERY HIGH */
+            'clamp(-60px, -5vw, -90px)',     /* Home - more middle */
+            'clamp(-180px, -13vw, -240px)',  /* Activities - VERY HIGH */
+            'clamp(50px, 4vw, 70px)'         /* Education - lower */
+          ],
           items: [
             { src: '../images/mockups/stats.png', alt: 'Stats screen', label: 'Stats' },
             { src: '../images/mockups/journelentry/whatsapp image 2025-04-27 at 23.57.24-portrait.png', alt: 'Journal Entry / Weekly Check-in screen', label: 'Journal Entry' },

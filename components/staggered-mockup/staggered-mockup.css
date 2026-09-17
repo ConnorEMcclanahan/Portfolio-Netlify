@@ -81,7 +81,7 @@
   z-index: 3;
   flex: 1;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   padding: 0.5rem 0;
   pointer-events: none;
@@ -135,6 +135,57 @@
   border-radius: 24px;
 }
 
+/* Tablet frame - proper tablet bezel with home indicator */
+.staggered-mockup__frame--tablet {
+  position: relative;
+  width: clamp(380px, 28vw, 480px);
+  aspect-ratio: 4 / 3;
+  border-radius: 24px;
+  background: #0d0d0d;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 6px rgba(0, 0, 0, 0.2),
+    0 0 0 10px rgba(255, 255, 255, 0.05),
+    0 24px 48px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.staggered-mockup__frame--tablet::before {
+  content: '';
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40%;
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.12);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.staggered-mockup__frame--tablet::after {
+  content: '';
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 5px;
+  border-radius: 2.5px;
+  background: rgba(255, 255, 255, 0.1);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.staggered-mockup__frame--tablet img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 18px;
+}
+
 .staggered-mockup__label {
   margin: 0;
   font-family: 'Plus Jakarta Sans', sans-serif;
@@ -146,19 +197,16 @@
   opacity: 0.6;
 }
 
-/* Wave stagger: custom positions for FitPhone - Journal & Activities high, Home middle, Stats & Education lower */
-.staggered-mockup__item:nth-child(1) { transform: translateY(var(--stagger-1, clamp(60px, 5vw, 85px))); }       /* Stats - lower */
-.staggered-mockup__item:nth-child(2) { transform: translateY(var(--stagger-2, clamp(-100px, -8vw, -140px))); }  /* Journal - high up, bleeds */
-.staggered-mockup__item:nth-child(3) { transform: translateY(var(--stagger-3, clamp(10px, 1vw, 25px))); }      /* Home - slightly lower middle */
-.staggered-mockup__item:nth-child(4) { transform: translateY(var(--stagger-4, clamp(-100px, -8vw, -140px))); }  /* Activities - inline with Journal */
-.staggered-mockup__item:nth-child(5) { transform: translateY(var(--stagger-5, clamp(50px, 4vw, 70px))); }       /* Education - lower */
+/* Stagger transform - reads from inline --stagger-N custom properties */
+.staggered-mockup__item {
+  transform: translateY(var(--stagger, 0));
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-.staggered-mockup__item:nth-child(1):hover { transform: translateY(calc(var(--stagger-1, clamp(60px, 5vw, 85px)) - 12px)); }
-.staggered-mockup__item:nth-child(2):hover { transform: translateY(calc(var(--stagger-2, clamp(-100px, -8vw, -140px)) - 12px)); }
-.staggered-mockup__item:nth-child(3):hover { transform: translateY(calc(var(--stagger-3, clamp(10px, 1vw, 25px)) - 12px)); }
-.staggered-mockup__item:nth-child(4):hover { transform: translateY(calc(var(--stagger-4, clamp(-100px, -8vw, -140px)) - 12px)); }
-.staggered-mockup__item:nth-child(5):hover { transform: translateY(calc(var(--stagger-5, clamp(50px, 4vw, 70px)) - 12px)); }
-.staggered-mockup__item:nth-child(6):hover { transform: translateY(calc(var(--stagger-6, clamp(-40px, -3vw, -60px)) - 12px)); }
+.staggered-mockup__item:hover {
+  transform: translateY(calc(var(--stagger, 0) - 12px));
+  box-shadow: 0 32px 64px rgba(0, 0, 0, 0.25);
+}
 
 /* Hide labels when requested */
 .staggered-mockup--no-labels .staggered-mockup__label {

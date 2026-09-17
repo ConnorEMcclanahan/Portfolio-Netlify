@@ -463,12 +463,12 @@
           ariaLabel: 'Diplora app screens',
           noLabels: true,
           staggers: [
-            'clamp(60px, 5vw, 85px)',      /* Logbook - lower */
-            'clamp(-100px, -8vw, -140px)',  /* Low Power - high up, bleeds */
-            'clamp(10px, 1vw, 25px)',       /* Home - middle */
-            'clamp(-60px, -5vw, -90px)',    /* Onboarding - slightly high */
-            'clamp(-100px, -8vw, -140px)',  /* Attach - high up, bleeds */
-            'clamp(50px, 4vw, 70px)'        /* Activity - lower */
+            'clamp(40px, 3vw, 60px)',     /* Logbook - DOWN (edge) */
+            'clamp(-160px, -12vw, -220px)', /* Low Power - VERY UP (bleeds nav) */
+            'clamp(20px, 2vw, 40px)',     /* Home - DOWN (middle) */
+            'clamp(-140px, -10vw, -180px)', /* Onboarding - VERY UP */
+            'clamp(50px, 4vw, 70px)',     /* Attach - DOWN (middle-low) */
+            'clamp(-120px, -9vw, -160px)'  /* Activity - UP (edge, but high) */
           ],
           items: [
             { src: '../images/mockups/diplora/logbook-portrait.png', alt: 'Logbook screen', label: 'Logbook' },

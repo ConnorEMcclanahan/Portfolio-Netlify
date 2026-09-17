@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="../components/custom-cursor/custom-cursor.css"/>
   <link rel="stylesheet" href="../components/project-page/project-components.css"/>
   <link rel="stylesheet" href="../styles/pages/motivate.css"/>
+  <link rel="stylesheet" href="../components/device-cascade/device-cascade.css"/>
   <link rel="stylesheet" href="../styles/pages/project-image-hover.css"/>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
@@ -40,9 +41,7 @@
     <div class="loading-screen__text">Loading...</div>
   </div>
 
-  <!-- Main Content -->
-  <div class="parallax-1" id="top">
-    <div id="scroll-cue-mount"></div>
+  <div class="device-cascade" id="staggered-mockup-hero" id="top">
     <nav class="navbar">
       <div class="navbar-container">
         <a href="../index.html" class="navbar-logo">
@@ -56,14 +55,13 @@
         <ul class="navbar-menu">
           <li><a href="../index.html#about">About</a></li>
           <li><a href="index.html#projects">Projects</a></li>
-          <li><a href="Resume.pdf">Resume</a></li>
+          <li><a href="../pdfs/resume.pdf">Resume</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
     </nav>
   </div>
 
-  <!-- Intro & Meta -->
   <section id="intro-summary" class="reveal"></section>
 
   <!-- Overview section with reveal animation -->
@@ -290,7 +288,7 @@
     </div>
   </footer>
 
-  <!-- Move scripts to bottom of body -->
+<!-- Move scripts to bottom of body -->
   
   <script src="../components/project-page/utils.js" defer></script>
   <script src="../components/project-page/intro-summary.js" defer></script>
@@ -299,11 +297,32 @@
   <script src="../components/project-page/split-insights.js" defer></script>
   <script src="../components/project-page/mockup-flow.js" defer></script>
   <script src="../components/project-page/case-study-nav.js" defer></script>
+  <script src="../components/device-cascade/device-cascade.js" defer></script>
   <script src="../js/pages/motivate.js" defer></script>
   <script src="../components/navbar/navbar.js" defer></script>
   <script src="../components/loading-screen/loading-screen.js" defer></script>
   <script src="../components/custom-cursor/custom-cursor.js" defer></script>
   <script src="../components/scroll-cue/scroll-cue.js" defer></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      if (window.ProjectPageComponents && window.ProjectPageComponents.renderDeviceCascade) {
+        window.ProjectPageComponents.renderDeviceCascade('#staggered-mockup-hero', {
+          title: '',
+          subtitle: '',
+          ariaLabel: 'Motivate app screens',
+          noText: true,
+          items: [
+            { src: '../images/motivate/mockup-5.png', alt: 'Approval (tablet)', device: 'tablet' },
+            { src: '../images/motivate/mockup-1.png', alt: 'Standard Form', device: 'phone' },
+            { src: '../images/motivate/mockup-2.png', alt: 'Standard Form Pt2', device: 'phone' },
+            { src: '../images/motivate/mockup-3.png', alt: 'Standard Form Pt3', device: 'phone' },
+            { src: '../images/motivate/mockup-4.png', alt: 'Viewing Standard (tablet)', device: 'tablet' }
+          ]
+        });
+      }
+    });
+  </script>
 
   <!-- Custom cursor — the dot replaces the native pointer (hidden by
        body.has-custom-cursor), the ring trails it. Driven by

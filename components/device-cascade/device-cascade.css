@@ -1,0 +1,307 @@
+/* ============================================================
+   DEVICE CASCADE PARALLAX — Motivate specific
+   Phone/tablet overlap cascade with real device frames
+   Based on the phone-in-front-of-tablet reference mockup
+   ============================================================ */
+.device-cascade {
+  position: relative;
+  min-height: 100vh;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: #0a0a0a;
+}
+
+/* Subtle radial gradient for depth */
+.device-cascade::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 100% 80% at 50% 40%, 
+    rgba(110, 7, 243, 0.15) 0%, 
+    rgba(110, 7, 243, 0.08) 35%, 
+    rgba(110, 7, 243, 0.04) 60%,
+    transparent 80%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.device-cascade::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.3) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Navbar */
+.device-cascade .navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 10;
+}
+
+/* Content area */
+.device-cascade__content {
+  position: relative;
+  z-index: 5;
+  text-align: center;
+  padding-top: 4vh;
+  pointer-events: none;
+}
+
+.device-cascade__title {
+  margin: 0 0 0.5rem;
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.02em;
+}
+
+.device-cascade__subtitle {
+  margin: 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(1rem, 1.8vw, 1.125rem);
+  font-weight: 400;
+  color: #aaa;
+  opacity: 0.7;
+}
+
+/* Cascade row */
+.device-cascade__row {
+  position: relative;
+  z-index: 3;
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 2rem 4rem 4rem;
+  pointer-events: none;
+  perspective: 1000px;
+}
+
+.device-cascade__track {
+  display: flex;
+  align-items: flex-end;
+  gap: 0;
+  /* Negative margin creates the overlap */
+  margin: 0 -15%;
+  padding: 0 15%;
+  width: 100%;
+  max-width: none;
+}
+
+/* Device items - cascade from back to front */
+.device-cascade__item {
+  position: relative;
+  flex: 0 0 auto;
+  pointer-events: auto;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, z-index 0s;
+  will-change: transform;
+}
+
+/* Stacking order: first item in HTML = back, last = front */
+.device-cascade__item:nth-child(1) { z-index: 1; }   /* Tablet 1 (back) */
+.device-cascade__item:nth-child(2) { z-index: 2; }   /* Phone 1 */
+.device-cascade__item:nth-child(3) { z-index: 3; }   /* Phone 2 */
+.device-cascade__item:nth-child(4) { z-index: 4; }   /* Phone 3 */
+.device-cascade__item:nth-child(5) { z-index: 5; }   /* Tablet 2 (front) */
+
+.device-cascade__item:hover {
+  transform: translateY(-16px) scale(1.02);
+  z-index: 10 !important;
+}
+
+/* Phone frame - smaller, in front */
+.device-cascade__frame--phone {
+  width: clamp(200px, 14vw, 260px);
+  aspect-ratio: 9 / 19.5;
+  border-radius: 28px;
+  background: #000;
+  overflow: hidden;
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.35),
+    0 8px 16px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.device-cascade__frame--phone::before {
+  content: '';
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 55%;
+  height: 5px;
+  border-radius: 2.5px;
+  background: rgba(255, 255, 255, 0.12);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.device-cascade__frame--phone::after {
+  content: '';
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 26px;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.1);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.device-cascade__frame--phone img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 22px;
+}
+
+/* Tablet frame - larger, behind */
+.device-cascade__frame--tablet {
+  width: clamp(340px, 24vw, 440px);
+  aspect-ratio: 4 / 3;
+  border-radius: 24px;
+  background: #0d0d0d;
+  overflow: hidden;
+  box-shadow:
+    0 24px 48px rgba(0, 0, 0, 0.4),
+    0 12px 24px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.device-cascade__frame--tablet::before {
+  content: '';
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 45%;
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.1);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.device-cascade__frame--tablet::after {
+  content: '';
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 5px;
+  border-radius: 2.5px;
+  background: rgba(255, 255, 255, 0.08);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.device-cascade__frame--tablet img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 18px;
+}
+
+/* Cascade positioning - diagonal down-right from back to front */
+/* Item 1 (back tablet): highest, leftmost */
+.device-cascade__item:nth-child(1) {
+  transform: translateY(clamp(-80px, -6vw, -110px)) translateX(0);
+}
+
+/* Item 2 (phone 1): overlaps tablet 1, lower */
+.device-cascade__item:nth-child(2) {
+  transform: translateY(clamp(20px, 2vw, 40px)) translateX(clamp(-40px, -3vw, -60px));
+}
+
+/* Item 3 (phone 2): overlaps phone 1, lower */
+.device-cascade__item:nth-child(3) {
+  transform: translateY(clamp(60px, 5vw, 85px)) translateX(clamp(-80px, -6vw, -120px));
+}
+
+/* Item 4 (phone 3): overlaps phone 2, lower */
+.device-cascade__item:nth-child(4) {
+  transform: translateY(clamp(100px, 8vw, 130px)) translateX(clamp(-120px, -9vw, -180px));
+}
+
+/* Item 5 (front tablet): overlaps phone 3, lower */
+.device-cascade__item:nth-child(5) {
+  transform: translateY(clamp(140px, 11vw, 180px)) translateX(clamp(-160px, -12vw, -240px));
+}
+
+/* Hover states */
+.device-cascade__item:nth-child(1):hover { transform: translateY(calc(clamp(-80px, -6vw, -110px) - 16px)) translateX(0); }
+.device-cascade__item:nth-child(2):hover { transform: translateY(calc(clamp(20px, 2vw, 40px) - 16px)) translateX(clamp(-40px, -3vw, -60px)); }
+.device-cascade__item:nth-child(3):hover { transform: translateY(calc(clamp(60px, 5vw, 85px) - 16px)) translateX(clamp(-80px, -6vw, -120px)); }
+.device-cascade__item:nth-child(4):hover { transform: translateY(calc(clamp(100px, 8vw, 130px) - 16px)) translateX(clamp(-120px, -9vw, -180px)); }
+.device-cascade__item:nth-child(5):hover { transform: translateY(calc(clamp(140px, 11vw, 180px) - 16px)) translateX(clamp(-160px, -12vw, -240px)); }
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .device-cascade__track {
+    margin: 0 -10%;
+    padding: 0 10%;
+  }
+  
+  .device-cascade__frame--phone { width: clamp(180px, 16vw, 230px); }
+  .device-cascade__frame--tablet { width: clamp(300px, 26vw, 380px); }
+}
+
+@media (max-width: 900px) {
+  .device-cascade {
+    min-height: auto;
+    height: auto;
+    padding-bottom: 3rem;
+  }
+  
+  .device-cascade__row {
+    flex: none;
+    padding: 1rem 2rem 3rem;
+  }
+  
+  .device-cascade__track {
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+    margin: 0;
+    padding: 0 5%;
+    align-items: center;
+  }
+  
+  .device-cascade__item {
+    transform: none !important;
+    width: 45%;
+    min-width: 200px;
+  }
+  
+  .device-cascade__item:hover {
+    transform: translateY(-12px) scale(1.02) !important;
+  }
+  
+  /* Reset cascade on tablet */
+  .device-cascade__item:nth-child(1),
+  .device-cascade__item:nth-child(2),
+  .device-cascade__item:nth-child(3),
+  .device-cascade__item:nth-child(4),
+  .device-cascade__item:nth-child(5) {
+    z-index: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .device-cascade__item { width: 85%; }
+}
