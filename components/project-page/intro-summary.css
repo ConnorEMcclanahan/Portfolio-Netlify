@@ -172,6 +172,15 @@ body.project-page-standard .intro-meta ul {
   text-transform: uppercase;
 }
 
+/* Meta labels (Role / Context / Timeline / Tools Used / GitHub) take the same
+   purple accent (#6E07F3) as the intro title and lead. The extra class outranks
+   the white !important label rules in intro-theme.css and the per-page
+   stylesheets (fitphone / motivate / diplora / phillipswall), so the accent
+   holds on every project page. The class is added by intro-summary.js. */
+body.project-page-standard #intro-summary .intro-meta-item strong.intro-meta-label-accent {
+  color: #6E07F3 !important;
+}
+
 .intro-meta-item span {
   color: var(--case-muted);
   font-size: 0.95rem;

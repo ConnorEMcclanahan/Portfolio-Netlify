@@ -14,7 +14,7 @@ h1 {
 
 h3 {
   text-align: left;
-  color: #6E07F3 !important;
+  color: #ffff !important;
 }
 
 .wrapingimageleftt h1,
@@ -75,8 +75,7 @@ section {
   font-size: 1.05rem;
   line-height: 1.7;
   margin-bottom: 1em;
-  color: #fff;
-}
+color: var(--case-muted) !important;}
 
 .phase-list {
   margin: 1.25rem 0 0;
@@ -160,7 +159,7 @@ section {
 }
 
 .feedback-timeline strong {
-  color: #fff;
+  color: #6E07F3;
 }
 
 .retrospective-grid {

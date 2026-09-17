@@ -16,6 +16,9 @@
       ['Tools Used', /tools|tech|stack|design/i],
       ['GitHub', /github|repository|source/i]
     ];
+    /* Labels that get the purple accent from the intro heading (styled in
+       intro-summary.css). Covers every rendered meta label, GitHub included. */
+    const accentLabels = new Set(['Role', 'Context', 'Timeline', 'Tools Used', 'GitHub']);
     const metaItems = metaLabels
       .map(([label, matcher]) => {
         const item = (data.meta || []).find((candidate) => matcher.test(candidate.label));
@@ -25,7 +28,8 @@
         const valueMarkup = item.href
           ? `<span><a class="intro-meta-link" href="${escapeHtml(item.href)}" target="_blank" rel="noopener noreferrer">${escapeHtml(item.value || item.href)}</a></span>`
           : `<span>${escapeHtml(item.value)}</span>`;
-        return `<li class="intro-meta-item"><strong>${escapeHtml(label)}</strong>${valueMarkup}</li>`;
+        const labelClass = accentLabels.has(label) ? ' class="intro-meta-label-accent"' : '';
+        return `<li class="intro-meta-item"><strong${labelClass}>${escapeHtml(label)}</strong>${valueMarkup}</li>`;
       })
       .join('');
 

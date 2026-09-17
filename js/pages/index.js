@@ -12,7 +12,8 @@ function initVantaBackground() {
     gyroControls: false,
     minHeight: 200,
     minWidth: 200,
-    scal
+    scale: 1,
+    scaleMobile: 1,
     color: 0x6e07f3,
     backgroundColor: 0x0,
   });

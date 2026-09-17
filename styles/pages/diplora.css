@@ -138,13 +138,13 @@
     }
 
     body.project-page-standard .project-section h4 {
-      color: #6E07F3;
+      color: #ffff;
       font-family: "Syne", "Plus Jakarta Sans", sans-serif;
       font-weight: 700;
     }
 
     body.project-page-standard .project-section strong {
-      color: #fff;
+      color: #6E07F3;
       font-weight: 700;
     }
 
@@ -822,11 +822,17 @@
       margin-top: 0;
     }
 
-    body.project-page-standard #research .research-narrative strong {
-      color: #6E07F3;
+    /* Emphasis sweep — every <strong> inside prose (paragraphs and lists)
+       reads in the accent purple, so the highlighted phrases in research,
+       design system, requirements, journey and tech-stack copy all match.
+       The small uppercase ISSUE/CHANGE/IMPACT labels in .iteration-step are
+       structural markers, not emphasis, so they are re-pinned to white. */
+    body.project-page-standard p strong,
+    body.project-page-standard li strong {
+      color: #6E07F3 !important;
     }
 
-    body.project-page-standard #research .text-column strong {
+    body.project-page-standard .iteration-step strong {
       color: #6E07F3 !important;
     }
 
@@ -935,7 +941,7 @@
 
     body.project-page-standard .implementation-tech-stack__card h4 {
       margin: 0 0 1.25rem;
-      color: #6E07F3;
+      color: #ffff;
       font-size: 1.35rem !important;
       line-height: 1.25;
     }
@@ -955,7 +961,7 @@
     }
 
     body.project-page-standard .implementation-tech-stack__card strong {
-      color: #fff;
+      color: #6E07F3;
     }
 
     body.project-page-standard .implementation-demo {
@@ -1135,7 +1141,7 @@
     body.project-page-standard #intro-summary .intro-overview-title,
     body.project-page-standard #intro-summary .intro-story-block h2,
     body.project-page-standard #intro-summary .intro-meta-item strong {
-      color: #fff !important;
+      color: #ffff  !important;
     }
 
     body.project-page-standard #intro-summary .intro-story-block p,
@@ -1258,7 +1264,7 @@
 
     body.project-page-standard #design-iterations .iteration-text h4 {
       margin: 0 0 1rem;
-      color: #6E07F3;
+      color: #ffff;
       font-family: "Syne", "Plus Jakarta Sans", sans-serif;
       font-size: 1.25rem !important;
       line-height: 1.3;
@@ -1279,7 +1285,7 @@
       display: inline-block;
       min-width: 4.75rem;
       margin-right: 0.45rem;
-      color: #fff;
+      color: #6E07F3;
       font-size: 0.8rem;
       letter-spacing: 0.04em;
       text-transform: uppercase;
@@ -1389,7 +1395,7 @@
 }
 
 .suggested-projects-eyebrow {
-  color: #6E07F3 !important;
+  color: #ffff !important;
   font-family: 'Syne', 'Plus Jakarta Sans', sans-serif;
   font-size: 0.8rem;
   letter-spacing: 0.12em;
@@ -1578,7 +1584,7 @@ body.project-page-standard #final-design #mockup-flow .mockup-step-inline-title 
   grid-row: 2;
   margin: 0;
   padding: 1.5rem 1.5rem 0;
-  color: #6E07F3;
+  color: #ffff;
   font-family: "Syne", "Plus Jakarta Sans", sans-serif;
   font-size: max(1.25rem, 20px) !important;
   text-align: left !important;
