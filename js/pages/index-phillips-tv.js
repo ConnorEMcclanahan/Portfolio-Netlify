@@ -13,8 +13,6 @@
 (function () {
   "use strict";
 
-  var YOUR_CLUSTER_INDEX = 0;
-
   var PASTEL = {
     "008ce9": "#BFE3FF",
     "8e00c5": "#E4C6FF",
@@ -54,6 +52,11 @@
     if (!grid || !fan) return;
     var bubbles = [];
 
+    // Randomize starting cluster and card for this instance (must be before forEach)
+    var order = [0, 5, 4, 2];
+    var yourClusterIndex = order[Math.floor(Math.random() * order.length)];
+    var yourCardIndex = Math.floor(Math.random() * 5); // 0-4
+
     // Counter pill — created once per root
     counterEl = document.createElement("div");
     counterEl.className = "mini-card-counter";
@@ -62,14 +65,14 @@
     CLUSTERS.forEach(function (c, ci) {
       var size = c.a.length >= 7 ? 46 : c.a.length >= 5 ? 40 : c.a.length >= 3 ? 34 : 28;
       var b = document.createElement("span");
-      b.className = "mini-bubble" + (ci === YOUR_CLUSTER_INDEX ? " is-your" : "");
+      b.className = "mini-bubble" + (ci === yourClusterIndex ? " is-your" : "");
       b.style.left = c.x + '%';
       b.style.top = c.y + '%';
       b.style.width = size + "px";
       b.style.height = size + "px";
       b.style.background = pastelFromGradient(c.g);
       b.style.animationDelay = (ci * -0.9) + "s";
-      if (ci === YOUR_CLUSTER_INDEX) {
+      if (ci === yourClusterIndex) {
         var you = document.createElement("span");
         you.className = "mini-bubble__you";
         you.textContent = "YOU";
@@ -79,10 +82,12 @@
       bubbles.push(b);
     });
 
-    var order = [0, 5, 4, 2];
-    var step = 0, timers = [], running = false;
+    var startIdx = order.indexOf(yourClusterIndex);
+    var step = startIdx;
+    var timers = [], running = false;
     var youDismissed = false, graphYouDismissed = false, dismissTimer = null;
     var counterEl = null;
+    var yourCardIndex = Math.floor(Math.random() * 5); // 0-4
 
     function clearTimers() {
       timers.forEach(clearTimeout);
@@ -93,8 +98,8 @@
     function clearDismiss() { if (dismissTimer) { clearTimeout(dismissTimer); dismissTimer = null; } }
 
     function badgeFor(i, isYourCluster) {
-      // Card 0 always shows YOU permanently for your cluster
-      if (isYourCluster && i === 0) {
+      // The randomly selected card shows YOU permanently for your cluster
+      if (isYourCluster && i === yourCardIndex) {
         return { text: "YOU", you: true };
       }
       return { text: String(i + 1), you: false };
@@ -181,7 +186,7 @@
       if (!running) return;
       var ci = order[step % order.length];
       var c = CLUSTERS[ci];
-      var isYourCluster = ci === YOUR_CLUSTER_INDEX;
+      var isYourCluster = ci === yourClusterIndex;
 
       bubbles.forEach(function (b) { b.classList.remove("is-spot"); });
       if (bubbles[ci]) bubbles[ci].classList.add("is-spot");
@@ -207,8 +212,8 @@
           fan.classList.remove("is-open");
           if (counterEl) counterEl.classList.remove("active");
           // Dismiss graph YOU label when your cluster closes
-          if (ci === YOUR_CLUSTER_INDEX) {
-            var bubble = bubbles[YOUR_CLUSTER_INDEX];
+if (ci === yourClusterIndex) {
+            var bubble = bubbles[yourClusterIndex];
             if (bubble) {
               var youLabel = bubble.querySelector(".mini-bubble__you");
               if (youLabel) youLabel.remove();
