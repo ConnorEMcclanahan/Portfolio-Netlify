@@ -71,7 +71,6 @@
       b.style.width = size + "px";
       b.style.height = size + "px";
       b.style.background = pastelFromGradient(c.g);
-      b.style.animationDelay = (ci * -0.9) + "s";
       if (ci === yourClusterIndex) {
         var you = document.createElement("span");
         you.className = "mini-bubble__you";
