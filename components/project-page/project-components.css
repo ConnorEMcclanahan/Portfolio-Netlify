@@ -180,13 +180,11 @@ body.project-page-standard .case-study-phase__narrative p {
   line-height: 1.75;
 }
 
-/* Phase 02-04 used to be the only phases with the heavier 800 weight on their
-   headings. The same weight now applies to every phase, so the 01/05/06
-   overview and narrative headings match the 02 phase exactly. */
-body.project-page-standard .case-study-phase__title h2,
+/* Smaller Plus Jakarta Sans headings stay at 700; phase titles retain the
+   Syne display weight of 800 defined above. */
 body.project-page-standard .case-study-phase__overview h3,
 body.project-page-standard .case-study-phase__narrative h3 {
-  font-weight: 800;
+  font-weight: 700;
 }
 
 body.project-page-standard .case-study-phase__content > .project-section > div[style*="background"] {
@@ -1013,12 +1011,12 @@ body.project-page-standard .intro-meta ul {
    `.project-section h4` treatment), so the conclusion treatment is pinned here
    with enough specificity to win on all of them. Sub-headings match the phase
    narrative h3 ("Client Delivery Package & Maintenance Documentation"):
-   Plus Jakarta Sans at 2rem/800 in the accent color. */
+   Plus Jakarta Sans at 2rem/700 in the accent color. */
 body.project-page-standard .final-col h4.final-item-title {
   color: #6E07F3;
   font-family: "Plus Jakarta Sans", sans-serif;
   font-size: 2rem !important;
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1.2;
   margin: 0 0 0.75rem;
 }
