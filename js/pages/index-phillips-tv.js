@@ -54,6 +54,11 @@
     if (!grid || !fan) return;
     var bubbles = [];
 
+    // Counter pill — created once per root
+    counterEl = document.createElement("div");
+    counterEl.className = "mini-card-counter";
+    root.appendChild(counterEl);
+
     CLUSTERS.forEach(function (c, ci) {
       var size = c.a.length >= 7 ? 46 : c.a.length >= 5 ? 40 : c.a.length >= 3 ? 34 : 28;
       var b = document.createElement("span");
@@ -76,7 +81,8 @@
 
     var order = [0, 5, 4, 2];
     var step = 0, timers = [], running = false;
-    var youDismissed = false, dismissTimer = null;
+    var youDismissed = false, graphYouDismissed = false, dismissTimer = null;
+    var counterEl = null;
 
     function clearTimers() {
       timers.forEach(clearTimeout);
@@ -87,7 +93,8 @@
     function clearDismiss() { if (dismissTimer) { clearTimeout(dismissTimer); dismissTimer = null; } }
 
     function badgeFor(i, isYourCluster) {
-      if (isYourCluster && i === 0 && !youDismissed) {
+      // Card 0 always shows YOU permanently for your cluster
+      if (isYourCluster && i === 0) {
         return { text: "YOU", you: true };
       }
       return { text: String(i + 1), you: false };
@@ -103,6 +110,13 @@
         badge.classList.toggle("is-you", b.you);
         cards[i].classList.toggle("mini-card--you", b.you);
       }
+    }
+
+    function updateCounter(isYourCluster, focusIdx, totalCards) {
+      if (!counterEl) return;
+      var text = totalCards === 1 ? "1 card" : (focusIdx !== -1 && totalCards > 1 ? "1 / " + totalCards : totalCards + " cards");
+      counterEl.textContent = text;
+      counterEl.classList.add("active");
     }
 
     function renderCards(c, focusIdx, isYourCluster) {
@@ -136,9 +150,12 @@
         cardsEl.appendChild(card);
       });
 
-      // Reset YOU state when your cluster renders
-      if (isYourCluster) { youDismissed = false; clearDismiss(); }
+      // Reset graph YOU dismissal when your cluster renders
+      if (isYourCluster) { graphYouDismissed = false; clearDismiss(); }
       refreshBadges(isYourCluster);
+      // Show counter with initial state
+      var listLen = Math.min(5, c.a.length);
+      updateCounter(isYourCluster, focusIdx, listLen);
     }
 
     function layoutFan(focusIdx, isYourCluster) {
@@ -156,15 +173,8 @@
         if (i === focusIdx) card.classList.add("is-focus"); else card.classList.remove("is-focus");
       }
       refreshBadges(isYourCluster);
-
-      // Dismiss YOUR badge once visitor looks at card 0
-      if (isYourCluster && focusIdx === 0 && !youDismissed && !dismissTimer) {
-        dismissTimer = setTimeout(function () {
-          youDismissed = true;
-          dismissTimer = null;
-          refreshBadges(isYourCluster);
-        }, 900);
-      }
+      var listLen = Math.min(5, cards.length);
+      updateCounter(isYourCluster, focusIdx, listLen);
     }
 
     function playStep() {
@@ -195,6 +205,17 @@
           if (!running) return;
           clearDismiss();
           fan.classList.remove("is-open");
+          if (counterEl) counterEl.classList.remove("active");
+          // Dismiss graph YOU label when your cluster closes
+          if (ci === YOUR_CLUSTER_INDEX) {
+            var bubble = bubbles[YOUR_CLUSTER_INDEX];
+            if (bubble) {
+              var youLabel = bubble.querySelector(".mini-bubble__you");
+              if (youLabel) youLabel.remove();
+              bubble.classList.remove("is-your");
+            }
+            graphYouDismissed = true;
+          }
           if (bubbles[ci]) bubbles[ci].classList.remove("is-spot");
         }, 500 + (flips + 1) * 1100 + 500);
         later(function () {
@@ -220,13 +241,14 @@
         else if (!e.isIntersecting && running) {
           running = false; clearTimers();
           fan.classList.remove("is-open");
+          if (counterEl) counterEl.classList.remove("active");
           bubbles.forEach(function (b) { b.classList.remove("is-spot"); });
         }
       });
     }, { threshold: 0.25 });
     io.observe(root);
     document.addEventListener("visibilitychange", function () {
-      if (document.hidden && running) { running = false; clearTimers(); fan.classList.remove("is-open"); }
+      if (document.hidden && running) { running = false; clearTimers(); fan.classList.remove("is-open"); if (counterEl) counterEl.classList.remove("active"); }
       else if (!document.hidden && !running) {
         var r = root.getBoundingClientRect();
         if (r.top < window.innerHeight && r.bottom > 0) { running = true; playStep(); }
