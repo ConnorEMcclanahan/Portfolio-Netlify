@@ -1,0 +1,34 @@
+# Kilo / Agent Manager
+.kilo/
+.kilocode/
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+*.log
+
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+build/
+*.min.css
+*.min.js
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Netlify
+.netlify/
+
+# Cache
+.cache/
+.eslintcache
