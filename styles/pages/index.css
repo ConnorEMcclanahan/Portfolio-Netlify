@@ -1108,7 +1108,6 @@ body.has-custom-cursor * {
   .project-showcase__media--fan .project-showcase__fan-back {
     height: clamp(225px, 36vh, 380px);
   }
-
   /* Deck cluster: the same one-knob setup, retuned for a single column. The
      front screen takes a little more of the width here, and the overlap grows
      with it so the three screens still total ~100% of the column instead of

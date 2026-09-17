@@ -12,8 +12,7 @@ function initVantaBackground() {
     gyroControls: false,
     minHeight: 200,
     minWidth: 200,
-    scale: 1,
-    scaleMobile: 1,
+    scal
     color: 0x6e07f3,
     backgroundColor: 0x0,
   });
@@ -66,7 +65,10 @@ function initPortraitAnimation() {
 // Custom cursor — replaces the native pointer, which the stylesheet hides via
 // `body.has-custom-cursor`. That class is only added once the replacement has
 // actually been painted, so the pointer can never blink out on load, and any
-// device that opts out below keeps its real cursor.
+// device that opts out below keeps its real cursor. It is removed again
+// whenever DevTools holds focus (inspect element) or the pointer leaves the
+// window — the moments the replacement can't be there — so the native
+// pointer takes over exactly when the effect steps aside.
 //
 //  * A 6px dot is written straight from the pointer position with no easing, so
 //    the click target is always exactly under the cursor; a 34px ring trails
@@ -106,7 +108,6 @@ function initCustomCursor() {
   const RING_EASE = 0.28;     // slight trail — alive, but still feels precise
   const HALO_EASE = 0.08;     // much slower, so the halo only whispers
   const SCALE_EASE = 0.16;
-  const SCROLL_SETTLE = 120;  // ms of scroll quiet before the cursor may return
 
   let pointerX = 0;
   let pointerY = 0;
@@ -122,8 +123,6 @@ function initCustomCursor() {
   let magnetY = 0;
   let magnetStrength = 0;
   let snapNext = false;
-  let scrollBurst = false;
-  let scrollTimer = null;
   let frame = null;
   let nativeHidden = false;
 
@@ -186,6 +185,16 @@ function initCustomCursor() {
     visible = next;
     cursor.classList.toggle('is-active', next);
     glow.classList.toggle('is-active', next);
+    // Whenever the replacement hides, hand the native pointer back — e.g.
+    // DevTools holds focus (inspect element) or the pointer left the window.
+    // Without this, `cursor: none` would stay applied while nothing is on
+    // screen, leaving the visitor with no pointer at all. frameStep re-adds
+    // the class after it paints the replacement again, so the swap stays
+    // flicker-free.
+    if (!next) {
+      nativeHidden = false;
+      document.body.classList.remove('has-custom-cursor');
+    }
     if (next) {
       snapNext = true;
       start();
@@ -219,27 +228,21 @@ function initCustomCursor() {
       magnetStrength = 0;
     }
 
-    // Stays put while a scroll gesture is in progress; returns on the next move.
-    if (!scrollBurst) {
+    // The effect stays on at all times now — including while scrolling — and
+    // only stands down while DevTools holds focus (inspect element), where
+    // the native pointer is what you actually want under your hand.
+    if (document.hasFocus()) {
       setVisible(true);
     }
     start();
   };
 
-  const onScroll = () => {
-    // Release the cursor for the duration of the scroll gesture.
-    scrollBurst = true;
-    setVisible(false);
-    window.clearTimeout(scrollTimer);
-    scrollTimer = window.setTimeout(() => {
-      scrollBurst = false;
-    }, SCROLL_SETTLE);
-  };
-
   document.addEventListener('mousemove', onPointerMove, { passive: true });
-  window.addEventListener('scroll', onScroll, { passive: true });
   document.addEventListener('mouseleave', () => setVisible(false));
   window.addEventListener('blur', () => setVisible(false));
+  // Returning from DevTools (or another tab) brings the effect straight back
+  // without waiting for the next mouse move.
+  window.addEventListener('focus', () => setVisible(true));
 }
 
 document.addEventListener('DOMContentLoaded', () => {
