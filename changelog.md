@@ -1,4 +1,4 @@
-#CHANGELOG
+# Changelog
 
 **Version 1: Created a basic website with just the skeleton of the portfolio I am planning to make**
 - Built a basic nav bar
@@ -6,7 +6,7 @@
 
 **Version 2: I made a more advanced website with color choices and design decisions about where my skill is and what I am planning on doing**
 - Added color and some flex boxes
-Version 3: I made changes and made the website responsive
+**Version 3: I made changes and made the website responsive**
 - added some images
 - Made images and sections all work on mobile
 
@@ -22,7 +22,7 @@ Version 3: I made changes and made the website responsive
 
 **Version 7 : Made php loop though Ajax script I wrote and this fixed the php**
 - Found a short Ajax script that fixed it
-Version 8 : Made imporvments to code and added some extra header and paragraph text
+**Version 8 : Made imporvments to code and added some extra header and paragraph text**
 - Made it more obvious where each section of my portfolio is
 
 **Version 9 : Connected my php to hera and created a database on hera mysql. I commented this out for now so I could work on the design more locally.**
@@ -53,3 +53,27 @@ Version 8 : Made imporvments to code and added some extra header and paragraph t
 - Fixed bad relative asset paths on root index page
 - Updated page navbar/footer links to correct home/about routes
 - Added Netlify redirects for old legacy URLs to prevent future 404s
+
+**Version 16 : Big content overhaul — added the Philips case study and cleaned up every other page**
+- Added the full Philips Museum "feedback wall" case study (AI-powered visitor feedback, my AI for Society minor project)
+- Cleaned up and finished the FitPhone, Motivate and Diplora case studies
+- Went through the whole site and made the copy more professional
+- Switched the contact details over to my real email
+
+**Version 17 : Reworked the About page and added site-wide polish**
+- Rewrote my About Me copy and restyled the About page
+- Added icon buttons and a GitHub link to the footer
+- Added a "Suggested projects" section so people can jump between case studies
+- Fixed the loading screen and added variations to the Philips sentiment visualisation
+
+**Version 18 : Rebuilt the homepage as a proper project showcase**
+- Redesigned the index with a cleaner structure and typography so it reads better and looks more interesting
+- Every project row now shows a live visual — fanned phone mockups, tilted mockup decks, and an auto-playing "mini wall" demo inside a TV mockup for Philips
+- Added a custom cursor on the case-study pages
+- Fixed hover states, card design and animation smoothness
+
+**Version 19 : Parallax and animation pass across the whole site**
+- Added parallax sections to the FitPhone, Diplora and Motivate case studies and refined the parallax design
+- Added a hero animation, fade-in reveals, a scroll cue and font fixes across pages
+- Added internship/context badges on the homepage and case-study overviews
+- Cleaned up the repo (untracked editor config, removed scratch files)
