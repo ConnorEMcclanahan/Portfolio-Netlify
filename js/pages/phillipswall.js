@@ -4,7 +4,7 @@ const introSummaryData = {
   lead: 'An AI-powered feedback wall that helps visitors see how people think about the future of AI',
   meta: [
     { label: 'Role', value: 'Frontend Developer and UI/UX Designer' },
-    { label: 'Context', value: 'AI for Society Minor group project' },
+    { label: 'Context', value: 'AI For Society Minor' },
     { label: 'Timeline', value: '20 weeks (Spring 2025)' },
     { label: 'Tools', value: 'React, JavaScript, Python, SQLite, OpenAI Vision' },
     { label: 'GitHub', value: 'github.com/ConnorEMcclanahan/PhilipsWall', href: 'https://github.com/ConnorEMcclanahan/PhilipsWall' }

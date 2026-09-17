@@ -5,7 +5,8 @@ const introSummaryData = {
   meta: [
     { label: 'Role', value: 'UI/UX Designer & Front-end Engineer' },
     { label: 'Timeline', value: '4 weeks' },
-    { label: 'Tools Used', value: 'Flutter, Dart' }
+    { label: 'Tools Used', value: 'Flutter, Dart' },
+    { label: 'GitHub', value: 'github.com/z3r0-21/fitphone', href: 'https://github.com/z3r0-21/fitphone' }
   ],
   story: {
     background: 'FitPhone is an innovative project designed to empower young adults aged 18 to 30 to cultivate intentional smartphone habits through heightened self-awareness. While mobile technology provides undeniable everyday utility, unmonitored device usage directly drives widespread challenges including acute sleep deprivation, reduced cognitive focus, and chronic procrastination. The application addresses these modern friction points by introducing structured behavioral frameworks that turn passive screen interaction into active, mindful choices.',

@@ -7,7 +7,7 @@ const introSummaryData = {
     { label: 'Timeline', value: 'September 2025 - January 2026' },
     { label: 'Stack', value: 'Flutter, Dart, Bluetooth BLE, Figma' },
     { label: 'Deliverables', value: 'Research, Personas, Prototype, MVP' },
-    { label: 'Context', value: 'Internship Project' }
+    { label: 'Context', value: 'Internship' }
   ],
   story: {
     background: 'Diplora is a medical technology company developing an ECG sensor and mobile application for cardiovascular monitoring. During my internship, I worked on the front-end experience for the portable sensor system, which supports continuous monitoring while giving clinicians the detailed information they need.',

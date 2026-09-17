@@ -266,6 +266,31 @@ section {
   white-space: nowrap;
 }
 
+/* Context badge — a small pill under the timeframe spelling out what the
+   project was made for ("Internship", "AI For Society Minor"). Rows that carry
+   one add the --badged modifier to the date, pulling its own bottom margin in
+   so the pill sits tight under the timeframe; the pill then restores the
+   1.25rem rhythm before the description. Brand purple fill keeps it distinct
+   from the frosted skill chips further down. */
+.project-showcase__date--badged {
+  margin-bottom: 0.55rem;
+}
+
+.project-showcase__badge {
+  display: inline-block;
+  margin: 0 0 1.25rem;
+  padding: 4px 11px;
+  border-radius: 20px;
+  font-family: "Syne", "Plus Jakarta Sans", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #fff;
+  background: #6e07f3;
+  white-space: nowrap;
+}
+
 .project-showcase__link {
   display: inline-flex;
   align-items: center;

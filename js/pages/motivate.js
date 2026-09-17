@@ -4,6 +4,7 @@ const introSummaryData = {
   lead: 'An intuitive tool embedded in Motivate\u0027s Platform Management Tool (PMT) that streamlines standard work instructions for factory environments.',
   meta: [
     { label: 'Role', value: 'UX/UI Designer and Front-end Developer' },
+    { label: 'Context', value: 'Internship' },
     { label: 'Timeline', value: 'Feb 19 - Jun 28, 2024 (18 weeks)' },
     { label: 'Tools Used', value: 'Vue 3, PDF.js, Node.js, Figma' }
   ],

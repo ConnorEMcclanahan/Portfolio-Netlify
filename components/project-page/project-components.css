@@ -738,13 +738,18 @@ body.project-page-standard .project-section h3.final-title {
 }
 
 /* Conclusion / reflection headings ("Conclusion", "Medical Compliance &
-   Safety", ...) render in the same Syne Extra Bold display cut as the phase
-   headers, not the lighter legacy cut. */
+   Safety", ...) render exactly like the phase headers ("05 / Handover - ..."):
+   the Syne Extra Bold display cut at the same 1.8rem size and accent color.
+   Font-size and color are pinned with !important because the shared h1-h3
+   baseline (2rem !important) and the `.project-section h3` white color would
+   otherwise win the cascade on every project page. */
 body.project-page-standard .final-title,
 body.project-page-standard .project-section h3.final-title,
 body.project-page-standard .final-col h3.final-title {
   font-family: "Syne", "Plus Jakarta Sans", sans-serif;
   font-weight: 800;
+  line-height: 1.25;
+  color: #6E07F3 !important;
 }
 
 body.project-page-standard .text-column {
@@ -1006,15 +1011,22 @@ body.project-page-standard .intro-meta ul {
 /* Conclusion items must look the same on every project page. The page-level
    heading rules differ (Diplora and Phillips both define their own
    `.project-section h4` treatment), so the conclusion treatment is pinned here
-   with enough specificity to win on all of them. */
+   with enough specificity to win on all of them. Sub-headings match the phase
+   narrative h3 ("Client Delivery Package & Maintenance Documentation"):
+   Plus Jakarta Sans at 2rem/800 in the accent color. */
 body.project-page-standard .final-col h4.final-item-title {
   color: #6E07F3;
-  font-size: 1.05rem;
-  font-weight: 700;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 2rem !important;
+  font-weight: 800;
+  line-height: 1.2;
+  margin: 0 0 0.75rem;
 }
 
 body.project-page-standard .final-col .final-item-copy {
-  color: var(--case-muted);
+  color: var(--case-muted) !important;
+  font-size: 1.125rem;
+  line-height: 1.75;
   margin-bottom: 1.5rem;
 }
 

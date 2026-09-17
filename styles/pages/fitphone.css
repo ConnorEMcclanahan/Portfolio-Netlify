@@ -608,24 +608,6 @@ body.project-page-standard .case-study-phase--wide-final #final-design #mockup-f
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.github-corner {
-  position: fixed;
-  bottom: 96px;
-  right: 20px;
-  z-index: 1000;
-}
-
-.github-corner svg {
-  width: 60px;
-  height: 60px;
-  fill: #6E07F3;
-  transition: transform 0.3s ease-in-out;
-}
-
-.github-corner:hover svg {
-  transform: scale(1.1);
-}
-
 #final-container {
   display: flex;
   justify-content: center;
