@@ -4,7 +4,7 @@ A personal portfolio site showcasing UI/UX and front-end development work, with 
 
 ## Overview
 
-This repository contains a static multi-page portfolio built with HTML, CSS/SCSS, and vanilla JavaScript, deployed on Netlify straight from the repository root — no build step, bundler, or package manager required.
+This repository contains a static multi-page portfolio built with HTML, CSS, and vanilla JavaScript, deployed on Netlify straight from the repository root — no build step, bundler, or package manager required.
 
 The site is assembled from small self-contained components (each ships its own CSS + JS), shared case-study modules that build every project page, and page-specific scripts/styles for anything unique to a single page.
 
@@ -23,7 +23,7 @@ Legacy root-level URLs (e.g. `/about.html`) are 301-redirected to their current 
 ## Tech Stack
 
 - HTML5
-- CSS3 + SCSS (Sass)
+- CSS3 (native custom properties for design tokens)
 - Vanilla JavaScript (ES modules, one component per feature)
 - Fonts & icons: Google Fonts (Plus Jakarta Sans, Syne), Ionicons, Font Awesome
 - Three.js + Vanta.js — animated globe behind the homepage hero
@@ -54,8 +54,7 @@ Legacy root-level URLs (e.g. `/about.html`) are 301-redirected to their current 
 ├── pdfs/                        # Resume, research and project documents
 ├── styles/
 │   ├── pages/                   # Page-specific stylesheets
-│   ├── style.scss               # Main SCSS source
-│   ├── style.css                # Compiled main stylesheet (committed)
+│   ├── style.css                # Main stylesheet
 │   ├── frontend.css
 │   └── mobile-responsive.css
 ├── _redirects                   # Netlify 301s for legacy URLs
@@ -77,20 +76,6 @@ npx serve .
 Option C (Python):
 ```bash
 python -m http.server
-```
-
-## SCSS Workflow (Optional)
-
-The compiled `styles/style.css` is committed, so you only need Sass if you edit `styles/style.scss`:
-
-```bash
-npx sass styles/style.scss styles/style.css
-```
-
-Watch mode:
-
-```bash
-npx sass --watch styles/style.scss:styles/style.css
 ```
 
 ## Deployment
