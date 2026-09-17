@@ -4,18 +4,22 @@
   <script>document.documentElement.classList.add('js');</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Phillips Wall | AI-Powered Museum Feedback</title>
+  <title>Philips | AI-Powered Museum Feedback</title>
   <link rel="icon" type="image/png" href="../images/logo.png" />
   <link rel="stylesheet" href="../styles/style.css" />
   <link rel="stylesheet" href="../styles/frontend.css" />
   <link rel="stylesheet" href="../components/navbar/navbar.css" />
   <link rel="stylesheet" href="../components/footer/footer.css" />
+  <link rel="stylesheet" href="../components/custom-cursor/custom-cursor.css" />
   <link rel="stylesheet" href="../components/project-page/project-components.css" />
   <link rel="stylesheet" href="../styles/pages/phillipswall.css" />
+  <link rel="stylesheet" href="../styles/pages/phillipswall-demo.css" />
+  <link rel="stylesheet" href="../styles/pages/project-image-hover.css" />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
   <link rel="stylesheet" href="../components/loading-screen/loading-screen.css" />
+  <link rel="stylesheet" href="../components/scroll-cue/scroll-cue.css" />
 </head>
 <body class="project-page-standard">
   <!-- Shared Loading Screen Component -->
@@ -23,8 +27,7 @@
     <div class="loading-screen__text">Loading...</div>
   </div>
 
-  <div class="parallax-1 phillips-hero" id="top">
-    <a href="#intro-summary" class="scroll-down" aria-label="Scroll down"><ion-icon name="chevron-down-outline"></ion-icon></a>
+  <div class="phillips-demo-hero" id="top">
     <nav class="navbar">
       <div class="navbar-container">
         <a href="../index.html" class="navbar-logo"><img src="../images/logo.png" alt="logo" class="navbar-logo-img" /></a>
@@ -33,10 +36,17 @@
           <li><a href="../index.html#about">About</a></li>
           <li><a href="../index.html#projects">Projects</a></li>
           <li><a href="../pdfs/resume.pdf">Resume</a></li>
-          <li><a href="mailto:connor.e.mcclanahan@gmail.com">Contact</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
     </nav>
+    <div class="phillips-demo-header">
+      <h2>Try the Sentiment Wall</h2>
+      <p>Click any cluster to explore real visitor responses</p>
+    </div>
+    <div class="sentiment-grid" aria-hidden="false"></div>
+    <button class="demo-activate" id="demo-activate-btn" type="button">Try the demo</button>
+    <div id="scroll-cue-mount"></div>
   </div>
 
   <section id="intro-summary" class="reveal"></section>
@@ -154,14 +164,22 @@
     </div>
   </section>
 
-  <section id="reflection" class="project-section reveal">
-    <div class="text-column">
-      <h3>Reflection</h3>
-      <p>Reflecting on the development process, our multidisciplinary team encountered and successfully navigated several complex challenges. In the early stages, aligning schedules and establishing unified communication channels required deliberate effort, which we resolved by implementing structured weekly meetings and transparent communication standards. During the brainstorming phase, an abundance of creative possibilities made initial goal alignment difficult; we overcame this by filtering ideas against practical feasibility within the academic semester timeframe.</p>
-      <p>Working with the legacy codebase presented technical obstacles, as corrupted files and extraneous code required extensive cleaning and refactoring before we could establish a stable foundation. Mid-project collaboration friction was constructively addressed through a peer assessment feedback cycle, which improved interpersonal dynamics and unified the team around shared goals.</p>
-      <p>Ultimately, by combining diverse backgrounds in software engineering, UI/UX design, business, and creative media, we delivered a robust, engaging system that successfully bridges physical visitor interaction with cutting-edge artificial intelligence visualization.</p>
-    </div>
-  </section>
+  <div class="suggestion-row" style="display: grid !important; grid-template-columns: 340px 1fr 340px; gap: 2rem; width: 100%; margin: 8rem auto 4rem; padding: 0 2rem; align-items: start;">
+    <!-- Conclusion — rendered by renderFinalColumns() in js/pages/phillipswall.js -->
+    <section id="final-container" class="project-section reveal" style="grid-column: 2; max-width: 750px; width: 100%; justify-self: center; margin: 0 !important; padding: 0 !important;"></section>
+
+    <!-- You might also like -->
+    <section id="suggested-projects" class="project-section reveal" style="grid-column: 3; width: 340px; margin: 0 !important; padding: 0 !important; align-self: start;">
+      <div class="suggested-projects-inner" style="position: sticky; top: 6rem;">
+        <p class="suggested-projects-eyebrow" style="color: #6E07F3 !important; font-family: 'Syne', 'Plus Jakarta Sans', sans-serif; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; margin: 0 0 1.5rem;">You might also like</p>
+        <a href="motivate.html" class="suggested-project-card" style="display: flex; flex-direction: column; gap: 0.5rem; width: 100%; padding: 1.5rem; border-radius: 10px; background: #101010 !important; border: 1px solid rgba(110, 7, 243, 0.35); text-decoration: none; color: #fff; transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;">
+          <span class="suggested-project-number" style="font-family: 'Syne', 'Plus Jakarta Sans', sans-serif; font-size: 0.75rem; color: #6E07F3 !important; letter-spacing: 0.1em; text-transform: uppercase;">02</span>
+          <span class="suggested-project-title" style="font-family: 'Syne', 'Plus Jakarta Sans', sans-serif; font-size: 1.15rem; font-weight: 700; color: #fff; line-height: 1.3;">Motivate Instruction Creation Tool</span>
+          <span class="suggested-project-blurb" style="font-size: 0.92rem; color: #b8b8b8; line-height: 1.6;">Clearer work instructions for factory teams.</span>
+        </a>
+      </div>
+    </section>
+  </div>
 
   <footer id="contact" class="footer-section reveal">
     <div class="footer-cta">
@@ -196,8 +214,27 @@
   <script src="../components/project-page/intro-summary.js" defer></script>
   <script src="../components/project-page/final-columns.js" defer></script>
   <script src="../components/project-page/case-study-nav.js" defer></script>
+  <script src="../js/pages/phillipswall-demo.js" defer></script>
   <script src="../js/pages/phillipswall.js" defer></script>
   <script src="../components/navbar/navbar.js" defer></script>
   <script src="../components/loading-screen/loading-screen.js" defer></script>
+  <script src="../components/custom-cursor/custom-cursor.js" defer></script>
+  <script src="../components/scroll-cue/scroll-cue.js" defer></script>
+
+  <!-- Custom cursor — the dot replaces the native pointer (hidden by
+       body.has-custom-cursor), the ring trails it. Driven by
+       initCustomCursor() in ../components/custom-cursor/custom-cursor.js. -->
+  <div class="custom-cursor" aria-hidden="true">
+    <span class="custom-cursor__ring"></span>
+    <span class="custom-cursor__dot"></span>
+  </div>
+
+  <!-- Ambient halo behind the cursor. Kept as its own root-level layer
+       because mix-blend-mode: screen must live on the layer itself — a
+       blended child would be confined by its parent's stacking context.
+       Driven by initCustomCursor() too. -->
+  <div class="pointer-glow" aria-hidden="true">
+    <span class="pointer-glow__halo"></span>
+  </div>
 </body>
 </html>

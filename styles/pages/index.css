@@ -3,12 +3,26 @@
   background: #000 !important;
 }
 
+/* NOTE: deliberately no `transform` on body. A transform here turns the body
+   into the containing block for every `position: fixed` descendant, which
+   anchors them to the document instead of the viewport so they visibly drift /
+   "stick" while scrolling. The viewport-anchored pointer glow below relies on
+   this staying off; #top canvas keeps its own compositing hint instead. */
 body {
   color: #fff;
   overflow-x: hidden;
   margin: 0;
   padding: 0;
   background: #000;
+}
+
+/* Improve scroll performance with Vanta globe */
+#top {
+  will-change: auto;
+}
+
+#top canvas {
+  will-change: transform;
 }
 
 section {
@@ -18,9 +32,10 @@ section {
 
 #top {
   min-height: 100vh;
-  display: flex;
-  align-items: center;
+  display: block;
   position: relative;
+  padding: 0;
+  margin-bottom: 0;
 }
 
 #top::after {
@@ -47,118 +62,770 @@ section {
   transform: translateY(0);
 }
 
+/* Every project row carries .reveal itself (the showcase section no longer
+   does), so each project fades in on its own as it reaches the viewport. The
+   mockup starts a beat after its copy, which reads as one entrance per project
+   instead of two separate swaps. This animates the media column, so the
+   positioning transforms inside the mockup clusters are left untouched. */
+.project-showcase__row.reveal .project-showcase__media {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s ease 0.12s, transform 0.8s ease 0.12s;
+}
+
+.project-showcase__row.reveal.active .project-showcase__media {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero.hero-shell {
+  /* Keep the hero content left-aligned over the full-screen Vanta globe
+     instead of Bulma's centered layout. */
+  display: block;
+}
+
 .hero-shell {
+  position: relative;
   color: #fff;
   text-align: left;
-  align-items: center;
   max-width: 1200px;
   margin: 0 auto;
+  min-height: 100vh;
+  padding: clamp(13rem, 22vh, 16rem) clamp(1.5rem, 4vw, 3.5rem) 4.5rem;
 }
 
+.hero__content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Sasha-style editorial type — one font, one statement, restrained highlights.
+   The name stays plain; one or two words get the accent. */
 .hero-title {
-  margin-bottom: 1rem;
-  font-size: 2.75rem !important;
+  margin-bottom: 1.5rem;
+  max-width: 10.5em;
+  font-size: clamp(2.5rem, 5vw, 4.5rem) !important;
   color: #fff;
   font-family: "Syne", "Plus Jakarta Sans", sans-serif;
-  font-weight: 800;
-  line-height: 1.1;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
-.hero-subtitle {
-  font-size: 1.875rem !important;
-  color: #6E07F3;
-  font-family: "Syne", "Plus Jakarta Sans", sans-serif;
-  font-weight: 600;
-  line-height: 1.2;
-  margin-bottom: 1rem;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+.hero-title em {
+  font-style: italic;
+  font-weight: 700;
+  color: #6e07f3;
 }
 
-.hero-copy {
-  font-size: 1.125rem !important;
-  color: #fff;
-  line-height: 1.6;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+/* Scroll-cue component override for index — inside #top, above gradient overlay */
+#top .scroll-cue {
+  bottom: clamp(88px, 12vh, 132px);
+  z-index: 5;
+  color: #d4bfff; /* brighter to offset the gradient overlay */
+  filter: drop-shadow(0 0 8px #9a53ff) drop-shadow(0 0 20px #9a53ff);
 }
 
-.project-list {
-  max-width: 700px;
+/* One vertical rhythm for the whole page: the space a project row carries above
+   and below itself. Two of them meet between rows, so every other gap on the
+   page is built to add up to that same 2x — the lead-in from the hero and the
+   space above About Me then read exactly like the gaps between projects.
+   Retuned once, in the mobile block at the end of this file; no gap on the page
+   is ever hard-coded twice. */
+:root {
+  --row-space: clamp(5rem, 13vh, 9rem);
+}
+
+/* The hero already ends on a full screen of trailing space, so the showcase only
+   needs a short lead-in: just enough to clear the lifted scroll cue without
+   stacking a full rhythm unit on top of the first row's own padding. The bottom
+   is still left to the last row's own padding, which keeps both ends
+   symmetrical and hands the space above About Me over to that section instead
+   (see #about.about-section). */
+#previous-work {
+  padding-top: clamp(1.25rem, 3.5vh, 2.5rem);
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.project-showcase {
+  max-width: 1200px;
   margin: 0 auto;
   position: relative;
   z-index: 10;
 }
 
-.project-item {
-  display: flex;
+/* One project row — text on one side, mockup on the other, like saschas.ai.
+   The default row places text first; the alternate modifier flips the columns.
+   No dividers: rows are separated by whitespace alone. */
+.project-showcase__row {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(2rem, 5vw, 4.5rem);
   align-items: center;
-  padding: 20px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  cursor: pointer;
-  transition: all 0.3s ease;
+  /* Generous vertical rhythm between projects — the whitespace does the
+     separating instead of rules, so each row reads as its own piece of work.
+     Two of these meet between rows, and that 2x is what the section gaps above
+     and below the showcase are matched to. */
+  padding: var(--row-space) clamp(0.75rem, 2vw, 1.5rem);
 }
 
-.project-item:hover {
-  opacity: 0.7;
+.project-showcase__row--alt {
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
 }
 
-.project-info {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  justify-content: space-between;
+/* Text column */
+.project-showcase__text {
+  min-width: 0;
+  text-align: left;
 }
 
-.project-number {
-  font-size: 2rem;
-  color: rgba(255, 255, 255, 0.5);
-  margin-right: 20px;
-  width: 50px;
-}
-
-.project-title-wrap {
-  flex-grow: 1;
-  padding-right: 20px;
-}
-
-.project-title {
-  margin: 0 0 4px;
-  font-size: 1.2rem;
-  color: #fff;
+.project-showcase__index {
+  display: inline-block;
+  margin-bottom: 1rem;
   font-family: "Syne", "Plus Jakarta Sans", sans-serif;
-  font-weight: 600;
+  /* Sized up so the number reads as a label above the title rather than as a
+     footnote to it. */
+  font-size: clamp(1.05rem, 1.4vw, 1.4rem);
+  color: #6e07f3;
+  letter-spacing: 0.14em;
 }
 
-.project-date {
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.5);
+/* Deliberately the About Me heading's type: the same Syne display face at the
+   same 800 weight, 2.25rem size and 1.1 line-height, so the project titles and
+   the About Me heading read as one family of headings down the page. Only the
+   colour differs — the titles stay white and keep their purple hover. */
+.project-showcase__title {
+  margin: 0 0 0.75rem;
+  font-family: "Syne", "Plus Jakarta Sans", sans-serif;
+  font-size: 2.25rem;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: #fff;
 }
 
-.project-description {
-  font-size: 1rem !important;
-  color: rgba(255, 255, 255, 0.7);
-  margin: 4px 0 0;
-  line-height: 1.6;
+.project-showcase__title a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.25s ease;
 }
 
-.project-tags {
+.project-showcase__title a:hover {
+  color: #6e07f3;
+}
+
+.project-showcase__dash {
+  color: #6e07f3;
+  font-weight: 400;
+}
+
+.project-showcase__desc {
+  margin: 0 0 1.5rem;
+  font-size: 1.0625rem !important;
+  line-height: 1.68;
+  color: rgba(255, 255, 255, 0.72);
+  max-width: 54ch;
+}
+
+.project-showcase__meta {
   display: flex;
-  gap: 10px;
   flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
 }
 
-.tag {
+.project-showcase__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Bulma's own .tag paints its text a mid grey (#4a4a4a). On the dark glass
+   background here that left the labels nearly invisible, so the colour is
+   stated explicitly and the chips read as white text on a soft white fill. */
+.project-showcase__tags .tag {
   background: rgba(255, 255, 255, 0.1);
+  color: #fff;
   padding: 5px 10px;
   border-radius: 20px;
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   white-space: nowrap;
 }
 
-.project-link {
-  text-decoration: none;
+/* The date range now sits on its own line directly under the title, above the
+   description, so the timeline is read before the summary. It stays a <span>
+   in the markup and is simply given a line of its own here. */
+.project-showcase__date {
   display: block;
-  z-index: 5;
+  margin: 0 0 1.25rem;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.5);
+  white-space: nowrap;
+}
+
+/* Context badge — a small pill under the timeframe spelling out what the
+   project was made for ("Internship", "AI For Society Minor"). Rows that carry
+   one add the --badged modifier to the date, pulling its own bottom margin in
+   so the pill sits tight under the timeframe; the pill then restores the
+   1.25rem rhythm before the description. Brand purple fill keeps it distinct
+   from the frosted skill chips further down. */
+.project-showcase__date--badged {
+  margin-bottom: 0.55rem;
+}
+
+.project-showcase__badge {
+  display: inline-block;
+  margin: 0 0 1.25rem;
+  padding: 4px 11px;
+  border-radius: 20px;
+  font-family: "Syne", "Plus Jakarta Sans", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #fff;
+  background: #6e07f3;
+  white-space: nowrap;
+}
+
+.project-showcase__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: "Syne", "Plus Jakarta Sans", sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #6e07f3;
+  text-decoration: none;
+  transition: color 0.25s ease, gap 0.25s ease;
+}
+
+.project-showcase__link:hover {
+  color: #fff;
+}
+
+.project-showcase__arrow {
+  font-size: 1.1rem;
+  transition: transform 0.25s ease;
+}
+
+.project-showcase__link:hover .project-showcase__arrow {
+  transform: translateX(4px);
+}
+
+/* Media column — the mockups are transparent PNGs, so they sit straight on the
+   page background with a soft drop shadow instead of inside a panel. */
+.project-showcase__media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+}
+
+.project-showcase__media-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  text-decoration: none;
+}
+
+.project-showcase__media-link img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  /* Raised so the one row still sized by this rule — the Philips Wall photo,
+     which is a full-width 16:9 card — keeps its aspect ratio on shorter windows
+     instead of being clipped by the cap. Every device cluster overrides this. */
+  max-height: clamp(340px, 56vh, 620px);
+  object-fit: contain;
+  object-position: center;
+  filter: drop-shadow(0 24px 36px rgba(0, 0, 0, 0.7));
+  transition: transform 0.45s ease, filter 0.45s ease;
+}
+
+.project-showcase__media-link:hover img {
+  transform: scale(1.03);
+  filter: drop-shadow(0 28px 42px rgba(0, 0, 0, 0.75)) drop-shadow(0 0 28px rgba(110, 7, 243, 0.4));
+}
+
+/* The Philips Wall asset is a photograph rather than a transparent mockup,
+   so it keeps a framed card treatment instead of floating on the page. */
+.project-showcase__media--cover .project-showcase__media-link {
+  overflow: hidden;
+  border-radius: 18px;
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.45);
+  transition: box-shadow 0.35s ease;
+}
+
+.project-showcase__media--cover .project-showcase__media-link img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: center;
+  filter: none;
+}
+
+.project-showcase__media--cover .project-showcase__media-link:hover img {
+  filter: none;
+}
+
+.project-showcase__media--cover .project-showcase__media-link:hover {
+  box-shadow:
+    0 18px 44px rgba(0, 0, 0, 0.45),
+    0 0 42px rgba(110, 7, 243, 0.28);
+}
+
+/* Mockup cluster: one primary device with two supporting screens fanning out
+   from behind it. Every asset is a transparent PNG, so the group reads as
+   free-floating devices — no panel, no frame, just a drop shadow. */
+.project-showcase__media--fan {
+  --fan-spread: 62%;
+  --fan-back-scale: 0.94;
+}
+
+.project-showcase__media--fan .project-showcase__fan {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: clamp(360px, 56vh, 600px);
+}
+
+.project-showcase__media--fan .project-showcase__fan img {
+  flex: 0 0 auto;
+  display: block;
+  max-width: none;
+  max-height: none;
+  object-fit: contain;
+  transition: transform 0.45s ease, filter 0.45s ease;
+}
+
+/* Center device — sets the visual scale of the whole cluster. */
+.project-showcase__media--fan .project-showcase__fan-main {
+  position: relative;
+  z-index: 3;
+  height: clamp(340px, 54vh, 580px);
+  filter: drop-shadow(0 24px 36px rgba(0, 0, 0, 0.7));
+}
+
+/* Supporting screens: smaller, offset to either side, tucked behind the main. */
+.project-showcase__media--fan .project-showcase__fan-back {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  height: clamp(265px, 43vh, 470px);
+  transform: translate(-50%, -50%) translateX(var(--fan-x, 0)) scale(var(--fan-back-scale, 0.94));
+  filter: drop-shadow(0 16px 26px rgba(0, 0, 0, 0.55));
+}
+
+.project-showcase__media--fan .project-showcase__fan-back--left {
+  --fan-x: calc(var(--fan-spread, 62%) * -1);
+}
+
+.project-showcase__media--fan .project-showcase__fan-back--right {
+  --fan-x: var(--fan-spread, 62%);
+}
+
+/* Hover: the generic rule only scales, which would collapse the offsets of the
+   absolutely positioned screens — so the fan restates its own transforms. */
+.project-showcase__media--fan .project-showcase__media-link:hover .project-showcase__fan-main {
+  transform: scale(1.03);
+  filter: drop-shadow(0 28px 42px rgba(0, 0, 0, 0.75)) drop-shadow(0 0 28px rgba(110, 7, 243, 0.4));
+}
+
+.project-showcase__media--fan .project-showcase__media-link:hover .project-showcase__fan-back {
+  transform: translate(-50%, -50%) translateX(var(--fan-x, 0)) scale(calc(var(--fan-back-scale, 0.94) * 1.03));
+  filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 20px rgba(110, 7, 243, 0.25));
+}
+
+/* Mockup deck: one tilted device shown on three of its screens, stepping left
+   to right. home-tilt, log-tilt and omnboarding-tilt are rendered on a single
+   shared canvas with the same rotation and scale, so translating them reads as
+   one phone fanned out rather than three unrelated mockups. A single size knob
+   (--deck-front-w) drives the whole cluster, which keeps the overlap
+   proportionally identical at every width. */
+.project-showcase__media--deck {
+  /* The front screen sets the scale of the deck; the two behind it are
+     proportionally smaller so the group reads as depth. The 34vh cap stops a
+     short, wide window from stretching the cluster down the whole row. */
+  --deck-front-w: min(46%, 34vh);
+  --deck-mid-w: calc(var(--deck-front-w) * 0.91);
+  --deck-back-w: calc(var(--deck-front-w) * 0.82);
+  /* Each screen is pulled back over the one before it, leaving roughly 70% of
+     every screen visible so all three still read as screens. A little more
+     overlap than before also keeps the three boxes inside the column while the
+     front screen itself is larger. */
+  --deck-overlap: calc(var(--deck-front-w) * -0.3);
+  /* The mockups are rendered around 10deg clockwise, so the deck steps down as
+     it moves right — a purely horizontal step would slide the screens across
+     their own baseline instead of sitting on it. */
+  --deck-step: clamp(0.35rem, 1.2vh, 0.9rem);
+}
+
+.project-showcase__media--deck .project-showcase__deck {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.project-showcase__media--deck .project-showcase__deck-screen {
+  position: relative;
+  flex: 0 0 auto;
+  display: block;
+  width: auto;
+  height: auto;
+  /* The base media rule caps height at 48vh; that would shrink these images
+     back down the ratio and pull the overlap out of line, so the deck owns its
+     own sizing from here on. */
+  max-width: none;
+  max-height: none;
+  object-fit: contain;
+  transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+/* Back left: onboarding. Smallest, sits highest, painted first. */
+.project-showcase__media--deck .project-showcase__deck-screen--onboarding {
+  z-index: 1;
+  width: var(--deck-back-w);
+  transform: translateY(calc(var(--deck-step) * -1));
+  filter: drop-shadow(0 14px 24px rgba(0, 0, 0, 0.6));
+}
+
+/* Middle: the symptom logbook. */
+.project-showcase__media--deck .project-showcase__deck-screen--log {
+  z-index: 2;
+  margin-left: var(--deck-overlap);
+  width: var(--deck-mid-w);
+  filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.65));
+}
+
+/* Front right: the home overview — largest, fully visible, and the screen the
+   eye should land on first. */
+.project-showcase__media--deck .project-showcase__deck-screen--home {
+  z-index: 3;
+  margin-left: var(--deck-overlap);
+  width: var(--deck-front-w);
+  transform: translateY(var(--deck-step));
+  filter: drop-shadow(0 24px 36px rgba(0, 0, 0, 0.7));
+}
+
+/* Hover: exactly as with the fan, the generic rule only scales — which would
+   wipe the offsets above — so the deck restates its own transforms. The glow
+   still comes from the shared hover rule further up. */
+.project-showcase__media--deck .project-showcase__media-link:hover .project-showcase__deck-screen--onboarding {
+  transform: translateY(calc(var(--deck-step) * -1)) scale(1.03);
+}
+
+.project-showcase__media--deck .project-showcase__media-link:hover .project-showcase__deck-screen--log {
+  transform: scale(1.03);
+}
+
+.project-showcase__media--deck .project-showcase__media-link:hover .project-showcase__deck-screen--home {
+  transform: translateY(var(--deck-step)) scale(1.03);
+}
+
+/* ---------------------------------------------------------------------------
+   Mixed-device cluster (Motivate): the two portrait authoring screens standing
+   on phones, in front of the landscape point-of-work screen on a tablet — the
+   one row on the page where both device sizes a project was designed for are
+   on show at once.
+
+   mockup-4/mockup-5 are flat 16:9 captures with no frame of their own, so the
+   tablet bezel is drawn here; mockup-2/3 already ship with their own dark phone
+   bezel, so those only need placing. As with the fan and the deck, every size
+   hangs off a single knob (--devices-tablet-w) expressed as a share of the
+   column with a vh guard, so the lineup stays proportional at any width: the
+   three widths minus the two tucks total ~1.59x the knob, and the knob is
+   capped at 62% of the column, so the cluster lands at ~98% of it — as large
+   as possible without bleeding onto the neighbouring text. */
+.project-showcase__media--devices {
+  --devices-tablet-w: min(62%, 50vh);
+  /* The phone screens are 588x1185, so their height follows from their width.
+     The phones sit at 0.48x the tablet — up from the original 0.36x, so they
+     stay ~20% bigger and readable — while the tablet knob drops to 62% to
+     compensate. The three widths minus the two tucks total ~1.59x the knob, so
+     the whole lineup lands at ~98% of the column: as large as possible without
+     bleeding onto the neighbouring text column. */
+  --devices-phone-w: calc(var(--devices-tablet-w) * 0.48);
+  --devices-phone-h: calc(var(--devices-phone-w) * 2.015);
+  /* Bezel thickness rides the tablet width, so the frame never reads as a
+     hairline on a wide screen or as a fat slab on a narrow one. Kept at ~5% of
+     the device width — even all round, the way a real tablet bezel sits. */
+  --devices-bezel: clamp(8px, calc(var(--devices-tablet-w) * 0.05), 26px);
+  /* How far each device tucks under the neighbour in front of it, as a share
+     of the phone width: enough to read as one stack, not so much that a screen
+     stops being legible. */
+  --devices-phone-overlap: calc(var(--devices-phone-w) * 0.28);
+  --devices-tablet-pull: calc(var(--devices-phone-w) * 0.4);
+}
+
+.project-showcase__devices {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  transition: transform 0.45s ease;
+}
+
+.project-showcase__device {
+  position: relative;
+  display: block;
+  flex: 0 0 auto;
+  transition: transform 0.45s ease, filter 0.45s ease;
+}
+
+/* The artwork is sized by the rules below rather than by the shared media
+   rule — that one caps height at 48vh, which would pull each screen out of the
+   ratios the cluster is laid out on. Shadows are cast once per device (below)
+   instead of per image, which keeps the tablet frame itself clean. */
+.project-showcase__media--devices .project-showcase__media-link img {
+  width: 100%;
+  height: auto;
+  max-width: none;
+  max-height: none;
+  filter: none;
+  transition: none;
+}
+
+/* Tablet — the backdrop of the cluster: it closes the DOM and is pulled left
+   under the phones, so the overlap lands on the quiet left-hand side of the
+   capture instead of on the step content. Lifted off the baseline a touch so
+   it reads as standing behind them. */
+.project-showcase__device--tablet {
+  z-index: 1;
+  box-sizing: border-box;
+  width: var(--devices-tablet-w);
+  margin-left: calc(var(--devices-tablet-pull) * -1);
+  margin-bottom: calc(var(--devices-phone-h) * 0.06);
+  padding: var(--devices-bezel);
+  border-radius: calc(var(--devices-bezel) * 1.6);
+  overflow: hidden;
+  background: linear-gradient(155deg, #43434e 0%, #1b1b21 42%, #09090c 100%);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.16),
+    inset 0 0 0 2px rgba(0, 0, 0, 0.55);
+  filter: drop-shadow(0 24px 36px rgba(0, 0, 0, 0.7));
+}
+
+/* Front camera on the top bezel — the cue that turns a framed rectangle into a
+   tablet rather than a picture frame. */
+.project-showcase__device--tablet::before {
+  content: "";
+  position: absolute;
+  top: calc(var(--devices-bezel) * 0.3);
+  left: 50%;
+  width: max(3px, calc(var(--devices-bezel) * 0.32));
+  height: max(3px, calc(var(--devices-bezel) * 0.32));
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: #05070c;
+  box-shadow: inset 0 0 0 1px rgba(130, 150, 200, 0.45);
+}
+
+/* The capture keeps its own corners so it sits inside the bezel curve. */
+.project-showcase__device--tablet img {
+  border-radius: calc(var(--devices-bezel) * 0.6);
+}
+
+/* Phones — the authoring screens, standing in front of the tablet. All three
+   devices are siblings inside .project-showcase__devices on purpose: a nested
+   wrapper would have no definite width of its own, so its children's sizes
+   would fall back to the images' intrinsic 588px while the row was being
+   measured and blow the cluster out of the column. As siblings, every size
+   below resolves against the column. These assets already carry their own dark
+   bezel, so they need no frame: only scale, overlap and shadow. The right-hand
+   screen leads, so the left one is held back a step. */
+.project-showcase__device--phone {
+  z-index: 2;
+  width: var(--devices-phone-w);
+  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.7));
+}
+
+.project-showcase__device--phone-back {
+  width: calc(var(--devices-phone-w) * 0.9);
+  margin-bottom: calc(var(--devices-phone-h) * 0.06);
+  filter: drop-shadow(0 14px 24px rgba(0, 0, 0, 0.6));
+}
+
+.project-showcase__device--phone-front {
+  margin-left: calc(var(--devices-phone-overlap) * -1);
+}
+
+/* Hover: the shared rule scales and shadows the image alone, which would leave
+   the tablet frame behind and flatten the stack — so the cluster scales and
+   glows as one object instead, and every device casts its own light. */
+.project-showcase__media--devices .project-showcase__media-link:hover .project-showcase__devices {
+  transform: scale(1.02);
+}
+
+.project-showcase__media--devices .project-showcase__media-link:hover img {
+  transform: none;
+  filter: none;
+}
+
+.project-showcase__media--devices .project-showcase__media-link:hover .project-showcase__device {
+  filter: drop-shadow(0 26px 40px rgba(0, 0, 0, 0.78)) drop-shadow(0 0 26px rgba(110, 7, 243, 0.35));
+}
+
+.project-showcase__media--devices .project-showcase__media-link:hover .project-showcase__device--phone-back {
+  filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.66)) drop-shadow(0 0 20px rgba(110, 7, 243, 0.22));
+}
+
+/* ---------------------------------------------------------------------------
+   Custom cursor + ambient halo
+   The native pointer is replaced by a 6px dot (tracked 1:1 for exact clicking)
+   with a thin ring trailing just behind it. Behind both sits a soft halo, used
+   as light rather than paint.
+
+   Three details matter for correctness, handled here + in initCustomCursor()
+   (js/pages/index.js):
+     1. `position: fixed` + clientX/clientY keeps every layer pinned to the
+        viewport, so none of them can lag behind or "stick" while scrolling.
+     2. The halo is deliberately its OWN root-level layer using
+        `mix-blend-mode: screen`, so it can only ever LIGHTEN what is beneath it
+        and can never paint over or hide text. It is not nested inside
+        .custom-cursor because a blended element is confined by its parent's
+        stacking context — nesting it would render the dot invisible over light
+        mockups and photographs.
+     3. The native pointer is hidden via `body.has-custom-cursor`, a class JS
+        adds only AFTER it has painted the replacement. So the cursor can never
+        blink out on load, and devices that opt out keep their real one.
+   Each layer is offset by a negative margin so its centre lands on the
+   element's transform origin, letting the JS write a plain translate3d.
+   --------------------------------------------------------------------------- */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+  display: none;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Enabled by initCustomCursor() only when a real hovering pointer is present. */
+.custom-cursor.is-enabled,
+.pointer-glow.is-enabled {
+  display: block;
+}
+
+.custom-cursor.is-active {
+  opacity: 1;
+}
+
+.custom-cursor__ring,
+.custom-cursor__dot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* Thin ring that trails the dot. */
+.custom-cursor__ring {
+  width: 34px;
+  height: 34px;
+  margin: -17px 0 0 -17px;
+  border: 1px solid rgba(167, 139, 255, 0.45);
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+/* 6px dot written straight from the pointer position — the actual click point.
+   The dark shadow ring keeps it legible over light photos and mockups, where a
+   pale dot alone would wash out. */
+.custom-cursor__dot {
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+  background: #c8b6ff;
+  box-shadow: 0 0 0 1.5px rgba(0, 0, 0, 0.55);
+}
+
+/* Over links/buttons the ring opens up and brightens; the JS scales it too,
+   and tugs the ring gently toward the element's centre (magnetic pull). */
+.custom-cursor.is-over .custom-cursor__ring {
+  border-color: rgba(200, 182, 255, 0.85);
+  background-color: rgba(110, 7, 243, 0.12);
+}
+
+.custom-cursor.is-over .custom-cursor__dot {
+  background: #fff;
+}
+
+/* The native pointer is hidden only once JS has positioned its replacement. */
+body.has-custom-cursor,
+body.has-custom-cursor * {
+  cursor: none !important;
+}
+
+/* Ambient halo — a wide, very faint wash of the site's purple accent that
+   drifts along well behind the cursor. Kept subtle on purpose. */
+.pointer-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 900;
+  display: none;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.pointer-glow.is-active {
+  opacity: 1;
+}
+
+.pointer-glow__halo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 280px;
+  height: 280px;
+  margin: -140px 0 0 -140px;
+  border-radius: 50%;
+  pointer-events: none;
+  will-change: transform;
+  background: radial-gradient(
+    circle,
+    rgba(110, 7, 243, 0.16) 0%,
+    rgba(110, 7, 243, 0.07) 40%,
+    rgba(110, 7, 243, 0) 72%
+  );
+  transition: width 0.35s ease, height 0.35s ease, margin 0.35s ease;
+}
+
+@media screen and (max-width: 768px) {
+  /* No hover on touch — never show the custom cursor or halo. */
+  .custom-cursor,
+  .pointer-glow {
+    display: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .custom-cursor,
+  .pointer-glow {
+    display: none !important;
+  }
+
+  /* Belt and braces: never leave the visitor with no pointer at all. */
+  body.has-custom-cursor,
+  body.has-custom-cursor * {
+    cursor: auto !important;
+  }
 }
 
 .label {
@@ -184,11 +851,11 @@ section {
 
 .title {
   color: #6E07F3;
-  font-size: 2rem !important;
+  font-size: 2.25rem !important;
   text-align: center;
   margin-bottom: 0.5rem;
   font-family: "Syne", "Plus Jakarta Sans", sans-serif;
-  font-weight: 700;
+  font-weight: 800;
 }
 
 .subtitle {
@@ -210,11 +877,15 @@ section {
   background: #000 !important;
 }
 
+/* Space above About Me: the last project row already carries one unit of the
+   page rhythm, so the section adds a second one here — the same 2x the rows use
+   between themselves. No top margin on top of that, or the two would stack and
+   the gap would read wider than the project spacing it is matching. */
 #about.about-section {
   display: block;
   max-width: 1200px;
-  margin-top: 4rem;
-  padding: 7rem 1.5rem 6rem;
+  margin-top: 0;
+  padding: var(--row-space) 1.5rem 6rem;
   text-align: left !important;
 }
 
@@ -374,17 +1045,102 @@ section {
 }
 
 @media screen and (max-width: 768px) {
+  /* Rows stack one per screen here and the mockups get shorter, so the page
+     rhythm steps down to a phone-sized unit. Every gap is built from it, so the
+     hero lead-in and the space above About Me follow automatically and
+     #previous-work no longer needs an override of its own. */
+  :root {
+    --row-space: 4.5rem;
+  }
+
   section {
     padding: 3rem 1rem;
   }
 
-  .project-info {
-    flex-direction: column;
-    align-items: flex-start;
+  /* Generous rhythm between stacked projects on small screens too. */
+  .project-showcase__row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+    padding: var(--row-space) 0.75rem;
   }
 
-  .project-tags {
-    margin-top: 10px;
+  .project-showcase__row--alt {
+    grid-template-columns: 1fr;
+  }
+
+  /* Show the media above the text on small screens for a stronger first impression. */
+  .project-showcase__text {
+    order: 2;
+  }
+
+  /* Mockups float straight on the page — no panel, no forced box, just a
+     size cap so the artwork never dominates a phone screen. */
+  .project-showcase__media {
+    order: 1;
+  }
+
+  .project-showcase__media-link img {
+    max-width: min(100%, 340px);
+    max-height: 62vh;
+    filter: drop-shadow(0 16px 26px rgba(0, 0, 0, 0.65));
+  }
+
+  .project-showcase__media--cover .project-showcase__media-link img {
+    max-width: 100%;
+  }
+
+  /* Fan cluster: tighter spread and shorter devices so all three screens still
+     sit inside a narrow viewport without spilling past the edges. */
+  .project-showcase__media--fan {
+    --fan-spread: 46%;
+    --fan-back-scale: 0.92;
+  }
+
+  .project-showcase__media--fan .project-showcase__fan {
+    height: clamp(310px, 48vh, 500px);
+  }
+
+  .project-showcase__media--fan .project-showcase__fan-main {
+    height: clamp(290px, 46vh, 470px);
+  }
+
+  .project-showcase__media--fan .project-showcase__fan-back {
+    height: clamp(225px, 36vh, 380px);
+  }
+
+  /* Deck cluster: the same one-knob setup, retuned for a single column. The
+     front screen takes a little more of the width here, and the overlap grows
+     with it so the three screens still total ~100% of the column instead of
+     spilling past the page edge. */
+  .project-showcase__media--deck {
+    --deck-front-w: min(50%, 30vh);
+    --deck-overlap: calc(var(--deck-front-w) * -0.365);
+    --deck-step: clamp(0.25rem, 0.9vh, 0.6rem);
+  }
+
+  /* Devices cluster: same phone share as desktop, only capped harder so the
+     whole lineup still fits a phone-width viewport. */
+  .project-showcase__media--devices {
+    --devices-tablet-w: min(62%, 42vh);
+  }
+
+  .project-showcase__title {
+    font-size: 1.55rem;
+  }
+
+  .project-showcase__desc {
+    font-size: 0.98rem !important;
+  }
+
+  .project-showcase__meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .project-showcase__tags {
+    margin-top: 4px;
     margin-left: 0;
     display: flex;
     flex-wrap: nowrap;
@@ -397,11 +1153,11 @@ section {
     white-space: nowrap;
   }
 
-  .project-tags::-webkit-scrollbar {
+  .project-showcase__tags::-webkit-scrollbar {
     display: none;
   }
 
-  .tag {
+  .project-showcase__tags .tag {
     font-size: 0.72rem;
     padding: 4px 8px;
   }
@@ -425,11 +1181,11 @@ section {
     text-align: left;
   }
 
-  .hero h1 {
-    font-size: 2.5em !important;
+  .hero-shell {
+    padding: 7.5rem 1.25rem 3.5rem;
   }
 
-  .hero h3 {
-    font-size: 2em !important;
+  .hero h1 {
+    font-size: 2.5em !important;
   }
 }

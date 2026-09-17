@@ -1,0 +1,116 @@
+/* ============================================================
+   PROJECT IMAGE HOVER — the one shared hover for every image on
+   every /pages/ project page (fitphone, diplora, motivate,
+   phillipswall).
+
+   Loaded LAST in each page's <head> so it wins cascade ties with
+   page CSS. That ordering is required because three pages add the
+   scroll-reveal classes (.reveal / .reveal-content / .active) to
+   their <img> elements from JS, and
+   body.project-page-standard .reveal.active { transform: ... }
+   (specificity 0,3,1) would otherwise pin the transform and kill
+   the hover lift. The reveal-specific selectors below outrank it.
+
+   Two behaviours, both identical to index.html:
+     1. HOVER — every content image lifts exactly like
+        .project-showcase__media-link:hover img on the index:
+        scale(1.03) + deep shadow + purple glow, 0.45s.
+     2. SPOTLIGHT — in any row of side-by-side images, the image
+        under the cursor lifts while its row-neighbours dim,
+        desaturate, and pull back, so only one image ever reads as
+        "active". Row membership is detected generically with
+        :has(), not by class lists, so any page layout is covered:
+          Case A — sibling <img> elements in one flex/grid row
+          Case B — sibling <figure> wrappers, one image each
+   Site chrome never lifts: navbar logo, case-study nav.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   1. Base transition — index timing for EVERY content image.
+   The reveal-specific selectors match the same transition the
+   reveal system sets, so reveals keep animating (opacity +
+   transform are both in the list) but at the shared 0.45s feel.
+   ------------------------------------------------------------ */
+body.project-page-standard img,
+body.project-page-standard img.reveal,
+body.project-page-standard img.reveal-content {
+  transition:
+    transform 0.45s ease,
+    filter 0.45s ease,
+    box-shadow 0.45s ease,
+    opacity 0.45s ease;
+  will-change: transform;
+}
+
+/* ------------------------------------------------------------
+   2. Hover lift — exact index values. The .reveal selectors are
+   what make this work on fitphone / diplora / motivate, whose
+   images carry reveal classes.
+   ------------------------------------------------------------ */
+body.project-page-standard img:hover,
+body.project-page-standard img.reveal:hover,
+body.project-page-standard img.reveal-content:hover,
+body.project-page-standard img.reveal.active:hover,
+body.project-page-standard img.reveal-content.active:hover {
+  transform: scale(1.03);
+  filter: drop-shadow(0 28px 42px rgba(0, 0, 0, 0.75)) drop-shadow(0 0 28px rgba(110, 7, 243, 0.4));
+  /* Hovered image paints above its row-neighbours while scaled. */
+  position: relative;
+  z-index: 2;
+}
+
+/* ------------------------------------------------------------
+   3. Spotlight — one image at a time.
+   Case A: the hovered image's parent holds direct <img> children.
+   Case B: the hovered image's parent holds direct <figure> children.
+   Any single-image row matches too — with no siblings the
+   :not(:hover) list is empty, so nothing visibly changes.
+   ------------------------------------------------------------ */
+body.project-page-standard :has(> img:hover) > img:not(:hover),
+body.project-page-standard :has(> figure > img:hover) > figure img:not(:hover) {
+  opacity: 0.55;
+  filter: saturate(0.55);
+  transform: scale(0.985);
+  z-index: 0;
+}
+
+/* ------------------------------------------------------------
+   4. Never lift site chrome.
+   ------------------------------------------------------------ */
+body.project-page-standard .navbar img,
+body.project-page-standard .navbar img:hover,
+body.project-page-standard .case-study-nav img {
+  transform: none !important;
+  filter: none !important;
+  transition: none !important;
+}
+
+/* ------------------------------------------------------------
+   5. Reduced motion — hover/spotlight become pure no-ops, while
+   the reveal fade (opacity only) still runs so content appears.
+   ------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  body.project-page-standard img,
+  body.project-page-standard img.reveal,
+  body.project-page-standard img.reveal-content {
+    transition-property: opacity;
+    transition-duration: 0.01s;
+    will-change: auto;
+  }
+
+  body.project-page-standard img:hover,
+  body.project-page-standard img.reveal:hover,
+  body.project-page-standard img.reveal-content:hover,
+  body.project-page-standard img.reveal.active:hover,
+  body.project-page-standard img.reveal-content.active:hover {
+    transform: none;
+    filter: none;
+  }
+
+  body.project-page-standard :has(> img:hover) > img:not(:hover),
+  body.project-page-standard :has(> figure > img:hover) > figure img:not(:hover) {
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
+}

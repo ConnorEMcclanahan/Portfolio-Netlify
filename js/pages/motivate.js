@@ -4,6 +4,7 @@ const introSummaryData = {
   lead: 'An intuitive tool embedded in Motivate\u0027s Platform Management Tool (PMT) that streamlines standard work instructions for factory environments.',
   meta: [
     { label: 'Role', value: 'UX/UI Designer and Front-end Developer' },
+    { label: 'Context', value: 'Internship' },
     { label: 'Timeline', value: 'Feb 19 - Jun 28, 2024 (18 weeks)' },
     { label: 'Tools Used', value: 'Vue 3, PDF.js, Node.js, Figma' }
   ],
@@ -14,47 +15,28 @@ const introSummaryData = {
   }
 };
 
+/* Single-column conclusion. Uses the same structure and length as the Diplora
+   case study: one Conclusion column, four titled paragraphs. */
 const finalSectionData = {
   columns: [
     {
-      title: 'Project Achievements and Future Improvements',
+      title: 'Conclusion',
       items: [
         {
-          title: 'Platform Integration Success',
-          copy: 'Successfully integrated the instruction-creation tool within the PMT platform.'
+          title: 'Factory Standards & Safety',
+          copy: 'The tool keeps every instruction aligned with Training Within Industry methodology and the platform approval and version-control rules. Operators only ever see the current approved revision at the point of work, with safety and quality requirements carried into the instruction itself instead of being left in scattered documents.'
         },
         {
-          title: 'Factory-Friendly UX',
-          copy: 'Delivered a responsive, user-friendly interface aligned with TWI methodology for shop-floor use.'
+          title: 'Business Value Delivered',
+          copy: 'A working instruction-creation tool was delivered inside the existing PMT platform, replacing scattered files and external tools with one workflow for authoring, reviewing, approving, publishing, and viewing standards. Full CRUD frontend work in Vue.js, a refined PDF viewer, and a responsive layout supported the range of factory devices and conditions found during observational studies. Low-fidelity testing validated the navigation and flow before implementation began.'
         },
         {
-          title: 'Stronger Content Workflow',
-          copy: 'Enhanced PDF handling and identified next improvements like better low-connectivity uploads.'
+          title: 'Advice to Stakeholders',
+          copy: 'Strengthen offline and low-connectivity uploads before a wider rollout, extend multimedia editing beyond the current image support, and add analytics so managers can see how standards are used. Continued testing with shop-floor operators should shape the next release.'
         },
         {
-          title: 'Future Smart Features',
-          copy: 'AI-assisted suggestions, richer image editing, and advanced analytics are clear next opportunities.'
-        }
-      ]
-    },
-    {
-      title: 'Key Learning Outcomes',
-      items: [
-        {
-          title: 'End-to-End Delivery',
-          copy: 'Delivered full CRUD frontend functionality using Vue.js in a real production context.'
-        },
-        {
-          title: 'Context-Aware Design',
-          copy: 'Adapted interface decisions to factory constraints while preserving clarity and speed.'
-        },
-        {
-          title: 'Leadership and Collaboration',
-          copy: 'Led prototype and testing phases while balancing stakeholder feedback and technical feasibility.'
-        },
-        {
-          title: 'Technical and Research Growth',
-          copy: 'Improved in Vue.js, UX practice, and structured user research that directly shaped product decisions.'
+          title: 'Key Learnings',
+          copy: 'Designing for the factory floor means designing for noise, interruptions, and small screens, where context decides clarity. Leading the prototype and testing phases showed how much structure matters before implementation. Working end to end in Vue.js inside a live platform strengthened both technical and research discipline, and weighing stakeholder feedback against feasibility kept the scope realistic.'
         }
       ]
     }
@@ -276,20 +258,6 @@ function initPDF() {
   });
 }
 
-function initScrollCue() {
-  const scrollCue = document.querySelector('.scroll-down');
-  if (!scrollCue) {
-    return;
-  }
-
-  const toggleCue = () => {
-    scrollCue.style.opacity = window.scrollY > window.innerHeight * 0.3 ? '0' : '1';
-  };
-
-  toggleCue();
-  window.addEventListener('scroll', toggleCue, { passive: true });
-}
-
 function initSmoothScroll() {
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener('click', function onClick(e) {
@@ -331,7 +299,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js';
   }
 
-  initScrollCue();
+  initScrollCue({ threshold: 0.3 });
   initSmoothScroll();
 
   if (window.ProjectPageComponents) {

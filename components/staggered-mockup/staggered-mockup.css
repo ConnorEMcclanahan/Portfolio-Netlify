@@ -1,0 +1,341 @@
+/* ============================================================
+   STAGGERED MOCKUP PARALLAX — Reusable component
+   Clean screens as-is, no bezel, staggered wave, large scale
+   ============================================================ */
+.staggered-mockup {
+  position: relative;
+  min-height: 100vh;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.staggered-mockup[data-bg] {
+  background: var(--staggered-bg, #000);
+}
+
+/* Subtle radial gradient overlay for depth - purple to match site */
+.staggered-mockup::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 100% 80% at 50% 50%, 
+    rgba(110, 7, 243, 0.22) 0%, 
+    rgba(110, 7, 243, 0.15) 35%, 
+    rgba(110, 7, 243, 0.08) 60%,
+    transparent 80%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Also add a vignette for more depth */
+.staggered-mockup::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.35) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Navbar inside staggered-mockup - absolute positioned like phillips-hero */
+.staggered-mockup .navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 10;
+}
+
+.staggered-mockup__content {
+  position: relative;
+  z-index: 5;
+  text-align: center;
+  padding-top: 3vh;
+  pointer-events: none;
+}
+
+.staggered-mockup__title {
+  margin: 0 0 0.5rem;
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  color: var(--staggered-title-color, #000);
+  letter-spacing: -0.02em;
+}
+
+.staggered-mockup__subtitle {
+  margin: 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(1rem, 1.8vw, 1.125rem);
+  font-weight: 400;
+  color: var(--staggered-subtitle-color, #333);
+  opacity: 0.7;
+}
+
+.staggered-mockup__row {
+  position: relative;
+  z-index: 3;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0;
+  pointer-events: none;
+}
+
+.staggered-mockup__track {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 1.8vw, 2.2rem);
+  width: 100%;
+  max-width: none;
+  padding: 0 3%;
+  /* Allow first/last items to bleed off edges symmetrically */
+  margin: 0 -3%;
+  justify-content: center;
+}
+
+.staggered-mockup__item {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  pointer-events: auto;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  will-change: transform;
+}
+
+.staggered-mockup__item:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 32px 64px rgba(0, 0, 0, 0.25);
+}
+
+.staggered-mockup__frame {
+  position: relative;
+  width: clamp(250px, 18.5vw, 320px);
+  aspect-ratio: 9 / 19.5;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, 0.22),
+    0 6px 20px rgba(0, 0, 0, 0.18);
+  transition: box-shadow 0.3s ease;
+}
+
+.staggered-mockup__frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 24px;
+}
+
+/* Tablet frame - proper tablet bezel with home indicator */
+.staggered-mockup__frame--tablet {
+  position: relative;
+  width: clamp(380px, 28vw, 480px);
+  aspect-ratio: 4 / 3;
+  border-radius: 24px;
+  background: #0d0d0d;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 6px rgba(0, 0, 0, 0.2),
+    0 0 0 10px rgba(255, 255, 255, 0.05),
+    0 24px 48px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.staggered-mockup__frame--tablet::before {
+  content: '';
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40%;
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.12);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.staggered-mockup__frame--tablet::after {
+  content: '';
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 5px;
+  border-radius: 2.5px;
+  background: rgba(255, 255, 255, 0.1);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.staggered-mockup__frame--tablet img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 18px;
+}
+
+.staggered-mockup__label {
+  margin: 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(0.7rem, 1vw, 0.8rem);
+  font-weight: 500;
+  color: var(--staggered-label-color, #1a1a1a);
+  text-align: center;
+  white-space: nowrap;
+  opacity: 0.6;
+}
+
+/* Stagger transform - reads from inline --stagger-N custom properties */
+.staggered-mockup__item {
+  transform: translateY(var(--stagger, 0));
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.staggered-mockup__item:hover {
+  transform: translateY(calc(var(--stagger, 0) - 12px));
+  box-shadow: 0 32px 64px rgba(0, 0, 0, 0.25);
+}
+
+/* Hide labels when requested */
+.staggered-mockup--no-labels .staggered-mockup__label {
+  display: none;
+}
+
+/* Hide title/subtitle when requested */
+.staggered-mockup--no-text .staggered-mockup__content {
+  display: none;
+}
+
+/* ============================================================
+   ENTRANCE
+   The same open-the-page animation as the Motivate cascade hero: as the
+   loading screen clears, every frame fades in and rises into place, sweeping
+   left to right. The wave offsets live on .staggered-mockup__item, so only
+   the frame (and its label) animates — each device keeps the exact position
+   it already had.
+   ============================================================ */
+.staggered-mockup__frame {
+  opacity: 0;
+  transform: translateY(34px);
+  transition:
+    opacity 0.65s ease,
+    transform 0.75s cubic-bezier(0.22, 0.7, 0.3, 1),
+    box-shadow 0.3s ease;
+}
+
+body.loaded .staggered-mockup__frame {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.staggered-mockup__label {
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+body.loaded .staggered-mockup__label {
+  opacity: 0.6;
+}
+
+/* Reading order, so the wave arrives one device at a time. */
+.staggered-mockup__item:nth-child(1) > * { transition-delay: 0.05s; }
+.staggered-mockup__item:nth-child(2) > * { transition-delay: 0.15s; }
+.staggered-mockup__item:nth-child(3) > * { transition-delay: 0.25s; }
+.staggered-mockup__item:nth-child(4) > * { transition-delay: 0.35s; }
+.staggered-mockup__item:nth-child(5) > * { transition-delay: 0.45s; }
+.staggered-mockup__item:nth-child(6) > * { transition-delay: 0.55s; }
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .staggered-mockup__track {
+    gap: clamp(1rem, 2vw, 2rem);
+    padding: 0 3%;
+    margin: 0 -3%;
+  }
+
+  .staggered-mockup__frame {
+    width: clamp(220px, 20vw, 280px);
+  }
+}
+
+@media (max-width: 900px) {
+  .staggered-mockup {
+    min-height: auto;
+    height: auto;
+    padding-bottom: 3rem;
+  }
+
+  .staggered-mockup__content {
+    padding-top: 4vh;
+  }
+
+  .staggered-mockup__row {
+    flex: none;
+    padding: 1rem 1.5rem 3rem;
+  }
+
+  .staggered-mockup__track {
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    margin: 0;
+    padding: 0 5%;
+  }
+
+  .staggered-mockup__item {
+    width: 45%;
+    min-width: 180px;
+  }
+
+  /* Reset stagger on tablet - subtle wave */
+  .staggered-mockup__item:nth-child(1),
+  .staggered-mockup__item:nth-child(3),
+  .staggered-mockup__item:nth-child(5) {
+    transform: translateY(20px);
+  }
+  .staggered-mockup__item:nth-child(2),
+  .staggered-mockup__item:nth-child(4),
+  .staggered-mockup__item:nth-child(6) {
+    transform: translateY(-15px);
+  }
+
+  .staggered-mockup__item:hover {
+    transform: translateY(-12px);
+  }
+}
+
+@media (max-width: 600px) {
+  .staggered-mockup__item {
+    width: 85%;
+  }
+
+  .staggered-mockup__track {
+    gap: 1.5rem;
+  }
+}
+
+/* Reduced motion: devices appear straight away, with no entrance sweep. */
+@media (prefers-reduced-motion: reduce) {
+  .staggered-mockup__frame {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .staggered-mockup__label {
+    opacity: 0.6;
+    transition: none;
+  }
+}

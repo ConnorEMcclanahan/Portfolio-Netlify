@@ -12,9 +12,12 @@
   <link rel="stylesheet" href="../styles/frontend.css" />
   <link rel="stylesheet" href="../components/navbar/navbar.css"/>
   <link rel="stylesheet" href="../components/footer/footer.css"/>
+  <link rel="stylesheet" href="../components/custom-cursor/custom-cursor.css"/>
   <link rel="stylesheet" href="../components/project-page/project-components.css"/>
   <link rel="stylesheet" href="../styles/mobile-responsive.css"/>
   <link rel="stylesheet" href="../styles/pages/diplora.css"/>
+  <link rel="stylesheet" href="../components/staggered-mockup/staggered-mockup.css"/>
+  <link rel="stylesheet" href="../styles/pages/project-image-hover.css"/>
 <!-- External Resources -->
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -30,6 +33,7 @@
   <script src="../js/script.js" defer></script>
   <script src="../components/loading-screen/loading-screen.js" defer></script>
   <link rel="stylesheet" href="../components/loading-screen/loading-screen.css" />
+  <link rel="stylesheet" href="../components/scroll-cue/scroll-cue.css" />
 </head>
 
 <body class="project-page-standard">
@@ -38,12 +42,7 @@
     <div class="loading-screen__text">Loading...</div>
   </div>
 
-  <!-- Main Content -->
-  <div class="parallax-1" id="top" style="background: url('../images/diplora/hospital.jpg') center/cover no-repeat fixed;">
-    <a href="#intro-summary" class="scroll-down" aria-label="Scroll down">
-      <ion-icon name="chevron-down-outline"></ion-icon>
-    </a>
-
+  <div class="staggered-mockup" id="staggered-mockup-hero" id="top">
     <nav class="navbar">
       <div class="navbar-container">
         <a href="../index.html" class="navbar-logo">
@@ -58,7 +57,7 @@
           <li><a href="../index.html#about">About</a></li>
           <li><a href="index.html#projects">Projects</a></li>
           <li><a href="../PDFS/Resume.pdf">Resume</a></li>
-          <li><a href="mailto:connor.e.mcclanahan@gmail.com">Contact</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
     </nav>
@@ -396,8 +395,22 @@
     />
   </div>
 
-  <!-- How Usability Might Be Improved & Lessons Learned section -->
-  <section id="final-container" class="project-section reveal"></section>
+  <div class="suggestion-row">
+    <section id="final-container" class="project-section reveal"></section>
+
+    <!-- You might also like -->
+    <section id="suggested-projects" class="project-section reveal">
+      <div class="suggested-projects-inner">
+        <p class="suggested-projects-eyebrow">You might also like</p>
+        <a href="motivate.html" class="suggested-project-card">
+          <span class="suggested-project-number">02</span>
+          <span class="suggested-project-title">Motivate Instruction Creation Tool</span>
+          <span class="suggested-project-blurb">Clearer work instructions for factory teams.</span>
+        </a>
+      </div>
+    </section>
+  </div>
+
 
     <footer id="contact" class="footer-section reveal">
       <div class="footer-cta">
@@ -433,9 +446,58 @@
   <script src="../components/project-page/final-columns.js" defer></script>
   <script src="../components/project-page/comparison-matrix.js" defer></script>
   <script src="../components/project-page/case-study-nav.js" defer></script>
+  <script src="../components/staggered-mockup/staggered-mockup.js" defer></script>
   <script src="../js/pages/diplora.js" defer></script>
   <script src="../components/navbar/navbar.js" defer></script>
   <script src="../components/loading-screen/loading-screen.js" defer></script>
+  <script src="../components/custom-cursor/custom-cursor.js" defer></script>
+  <script src="../components/scroll-cue/scroll-cue.js" defer></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      if (window.ProjectPageComponents && window.ProjectPageComponents.renderStaggeredMockup) {
+        window.ProjectPageComponents.renderStaggeredMockup('#staggered-mockup-hero', {
+          bg: '#0a0a0a',
+          title: 'Diplora',
+          subtitle: '',
+          ariaLabel: 'Diplora app screens',
+          noLabels: true,
+          staggers: [
+            'clamp(40px, 3vw, 60px)',     /* Logbook - DOWN (edge) */
+            'clamp(-160px, -12vw, -220px)', /* Low Power - VERY UP (bleeds nav) */
+            'clamp(20px, 2vw, 40px)',     /* Home - DOWN (middle) */
+            'clamp(-140px, -10vw, -180px)', /* Onboarding - VERY UP */
+            'clamp(50px, 4vw, 70px)',     /* Attach - DOWN (middle-low) */
+            'clamp(-120px, -9vw, -160px)'  /* Activity - UP (edge, but high) */
+          ],
+          items: [
+            { src: '../images/mockups/diplora/logbook-portrait.png', alt: 'Logbook screen', label: 'Logbook' },
+            { src: '../images/mockups/diplora/lowpowerportrait.png', alt: 'Low power screen', label: 'Low Power' },
+            { src: '../images/mockups/diplora/diplorahomeportrait.png', alt: 'Home screen', label: 'Home' },
+            { src: '../images/mockups/diplora/onboarding-portrait.png', alt: 'Onboarding screen', label: 'Onboarding' },
+            { src: '../images/mockups/diplora/Onboarding Attach-(Compressify.io)-portrait.png', alt: 'Onboarding attach screen', label: 'Attach' },
+            { src: '../images/mockups/diplora/whatactivityportrait.png', alt: 'What activity screen', label: 'Activity' }
+          ]
+        });
+      }
+    });
+  </script>
+
+  <!-- Custom cursor — the dot replaces the native pointer (hidden by
+       body.has-custom-cursor), the ring trails it. Driven by
+       initCustomCursor() in ../components/custom-cursor/custom-cursor.js. -->
+  <div class="custom-cursor" aria-hidden="true">
+    <span class="custom-cursor__ring"></span>
+    <span class="custom-cursor__dot"></span>
+  </div>
+
+  <!-- Ambient halo behind the cursor. Kept as its own root-level layer
+       because mix-blend-mode: screen must live on the layer itself — a
+       blended child would be confined by its parent's stacking context.
+       Driven by initCustomCursor() too. -->
+  <div class="pointer-glow" aria-hidden="true">
+    <span class="pointer-glow__halo"></span>
+  </div>
 </body>
 
 </html>

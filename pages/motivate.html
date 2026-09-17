@@ -12,8 +12,11 @@
   <link rel="stylesheet" href="../styles/frontend.css" />
   <link rel="stylesheet" href="../components/navbar/navbar.css"/>
   <link rel="stylesheet" href="../components/footer/footer.css"/>
+  <link rel="stylesheet" href="../components/custom-cursor/custom-cursor.css"/>
   <link rel="stylesheet" href="../components/project-page/project-components.css"/>
   <link rel="stylesheet" href="../styles/pages/motivate.css"/>
+  <link rel="stylesheet" href="../components/device-cascade/device-cascade.css"/>
+  <link rel="stylesheet" href="../styles/pages/project-image-hover.css"/>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <!-- External Resources -->
@@ -30,6 +33,7 @@
   <script src="../js/script.js" defer></script>
   <script src="../components/loading-screen/loading-screen.js" defer></script>
   <link rel="stylesheet" href="../components/loading-screen/loading-screen.css" />
+  <link rel="stylesheet" href="../components/scroll-cue/scroll-cue.css" />
 </head>
 <body class="project-page-standard">
   <!-- Shared Loading Screen Component -->
@@ -37,12 +41,7 @@
     <div class="loading-screen__text">Loading...</div>
   </div>
 
-  <!-- Main Content -->
-  <div class="parallax-1" id="top">
-
-    <a href="#intro-summary" class="scroll-down" aria-label="Scroll down">
-      <ion-icon name="chevron-down-outline"></ion-icon>
-    </a>
+  <div class="device-cascade" id="staggered-mockup-hero" id="top">
     <nav class="navbar">
       <div class="navbar-container">
         <a href="../index.html" class="navbar-logo">
@@ -56,14 +55,13 @@
         <ul class="navbar-menu">
           <li><a href="../index.html#about">About</a></li>
           <li><a href="index.html#projects">Projects</a></li>
-          <li><a href="Resume.pdf">Resume</a></li>
-          <li><a href="mailto:connor.e.mcclanahan@gmail.com">Contact</a></li>
+          <li><a href="../pdfs/resume.pdf">Resume</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
     </nav>
   </div>
 
-  <!-- Intro & Meta -->
   <section id="intro-summary" class="reveal"></section>
 
   <!-- Overview section with reveal animation -->
@@ -245,9 +243,22 @@
 </section>
 
 <!-- REFLECTION section starts here -->
-<section id="final-container" class="project-section reveal"></section>
+<div class="suggestion-row">
+  <section id="final-container" class="project-section reveal"></section>
 
-  <!-- FOOTER -->
+  <!-- You might also like -->
+  <section id="suggested-projects" class="project-section reveal">
+    <div class="suggested-projects-inner">
+      <p class="suggested-projects-eyebrow">You might also like</p>
+      <a href="fitphone.html" class="suggested-project-card">
+        <span class="suggested-project-number">03</span>
+        <span class="suggested-project-title">Fontys FitPhone</span>
+        <span class="suggested-project-blurb">Digital wellness for healthier phone habits.</span>
+      </a>
+    </div>
+  </section>
+</div>
+
   <footer id="contact" class="footer-section reveal">
     <div class="footer-cta">
       <p class="footer-cta__eyebrow">Like what you see?</p>
@@ -277,7 +288,7 @@
     </div>
   </footer>
 
-  <!-- Move scripts to bottom of body -->
+<!-- Move scripts to bottom of body -->
   
   <script src="../components/project-page/utils.js" defer></script>
   <script src="../components/project-page/intro-summary.js" defer></script>
@@ -286,9 +297,48 @@
   <script src="../components/project-page/split-insights.js" defer></script>
   <script src="../components/project-page/mockup-flow.js" defer></script>
   <script src="../components/project-page/case-study-nav.js" defer></script>
+  <script src="../components/device-cascade/device-cascade.js" defer></script>
   <script src="../js/pages/motivate.js" defer></script>
   <script src="../components/navbar/navbar.js" defer></script>
   <script src="../components/loading-screen/loading-screen.js" defer></script>
+  <script src="../components/custom-cursor/custom-cursor.js" defer></script>
+  <script src="../components/scroll-cue/scroll-cue.js" defer></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      if (window.ProjectPageComponents && window.ProjectPageComponents.renderDeviceCascade) {
+        window.ProjectPageComponents.renderDeviceCascade('#staggered-mockup-hero', {
+          title: '',
+          subtitle: '',
+          ariaLabel: 'Motivate app screens',
+          noText: true,
+          items: [
+            { src: '../images/motivate/mockup-4.png', alt: 'Viewing Standard (tablet)', device: 'tablet' },
+            { src: '../images/motivate/mockup-1.png', alt: 'Standard Form', device: 'phone' },
+            { src: '../images/motivate/mockup-2.png', alt: 'Standard Form Pt2', device: 'phone' },
+            { src: '../images/motivate/mockup-5.png', alt: 'Approval (tablet)', device: 'tablet' },
+            { src: '../images/motivate/mockup-3.png', alt: 'Standard Form Pt3', device: 'phone' }
+          ]
+        });
+      }
+    });
+  </script>
+
+  <!-- Custom cursor — the dot replaces the native pointer (hidden by
+       body.has-custom-cursor), the ring trails it. Driven by
+       initCustomCursor() in ../components/custom-cursor/custom-cursor.js. -->
+  <div class="custom-cursor" aria-hidden="true">
+    <span class="custom-cursor__ring"></span>
+    <span class="custom-cursor__dot"></span>
+  </div>
+
+  <!-- Ambient halo behind the cursor. Kept as its own root-level layer
+       because mix-blend-mode: screen must live on the layer itself — a
+       blended child would be confined by its parent's stacking context.
+       Driven by initCustomCursor() too. -->
+  <div class="pointer-glow" aria-hidden="true">
+    <span class="pointer-glow__halo"></span>
+  </div>
 </body>
 </html>
 

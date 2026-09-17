@@ -1,69 +1,11 @@
-function initVantaBackground() {
-  if (!window.VANTA || !window.VANTA.GLOBE) {
-    return;
-  }
-
-  // Full-screen Vanta globe behind the whole hero — the big parallax ball,
-  // same setup as the original design.
-  window.VANTA.GLOBE({
-    el: '#top',
-    mouseControls: true,
-    touchControls: true,
-    gyroControls: false,
-    minHeight: 200,
-    minWidth: 200,
-    scale: 1,
-    scaleMobile: 1,
-    color: 0x6e07f3,
-    backgroundColor: 0x0,
-  });
-}
-
-function initReveal() {
-  const revealElements = document.querySelectorAll('.reveal');
-  if (!revealElements.length) {
-    return;
-  }
-
-  const revealPoint = 150;
-
-  const checkReveal = () => {
-    const windowHeight = window.innerHeight;
-
-    revealElements.forEach((element) => {
-      const elementTop = element.getBoundingClientRect().top;
-      if (elementTop < windowHeight - revealPoint) {
-        element.classList.add('active');
-      } else {
-        element.classList.remove('active');
-      }
-    });
-  };
-
-  checkReveal();
-  window.addEventListener('scroll', checkReveal, { passive: true });
-}
-
-function initPortraitAnimation() {
-  const portrait = document.querySelector('.about-portrait');
-  if (!portrait) {
-    return;
-  }
-
-  // Trigger fade-in animation when portrait comes into view
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        portrait.classList.add('loaded');
-        observer.unobserve(portrait);
-      }
-    });
-  }, { threshold: 0.1 });
-
-  observer.observe(portrait);
-}
-
-// Custom cursor — replaces the native pointer, which the stylesheet hides via
+// Shared custom cursor — the same dot / ring / halo effect as index.html.
+// (Extracted from initCustomCursor() in js/pages/index.js so every page in
+// /pages/ can reuse it. index.html keeps its own copy; this file is for the
+// /pages/ can reuse it. index.html keeps its own copy; this file is for the
+// subpages, which load it alongside components/custom-cursor/custom-cursor.css
+// plus the .custom-cursor / .pointer-glow markup before </body>.)
+//
+// Replaces the native pointer, which the stylesheet hides via
 // `body.has-custom-cursor`. That class is only added once the replacement has
 // actually been painted, so the pointer can never blink out on load, and any
 // device that opts out below keeps its real cursor.
@@ -243,20 +185,5 @@ function initCustomCursor() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  initVantaBackground();
-  initReveal();
-  initPortraitAnimation();
   initCustomCursor();
-  initScrollCue({ target: '#previous-work', threshold: 0.3 });
-});
-
-// Hide the shared loading screen once everything is loaded.
-// (The shared component's loading-screen.js already does this,
-// but index.html loads Vanta Globe which can be slow, so do it
-// explicitly here too for consistency.)
-window.addEventListener('load', () => {
-  const loader = document.getElementById('loader');
-  if (loader) {
-    loader.style.display = 'none';
-  }
 });

@@ -1,0 +1,351 @@
+/* ============================================================
+   DEVICE CASCADE PARALLAX — Motivate specific
+   Mirrored phone/tablet cascade with real device frames.
+   Layout, left to right:
+     tablet (bleeds off the left edge) · phone over its inner edge
+     · centred focus phone
+     · phone over a tablet's inner edge · tablet (bleeds off the right)
+   ============================================================ */
+.device-cascade {
+  position: relative;
+  min-height: 100vh;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: #0a0a0a;
+}
+
+/* CSS variables - LARGER for parallax hero.
+   Kept in viewport units on purpose: a percentage inside a custom property
+   re-resolves against whichever element uses it, so `min(90%, 85vh)` made
+   the tablets and the phones compute their geometry from two different
+   values and broke the centring of every transformed item. */
+.device-cascade {
+  --cascade-tablet-w: min(92vw, 85vh);
+  --cascade-bezel: clamp(16px, calc(var(--cascade-tablet-w) * 0.045), 36px);
+  /* Tablet screenshots are 1570x883 -> frame height = pads + inner width * 0.5624 */
+  --cascade-tablet-h: calc(
+    (var(--cascade-tablet-w) - var(--cascade-bezel) * 2) * 0.5624 + var(--cascade-bezel) * 2
+  );
+  /* Phones keep their own bezel in the artwork (588x1185) and every phone —
+     the centre one included — is driven by this single width, so the trio
+     reads as one size instead of a big middle phone between two smaller. */
+  --cascade-phone-w: calc(var(--cascade-tablet-w) * 0.24);
+  --cascade-phone-h: calc(var(--cascade-phone-w) * 2.015);
+  /* Outer tablet centres. Pulled in from the edges (they used to sit at 0.82)
+     so both frames read as devices sliding in from the sides rather than two
+     cut-off slabs. Size and height are untouched. */
+  --cascade-tablet-x: calc(var(--cascade-tablet-w) * 0.77);
+  /* Side-phone centres. Slightly inside their tablet's inner edge, so each
+     phone rests on ~60% of the tablet and pokes ~40% out towards the middle,
+     with an even gap either side of the centre phone. */
+  --cascade-phone-x: calc(var(--cascade-tablet-w) * 0.295);
+  /* Phones hang below the tablet baseline so the lower half of the hero is
+     used up instead of emptying out under the frames. */
+  --cascade-phone-drop: calc(var(--cascade-tablet-w) * 0.16);
+  /* Scroll progress 0 -> 1, written by device-cascade.js: the tablets settle
+     down a little while the phones rise by more, so scrolling pulls more of
+     every phone out from under the tablet edges. */
+  --cascade-reveal: 0;
+}
+
+/* Subtle radial gradient for depth */
+.device-cascade::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 100% 80% at 50% 40%, 
+    rgba(110, 7, 243, 0.15) 0%, 
+    rgba(110, 7, 243, 0.08) 35%, 
+    rgba(110, 7, 243, 0.04) 60%,
+    transparent 80%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.device-cascade::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.3) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Navbar */
+.device-cascade .navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 10;
+}
+
+/* Cascade row - absolute positioning for precise control.
+   The row no longer fills the section: the composition sits directly under
+   the navbar (7rem clears its 87px) instead of hanging off the bottom. */
+.device-cascade__row {
+  position: relative;
+  z-index: 3;
+  flex: none;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 7rem 2rem 0;
+  pointer-events: none;
+}
+
+/* Height = one tablet frame, and the devices stand on its bottom edge */
+.device-cascade__track {
+  position: relative;
+  width: 100%;
+  height: var(--cascade-tablet-h);
+  max-width: none;
+}
+
+/* Device items - absolute positioned for exact placement.
+   The frames carry fixed widths, so each figure shrink-wraps to its frame
+   and translateX(-50%) centres the frame itself. */
+.device-cascade__item {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  /* Vertical placement is assembled from separate variables so the phone
+     drop, the scroll parallax and the hover lift can each move one part
+     without the others having to rewrite the whole transform. */
+  --cascade-drop-y: 0px;
+  --cascade-reveal-y: 0px;
+  --cascade-lift: 0px;
+  --cascade-scale: 1;
+  transform:
+    translateX(calc(-50% + var(--cascade-offset, 0px)))
+    translateY(calc(var(--cascade-drop-y) + var(--cascade-reveal-y) + var(--cascade-lift)))
+    scale(var(--cascade-scale));
+  pointer-events: auto;
+  transition: transform 0.45s ease, filter 0.45s ease;
+  will-change: transform, filter;
+}
+
+/* TABLET FRAME - matches index page .project-showcase__device--tablet */
+.device-cascade__frame--tablet {
+  box-sizing: border-box;
+  width: var(--cascade-tablet-w);
+  padding: var(--cascade-bezel);
+  border-radius: calc(var(--cascade-bezel) * 1.6);
+  overflow: hidden;
+  background: linear-gradient(155deg, #43434e 0%, #1b1b21 42%, #09090c 100%);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.16),
+    inset 0 0 0 2px rgba(0, 0, 0, 0.55);
+  filter: drop-shadow(0 24px 36px rgba(0, 0, 0, 0.7));
+}
+
+/* Front camera on top bezel */
+.device-cascade__frame--tablet::before {
+  content: "";
+  position: absolute;
+  top: calc(var(--cascade-bezel) * 0.3);
+  left: 50%;
+  width: max(3px, calc(var(--cascade-bezel) * 0.32));
+  height: max(3px, calc(var(--cascade-bezel) * 0.32));
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: #05070c;
+  box-shadow: inset 0 0 0 1px rgba(130, 150, 200, 0.45);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.device-cascade__frame--tablet img {
+  border-radius: calc(var(--cascade-bezel) * 0.6);
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* PHONE - images already have their own bezel baked in */
+.device-cascade__frame--phone {
+  width: var(--cascade-phone-w);
+  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.7));
+}
+
+.device-cascade__frame--phone img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Side phones: same width as the centre phone (only the shadow is softer so
+   the middle device still reads as the focus) */
+.device-cascade__frame--phone-back {
+  filter: drop-shadow(0 14px 24px rgba(0, 0, 0, 0.6));
+}
+
+/* Front phone */
+.device-cascade__frame--phone-front {
+  /* overlap handled by item transform */
+}
+
+/* Positioning - mirrored about the centre:
+   item order in the markup is tablet, phone, phone, tablet, phone.
+   The outer phones sit on their tablet's inner edge (`--cascade-phone-x`
+   is exactly the tablet's inner edge) so they overlap half of themselves,
+   and the gap on either side of the centre phone is identical. */
+.device-cascade__item:nth-child(1) {           /* left tablet */
+  --cascade-offset: calc(var(--cascade-tablet-x) * -1);
+  z-index: 1;
+}
+
+.device-cascade__item:nth-child(2) {           /* phone over the left tablet */
+  --cascade-offset: calc(var(--cascade-phone-x) * -1);
+  z-index: 2;
+}
+
+.device-cascade__item:nth-child(3) {           /* centre phone (focus) */
+  z-index: 3;
+}
+
+.device-cascade__item:nth-child(4) {           /* right tablet */
+  --cascade-offset: var(--cascade-tablet-x);
+  z-index: 1;
+}
+
+.device-cascade__item:nth-child(5) {           /* phone over the right tablet */
+  --cascade-offset: var(--cascade-phone-x);
+  z-index: 2;
+}
+
+/* Vertical placement.
+   The phones start below the tablet baseline (`--cascade-phone-drop`) so the
+   rows overlap vertically and the space under the frames gets used. On scroll
+   the tablets sink slightly while the phones rise by more, so the phones keep
+   climbing out from under the tablet edges — see `--cascade-reveal`. */
+.device-cascade__item:nth-child(1),
+.device-cascade__item:nth-child(4) {      /* tablets */
+  --cascade-reveal-y: calc(var(--cascade-tablet-h) * 0.06 * var(--cascade-reveal));
+}
+
+.device-cascade__item:nth-child(2),
+.device-cascade__item:nth-child(3),
+.device-cascade__item:nth-child(5) {      /* phones — all three the same */
+  --cascade-drop-y: var(--cascade-phone-drop);
+  --cascade-reveal-y: calc(var(--cascade-phone-h) * -0.16 * var(--cascade-reveal));
+}
+
+/* Entrance: once the loading screen clears, the frames fade and slide up —
+   tablets first, then the phones — so the tablets register before the
+   cascade fills in behind them. */
+.device-cascade__item > .device-cascade__frame--tablet,
+.device-cascade__item > .device-cascade__frame--phone {
+  opacity: 0;
+  transform: translateY(34px);
+  transition:
+    opacity 0.65s ease,
+    transform 0.75s cubic-bezier(0.22, 0.7, 0.3, 1),
+    filter 0.35s ease;
+}
+
+body.loaded .device-cascade__item > .device-cascade__frame--tablet,
+body.loaded .device-cascade__item > .device-cascade__frame--phone {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.device-cascade__item:nth-child(1) > * { transition-delay: 0.05s; }
+.device-cascade__item:nth-child(4) > * { transition-delay: 0.15s; }
+.device-cascade__item:nth-child(2) > * { transition-delay: 0.3s; }
+.device-cascade__item:nth-child(5) > * { transition-delay: 0.4s; }
+.device-cascade__item:nth-child(3) > * { transition-delay: 0.5s; }
+
+/* Hover: keep the placement, add a small lift and bring forward */
+.device-cascade__item:hover {
+  --cascade-lift: -12px;
+  --cascade-scale: 1.02;
+  z-index: 10;
+}
+
+/* Hover shadows */
+.device-cascade__track:hover .device-cascade__frame--tablet {
+  filter: drop-shadow(0 26px 40px rgba(0, 0, 0, 0.78)) drop-shadow(0 0 26px rgba(110, 7, 243, 0.35));
+}
+
+.device-cascade__track:hover .device-cascade__frame--phone {
+  filter: drop-shadow(0 26px 40px rgba(0, 0, 0, 0.78)) drop-shadow(0 0 26px rgba(110, 7, 243, 0.35));
+}
+
+.device-cascade__track:hover .device-cascade__frame--phone-back {
+  filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.66)) drop-shadow(0 0 20px rgba(110, 7, 243, 0.22));
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .device-cascade {
+    --cascade-tablet-w: min(88vw, 58vh);
+    --cascade-phone-w: calc(var(--cascade-tablet-w) * 0.26);
+  }
+}
+
+@media (max-width: 900px) {
+  .device-cascade {
+    min-height: auto;
+    height: auto;
+    padding-bottom: 3rem;
+    --cascade-tablet-w: min(86vw, 320px);
+    --cascade-phone-w: calc(var(--cascade-tablet-w) * 0.42);
+  }
+  
+  .device-cascade__row {
+    padding: 6rem 1.25rem 0;
+  }
+
+  /* Below the width the overlap needs, the cascade unwraps into a centred,
+     wrapping row of devices. */
+  .device-cascade__track {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 2rem 1.5rem;
+    height: auto;
+  }
+
+  .device-cascade__item {
+    position: static;
+    transform: none !important;
+    z-index: auto;
+    --cascade-offset: 0px;
+  }
+
+  .device-cascade__track:hover .device-cascade__item {
+    transform: translateY(-6px) scale(1.02) !important;
+  }
+
+  .device-cascade__track:hover .device-cascade__frame--tablet,
+  .device-cascade__track:hover .device-cascade__frame--phone,
+  .device-cascade__track:hover .device-cascade__frame--phone-back {
+    filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.72));
+  }
+}
+
+@media (max-width: 600px) {
+  .device-cascade {
+    --cascade-tablet-w: min(88vw, 260px);
+  }
+}
+
+/* Reduced motion: devices sit straight in their final positions, with no
+   entrance slide and no scroll parallax (device-cascade.js skips the
+   listener for the same reason). */
+@media (prefers-reduced-motion: reduce) {
+  .device-cascade__item > .device-cascade__frame--tablet,
+  .device-cascade__item > .device-cascade__frame--phone {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

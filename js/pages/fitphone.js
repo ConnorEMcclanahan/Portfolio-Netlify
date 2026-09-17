@@ -1,17 +1,3 @@
-function initScrollCue() {
-  const scrollCue = document.querySelector('.scroll-down');
-  if (!scrollCue) {
-    return;
-  }
-
-  function toggleCue() {
-    scrollCue.style.opacity = window.scrollY > window.innerHeight * 0.3 ? '0' : '1';
-  }
-
-  window.addEventListener('scroll', toggleCue, { passive: true });
-  toggleCue();
-}
-
 const introSummaryData = {
   title: 'FitPhone Case Study',
   subtitle: 'Digital wellness for healthier phone habits',
@@ -19,7 +5,8 @@ const introSummaryData = {
   meta: [
     { label: 'Role', value: 'UI/UX Designer & Front-end Engineer' },
     { label: 'Timeline', value: '4 weeks' },
-    { label: 'Tools Used', value: 'Flutter, Dart' }
+    { label: 'Tools Used', value: 'Flutter, Dart' },
+    { label: 'GitHub', value: 'github.com/z3r0-21/fitphone', href: 'https://github.com/z3r0-21/fitphone' }
   ],
   story: {
     background: 'FitPhone is an innovative project designed to empower young adults aged 18 to 30 to cultivate intentional smartphone habits through heightened self-awareness. While mobile technology provides undeniable everyday utility, unmonitored device usage directly drives widespread challenges including acute sleep deprivation, reduced cognitive focus, and chronic procrastination. The application addresses these modern friction points by introducing structured behavioral frameworks that turn passive screen interaction into active, mindful choices.',
@@ -28,24 +15,29 @@ const introSummaryData = {
   }
 };
 
+/* Single-column conclusion. Uses the same structure and length as the Diplora
+   case study: one Conclusion column, four titled paragraphs. */
 const finalSectionData = {
   columns: [
     {
-      title: 'How Usability Might Be Improved',
+      title: 'Conclusion',
       items: [
-        { title: 'Local Community Events', copy: 'Connect with local groups to organize real-world fitness events and meetups.' },
-        { title: 'Scalability', copy: 'Expand FitPhone to include more cities and locations over time.' },
-        { title: 'Privacy Adaptations', copy: 'Strengthen data privacy controls as the user base grows.' },
-        { title: 'Continuous Improvement', copy: 'Iterate based on ongoing user feedback post-launch.' }
-      ]
-    },
-    {
-      title: 'Lessons Learned',
-      items: [
-        { title: 'Balance Tech & User Needs', copy: 'Technical requirements must always serve real user goals, not the other way around.' },
-        { title: 'Flutter Deep-Dive', copy: 'Hands-on Flutter development was a major growth opportunity across the whole team.' },
-        { title: 'App Dev Complexity', copy: 'Integrating features, troubleshooting bugs, and App Store prep each required dedicated time.' },
-        { title: 'Client Collaboration', copy: 'Managing meetings, gathering feedback, and iterating based on it was crucial to success.' }
+        {
+          title: 'Digital Wellbeing & User Trust',
+          copy: 'FitPhone treats phone usage as a habit to understand rather than a behaviour to restrict. Goals, guided weekly reflection, and peer accountability replace punitive caps and raw screen-time numbers, so users get encouragement instead of judgement. Privacy controls were kept adaptable so they can be strengthened as the community grows.'
+        },
+        {
+          title: 'Business Value Delivered',
+          copy: 'A cross-platform Flutter app was delivered in four weeks, covering onboarding, home, activities and education, weekly check-ins, and stats. Onboarding questions generate personalised recommendations so users always have an immediate next step, while tracking and gamified achievements keep engagement high. Client feedback sessions and MoSCoW prioritisation kept the feature set focused, and the built product is ready to extend with more locations and a wider community layer.'
+        },
+        {
+          title: 'Advice to Stakeholders',
+          copy: 'Expand the community layer with local events and additional cities, strengthen data privacy controls before the user base grows, and set up a structured post-launch feedback loop. Further device testing and release preparation would reduce risk as the feature set expands.'
+        },
+        {
+          title: 'Key Learnings',
+          copy: 'Technical work only matters when it serves a real user goal. Four weeks of Flutter development was a fast lesson in how much hidden effort sits behind one feature, from integration and debugging to store preparation. Regular client collaboration and honest retrospectives kept the team aligned, and the project confirmed that accountability and reflection motivate change far more than tracking alone.'
+        }
       ]
     }
   ]
@@ -165,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.ProjectPageComponents.renderMockupFlow('#mockup-flow', mockupFlowData);
   }
 
-  initScrollCue();
+  initScrollCue({ threshold: 0.3 });
   initPDF();
   addContentReveals();
   window.addEventListener('scroll', reveal, { passive: true });

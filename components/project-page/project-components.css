@@ -50,12 +50,18 @@ body.project-page-standard .case-study-phase__title {
   border-bottom: 1px solid rgba(110, 7, 243, 0.6);
 }
 
+/* Single source of truth for every phase header (01-06) on every project page.
+   Syne ships two different designs: the regular cut (400-700) and the Extra
+   Bold display cut (800). The 800 cut is the case-study display style, so it is
+   applied once here instead of per phase. Previously only phases 02-04 carried
+   the 800 weight, which left the 01 and 05 headers (and the 06 headers) falling
+   back to the legacy-looking regular cut. */
 body.project-page-standard .case-study-phase h2 {
   margin: 0;
   color: #6E07F3;
   font-family: "Syne", "Plus Jakarta Sans", sans-serif;
   font-size: 1.8rem;
-  font-weight: 700;
+  font-weight: 800;
   text-align: center;
 }
 
@@ -174,15 +180,12 @@ body.project-page-standard .case-study-phase__narrative p {
   line-height: 1.75;
 }
 
-body.project-page-standard #phase-02 .case-study-phase__title h2,
-body.project-page-standard #phase-03 .case-study-phase__title h2,
-body.project-page-standard #phase-04 .case-study-phase__title h2,
-body.project-page-standard #phase-02 .case-study-phase__overview h3,
-body.project-page-standard #phase-03 .case-study-phase__overview h3,
-body.project-page-standard #phase-04 .case-study-phase__overview h3,
-body.project-page-standard #phase-02 .case-study-phase__narrative h3,
-body.project-page-standard #phase-03 .case-study-phase__narrative h3,
-body.project-page-standard #phase-04 .case-study-phase__narrative h3 {
+/* Phase 02-04 used to be the only phases with the heavier 800 weight on their
+   headings. The same weight now applies to every phase, so the 01/05/06
+   overview and narrative headings match the 02 phase exactly. */
+body.project-page-standard .case-study-phase__title h2,
+body.project-page-standard .case-study-phase__overview h3,
+body.project-page-standard .case-study-phase__narrative h3 {
   font-weight: 800;
 }
 
@@ -409,6 +412,26 @@ body.project-page-standard .case-study-nav__inner {
   box-sizing: border-box;
 }
 
+/* Scroll progress bar pinned to the top edge of the bottom nav (shared by all case studies) */
+body.project-page-standard .case-study-nav__progress {
+  position: absolute;
+  top: -1px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+}
+
+body.project-page-standard .case-study-nav__progress-fill {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #6E07F3, #9a53ff);
+  transform: scaleX(0);
+  transform-origin: left center;
+  will-change: transform;
+}
+
 body.project-page-standard .case-study-nav__label {
   color: #6E07F3;
   font-size: 0.7rem;
@@ -547,10 +570,14 @@ body.project-page-standard .case-study-process__inner {
   margin: 0 auto;
 }
 
+/* "THE PROCESS" heading — same Syne Extra Bold display cut as the phase
+   headers so the two never drift apart again. */
 body.project-page-standard .case-study-process h2 {
   margin: 0 0 3rem;
   color: #6E07F3;
+  font-family: "Syne", "Plus Jakarta Sans", sans-serif;
   font-size: 2rem;
+  font-weight: 800;
   letter-spacing: 0.04em;
   text-align: center;
 }
@@ -581,6 +608,113 @@ body.project-page-standard .case-study-process__step span {
   text-decoration: underline;
 }
 
+/* ------------------------------------------------------------------
+   THE PROCESS — hover effects.
+   Each step is its own anchor, so hovering one card animates only
+   that card: the icon lifts + spins into place, the card rises with
+   a purple glow, and a light "shine" sweeps across it.
+   ------------------------------------------------------------------ */
+body.project-page-standard .case-study-process__step {
+  position: relative;
+  padding: 1.5rem 1rem;
+  border-radius: 14px;
+  border: 1px solid transparent;
+  background: rgba(255, 255, 255, 0.02);
+  overflow: hidden;
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.45s ease,
+    background-color 0.45s ease,
+    box-shadow 0.45s ease;
+  will-change: transform;
+}
+
+/* Light sweep that stays hidden until hovered. */
+body.project-page-standard .case-study-process__step::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    105deg,
+    rgba(255, 255, 255, 0) 20%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(255, 255, 255, 0) 80%
+  );
+  transform: skewX(-20deg);
+  transition: left 0.75s ease;
+  pointer-events: none;
+}
+
+body.project-page-standard .case-study-process__step:hover {
+  transform: translateY(-8px);
+  border-color: rgba(110, 7, 243, 0.55);
+  background: rgba(110, 7, 243, 0.08);
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.5),
+    0 0 28px rgba(110, 7, 243, 0.35);
+}
+
+body.project-page-standard .case-study-process__step:hover::before {
+  left: 125%;
+}
+
+body.project-page-standard .case-study-process__step ion-icon {
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.3s ease;
+}
+
+body.project-page-standard .case-study-process__step:hover ion-icon {
+  transform: translateY(-6px) rotate(-8deg) scale(1.15);
+  color: #9a53ff;
+}
+
+/* Label: swap the static underline for an animated one that grows on hover. */
+body.project-page-standard .case-study-process__step span {
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 0.2rem;
+}
+
+body.project-page-standard .case-study-process__step span::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: #9a53ff;
+  transform: translateX(-50%);
+  transition: width 0.35s ease;
+}
+
+body.project-page-standard .case-study-process__step:hover span::after {
+  width: 100%;
+}
+
+/* Keyboard users get the same feedback as pointer users. */
+body.project-page-standard .case-study-process__step:focus-visible {
+  transform: translateY(-8px);
+  border-color: rgba(110, 7, 243, 0.55);
+  background: rgba(110, 7, 243, 0.08);
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.5),
+    0 0 28px rgba(110, 7, 243, 0.35);
+  outline: 2px solid #9a53ff;
+  outline-offset: 2px;
+}
+
+body.project-page-standard .case-study-process__step:focus-visible ion-icon {
+  transform: translateY(-6px) rotate(-8deg) scale(1.15);
+  color: #9a53ff;
+}
+
+body.project-page-standard .case-study-process__step:focus-visible span::after {
+  width: 100%;
+}
+
 body.project-page-standard .case-study-nav a:hover,
 body.project-page-standard .case-study-nav a:focus-visible {
   color: #fff;
@@ -601,6 +735,21 @@ body.project-page-standard .project-section h3.final-title {
   text-align: center !important;
   align-items: center;
   gap: 0;
+}
+
+/* Conclusion / reflection headings ("Conclusion", "Medical Compliance &
+   Safety", ...) render exactly like the phase headers ("05 / Handover - ..."):
+   the Syne Extra Bold display cut at the same 1.8rem size and accent color.
+   Font-size and color are pinned with !important because the shared h1-h3
+   baseline (2rem !important) and the `.project-section h3` white color would
+   otherwise win the cascade on every project page. */
+body.project-page-standard .final-title,
+body.project-page-standard .project-section h3.final-title,
+body.project-page-standard .final-col h3.final-title {
+  font-family: "Syne", "Plus Jakarta Sans", sans-serif;
+  font-weight: 800;
+  line-height: 1.25;
+  color: #6E07F3 !important;
 }
 
 body.project-page-standard .text-column {
@@ -857,6 +1006,28 @@ body.project-page-standard .intro-meta ul {
   color: #fff;
   margin-bottom: 0.5rem;
   font-size: 1.05rem;
+}
+
+/* Conclusion items must look the same on every project page. The page-level
+   heading rules differ (Diplora and Phillips both define their own
+   `.project-section h4` treatment), so the conclusion treatment is pinned here
+   with enough specificity to win on all of them. Sub-headings match the phase
+   narrative h3 ("Client Delivery Package & Maintenance Documentation"):
+   Plus Jakarta Sans at 2rem/800 in the accent color. */
+body.project-page-standard .final-col h4.final-item-title {
+  color: #6E07F3;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 2rem !important;
+  font-weight: 800;
+  line-height: 1.2;
+  margin: 0 0 0.75rem;
+}
+
+body.project-page-standard .final-col .final-item-copy {
+  color: var(--case-muted) !important;
+  font-size: 1.125rem;
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
 }
 
 .final-item-copy {
@@ -1486,3 +1657,21 @@ body.project-page-standard .intro-meta ul {
     gap: 0.4rem;
   }
 }
+
+/* Reduced motion: keep the process cards legible but drop every movement. */
+@media (prefers-reduced-motion: reduce) {
+  body.project-page-standard .case-study-process__step,
+  body.project-page-standard .case-study-process__step::before,
+  body.project-page-standard .case-study-process__step ion-icon,
+  body.project-page-standard .case-study-process__step span::after {
+    transition: none;
+  }
+
+  body.project-page-standard .case-study-process__step:hover,
+  body.project-page-standard .case-study-process__step:focus-visible,
+  body.project-page-standard .case-study-process__step:hover ion-icon,
+  body.project-page-standard .case-study-process__step:focus-visible ion-icon {
+    transform: none;
+  }
+}
+

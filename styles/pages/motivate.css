@@ -2,34 +2,116 @@
   background: rgba(0, 0, 0, 0.5) !important;
 }
 
-#final-container.final-section {
-  position: relative;
-  gap: 4rem;
+/* The conclusion renders as a single centred column and inherits the shared
+   final-columns styles from components/project-page/project-components.css. */
+
+/* ============================================================
+   SUGGESTED PROJECT SECTION — sits beside the reflection
+   The reflection/final-container stays centered in the main
+   column; the suggested projects sit in a fixed sidebar.
+   ============================================================ */
+.suggestion-row {
+  display: grid;
+  grid-template-columns: 340px 1fr 340px;
+  gap: 2rem;
+  width: 100%;
+  margin: 8rem auto 4rem;
+  padding: 0 2rem;
 }
 
-#final-container.final-section::before {
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background: #6E07F3;
-  transform: translateX(-50%);
+.suggestion-row > #final-container,
+.suggestion-row > #reflection {
+  grid-column: 2;
+  max-width: 750px;
+  width: 100%;
+  justify-self: center;
 }
 
-#final-container .final-col--border {
-  border-left: none;
-  padding-left: 0;
+.suggestion-row > #suggested-projects {
+  grid-column: 3;
+  width: 340px;
+}
+
+.suggested-projects-inner {
+  position: sticky;
+  top: 6rem;
+}
+
+.suggested-projects-eyebrow {
+  color: #6E07F3 !important;
+  font-family: 'Syne', 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin: 0 0 1.5rem;
+}
+
+.suggested-project-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 1.5rem;
+  border-radius: 10px;
+  background: #101010;
+  border: 1px solid rgba(110, 7, 243, 0.35);
+  text-decoration: none;
+  color: #fff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.suggested-project-card:hover,
+.suggested-project-card:focus-visible {
+  transform: translateY(-3px);
+  border-color: #6E07F3;
+  box-shadow: 0 8px 22px rgba(110, 7, 243, 0.25);
+}
+
+.suggested-project-number {
+  font-family: 'Syne', 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.75rem;
+  color: #6E07F3;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.suggested-project-title {
+  font-family: 'Syne', 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.3;
+}
+
+.suggested-project-blurb {
+  font-size: 0.92rem;
+  color: #b8b8b8;
+  line-height: 1.6;
 }
 
 @media (max-width: 768px) {
-  #final-container.final-section::before {
-    display: none;
+  .suggestion-row {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin: 6rem auto 2rem;
+    padding: 0 1.25rem;
+  }
+
+  .suggestion-row > #final-container,
+  .suggestion-row > #reflection {
+    grid-column: 1;
+  }
+
+  .suggestion-row > #suggested-projects {
+    grid-column: 1;
+    width: 100%;
+  }
+
+  .suggested-projects-inner {
+    position: static;
   }
 }
 
-/* Migrated from motivate.html */
 /* Base Typography */
     :root {
       --primary: #6E07F3;
@@ -123,47 +205,9 @@
       font-size: 2.5rem !important;
     }
 
-    /* Parallax section adjustment */
+/* Parallax section adjustment */
     .parallax-1 {
       min-height: 100vh;
-    }
-
-    /* scroll-down indicator — purple + attention-grabbing */
-    .scroll-down{
-      position:absolute;
-     
-  bottom:32px;
-      left:50%;
-      transform:translateX(-50%);
-      font-size:3.25rem;
-      color:#b18bff;
-      cursor:pointer;
-      text-decoration:none;
-      z-index:5;
-      filter:drop-shadow(0 0 6px #7f5af0) drop-shadow(0 0 16px #7f5af0);
-      animation:
-        bounceDown 1.4s infinite ease-out,
-        pulseGlow 2.4s infinite ease-in-out;
-      transition:opacity .3s ease;
-    }
-
-    @keyframes bounceDown{
-      0%,20%,50%,80%,100%{transform:translate(-50%,0);}
-      40%{transform:translate(-50%,-12px) scale(1.1);}
-      60%{transform:translate(-50%,-6px);}
-    }
-
-    @keyframes pulseGlow{
-      0%,100%{filter:drop-shadow(0 0 6px #7f5af0) drop-shadow(0 0 16px #7f5af0);}
-      50%     {filter:drop-shadow(0 0 12px #a78bff) drop-shadow(0 0 28px #a78bff);}
-    }
-
-    @media(max-width:480px){
-      .scroll-down{font-size:2.5rem;}
-      
-      .parallax-1 {
-        min-height: 100vh;
-      }
     }
 
     /* Standardized font size system */
@@ -1598,16 +1642,8 @@ body.project-page-standard #intro-summary .intro-meta-item a:focus-visible {
   border-bottom-color: #9a53ff;
 }
 /* ============================================================
-   FINAL COLUMNS: force the two columns side by side on desktop
-   (Motivate-only — scoped by the #final-container id).
-   The shared .final-col rule is `flex: 0 0 auto; max-width: 700px`
-   inside a wrapping flex container, so a ~700px second column
-   wraps below the first inside the 1200px container. Equal
-   flex-basis keeps both columns in one row.
+   CONCLUSION: single centred column, matching the shared
+   final-columns styles used across the project pages (see
+   components/project-page/project-components.css). No
+   side-by-side columns.
    ============================================================ */
-#final-container.final-section .final-col {
-  flex: 1 1 0;
-  min-width: 0;
-  max-width: none;
-  margin: 0;
-}

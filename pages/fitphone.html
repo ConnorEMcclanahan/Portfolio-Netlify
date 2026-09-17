@@ -9,55 +9,47 @@
   <link rel="stylesheet" href="../styles/frontend.css"/>
   <link rel="stylesheet" href="../components/navbar/navbar.css"/>
   <link rel="stylesheet" href="../components/footer/footer.css"/>
+  <link rel="stylesheet" href="../components/custom-cursor/custom-cursor.css"/>
   <link rel="stylesheet" href="../components/project-page/project-components.css"/>
+  <link rel="stylesheet" href="../components/staggered-mockup/staggered-mockup.css"/>
   <link rel="stylesheet" href="../styles/mobile-responsive.css"/>
   <link rel="stylesheet" href="../styles/pages/fitphone.css"/>
+  <link rel="stylesheet" href="../styles/pages/project-image-hover.css"/>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <title>FitPhone</title>
+  <title>FitPhone | Community-based digital wellness app</title>
   
   <!-- PDF.js library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
   
   <link rel="stylesheet" href="../components/loading-screen/loading-screen.css" />
+  <link rel="stylesheet" href="../components/scroll-cue/scroll-cue.css" />
 </head>
 
 
 <body class="project-page-standard">
 
-  <div class="parallax-1" id="top">
-    <a href="#intro-summary" class="scroll-down" aria-label="Scroll down">
-      <!-- youâ€™re already loading Ionicons, so we can reuse it -->
-      <ion-icon name="chevron-down-outline"></ion-icon>
-    </a>
+  <!-- Shared Loading Screen Component -->
+  <div id="loader" class="loading-screen">
+    <div class="loading-screen__text">Loading...</div>
+  </div>
+
+  <div class="staggered-mockup" id="staggered-mockup-hero" id="top">
     <nav class="navbar">
       <div class="navbar-container">
-        <a href="../index.html" class="navbar-logo">
-          <img src="../Images/logo.png" alt="logo" class="navbar-logo-img"/>
-        </a>
-        <button class="navbar-burger" aria-label="Toggle navigation menu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
+        <a href="../index.html" class="navbar-logo"><img src="../images/logo.png" alt="logo" class="navbar-logo-img" /></a>
+        <button class="navbar-burger" aria-label="Toggle navigation menu"><span></span><span></span><span></span></button>
         <ul class="navbar-menu">
           <li><a href="../index.html#about">About</a></li>
-          <li><a href="index.html#projects">Projects</a></li>
-          <li><a href="../PDFS/Resume.pdf">Resume</a></li>
-          <li><a href="mailto:connor.e.mcclanahan@gmail.com">Contact</a></li>
+          <li><a href="../index.html#projects">Projects</a></li>
+          <li><a href="../pdfs/resume.pdf">Resume</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
     </nav>
-    <header>
-      <!-- Shared Loading Screen Component -->
-      <div id="loader" class="loading-screen">
-        <div class="loading-screen__text">Loading...</div>
-      </div>
-      <h1 class="white-text hero-title-spacer"></h1>
-    </header>
   </div>
 
   <section id="intro-summary" class="reveal"></section>
@@ -286,7 +278,21 @@
     </div>
   </section>
 
-  <section id="final-container" class="project-section reveal"></section>
+  <div class="suggestion-row">
+    <section id="final-container" class="project-section reveal"></section>
+
+    <!-- You might also like -->
+    <section id="suggested-projects" class="project-section reveal">
+      <div class="suggested-projects-inner">
+        <p class="suggested-projects-eyebrow">You might also like</p>
+        <a href="diplora.html" class="suggested-project-card">
+          <span class="suggested-project-number">01</span>
+          <span class="suggested-project-title">Diplora ECG Companion</span>
+          <span class="suggested-project-blurb">Accessible ECG sensor app for older adults.</span>
+        </a>
+      </div>
+    </section>
+  </div>
 
   <footer id="contact" class="footer-section reveal">
     <div class="footer-cta">
@@ -320,11 +326,6 @@
   
   
 
-  <a href="https://github.com/z3r0-21/fitphone" class="github-corner" aria-label="View source on GitHub" target="_blank">
-    <svg viewBox="0 0 16 16" width="80" height="80">
-      <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
-    </svg>
-  </a>
   <!-- Three.js loader: non-overlapping spheres -->
   
   <script src="../components/project-page/utils.js" defer></script>
@@ -332,8 +333,55 @@
   <script src="../components/project-page/final-columns.js" defer></script>
   <script src="../components/project-page/mockup-flow.js" defer></script>
   <script src="../components/project-page/case-study-nav.js" defer></script>
+  <script src="../components/staggered-mockup/staggered-mockup.js" defer></script>
   <script src="../js/pages/fitphone.js" defer></script>
   <script src="../components/navbar/navbar.js" defer></script>
   <script src="../components/loading-screen/loading-screen.js" defer></script>
+  <script src="../components/custom-cursor/custom-cursor.js" defer></script>
+  <script src="../components/scroll-cue/scroll-cue.js" defer></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      if (window.ProjectPageComponents && window.ProjectPageComponents.renderStaggeredMockup) {
+        window.ProjectPageComponents.renderStaggeredMockup('#staggered-mockup-hero', {
+          bg: '#0a0a0a',
+          title: 'FitPhone',
+          subtitle: '',
+          ariaLabel: 'FitPhone app screens',
+          noLabels: true,
+          staggers: [
+            'clamp(60px, 5vw, 85px)',        /* Stats - lower */
+            'clamp(-180px, -13vw, -240px)',  /* Journal - VERY HIGH */
+            'clamp(-60px, -5vw, -90px)',     /* Home - more middle */
+            'clamp(-180px, -13vw, -240px)',  /* Activities - VERY HIGH */
+            'clamp(50px, 4vw, 70px)'         /* Education - lower */
+          ],
+          items: [
+            { src: '../images/mockups/stats.png', alt: 'Stats screen', label: 'Stats' },
+            { src: '../images/mockups/journelentry/whatsapp image 2025-04-27 at 23.57.24-portrait.png', alt: 'Journal Entry / Weekly Check-in screen', label: 'Journal Entry' },
+            { src: '../images/mockups/home/whatsapp image 2025-04-27 at 23.59.48-portrait.png', alt: 'Home Screen', label: 'Home Screen' },
+            { src: '../images/mockups/activty/whatsapp image 2025-04-27 at 23.57.23-portrait.png', alt: 'Activities & Education screen', label: 'Activities' },
+            { src: '../images/mockups/education.png', alt: 'Education screen', label: 'Education' }
+          ]
+        });
+      }
+    });
+  </script>
+
+  <!-- Custom cursor — the dot replaces the native pointer (hidden by
+       body.has-custom-cursor), the ring trails it. Driven by
+       initCustomCursor() in ../components/custom-cursor/custom-cursor.js. -->
+  <div class="custom-cursor" aria-hidden="true">
+    <span class="custom-cursor__ring"></span>
+    <span class="custom-cursor__dot"></span>
+  </div>
+
+  <!-- Ambient halo behind the cursor. Kept as its own root-level layer
+       because mix-blend-mode: screen must live on the layer itself — a
+       blended child would be confined by its parent's stacking context.
+       Driven by initCustomCursor() too. -->
+  <div class="pointer-glow" aria-hidden="true">
+    <span class="pointer-glow__halo"></span>
+  </div>
 </body>
 </html>

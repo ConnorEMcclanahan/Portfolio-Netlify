@@ -11,6 +11,7 @@
 
     const metaLabels = [
       ['Role', /role/i],
+      ['Context', /context/i],
       ['Timeline', /duration|timeline/i],
       ['Tools Used', /tools|tech|stack|design/i],
       ['GitHub', /github|repository|source/i]

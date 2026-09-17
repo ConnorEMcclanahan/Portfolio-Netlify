@@ -21,5 +21,13 @@
       }
       loader.dispatchEvent(evt);
     }
+
+    // The loading screen was the only thing covering the hero, so this class
+    // is the "the page is actually visible now" signal. The hero entrance
+    // animations (device-cascade, staggered-mockup) wait on it before they
+    // play — otherwise they would run hidden behind the loader.
+    if (document.body) {
+      document.body.classList.add('loaded');
+    }
   });
 })();
