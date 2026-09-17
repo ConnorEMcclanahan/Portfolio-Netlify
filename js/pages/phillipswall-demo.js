@@ -7,25 +7,25 @@
 
   var DEMO_CLUSTERS = [
     { id:1, q:"What can AI do for you?", g:"linear-gradient(135deg,#008ce9 0%,#006db3 100%)", x:30, y:38,
-      a:["AI can streamline my work by automating repetitive tasks.","It could help me make smarter financial decisions.","AI can provide personalized health tips based on my data.","It could assist me in learning new languages faster.","AI could help me organize my time more efficiently.","It can offer targeted suggestions for my professional growth.","AI helps me draft emails and summarize long documents instantly."] },
-    { id:2, q:"What daily chore would you like AI to take over?", g:"linear-gradient(135deg,#8e00c5 0%,#6b009f 100%)", x:14, y:64,
-      a:["I would love AI to handle sorting and folding laundry.","It could plan and prepare my weekly grocery list.","AI can manage my home cleaning schedule automatically."] },
-    { id:3, q:"What AI solution would you like to design?", g:"linear-gradient(135deg,#008ce9 0%,#006db3 100%)", x:30, y:16,
-      a:["An AI tutor that adapts lessons based on learning pace.","An AI that monitors environmental pollution levels.","A mental health companion that offers daily check-ins.","An AI that assists artists in creating new concepts.","A community safety AI that predicts areas needing help."] },
-    { id:4, q:"What is your most remarkable experience with AI?", g:"linear-gradient(135deg,#008ce9 0%,#006db3 100%)", x:16, y:82,
-      a:["When AI helped diagnose my skin condition from a photo.","Seeing GPT write poetry that moved me to tears."] },
-    { id:5, q:"What makes you afraid of AI?", g:"linear-gradient(135deg,#c90035 0%,#9e002a 100%)", x:68, y:30,
-      a:["Deepfakes making it impossible to trust what you see online."] },
-    { id:6, q:"How should AI be regulated?", g:"linear-gradient(135deg,#0a7c53 0%,#075e3c 100%)", x:62, y:68,
-      a:["Strong transparency requirements for AI use.","Independent auditing before deployment at scale.","Clear accountability chains for AI decisions.","International cooperation on AI safety standards."] },
-    { id:7, q:"What role should AI play in creative work?", g:"linear-gradient(135deg,#8e00c5 0%,#6b009f 100%)", x:46, y:56,
-      a:["AI amplifies human creativity rather than replacing it.","I worry it will devalue years of artistic practice.","It's democratizing creativity for everyone.","The best results come from humans and AI together.","I'm concerned about AI content drowning out humans.","AI tools should be assistants, not replacements.","Nothing beats the human touch in real art.","AI art feels soulless without human direction.","I use it for brainstorming but finish everything myself."] },
-    { id:8, q:"How will people look back on today's AI developments a hundred years from now?", g:"linear-gradient(135deg,#c90035 0%,#9e002a 100%)", x:86, y:60,
-      a:["They may see it as a pioneering era for technology.","It could be viewed as a time of ethical challenges."] },
-    { id:9, q:"What keeps you up at night?", g:"linear-gradient(135deg,#c90035 0%,#9e002a 100%)", x:80, y:14,
-      a:["The pace of change outrunning our wisdom.","My kids growing up in a world I don't understand."] },
-    { id:10, q:"What AI feature can't you live without?", g:"linear-gradient(135deg,#0a7c53 0%,#075e3c 100%)", x:38, y:90,
-      a:["Real-time translation when I travel abroad."] }
+      a:["AI can streamline my work by automating repetitive tasks.", "It could help me make smarter financial decisions.", "AI can provide personalized health tips based on my data.", "It could assist me in learning new languages faster.", "AI could help me organize my time more efficiently.", "It can offer targeted suggestions for my professional growth.", "AI helps me draft emails and summarize long documents instantly."] },
+    { id:2, q:"What daily chore would you like AI to take over?", g:"linear-gradient(135deg,#008ce9 0%,#006db3 100%)", x:14, y:64,
+      a:["I would love AI to handle sorting and folding laundry.", "It could plan and prepare my weekly grocery list.", "AI can manage my home cleaning schedule automatically.", "I'd like AI to handle organizing my inbox.", "It could take care of daily meal prep and cooking.", "AI could manage pet feeding and tracking routines."] },
+    { id:3, q:"What AI solution would you like to design?", g:"linear-gradient(135deg,#8e00c5 0%,#6b009f 100%)", x:30, y:16,
+      a:["An AI tutor that adapts lessons based on learning pace.", "An AI that monitors environmental pollution levels.", "A mental health companion that offers daily check-ins.", "An AI that assists artists in creating new concepts.", "A community safety AI that predicts areas needing help.", "A budgeting assistant that offers real-time spending tips."] },
+    { id:4, q:"What is your most remarkable experience with AI?", g:"linear-gradient(135deg,#008ce9 0%,#006db3 100%)", x:68, y:30,
+      a:["When AI helped diagnose my skin condition from a photo.", "Seeing GPT write poetry that moved me to tears.", "AI correctly predicting the weather changed my plans.", "A recommendation from AI introduced me to my favorite book.", "AI-generated music based on my mood was surprising.", "AI-powered virtual reality gave me a new perspective."] },
+    { id:5, q:"What worries you about AI?", g:"linear-gradient(135deg,#008ce9 0%,#006db3 100%)", x:62, y:68,
+      a:["Deepfakes making it impossible to trust what you see online.", "AI may cause a loss of privacy.", "It could make humans too dependent on technology.", "AI could replace jobs, leading to unemployment.", "The misuse of AI in spreading misinformation.", "AI might be used for surveillance without consent."] },
+    { id:6, q:"Does AI make life easier or more complicated?", g:"linear-gradient(135deg,#ba5719 0%,#9f4515 100%)", x:46, y:56,
+      a:["It generally simplifies routine tasks.", "Sometimes it adds a learning curve with new interfaces.", "AI can make things more efficient, saving time.", "It can complicate things if it malfunctions or is biased.", "Overall, it helps reduce mental load in daily life.", "For complex tasks, AI can actually add confusion."] },
+    { id:7, q:"Who should be responsible for AI?", g:"linear-gradient(135deg,#008ce9 0%,#006db3 100%)", x:86, y:60,
+      a:["The developers creating and training AI models.", "Governments need to set clear regulations.", "Companies that deploy AI should have accountability.", "An independent AI ethics board might help.", "Consumers should also understand AI usage risks.", "Collaboration between all stakeholders is essential."] },
+    { id:8, q:"How will people look back on today's AI developments a hundred years from now?", g:"linear-gradient(135deg,#0a7c53 0%,#075e3c 100%)", x:80, y:14,
+      a:["They may see it as a pioneering era for technology.", "It could be viewed as a time of ethical challenges.", "People might laugh at how basic today's AI actually was.", "It might be seen as the beginning of human-AI collaboration.", "Future generations may consider it a critical turning point.", "They could view it as a time filled with optimism and fear."] },
+    { id:9, q:"What problem do you hope AI might solve?", g:"linear-gradient(135deg,#0a7c53 0%,#075e3c 100%)", x:34, y:74,
+      a:["Finding sustainable solutions for climate change through better modeling.", "Improving access to quality healthcare globally.", "Helping reduce food waste and improve distribution.", "Supporting mental health with accessible resources.", "Solving global educational inequality through tutoring.", "Enhancing wildlife protection and biodiversity."] },
+    { id:10, q:"What AI applications would you hate to do without?", g:"linear-gradient(135deg,#0a7c53 0%,#075e3c 100%)", x:20, y:22,
+      a:["AI-powered virtual assistants that understand context.", "Recommendation algorithms for movies and music.", "AI-powered health trackers that catch irregularities.", "Language translation apps like Google Translate.", "AI for helping manage schedules and reminders.", "Navigation apps that learn routes and suggest better ones."] }
   ];
 
   var gridEl, overlayEl, stackEl;
@@ -43,7 +43,7 @@
     var map = {
       "008ce9": "#BFE3FF",
       "8e00c5": "#E4C6FF",
-      "c90035": "#FFC4C4",
+      "ba5719": "#FFE5C4",
       "0a7c53": "#C6F2D4"
     };
     return map[hex] || "#BFE3FF";
@@ -62,7 +62,7 @@
     var bubbleSize = Math.min(88, 36 + bubbleCount * 9);
     var bubble = document.createElement("div");
     bubble.className = "answer-bubble";
-    bubble.style.background = cluster.g;
+    bubble.style.background = clusterPastelColor(cluster.g);
     bubble.style.width = bubbleSize + "px";
     bubble.style.height = bubbleSize + "px";
     bubble.style.left = "0";
@@ -141,19 +141,6 @@
     // Card background color: map the cluster's gradient to a soft pastel so
     // cards are easy to read on. The bubble itself keeps the full gradient;
     // cards use the pastel equivalent so text stays high-contrast.
-    function clusterPastelColor(g) {
-      if (!g) return "#BFE3FF";
-      var hex = (g.match(/#([0-9a-fA-F]{6})/) || [])[1];
-      if (!hex) return "#BFE3FF";
-      hex = hex.toLowerCase();
-      var map = {
-        "008ce9": "#BFE3FF",
-        "8e00c5": "#E4C6FF",
-        "c90035": "#FFC4C4",
-        "0a7c53": "#C6F2D4"
-      };
-      return map[hex] || "#BFE3FF";
-    }
     var cardBg = clusterPastelColor(cluster.g);
     var textColor = "#1e1b4b";
     var textColorMuted = "#4b5563";
@@ -169,15 +156,6 @@
         var dot = document.createElement("div");
         dot.className = "answer-card__dot";
         card.appendChild(dot);
-
-        // Pill badge — "YOU" only shown on the focused card (the one the
-        // user selected). In the idle fan no card carries the YOU tag; the
-        // cluster/bubble on the graph already signals ownership.
-        var badge = document.createElement("div");
-        badge.className = "answer-card__badge";
-        badge.textContent = "YOU";
-        badge.style.display = "none";
-        card.appendChild(badge);
 
         // Question (upper third of card)
         var questionEl = document.createElement("div");
@@ -285,9 +263,6 @@
       card.style.opacity = opacity;
       card.classList.toggle("focused", isFocused);
       card.classList.toggle("hovered", isHovered);
-      // YOU badge: only the focused card carries it
-      var badge = card.querySelector(".answer-card__badge");
-      if (badge) badge.style.display = isFocused ? "" : "none";
       // Color state: cards inherit their background from the cluster gradient
       // (set at creation time); no card-single/card-multi class toggling needed.
     });
@@ -306,7 +281,6 @@
     setTimeout(function () { stackEl.innerHTML = ""; }, 300);
     if (footerCounter && footerCounter.parentNode) footerCounter.parentNode.removeChild(footerCounter);
     footerCounter = null;
-    startAutoHoverTimer();
   }
 
   function init() {
