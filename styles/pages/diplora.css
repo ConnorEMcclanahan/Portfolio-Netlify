@@ -1463,3 +1463,192 @@
   }
 }
 
+/* Final Design uses the shared mockup-flow renderer and FitPhone's editorial layout. */
+body.project-page-standard .case-study-phase--wide-final .case-study-phase__content {
+  display: contents;
+}
+
+body.project-page-standard .case-study-phase--wide-final .case-study-phase__content > .project-section {
+  grid-column: 2;
+}
+
+body.project-page-standard .case-study-phase--wide-final #final-design {
+  grid-column: 1 / -1;
+  width: 100%;
+  max-width: none;
+  margin: 0 0 2rem;
+  padding: 1rem 2rem 2rem;
+  background: #000;
+}
+
+body.project-page-standard #final-design > .text-column {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 0 2rem;
+  text-align: center;
+}
+
+body.project-page-standard #final-design > .text-column h3,
+body.project-page-standard #final-design #mockup-flow .mockup-step-title {
+  display: block;
+  width: 100%;
+  margin: 0 0 1.5rem;
+  padding: 0.9rem 1.25rem;
+  border: 1px solid #6E07F3;
+  background: #050505;
+  color: #6E07F3;
+  font-family: "Syne", "Plus Jakarta Sans", sans-serif;
+  font-size: 1.8rem !important;
+  text-align: center !important;
+}
+
+body.project-page-standard #final-design .final-design-prototype-link {
+  max-width: 78ch;
+  margin: 0 auto;
+  padding: 1.5rem;
+  text-align: left;
+}
+
+body.project-page-standard #final-design .final-design-prototype-link p {
+  margin: 0 0 1rem;
+  color: var(--case-muted);
+}
+
+body.project-page-standard #final-design .final-design-prototype-link h4 {
+  margin: 0 0 1rem;
+}
+
+body.project-page-standard #final-design .final-design-prototype-link a {
+  display: inline-block;
+  padding: 0.5rem 0;
+  color: #6E07F3;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+
+body.project-page-standard #final-design .final-design-prototype-link a:hover,
+body.project-page-standard #final-design .final-design-prototype-link a:focus-visible {
+  color: #9a53ff;
+  text-decoration-thickness: 2px;
+}
+
+body.project-page-standard #final-design .final-design-prototype-link a:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
+}
+
+body.project-page-standard #final-design > .final-design-showcase {
+  display: block;
+  width: 100%;
+  max-width: 1200px;
+  height: auto;
+  margin: 2rem auto 3rem;
+}
+
+body.project-page-standard #final-design #mockup-flow .mockup-step {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-rows: auto auto 1fr;
+  gap: 0;
+  align-items: start;
+  max-width: none;
+  margin: 0 0 3rem;
+  padding: 2rem;
+  background: transparent;
+}
+
+body.project-page-standard #final-design #mockup-flow .mockup-step-text {
+  display: contents;
+}
+
+body.project-page-standard #final-design #mockup-flow .mockup-step-title {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  width: calc(100% + 4rem);
+  margin: -2rem 0 2rem -2rem;
+}
+
+body.project-page-standard #final-design #mockup-flow .mockup-step-inline-title {
+  display: block;
+  grid-column: 1;
+  grid-row: 2;
+  margin: 0;
+  padding: 1.5rem 1.5rem 0;
+  color: #6E07F3;
+  font-family: "Syne", "Plus Jakarta Sans", sans-serif;
+  font-size: max(1.25rem, 20px) !important;
+  text-align: left !important;
+}
+
+body.project-page-standard #final-design #mockup-flow .mockup-step-copy {
+  grid-column: 1;
+  grid-row: 3;
+  margin: 0;
+  padding: 1.5rem;
+  font-size: 1.05rem;
+  line-height: 1.75;
+  text-align: left;
+}
+
+body.project-page-standard #final-design #mockup-flow .mockup-step-copy p {
+  margin: 0;
+  color: var(--case-muted);
+}
+
+body.project-page-standard #final-design #mockup-flow .mockup-step-copy p + p {
+  margin-top: 1.25rem;
+}
+
+body.project-page-standard #final-design #mockup-flow .mockup-visual {
+  grid-column: 2;
+  grid-row: 2 / 4;
+  align-self: center;
+  width: 100%;
+  min-width: 0;
+  padding: 0;
+}
+
+body.project-page-standard #final-design #mockup-flow .mockup-step-image {
+  display: block;
+  width: 68%;
+  max-width: 360px;
+  height: auto;
+  margin: 0 auto;
+  object-fit: contain;
+}
+
+@media (max-width: 768px) {
+  body.project-page-standard .case-study-phase--wide-final .case-study-phase__content {
+    display: block;
+  }
+
+  body.project-page-standard .case-study-phase--wide-final #final-design {
+    padding: 1rem 0 0;
+  }
+
+  body.project-page-standard #final-design #mockup-flow .mockup-step {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 1.25rem;
+  }
+
+  body.project-page-standard #final-design #mockup-flow .mockup-step-title {
+    width: calc(100% + 2.5rem);
+    margin: -1.25rem 0 1rem -1.25rem;
+  }
+
+  body.project-page-standard #final-design #mockup-flow .mockup-step-inline-title,
+  body.project-page-standard #final-design #mockup-flow .mockup-step-copy {
+    padding: 0.75rem 0;
+  }
+
+  body.project-page-standard #final-design #mockup-flow .mockup-visual {
+    margin-top: 1rem;
+  }
+}
+

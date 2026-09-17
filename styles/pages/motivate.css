@@ -982,7 +982,7 @@ body.project-page-standard #mockup-flow.mockup-flow--editorial .mockup-step {
   align-items: stretch;
   margin: 0 0 3rem;
   padding: 2rem;
-  background: #151515;
+  background: transparent;
 }
 
 body.project-page-standard #mockup-flow.mockup-flow--editorial .mockup-step-text {
@@ -1365,7 +1365,7 @@ body.project-page-standard #mockup-flow .mockup-step {
   margin: 0 0 3rem;
   padding: 2rem;
   border-top: 1px solid var(--case-line);
-  background: #151515;
+  background: transparent;
 }
 
 body.project-page-standard #mockup-flow .mockup-step-text {
@@ -1407,52 +1407,23 @@ body.project-page-standard #mockup-flow .mockup-visual {
   padding: 0;
 }
 
-/* Tablet frames — identical treatment to the device-cascade hero tablets:
-   brushed-metal gradient slab, inset screen ring, camera dot on the top
-   bezel, soft drop shadow. --tablet-bezel mirrors the hero's
-   --cascade-bezel formula (clamp(16px, frame-width * 0.045, cap)); the
-   in-column frames are ~half the hero's width, so the vw term is scaled
-   to land on the same proportional thickness (~24px at a 536px frame). */
+/* Preserve tablet sizing without a painted frame around the image.
+   Shadows are applied to the PNG itself by the shared mockup stylesheet. */
 body.project-page-standard #mockup-flow .mockup-visual--tablet {
   --tablet-bezel: clamp(14px, 1.7vw, 28px);
-  position: relative;
   max-width: none;
   width: 100%;
   box-sizing: border-box;
   padding: var(--tablet-bezel);
-  border-radius: calc(var(--tablet-bezel) * 1.6);
-  overflow: hidden;
-  background: linear-gradient(155deg, #43434e 0%, #1b1b21 42%, #09090c 100%);
-  box-shadow:
-    inset 0 0 0 1px rgba(255, 255, 255, 0.16),
-    inset 0 0 0 2px rgba(0, 0, 0, 0.55);
-  filter: drop-shadow(0 24px 36px rgba(0, 0, 0, 0.7));
+  overflow: visible;
+  background: transparent;
+  box-shadow: none;
 }
 
-/* Front camera on the top bezel — the same dot the hero tablets carry. */
-body.project-page-standard #mockup-flow .mockup-visual--tablet::before {
-  content: "";
-  position: absolute;
-  top: calc(var(--tablet-bezel) * 0.3);
-  left: 50%;
-  width: max(3px, calc(var(--tablet-bezel) * 0.32));
-  height: max(3px, calc(var(--tablet-bezel) * 0.32));
-  transform: translateX(-50%);
-  border-radius: 50%;
-  background: #05070c;
-  box-shadow: inset 0 0 0 1px rgba(130, 150, 200, 0.45);
-  z-index: 2;
-  pointer-events: none;
-}
-
-/* Screen sits flush between the bezels and eases into the frame — hero
-   tablets round their screenshot with the same fraction of the bezel. */
 body.project-page-standard #mockup-flow .mockup-visual--tablet .mockup-step-image {
   width: 100%;
   max-width: none;
   margin: 0 auto;
-  border-radius: calc(var(--tablet-bezel) * 0.6);
-  box-shadow: none;
 }
 
 body.project-page-standard #mockup-flow .mockup-step-image {

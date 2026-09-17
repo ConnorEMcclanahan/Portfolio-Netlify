@@ -394,7 +394,7 @@ body.project-page-standard .case-study-phase--wide-final #final-design #mockup-f
   align-items: stretch;
   margin: 0 0 3rem;
   padding: 2rem;
-  background: #151515;
+  background: transparent;
 }
 
 .fitphone-final-design #mockup-flow.mockup-flow--editorial .mockup-step-text {
@@ -459,8 +459,6 @@ body.project-page-standard .case-study-phase--wide-final #final-design #mockup-f
   max-width: 360px;
   height: auto;
   margin: 0 auto;
-  border-radius: 12px;
-  box-shadow: 0 4px 24px #0006;
 }
 
 .fitphone-final-design #mockup-flow.mockup-flow--editorial .mockup-visual:has(> .mockup-step-image + .mockup-step-image) .mockup-step-image {
