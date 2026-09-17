@@ -344,7 +344,7 @@ html {
     section p {
       line-height: 1.5;
       margin-bottom: 1em;
-      color: #fff;
+      color: var(--case-muted) !important;
     }
   
     /* Parallax background */
