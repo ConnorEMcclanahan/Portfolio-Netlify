@@ -106,9 +106,9 @@
   content: '';
   position: absolute;
   left: 50%;
-  top: 0;
-  width: 2px;
-  height: 100%;
+  top: 48px;
+  bottom: 48px;
+  width: 1px;
   transform: translateX(-50%);
   background: rgba(255, 255, 255, 0.22);
 }
@@ -117,9 +117,9 @@
   content: '';
   position: absolute;
   top: 50%;
-  left: 0;
-  height: 2px;
-  width: 100%;
+  left: 80px;
+  right: 80px;
+  height: 1px;
   transform: translateY(-50%);
   background: rgba(255, 255, 255, 0.22);
 }
@@ -133,12 +133,13 @@
   text-align: center;
   pointer-events: none;
   text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+  white-space: nowrap;
 }
 
-.axis-label--top { top: 10px; left: 50%; transform: translateX(-50%); }
-.axis-label--bottom { bottom: 10px; left: 50%; transform: translateX(-50%); }
-.axis-label--left { left: 12px; top: 50%; transform: translateY(-50%); width: 120px; }
-.axis-label--right { right: 12px; top: 50%; transform: translateY(-50%); width: 120px; }
+.axis-label--top { top: -8px; left: 50%; transform: translateX(-50%); }
+.axis-label--bottom { bottom: -8px; left: 50%; transform: translateX(-50%); }
+.axis-label--left { left: -6px; top: 50%; transform: translateY(-50%) rotate(-90deg); width: auto; }
+.axis-label--right { right: -6px; top: 50%; transform: translateY(-50%) rotate(90deg); width: auto; }
 
 .quadrant-label {
   position: absolute;
