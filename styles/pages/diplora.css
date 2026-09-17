@@ -831,7 +831,7 @@
     }
 
     body.project-page-standard #prototyping > div[style*="display: flex"] h4 {
-      font-size: 1.1rem !important;
+      font-size: 1.25rem !important;
     }
 
     body.project-page-standard .testing-results-grid {
