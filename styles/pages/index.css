@@ -103,20 +103,126 @@ section {
    The name stays plain; one or two words get the accent. */
 .hero-title {
   margin-bottom: 1.5rem;
-  max-width: 10.5em;
-  font-size: clamp(2.5rem, 5vw, 4.5rem) !important;
+  max-width: 11.5em;
+  font-size: clamp(2.2rem, 4.5vw, 4rem) !important;
   color: #fff;
   font-family: "Syne", "Plus Jakarta Sans", sans-serif;
   font-weight: 700;
   line-height: 1.15;
   letter-spacing: -0.015em;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  word-break: normal;
+  overflow-wrap: normal;
+  word-wrap: normal;
+  hyphens: none;
+}
+
+/* Line 1 stays on its own row; everything after ("bridging...") always
+   starts on line 2. Block forces the break, nowrap keeps "I'm Connor —"
+   together. Survives the JS word-split rebuild since the class is cloned. */
+.hero-title .hero-title-line1 {
+  display: block;
+  white-space: nowrap;
+}
+
+/* Em-dash next to "Connor" — purple, inherits
+   into the JS-split character spans. */
+.hero-title .hero-dash {
+  color: #6e07f3;
+  font-weight: 700;
+}
+
+.hero-title .hero-dash .split-char {
+  color: inherit;
+  font-weight: inherit;
+}
+
+/* Ampersand between "design" and "development" — white, inherits
+   into the JS-split character spans inside <em>. */
+.hero-title .hero-amp {
+  color: #fff;
+  font-style: inherit;
+  font-weight: inherit;
+}
+
+.hero-title .hero-amp .split-char {
+  color: inherit;
+  font-style: inherit;
+  font-weight: inherit;
 }
 
 .hero-title em {
   font-style: italic;
   font-weight: 700;
   color: #6e07f3;
+}
+
+/* ============================================================
+   HERO ENTRANCE ANIMATION
+   Fun staggered text reveal + subtle scale-in on page load.
+   Mirrors the project-page entrance feel but tuned for the
+   full-screen Vanta globe hero on index.html.
+   ============================================================ */
+
+.hero__content {
+  position: relative;
+  z-index: 2;
+  /* Start slightly lower and invisible; animate in once Vanta is ready. */
+  opacity: 0;
+  transform: translateY(28px) scale(0.98);
+  transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hero__content.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Staggered character-by-character reveal inside the hero title.
+   Characters fade in quickly on page load with a subtle wave effect,
+   similar to how project page images appear. */
+.hero-title {
+  overflow: hidden;
+}
+
+.hero-title .split-word {
+  display: inline-block;
+  white-space: nowrap;
+  word-break: normal;
+  overflow-wrap: normal;
+  word-wrap: normal;
+}
+
+.hero-title .split-char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.4em) rotateX(-8deg);
+  transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform, opacity;
+  font-variant-numeric: normal;
+  word-break: normal;
+  overflow-wrap: normal;
+}
+
+.hero-title .split-char.is-visible {
+  opacity: 1;
+  transform: translateY(0) rotateX(0);
+}
+
+/* Keep <em> text styled properly - the split-char spans inside will
+   inherit the purple color and italic style from the parent <em> */
+.hero-title em {
+  font-style: italic;
+  font-weight: 700;
+  color: #6e07f3;
+}
+
+/* Make sure split-char spans inside <em> inherit the styling */
+.hero-title em .split-char {
+  color: inherit;
+  font-style: inherit;
+  font-weight: inherit;
 }
 
 /* Scroll-cue component override for index — inside #top, above gradient overlay */

@@ -17,7 +17,114 @@ function initVantaBackground() {
     color: 0x6e07f3,
     backgroundColor: 0x0,
   });
+
+  // Trigger the hero entrance animation once Vanta has initialised.
+  // This keeps the text reveal in sync with the background so the page
+  // feels like one coordinated entrance rather than two unrelated swaps.
+  initHeroEntrance();
 }
+
+/**
+ * Hero entrance animation - characters fade in immediately on page load,
+ * similar to how project page images appear. No typing effect, just a
+ * quick staggered fade-in that feels energetic.
+ */
+function initHeroEntrance() {
+  const heroContent = document.querySelector('.hero__content');
+  const heroTitle = document.querySelector('.hero-title');
+  if (!heroContent || !heroTitle) {
+    return;
+  }
+
+  // Respect reduced motion preference - show everything immediately
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion) {
+    heroContent.classList.add('is-visible');
+    return;
+  }
+
+  // Get the HTML content and preserve <em> tags
+  const htmlContent = heroTitle.innerHTML;
+  
+  // Clear and rebuild with character spans, but preserve <em> structure
+  heroTitle.innerHTML = '';
+  
+  // Parse the HTML and wrap each character in a span, preserving <em> tags
+  const tempDiv = document.createElement('div');
+  tempDiv.innerHTML = htmlContent;
+  
+  // Wrap each word in a non-breaking wrapper, then split characters
+  // inside the word. The spaces between words stay as normal text nodes
+  // so the browser only ever breaks lines at word boundaries — never
+  // mid-word (e.g. "des" / "ign"). Characters keep .split-char so the
+  // existing staggered animation is untouched.
+  const wrapWord = (word, parent) => {
+    if (!word) {
+      return;
+    }
+    const wordSpan = document.createElement('span');
+    wordSpan.className = 'split-word';
+    for (let i = 0; i < word.length; i++) {
+      const charSpan = document.createElement('span');
+      charSpan.className = 'split-char';
+      charSpan.textContent = word[i];
+      wordSpan.appendChild(charSpan);
+    }
+    parent.appendChild(wordSpan);
+  };
+
+  const wrapTextWithWords = (text, parent) => {
+    // Split on normal spaces; each space becomes a real (collapsible,
+    // breakable) text node between word wrappers.
+    const words = text.split(' ');
+    words.forEach((word, index) => {
+      wrapWord(word, parent);
+      if (index < words.length - 1) {
+        parent.appendChild(document.createTextNode(' '));
+      }
+    });
+  };
+
+  // Recursively rebuild a node: element wrappers (em/span/...) are cloned
+  // so styling is preserved, text is split word-first inside them.
+  const rebuildNode = (sourceNode, parent) => {
+    if (sourceNode.nodeType === Node.TEXT_NODE) {
+      wrapTextWithWords(sourceNode.textContent, parent);
+    } else if (sourceNode.nodeType === Node.ELEMENT_NODE) {
+      const clone = document.createElement(sourceNode.tagName.toLowerCase());
+      if (sourceNode.className) {
+        clone.className = sourceNode.className;
+      }
+      // Preserve em styling hooks if ever needed; class copy covers it.
+      Array.from(sourceNode.childNodes).forEach(child => rebuildNode(child, clone));
+      // Skip empty clones (e.g. stray whitespace-only wrappers add nothing).
+      if (clone.childNodes.length) {
+        parent.appendChild(clone);
+      }
+    }
+  };
+
+    // Process each child node
+  Array.from(tempDiv.childNodes).forEach(node => rebuildNode(node, heroTitle));
+
+  // Immediately show all characters with a tiny stagger for visual interest
+  // This makes it appear right away like the project page images
+  const spans = heroTitle.querySelectorAll('.split-char');
+  
+  spans.forEach((span, index) => {
+    // Very quick stagger - characters appear almost simultaneously
+    // but with just enough delay to create a subtle wave effect
+    const delay = Math.min(index * 15, 200); // Cap at 200ms total
+    setTimeout(() => {
+      span.classList.add('is-visible');
+    }, delay);
+  });
+
+  // Show the container immediately too - no delay
+  heroContent.classList.add('is-visible');
+}
+
+
 
 function initReveal() {
   const revealElements = document.querySelectorAll('.reveal');
