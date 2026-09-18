@@ -20,11 +20,25 @@
     "0a7c53": "#C6F2D4"
   };
 
+  var SOLID = {
+    "008ce9": "#008CE9",
+    "8e00c5": "#9D00D6",
+    "ba5719": "#C96A1B",
+    "0a7c53": "#0A8A5C"
+  };
+
   function pastelFromGradient(g) {
     if (!g) return "#BFE3FF";
     var hex = (g.match(/#([0-9a-fA-F]{6})/) || [])[1];
     if (!hex) return "#BFE3FF";
     return PASTEL[hex.toLowerCase()] || "#BFE3FF";
+  }
+
+  function solidFromGradient(g) {
+    if (!g) return "#008CE9";
+    var hex = (g.match(/#([0-9a-fA-F]{6})/) || [])[1];
+    if (!hex) return "#008CE9";
+    return SOLID[hex.toLowerCase()] || "#008CE9";
   }
 
   function trunc(s, n) { return s.length > n ? s.slice(0, n - 1) + "…" : s; }
@@ -70,7 +84,7 @@
       b.style.top = c.y + '%';
       b.style.width = size + "px";
       b.style.height = size + "px";
-      b.style.background = pastelFromGradient(c.g);
+      b.style.background = solidFromGradient(c.g);
       if (ci === yourClusterIndex) {
         var you = document.createElement("span");
         you.className = "mini-bubble__you";

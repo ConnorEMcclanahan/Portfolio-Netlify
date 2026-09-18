@@ -33,6 +33,8 @@
   var focusedCard = null;
   var hoveredCard = null;
   var resizeRefreshPending = false;
+  var updateCounterText = null;
+  var stackBackdropHandler = null;
 
   // Shared pastel palette keeps each bubble and its cards the same color.
   function clusterPastelColor(g) {
@@ -47,6 +49,23 @@
       "0a7c53": "#C6F2D4"
     };
     return map[hex] || "#BFE3FF";
+  }
+
+  // Solid flat colors for the wall bubbles — same hues as the pastels,
+  // but fully saturated so they read clearly on the black hero.
+  // Cards stay pastel (above) so body text keeps high contrast.
+  function clusterSolidColor(g) {
+    if (!g) return "#008CE9";
+    var hex = (g.match(/#([0-9a-fA-F]{6})/) || [])[1];
+    if (!hex) return "#008CE9";
+    hex = hex.toLowerCase();
+    var map = {
+      "008ce9": "#008CE9",
+      "8e00c5": "#9D00D6",
+      "ba5719": "#C96A1B",
+      "0a7c53": "#0A8A5C"
+    };
+    return map[hex] || "#008CE9";
   }
 
   function createCluster(cluster) {
@@ -64,7 +83,7 @@
     var bubbleSize = Math.min(88, 36 + bubbleCount * 9);
     var bubble = document.createElement("div");
     bubble.className = "answer-bubble";
-    bubble.style.background = clusterPastelColor(cluster.g);
+    bubble.style.background = clusterSolidColor(cluster.g);
     bubble.style.width = bubbleSize + "px";
     bubble.style.height = bubbleSize + "px";
     bubble.style.left = "0";
@@ -195,15 +214,17 @@
       })(i);
     }
 
-    stackEl.addEventListener("click", function (e) {
-      // Clicking the dark backdrop (outside cards/question/close btn) closes.
-      if (e.target === stackEl) closeExpanded();
-    });
-    // Cards must be mounted inside stackEl BEFORE updateCards runs,
-    // otherwise querySelectorAll finds no cards and the fan transforms are
-    // never applied (all cards left perfectly stacked). This was the
-    // "stacks weirdly until you mouse over" bug.
     stackEl.appendChild(cardStack);
+
+    // Backdrop-click-to-close: attach once, not on every open (the old code
+    // stacked a duplicate listener each time a cluster was opened).
+    if (!stackBackdropHandler) {
+      stackBackdropHandler = function (e) {
+        // Clicking the dark backdrop (outside cards/question/close btn) closes.
+        if (e.target === stackEl) closeExpanded();
+      };
+      stackEl.addEventListener("click", stackBackdropHandler);
+    }
 
     // Footer counter pill — shows total card count
     var footerCounter = document.createElement("div");
@@ -229,6 +250,9 @@
     };
 
     updateCards(cluster, totalCards, cardSpacing);
+    // Force a synchronous layout so the fan transforms are painted on the
+    // very first frame (avoids a flash of fully-stacked cards on open).
+    void cardStack.offsetHeight;
   }
 
   function updateCards(cluster, totalCards, cardSpacing) {
@@ -277,12 +301,11 @@
     focusedCard = null;
     hoveredCard = null;
     resizeRefreshPending = false;
+    updateCounterText = null;
     unlockPageScroll();
     overlayEl.classList.remove("active");
     stackEl.classList.remove("active");
     setTimeout(function () { stackEl.innerHTML = ""; }, 300);
-    if (footerCounter && footerCounter.parentNode) footerCounter.parentNode.removeChild(footerCounter);
-    footerCounter = null;
   }
 
   function init() {
