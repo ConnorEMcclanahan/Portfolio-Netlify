@@ -1,31 +1,117 @@
 ﻿/**
  * Phillips Wall Demo - Vanilla JS Sentiment Index
- * Bubbles cluster together when close, expand on click
+ * Real visitor notes from the museum Post-it wall. Rule: a bubble only
+ * ever groups notes that share BOTH the same exhibition question AND the
+ * same post-it colour (Dutch cards are grouped with their English
+ * translation, same colour). Bubbles sit on their group's sentiment
+ * centroid (size = member count). Click a bubble to expand its real cards.
+ * Off-topic notes with no AI sentiment (conv_609, conv_405, conv_264)
+ * are excluded entirely — 58 real notes plotted. Bubbles sit on their
+ * group's sentiment centroid — decluttered with small display offsets
+ * (dx, dy) where groups share the optimistic corner so every bubble stays
+ * clickable. Order of positions still follows the sentiment scores.
  */
 (function () {
   "use strict";
 
   var DEMO_CLUSTERS = [
-    { id:1, q:"What can AI do for you?", g:"linear-gradient(135deg,#008ce9 0%,#006db3 100%)", x:30, y:38,
-      a:["AI can streamline my work by automating repetitive tasks.", "It could help me make smarter financial decisions.", "AI can provide personalized health tips based on my data.", "It could assist me in learning new languages faster.", "AI could help me organize my time more efficiently.", "It can offer targeted suggestions for my professional growth.", "AI helps me draft emails and summarize long documents instantly."] },
-    { id:2, q:"What daily chore would you like AI to take over?", g:"linear-gradient(135deg,#008ce9 0%,#006db3 100%)", x:14, y:64,
-      a:["I would love AI to handle sorting and folding laundry.", "It could plan and prepare my weekly grocery list.", "AI can manage my home cleaning schedule automatically.", "I'd like AI to handle organizing my inbox.", "It could take care of daily meal prep and cooking.", "AI could manage pet feeding and tracking routines."] },
-    { id:3, q:"What AI solution would you like to design?", g:"linear-gradient(135deg,#8e00c5 0%,#6b009f 100%)", x:30, y:16,
-      a:["An AI tutor that adapts lessons based on learning pace.", "An AI that monitors environmental pollution levels.", "A mental health companion that offers daily check-ins.", "An AI that assists artists in creating new concepts.", "A community safety AI that predicts areas needing help.", "A budgeting assistant that offers real-time spending tips."] },
-    { id:4, q:"What is your most remarkable experience with AI?", g:"linear-gradient(135deg,#008ce9 0%,#006db3 100%)", x:68, y:30,
-      a:["When AI helped diagnose my skin condition from a photo.", "Seeing GPT write poetry that moved me to tears.", "AI correctly predicting the weather changed my plans.", "A recommendation from AI introduced me to my favorite book.", "AI-generated music based on my mood was surprising.", "AI-powered virtual reality gave me a new perspective."] },
-    { id:5, q:"What worries you about AI?", g:"linear-gradient(135deg,#008ce9 0%,#006db3 100%)", x:62, y:68,
-      a:["Deepfakes making it impossible to trust what you see online.", "AI may cause a loss of privacy.", "It could make humans too dependent on technology.", "AI could replace jobs, leading to unemployment.", "The misuse of AI in spreading misinformation.", "AI might be used for surveillance without consent."] },
-    { id:6, q:"Does AI make life easier or more complicated?", g:"linear-gradient(135deg,#ba5719 0%,#9f4515 100%)", x:46, y:56,
-      a:["It generally simplifies routine tasks.", "Sometimes it adds a learning curve with new interfaces.", "AI can make things more efficient, saving time.", "It can complicate things if it malfunctions or is biased.", "Overall, it helps reduce mental load in daily life.", "For complex tasks, AI can actually add confusion."] },
-    { id:7, q:"Who should be responsible for AI?", g:"linear-gradient(135deg,#008ce9 0%,#006db3 100%)", x:86, y:60,
-      a:["The developers creating and training AI models.", "Governments need to set clear regulations.", "Companies that deploy AI should have accountability.", "An independent AI ethics board might help.", "Consumers should also understand AI usage risks.", "Collaboration between all stakeholders is essential."] },
-    { id:8, q:"How will people look back on today's AI developments a hundred years from now?", g:"linear-gradient(135deg,#0a7c53 0%,#075e3c 100%)", x:80, y:14,
-      a:["They may see it as a pioneering era for technology.", "It could be viewed as a time of ethical challenges.", "People might laugh at how basic today's AI actually was.", "It might be seen as the beginning of human-AI collaboration.", "Future generations may consider it a critical turning point.", "They could view it as a time filled with optimism and fear."] },
-    { id:9, q:"What problem do you hope AI might solve?", g:"linear-gradient(135deg,#0a7c53 0%,#075e3c 100%)", x:34, y:74,
-      a:["Finding sustainable solutions for climate change through better modeling.", "Improving access to quality healthcare globally.", "Helping reduce food waste and improve distribution.", "Supporting mental health with accessible resources.", "Solving global educational inequality through tutoring.", "Enhancing wildlife protection and biodiversity."] },
-    { id:10, q:"What AI applications would you hate to do without?", g:"linear-gradient(135deg,#0a7c53 0%,#075e3c 100%)", x:20, y:22,
-      a:["AI-powered virtual assistants that understand context.", "Recommendation algorithms for movies and music.", "AI-powered health trackers that catch irregularities.", "Language translation apps like Google Translate.", "AI for helping manage schedules and reminders.", "Navigation apps that learn routes and suggest better ones."] }
+    // x/y are centroid(left%, top%) of member sentiment —
+    // top-left is optimistic/excited, bottom-right is worried/critical.
+    // dx/dy are small display-only nudges so overlapping groups separate.
+    { id:1, q:"What is your most remarkable experience with AI?", c:"#0E9C98", bg:"#7FD8D3", x:30.7, y:24.8, dx:2.0, dy:0.5,
+      cards:[
+        { q:"What is your most remarkable experience with AI?", a:"We wrote a song with my daughter about why vegetables are super healthy and sweets not. It took 15 minutes.", bg:"#7FD8D3" },
+        { q:"What is your most remarkable experience with AI?", a:"Made me write better code. Fast, clean, efficient.", bg:"#7FD8D3" },
+        { q:"What is your most remarkable experience with AI?", a:"Precision diagnostic", bg:"#7FD8D3" },
+        { q:"What is your most remarkable experience with AI?", a:"Doing an work for school", bg:"#7FD8D3" },
+        { q:"What is your most remarkable experience with AI?", a:"(margin: consciousness with science!) I think it has the power to bring us into the light, like it depend how we use it — either with a consciousness or without it (consciousness), it leads to a great damage for mankind", bg:"#7FD8D3" },
+        { q:"What is your most remarkable experience with AI?", a:"I've finished my child dream - a fanfic story based on original novel. However, I'm finding AI capabilities so huge and who knows, which ideas AI can realize. - Vlad, Software Engineer", bg:"#7FD8D3" },
+        { q:"What is your most remarkable experience with AI?", a:"A couple of minutes ago when a ChatGPT told me I could call it Rue, and its bucket list included travelling the world and learning new languages. - Ellie Drury, 2024", bg:"#7FD8D3" },
+        { q:"What is your most remarkable experience with AI?", a:"SIGMA AI (with a small doodle)", bg:"#7FD8D3" }
+      ] },
+    { id:2, q:"What can AI do for you?", c:"#0E9C98", bg:"#7FD8D3", x:30.0, y:24.3, dx:-2.5, dy:-2.0,
+      cards:[
+        { q:"What can AI do for you?", a:"Study for ME! — Jun", bg:"#7FD8D3" },
+        { q:"What can AI do for you?", a:"AI has changed my life! It helped me to graduate from the University of Bath. Easy W. UP THE CHELS", bg:"#7FD8D3" },
+        { q:"What can AI do for you?", a:"FREE SHIVA! 31/07/24. P.S. Story telling with real characters is extremely fun!", bg:"#7FD8D3" },
+        { q:"What can AI do for you?", a:"everything", bg:"#7FD8D3" },
+        { q:"What can AI do for you?", a:"I truly wish AI could help us know where we are heading towards, in the universe. How did it all start, what is dark energy, & many other unknowns. What is universe, after all! — Reshma Shenoy, from India 🙂", bg:"#7FD8D3" }
+      ] },
+    { id:3, q:"What problem do you hope AI might solve?", c:"#C7A400", bg:"#F5E050", x:31.7, y:26.4, dx:3.0, dy:2.0,
+      cards:[
+        { q:"What problem do you hope AI might solve?", a:"- Capitalism (as if). - Losing socks in the laundry. Also: Teleportation please!", bg:"#F5E050" },
+        { q:"What problem do you hope AI might solve?", a:"Homelessness. Matching those without homes to properties that are uninhabited for long periods of time i.e. 2nd homes.", bg:"#F5E050" },
+        { q:"What problem do you hope AI might solve?", a:"Write my essays tbh... 🙂", bg:"#F5E050" },
+        { q:"What problem do you hope AI might solve?", a:"Traffic and accidents", bg:"#F5E050" },
+        { q:"What problem do you hope AI might solve?", a:"Patient Backlog in hospitals for minor health issues. So that doctors can concentrate on bigger issues!", bg:"#F5E050" },
+        { q:"What problem do you hope AI might solve?", a:"I think AI could cause more problems than it may solve. Humans still need some control & independence in life instead of being controlled by superiors. It's like using a cashless system, it creates a nature of control.", bg:"#F5E050" },
+        { q:"What problem do you hope AI might solve?", a:"R = k1l/NA. What will be the lithography solution in 2040? — J. Ahn, July 14, 2024", bg:"#F5E050" },
+        { q:"What problem do you hope AI might solve?", a:"To help everybody to find the happiness! (signature illegible)", bg:"#F5E050" }
+      ] },
+    { id:4, q:"Does AI make life easier or more complicated? (Dutch: Maakt AI het leven gemakkelijker of ingewikkelder?)", c:"#9D00D6", bg:"#C3A6E0", x:30.7, y:25.3, dx:-3.5, dy:0,
+      cards:[
+        { q:"Does AI make life easier or more complicated?", a:"I am afraid that AI development may lead for some people like eg. graphic designers or programmers to lose their jobs, at least some of them.", bg:"#C3A6E0" },
+        { q:"Does AI make life easier or more complicated?", a:"Hopefully easier", bg:"#C3A6E0" },
+        { q:"Does AI make life easier or more complicated?", a:"It was good experience to know about Philips. — Jenny", bg:"#C3A6E0" },
+        { q:"Does AI make life easier or more complicated?", a:"I want to thank AI for doing my thesis for me.", bg:"#C3A6E0" },
+        { q:"Does AI make life easier or more complicated?", a:"I think this is a very perspective based Q. If one knows how to use it effectively, it makes life easier, but everything comes with Pros & Cons.", bg:"#C3A6E0" },
+        { q:"Does AI make life easier or more complicated?", a:"Both. Easy - coz it does the assignments :) Difficult - Security & Privacy issues. Crimes & all - not nice", bg:"#C3A6E0" },
+        { q:"Does AI make life easier or more complicated?", a:"I am very, very fun", bg:"#C3A6E0" },
+        { q:"Does AI make life easier or more complicated?", a:"Way easier, it wrote my thesis (purple heart). P.S. che belle sono le lampadine? (Italian: how beautiful are the lightbulbs?)", bg:"#C3A6E0" },
+        { q:"Does AI make life easier or more complicated?", a:"Generating ideas and art was fun (purple heart)", bg:"#C3A6E0" }
+      ] },
+    { id:5, q:"What AI solution would you like to design?", c:"#C7A400", bg:"#F5E050", x:31.9, y:26.1, dx:1.0, dy:-3.0,
+      cards:[
+        { q:"What AI solution would you like to design?", a:"I hope AI eventually could solve the problem of people that are poor and rich, everyone should be even.", bg:"#F5E050" },
+        { q:"What AI solution would you like to design?", a:"I would like AI to read about me and my interests and suggest ideas for vacation, what to read, watch, about any hobbies I should take up etc.", bg:"#F5E050" },
+        { q:"What AI solution would you like to design?", a:"Personally, I'd like to use AI to improve work of prosthetics for people with disabilities. I believe it can be used for improving understanding of signals that come from a person's nervous system. At least it can allow a new generation of prosthetics to be more accurate and give more mobility (especially with lower prosthetics). (dated 23.09.24) — Love, Katia", bg:"#F5E050" },
+        { q:"What AI solution would you like to design?", a:"A more efficient timetable for public transport.", bg:"#F5E050" }
+      ] },
+    { id:6, q:"Who should be responsible for AI?", c:"#0E9C98", bg:"#7FD8D3", x:57.2, y:52.2,
+      cards:[
+        { q:"Who should be responsible for AI?", a:"Each and everyone on this planet should be responsible for AI. That's why we need AI LITERACY at every stage of education! — Gulzar", bg:"#7FD8D3" },
+        { q:"Who should be responsible for AI?", a:"The ones who made it. They should go to jail. NO", bg:"#7FD8D3" }
+      ] },
+    { id:7, q:"What worries you about AI?", c:"#0E9C98", bg:"#7FD8D3", x:75.0, y:65.1,
+      cards:[
+        { q:"What worries you about AI?", a:"Job loss for the humans. No more training for the brain through thinking - more degenerative illness in the future", bg:"#7FD8D3" },
+        { q:"What worries you about AI?", a:"The attitude & misconception people have about AI, and its future :)", bg:"#7FD8D3" },
+        { q:"What worries you about AI?", a:"AI is a tool to be used with a lot of critical thinking. We are not ready for it. And regulation is too slow.", bg:"#7FD8D3" }
+      ] },
+    { id:8, q:"Which AI applications can you no longer do without? (Dutch: Welke AI-toepassingen kun je niet meer missen?)", c:"#0A8A5C", bg:"#A8E6A1", x:63.2, y:56.0,
+      cards:[
+        { q:"Which AI applications can you no longer do without?", a:"I am a government lawyer and I am concerned about the fast development of A.I. In particular, how it might be used in the legal profession. It seems to inherently tend towards majority conformance, which is the very opposite of individual rights protection.", bg:"#A8E6A1" },
+        { q:"Which AI applications can you no longer do without?", a:"Thank you Philips for creating such value in our lives", bg:"#A8E6A1" }
+      ] },
+    { id:9, q:"What AI applications would you hate to do without?", c:"#0A8A5C", bg:"#A8E6A1", x:31.2, y:25.8, dx:0, dy:3.5,
+      cards:[
+        { q:"What AI applications would you hate to do without?", a:"Job application and ChatGPT", bg:"#A8E6A1" },
+        { q:"What AI applications would you hate to do without?", a:"SCHOOL SELECTION + HOUSING LOCATION to achieve best outcome based on parental input factors to improve city planning", bg:"#A8E6A1" },
+        { q:"What AI applications would you hate to do without?", a:"chat gpt made my life easier", bg:"#A8E6A1" },
+        { q:"What AI applications would you hate to do without?", a:"Help me plan my day / Chat GPT / Verbalizing my thoughts / Fly me into the forest / Help me write my essay / Process my work data", bg:"#A8E6A1" },
+        { q:"What AI applications would you hate to do without?", a:"I use ChatGPT to help me study law. I upload my textbook and ask it to make flashcards based on the material I give it.", bg:"#A8E6A1" }
+      ] },
+    { id:10, q:"How will people look back on today's AI developments a hundred years from now?", c:"#0A8A5C", bg:"#A8E6A1", x:66.4, y:63.8,
+      cards:[
+        { q:"How will people look back on today's AI developments a hundred years from now?", a:"Why did we make AI to do art but make people work harder and barely have any time for chores? YES", bg:"#A8E6A1" },
+        { q:"How will people look back on today's AI developments a hundred years from now?", a:"FEARLESS", bg:"#A8E6A1" },
+        { q:"How will people look back on today's AI developments a hundred years from now?", a:"WHAT PEOPLE?", bg:"#A8E6A1" },
+        { q:"How will people look back on today's AI developments a hundred years from now?", a:"They may have become consumed with regret when robots have enslaved them.", bg:"#A8E6A1" },
+        { q:"How will people look back on today's AI developments a hundred years from now?", a:"Just like how we look back on mobile phones and tv and internet etc. They'll wonder how we lived without AI.", bg:"#A8E6A1" },
+        { q:"How will people look back on today's AI developments a hundred years from now?", a:"They will think how much [far] that we went.", bg:"#A8E6A1" }
+      ] },
+    { id:11, q:"What is your most remarkable experience with AI? (skeptical note)", c:"#0E9C98", bg:"#7FD8D3", x:75.5, y:69.0,
+      cards:[
+        { q:"What is your most remarkable experience with AI?", a:"Don't trust AI", bg:"#7FD8D3" }
+      ] },
+    { id:12, q:"What daily chore would you like AI to take over? (Dutch: Welke dagelijkse taak zou jij aan AI willen overdragen?)", c:"#9D00D6", bg:"#C3A6E0", x:31.4, y:25.8, dx:-1.5, dy:-4.0,
+      cards:[
+        { q:"What daily chore would you like AI to take over?", a:"to teach people new stuff ab technology for example", bg:"#C3A6E0" },
+        { q:"What daily chore would you like AI to take over?", a:"Nothing more... it already does enough!", bg:"#C3A6E0" },
+        { q:"What daily chore would you like AI to take over?", a:"Thinking about what to make for dinner / Cleaning / Job application.", bg:"#C3A6E0" },
+        { q:"What daily chore would you like AI to take over?", a:"Cleaning. Delft", bg:"#C3A6E0" },
+        { q:"What daily chore would you like AI to take over?", a:"AI assistant to help you with daily routine, like: reservations; home stuff to buy online, and more... Bulgaria / Varna / 25.09.2024", bg:"#C3A6E0" }
+      ] }
   ];
 
   var gridEl, overlayEl, stackEl;
@@ -71,25 +157,33 @@
   function createCluster(cluster) {
     var groupEl = document.createElement("div");
     groupEl.className = "cluster-group";
-    groupEl.style.left = cluster.x + "%";
-    groupEl.style.top = cluster.y + "%";
+    // True sentiment position, plus a small display-only declutter nudge.
+    var px = cluster.x + (cluster.dx || 0);
+    var py = cluster.y + (cluster.dy || 0);
+    groupEl.style.left = px + "%";
+    groupEl.style.top = py + "%";
     // Sweep spatially across the wall, rather than following the data order.
-    groupEl.style.setProperty("--cluster-enter-delay", (0.05 + cluster.x * 0.005 + cluster.y * 0.001).toFixed(3) + "s");
+    groupEl.style.setProperty("--cluster-enter-delay", (0.05 + px * 0.005 + py * 0.001).toFixed(3) + "s");
     groupEl.setAttribute("data-cluster-id", cluster.id);
 
-    var bubbleCount = cluster.a.length;
+    var bubbleCount = cluster.cards.length;
     // Small clusters (1-2) stay small, medium ones grow, big ones cap out —
     // this gives the natural variety of a living wall.
     var bubbleSize = Math.min(88, 36 + bubbleCount * 9);
     var bubble = document.createElement("div");
     bubble.className = "answer-bubble";
-    bubble.style.background = clusterSolidColor(cluster.g);
+    bubble.style.background = cluster.c || clusterSolidColor(cluster.g);
     bubble.style.width = bubbleSize + "px";
     bubble.style.height = bubbleSize + "px";
     bubble.style.left = "0";
     bubble.style.top = "0";
     bubble.style.transform = "translate(-50%, -50%)";
     groupEl.appendChild(bubble);
+    // Honest stacking: singleton bubbles sit above the big clusters so
+    // they stay hoverable where (question x colour) groups overlap.
+    if (bubbleCount <= 1) groupEl.style.zIndex = "8";
+    groupEl.setAttribute("title", cluster.q + " (" + bubbleCount + (bubbleCount === 1 ? " real note)" : " real notes)"));
+    groupEl.setAttribute("aria-label", cluster.q + ", " + bubbleCount + (bubbleCount === 1 ? " note" : " notes") + ". Activate to explore.");
 
     groupEl.addEventListener("click", function (e) {
       e.stopPropagation();
@@ -145,7 +239,7 @@
     var cardStack = document.createElement("div");
     cardStack.className = "card-stack";
 
-    var totalCards = cluster.a.length;
+    var totalCards = cluster.cards.length;
     // Pixel spacing between card centers. Wide enough that each card
     // clearly peeks out from behind its neighbour in the idle fan (no
     // hovering needed to read the deck). Shrink to fit so even the
@@ -159,9 +253,8 @@
       : baseSpacing;
     var cardSpacing = Math.max(120, Math.min(baseSpacing, fitSpacing));
 
-    // Card background color: map the cluster's gradient to a soft pastel so
-    // cards are easy to read on. The bubble itself keeps the full gradient;
-    // cards use the pastel equivalent so text stays high-contrast.
+    // Card background: each card keeps its original post-it colour (note.bg).
+    // The cluster fallback below only covers legacy data without per-card colours.
     var cardBg = clusterPastelColor(cluster.g);
     var textColor = "#1e1b4b";
     var textColorMuted = "#4b5563";
@@ -178,16 +271,21 @@
         dot.className = "answer-card__dot";
         card.appendChild(dot);
 
+        // Each card shows its own real exhibition question + answer on its
+        // original post-it colour.
+        var note = cluster.cards[idx] || {};
+        card.style.background = note.bg || cardBg;
+
         // Question (upper third of card)
         var questionEl = document.createElement("div");
         questionEl.className = "answer-card__question";
-        questionEl.textContent = cluster.q;
+        questionEl.textContent = note.q || cluster.q || "";
         card.appendChild(questionEl);
 
         // Answer (fluid middle block)
         var answerEl = document.createElement("div");
         answerEl.className = "answer-card__answer";
-        answerEl.textContent = cluster.a[idx];
+        answerEl.textContent = note.a || "";
         card.appendChild(answerEl);
 
         card.addEventListener("click", function (e) {
@@ -239,7 +337,7 @@
     // Keep counter state in sync when focus changes
     updateCounterText = function () {
       if (!footerCounter) return;
-      var currentTotal = cluster ? cluster.a.length : 0;
+      var currentTotal = cluster ? cluster.cards.length : 0;
       if (focusedCard !== null && currentTotal > 1) {
         footerCounter.textContent = "1 / " + currentTotal;
       } else if (currentTotal === 1) {
