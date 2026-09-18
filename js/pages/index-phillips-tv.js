@@ -271,20 +271,22 @@
     function layoutFan(focusIdx, isYourCluster) {
       var cards = cardsEl.children;
       var n = cards.length;
+      var focus = focusIdx >= 0 && focusIdx < n ? focusIdx : -1;
+      var spread = n === 2 ? 104 : 170;
       for (var i = 0; i < n; i++) {
         var t = n === 1 ? 0.5 : i / (n - 1);
-        var tx = (t - 0.5) * 170;
+        var tx = (t - 0.5) * spread;
         var rot = (t - 0.5) * 26;
-        var ty = -Math.sin(t * Math.PI) * 22 - (i === focusIdx ? 12 : 0);
-        var sc = i === focusIdx ? 1.2 : 0.92;
+        var ty = -Math.sin(t * Math.PI) * 22 - (i === focus ? 12 : 0);
+        var sc = i === focus ? 1.2 : 0.92;
         var card = cards[i];
         card.style.transform = "translateX(" + tx + "px) translateY(" + ty + "px) rotate(" + rot + "deg) scale(" + sc + ")";
-        card.style.zIndex = i === focusIdx ? 30 : 10 + i;
-        if (i === focusIdx) card.classList.add("is-focus"); else card.classList.remove("is-focus");
+        card.style.zIndex = i === focus ? 30 : 10 + i;
+        if (i === focus) card.classList.add("is-focus"); else card.classList.remove("is-focus");
       }
       refreshBadges(isYourCluster);
       var listLen = Math.min(5, cards.length);
-      updateCounter(isYourCluster, focusIdx, listLen);
+      updateCounter(isYourCluster, focus, listLen);
     }
 
     function playStep() {
@@ -303,7 +305,7 @@
         layoutFan(-1, isYourCluster);
         fan.classList.add("is-open");
         var flips = Math.min(3, listLen);
-        for (var f = 0; f <= flips; f++) {
+        for (var f = 0; f < flips; f++) {
           (function (fi) {
             later(function () {
               if (!running) return;
