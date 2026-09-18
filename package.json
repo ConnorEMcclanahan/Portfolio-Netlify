@@ -4,6 +4,7 @@
   "description": "A personal portfolio site showcasing UI/UX and front-end development work, with detailed case-study pages for internship, university, and minor projects.",
   "main": "index.js",
   "scripts": {
+    "dev": "node dev-server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,5 +20,9 @@
   "homepage": "https://github.com/ConnorEMcclanahan/Portfolio-Netlify#readme",
   "dependencies": {
     "sharp": "^0.35.4"
+  },
+  "devDependencies": {
+    "express": "^5.2.1",
+    "http-proxy-middleware": "^4.2.0"
   }
 }

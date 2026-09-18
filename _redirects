@@ -1,3 +1,15 @@
+# Clean URLs - remove index.html from homepage
+/index.html / 301
+
+# Clean project URLs (pretty URLs)
+/fitphone /pages/fitphone.html 200
+/motivate /pages/motivate.html 200
+/diplora /pages/diplora.html 200
+/phillipswall /pages/phillipswall.html 200
+/about /pages/about.html 200
+/drawphone /pages/drawphone.html 200
+/thankyou /pages/thankyou.html 200
+
 # Legacy root-level routes to pages/
 /About.html /pages/about.html 301
 /Fitphone.html /pages/fitphone.html 301
@@ -10,4 +22,6 @@
 /fitphone.html /pages/fitphone.html 301
 /motivate.html /pages/motivate.html 301
 /diplora.html /pages/diplora.html 301
+/phillipswall.html /pages/phillipswall.html 301
+/drawphone.html /pages/drawphone.html 301
 /thankyou.html /pages/thankyou.html 301
