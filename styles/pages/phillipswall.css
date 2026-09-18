@@ -47,7 +47,7 @@ body.project-page-standard #intro-summary .intro-meta-item span {
 }
 
 body.project-page-standard #intro-summary .intro-meta-item a {
-  color: #6E07F3 !important;
+  color: #ffff !important;
   font-weight: 600;
   overflow-wrap: anywhere;
   text-decoration: none;
@@ -158,6 +158,16 @@ body.project-page-standard .project-section p {
 
 body.project-page-standard .project-section p + p {
   margin-top: 1.5rem !important;
+}
+
+/* Key phrases across every phase read in the accent purple — one rule for
+   body copy and list items. The award badge keeps its own gold strong. */
+body.project-page-standard .project-section p strong,
+body.project-page-standard .project-section li strong,
+body.project-page-standard .case-study-phase__narrative p strong,
+body.project-page-standard .case-study-phase__bare-copy p strong {
+  color: #6E07F3;
+  font-weight: 700;
 }
 
 body.project-page-standard .case-study-phase__content > #research,

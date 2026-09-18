@@ -38,7 +38,7 @@
 }
 
 .suggested-projects-eyebrow {
-  color: #6E07F3 !important;
+  color: #ffff !important;
   font-family: 'Syne', 'Plus Jakarta Sans', sans-serif;
   font-size: 0.8rem;
   letter-spacing: 0.12em;
@@ -232,7 +232,7 @@
     
     h3 {
       text-align: left;
-      color: #6E07F3 !important;
+      color: #ffff !important;
     }
     
     p, li, .box li {
@@ -344,7 +344,7 @@ html {
     section p {
       line-height: 1.5;
       margin-bottom: 1em;
-      color: #fff;
+      color: var(--case-muted) !important;
     }
   
     /* Parallax background */
@@ -1151,7 +1151,7 @@ body.project-page-standard #observational-studies .split-card {
 
 body.project-page-standard #observational-studies .split-card-title {
   margin: 0 0 0.5rem;
-  color: #6E07F3;
+  color: #ffff;
 }
 
 body.project-page-standard #observational-studies .split-copy {
@@ -1298,8 +1298,12 @@ body.project-page-standard .phase-conclusion p {
 }
 
 body.project-page-standard .narrative-block strong,
-body.project-page-standard #customer-interviews strong {
-  color: #fff;
+body.project-page-standard #customer-interviews strong,
+body.project-page-standard .project-section p strong,
+body.project-page-standard .feature-group p strong,
+body.project-page-standard .phase-conclusion p strong {
+  color: #6E07F3;
+  font-weight: 700;
 }
 
 body.project-page-standard #customer-interviews .text-column {
@@ -1338,7 +1342,7 @@ body.project-page-standard .feature-group {
 
 body.project-page-standard .feature-group h4 {
   margin: 0 0 0.5rem;
-  color: #6E07F3;
+  color:;
   font-family: "Syne", "Plus Jakarta Sans", sans-serif;
   font-size: 1.25rem !important;
 }

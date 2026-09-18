@@ -61,8 +61,11 @@ body.project-page-standard .case-study-nav__links {
   flex-wrap: nowrap;
 }
 
+/* Bar text is plain white now (was --case-muted off-white) — the same
+   treatment as the navbar links. Hover falls back to the site purple so the
+   interaction still reads on an all-white bar. */
 body.project-page-standard .case-study-nav a {
-  color: var(--case-muted);
+  color: #fff;
   font-size: 0.9rem;
   font-weight: 600;
   text-decoration: none;
@@ -129,7 +132,7 @@ body.project-page-standard .case-study-nav__links a {
 }
 
 body.project-page-standard .case-study-nav__links a:hover {
-  color: #fff;
+  color: #6E07F3;
 }
 
 /* Small screens: collapse the section links behind the toggle */

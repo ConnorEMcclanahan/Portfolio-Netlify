@@ -14,7 +14,7 @@ h1 {
 
 h3 {
   text-align: left;
-  color: #6E07F3 !important;
+  color: #ffff !important;
 }
 
 .wrapingimageleftt h1,
@@ -75,7 +75,7 @@ section {
   font-size: 1.05rem;
   line-height: 1.7;
   margin-bottom: 1em;
-  color: #fff;
+  color: var(--case-muted) !important;
 }
 
 .phase-list {
@@ -159,8 +159,11 @@ section {
   line-height: 1.65;
 }
 
-.feedback-timeline strong {
-  color: #fff;
+/* Key phrases across every phase read in the accent purple — one rule
+   covers body copy, list items, and the feedback timeline. */
+.project-section strong {
+  color: #6E07F3;
+  font-weight: 700;
 }
 
 .retrospective-grid {
@@ -1057,7 +1060,7 @@ body.project-page-standard #intro-summary .intro-heading .intro-lead {
 }
 
 .suggested-projects-eyebrow {
-  color: #6E07F3 !important;
+  color: #ffff !important;
   font-family: 'Syne', 'Plus Jakarta Sans', sans-serif;
   font-size: 0.8rem;
   letter-spacing: 0.12em;

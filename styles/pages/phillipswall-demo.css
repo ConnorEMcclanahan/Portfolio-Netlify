@@ -137,7 +137,7 @@
 }
 
 .axis-label--top { top: -8px; left: 50%; transform: translateX(-50%); }
-.axis-label--bottom { bottom: -8px; left: 50%; transform: translateX(-50%); }
+.axis-label--bottom { bottom: 12px; left: 50%; transform: translateX(-50%); }
 .axis-label--left { left: -6px; top: 50%; transform: translateY(-50%) rotate(-90deg); width: auto; }
 .axis-label--right { right: -6px; top: 50%; transform: translateY(-50%) rotate(90deg); width: auto; }
 
@@ -166,14 +166,15 @@
   z-index: 5;
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45), 0 0 20px rgba(255,255,255,0.08);
+  border: 2px solid rgba(255,255,255,0.35);
   animation: float 12s ease-in-out infinite;
 }
 
 .answer-bubble:hover {
   transform: translate(-50%, -50%) scale(1.2);
   z-index: 2000 !important;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.5), 0 0 28px rgba(255,255,255,0.15);
 }
 
 @keyframes float {
@@ -254,8 +255,10 @@
   position: absolute;
   top: clamp(1rem, 3vh, 2rem);
   right: clamp(1rem, 3vw, 2rem);
-  width: clamp(2.5rem, 5vw, 3.25rem);
-  height: clamp(2.5rem, 5vw, 3.25rem);
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
   padding: 0;
   background: rgba(255, 255, 255, 0.1);
   color: white;
@@ -264,14 +267,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: clamp(1.4rem, 3vw, 1.9rem);
-  font-weight: 300;
-  line-height: 1;
+  line-height: 0;
   backdrop-filter: blur(8px);
   transition: all 0.3s ease;
   z-index: 1001;
   cursor: pointer;
   font-family: inherit;
+}
+
+.demo-close-btn svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+  flex-shrink: 0;
 }
 
 .demo-close-btn:hover {
@@ -481,19 +489,27 @@
   right: 12px;
   width: 32px;
   height: 32px;
+  min-width: 32px;
+  min-height: 32px;
   padding: 0;
   background: rgba(0, 0, 0, 0.15);
   color: #3B0764;
   border: none;
   border-radius: 50%;
-  font-size: 1.2rem;
-  line-height: 1;
   cursor: pointer;
   z-index: 5;
   display: flex;
   align-items: center;
   justify-content: center;
+  line-height: 0;
   transition: background 0.2s ease;
+}
+
+.expanded-card__close svg {
+  width: 14px;
+  height: 14px;
+  display: block;
+  flex-shrink: 0;
 }
 
 .expanded-card__close:hover {
