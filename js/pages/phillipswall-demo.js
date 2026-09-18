@@ -116,7 +116,7 @@
     var closeBtn = document.createElement("button");
     closeBtn.className = "demo-close-btn";
     closeBtn.setAttribute("aria-label", "Close");
-    closeBtn.textContent = "\u00D7";
+    closeBtn.innerHTML = '<svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true"><path d="M3 3 L13 13 M13 3 L3 13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /></svg>';
     closeBtn.addEventListener("click", function (e) {
       e.stopPropagation();
       closeExpanded();
