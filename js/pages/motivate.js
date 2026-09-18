@@ -91,7 +91,7 @@ const mockupFlowData = {
         'The first step gives managers a focused way to start a new standard without leaving the PMT platform. The form establishes the instruction title, ownership, and core information before the user moves into the detailed content.',
         'Keeping the entry point simple reduces the information users need to process at once and creates a clear beginning for the approval workflow.'
       ],
-      image: '../images/motivate/mockup-1.png',
+      image: '../images-optimized/motivate/mockup-1.webp',
       alt: 'Mockup Home',
       device: 'phone'
     },
@@ -101,7 +101,7 @@ const mockupFlowData = {
         'The second step builds the standard around the real work being documented. Managers can add images, describe the task, and emphasize safety and quality requirements so the instruction is useful on the factory floor.',
         'Multimedia support helps teams explain processes that are difficult to communicate through text alone and gives operators more context while they work.'
       ],
-      image: '../images/motivate/mockup-2.png',
+      image: '../images-optimized/motivate/mockup-2.webp',
       alt: 'Activity',
       device: 'phone'
     },
@@ -111,7 +111,7 @@ const mockupFlowData = {
         'Before submission, the final form step gives the manager an overview of the complete standard. This review stage makes it possible to catch missing information and check the order of the instruction.',
         'Managers can make last-minute changes before sending the work into approval, reducing avoidable rework later in the process.'
       ],
-      image: '../images/motivate/mockup-3.png',
+      image: '../images-optimized/motivate/mockup-3.webp',
       alt: 'Education',
       device: 'phone'
     },
@@ -121,7 +121,7 @@ const mockupFlowData = {
         'Once submitted, standards move into a controlled approval workflow. Authorized users can review the instruction, inspect its supporting media, and either approve it, request changes, or reject it.',
         'Keeping review and responsibility inside PMT makes version control clearer than relying on separate messages or files.'
       ],
-      image: '../images/motivate/mockup-5.png',
+      image: '../images-optimized/motivate/mockup-5.webp',
       alt: 'Journal Entry',
       device: 'tablet'
     },
@@ -131,7 +131,7 @@ const mockupFlowData = {
         'After approval, the standard becomes available to the people who need it during production. The viewer is designed for factory tablets and PCs so the latest approved instruction is accessible at the point of work.',
         'This creates one consistent source for daily use while preserving a clear path for future updates.'
       ],
-      image: '../images/motivate/mockup-4.png',
+      image: '../images-optimized/motivate/mockup-4.webp',
       alt: 'Stats',
       device: 'tablet'
     }
