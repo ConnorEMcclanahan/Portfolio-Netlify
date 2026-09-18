@@ -62,42 +62,42 @@ const mockupFlowData = {
     {
       title: 'Onboarding',
       copy: 'A focused welcome introduces the app with a clear next step. The simple layout and prominent controls establish a calm starting point for users who may be unfamiliar with connected health devices.',
-      image: '../images/mockups/diplora/onboarding-portrait.png',
+      image: '../images-optimized/mockups/diplora/onboarding-portrait.webp',
       alt: 'Diplora onboarding welcome screen',
       device: 'phone'
     },
     {
       title: 'Device Placement',
       copy: 'Visual placement guidance supports users during sensor setup. Keeping instructions alongside the illustration makes the task easier to follow without relying on technical terminology. Placement guidance will need to be revisited when the final hardware is available.',
-      image: '../images/mockups/diplora/Onboarding%20Attach-(Compressify.io)-portrait.png',
+      image: '../images-optimized/mockups/diplora/Onboarding Attach-(Compressify.io)-portrait.webp',
       alt: 'Diplora onboarding screen with sensor placement guidance',
       device: 'phone'
     },
     {
       title: 'Home Overview',
       copy: 'The home screen brings everyday actions together with persistent battery, connection, and recording status. Device information provides reassurance while leaving the primary tasks easy to find; the interface does not interpret ECG readings for patients.',
-      image: '../images/mockups/diplora/diplorahomeportrait.png',
+      image: '../images-optimized/mockups/diplora/diplorahomeportrait.webp',
       alt: 'Diplora home screen with sensor status and primary actions',
       device: 'phone'
     },
     {
       title: 'Logbook & Alerts',
       copy: 'A consolidated logbook replaces separate history and alert views. Bringing entries into one list reduces navigation decisions and reflects the testing feedback that the earlier filters and tabs felt unnecessarily complicated.',
-      image: '../images/mockups/diplora/logbook-portrait.png',
+      image: '../images-optimized/mockups/diplora/logbook-portrait.webp',
       alt: 'Diplora consolidated logbook and alerts screen',
       device: 'phone'
     },
     {
       title: 'Low Battery Feedback',
       copy: 'A dedicated low-battery dialog gives device status attention when action is needed. This complements the smaller persistent battery indicator, keeping routine status unobtrusive while making an important change visible.',
-      image: '../images/mockups/diplora/lowpowerportrait.png',
+      image: '../images-optimized/mockups/diplora/lowpowerportrait.webp',
       alt: 'Diplora low-battery notification dialog',
       device: 'phone'
     },
     {
       title: 'Activity Logging',
       copy: 'A focused activity-selection screen lets users add context to a log entry. Clear choices keep the interaction manageable and help capture everyday activity without asking users to make a medical assessment.',
-      image: '../images/mockups/diplora/whatactivityportrait.png',
+      image: '../images-optimized/mockups/diplora/whatactivityportrait.webp',
       alt: 'Diplora activity-selection screen for a log entry',
       device: 'phone'
     }

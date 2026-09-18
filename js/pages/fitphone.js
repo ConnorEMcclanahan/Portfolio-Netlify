@@ -52,17 +52,17 @@ const mockupFlowData = {
         'During onboarding, users identify the challenges they want to solve, such as spending too much time scrolling or struggling to make time for healthier activities. Their answers create a more personal starting point than a generic screen-time dashboard.',
         'Based on these choices, FitPhone recommends relevant resources and activities. This gives users an immediate next step and makes the rest of the experience feel connected to their own goals.'
       ],
-      image: '../Images/Mockups/Onboarding.png',
+      image: '../images-optimized/mockups/onboarding.webp',
       alt: 'FitPhone onboarding screen',
       device: 'phone'
     },
     {
       title: 'Home Screen',
       copy: [
-        'The home screen acts as a central hub for personalized activities, progress, and reminders based on the user’s selected goals. It gives users a quick view of what they can do next without making them search through the app.',
+        'The home screen acts as a central hub for personalized activities, progress, and reminders based on the user\'s selected goals. It gives users a quick view of what they can do next without making them search through the app.',
         'Tracking and gamified achievements help keep engagement high, while the activity cards turn a long-term goal into smaller actions that are easier to return to each day.'
       ],
-      image: '../Images/Mockups/Home/WhatsApp Image 2025-04-27 at 23.59.48-portrait.png',
+      image: '../images-optimized/mockups/home/whatsapp-home-portrait.webp',
       alt: 'FitPhone home screen',
       device: 'phone'
     },
@@ -73,8 +73,8 @@ const mockupFlowData = {
         'Educational resources provide context and encouragement alongside those activities. Together, these sections help users understand their habits and find realistic ways to replace unhelpful routines.'
       ],
       images: [
-        { src: '../Images/Mockups/Activty/WhatsApp Image 2025-04-27 at 23.57.23-portrait.png', alt: 'FitPhone activities screen' },
-        { src: '../Images/Mockups/Education.png', alt: 'FitPhone education screen' }
+        { src: '../images-optimized/mockups/activty/whatsapp-activity-portrait.webp', alt: 'FitPhone activities screen' },
+        { src: '../images-optimized/mockups/education.webp', alt: 'FitPhone education screen' }
       ],
       device: 'phone'
     },
@@ -84,7 +84,7 @@ const mockupFlowData = {
         'The weekly check-in gives users a dedicated moment to reflect on their phone usage by recording screen time, pickups, and responses to guided questions.',
         'This turns usage data into a personal reflection instead of a judgment. Users can notice patterns over time and connect their progress back to the goals they selected during onboarding.'
       ],
-      image: '../Images/Mockups/journelentry/WhatsApp Image 2025-04-27 at 23.57.24-portrait.png',
+      image: '../images-optimized/mockups/journelentry/whatsapp-journal-portrait.webp',
       alt: 'FitPhone journal entry screen',
       device: 'phone'
     },
@@ -94,7 +94,7 @@ const mockupFlowData = {
         'The stats screen provides a visual overview of screen time, pickups, and phone usage trends. Presenting these measures together helps users see how their habits change rather than focusing on one isolated number.',
         'The screen supports continued motivation by making progress visible and giving users evidence they can use during their weekly reflection and next goal-setting cycle.'
       ],
-      image: '../Images/Mockups/Stats.png',
+      image: '../images-optimized/mockups/stats.webp',
       alt: 'FitPhone stats screen',
       device: 'phone'
     }
