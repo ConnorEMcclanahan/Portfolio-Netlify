@@ -78,7 +78,7 @@
     target.innerHTML = `
       <nav class="navbar">
         <div class="navbar-container">
-          <a href="../index.html" class="navbar-logo"><img src="../images/logo.png" alt="logo" class="navbar-logo-img" /></a>
+          <a href="../index.html" class="navbar-logo"><img src="../images-optimized/logo.webp" alt="logo" class="navbar-logo-img" /></a>
           <button class="navbar-burger" aria-label="Toggle navigation menu"><span></span><span></span><span></span></button>
           <ul class="navbar-menu">
             <li><a href="../index.html#about">About</a></li>
