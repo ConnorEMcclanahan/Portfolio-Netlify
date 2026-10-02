@@ -20,20 +20,20 @@
 }
 
 .comparison-row--header {
-  background: #6E07F3;
+  background: var(--color-accent);
 }
 
 .comparison-row--border {
-  border-bottom: 1px solid rgba(110, 7, 243, 0.2);
+  border-bottom: 1px solid rgba(var(--color-accent-rgb), 0.2);
 }
 
 .comparison-head {
-  color: #fff;
+  color: var(--color-text);
   font-weight: 600;
 }
 
 .comparison-name {
-  color: #6E07F3;
+  color: var(--color-accent);
   font-weight: 600;
 }
 
@@ -52,18 +52,18 @@
 }
 
 .comparison-focus-title {
-  color: #6E07F3;
+  color: var(--color-accent);
   margin: 1.5rem 0 1rem;
 }
 
 .comparison-focus-list {
-  color: #fff;
+  color: var(--color-text);
   list-style-type: disc;
   padding-left: 2rem;
 }
 
 .matrix-copy {
-  color: #fff;
+  color: var(--color-text);
   margin-top: 1rem;
 }
 
@@ -84,29 +84,28 @@
 }
 
 .matrix-row--header {
-  background: #6E07F3;
+  background: var(--color-accent);
   padding: 1.2rem;
 }
 
 .matrix-row--border {
-  border-bottom: 1px solid rgba(110, 7, 243, 0.2);
+  border-bottom: 1px solid rgba(var(--color-accent-rgb), 0.2);
 }
 
 .matrix-head {
-  color: #fff;
+  color: var(--color-text);
   font-weight: 600;
   font-size: 0.95rem;
 }
 
 .matrix-cell {
-  color: #fff;
+  color: var(--color-text);
   font-size: 0.9rem;
   overflow-wrap: anywhere;
   word-break: break-word;
 }
 
 .matrix-cell--name {
-  color: #6E07F3;
+  color: var(--color-accent);
   font-weight: 600;
 }
-

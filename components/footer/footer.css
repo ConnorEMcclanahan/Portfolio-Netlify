@@ -2,8 +2,8 @@
    All selectors are prefixed with #contact to avoid being overridden by
    page-specific CSS like diplora.css / motivate.css h2 rules. */
 #contact {
-  background: #000 !important;
-  color: #fff !important;
+  background: var(--color-bg) !important;
+  color: var(--color-text) !important;
   padding: 2rem 0 !important;
   border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
@@ -22,7 +22,7 @@
 #contact .footer-cta__eyebrow {
   margin: 0 0 1rem;
   color: rgba(255, 255, 255, 0.62);
-  font-family: "Plus Jakarta Sans", "Helvetica Neue", sans-serif;
+  font-family: var(--font-sans);
   font-size: 0.75rem !important;
   font-weight: 700;
   letter-spacing: 0.18em;
@@ -32,8 +32,8 @@
 #contact .footer-cta h2 {
   max-width: 100%;
   margin: 0;
-  color: #fff !important;
-  font-family: "Syne", "Plus Jakarta Sans", sans-serif !important;
+  color: var(--color-text) !important;
+  font-family: var(--font-display) !important;
   font-size: clamp(3rem, 7vw, 5.5rem) !important;
   font-weight: 800 !important;
   line-height: 0.95 !important;
@@ -58,8 +58,8 @@
   padding: 0.75rem 1.2rem;
   border: 1px solid rgba(255, 255, 255, 0.35);
   border-radius: 999px;
-  color: #fff !important;
-  font-family: "Plus Jakarta Sans", "Helvetica Neue", sans-serif !important;
+  color: var(--color-text) !important;
+  font-family: var(--font-sans) !important;
   font-size: 0.95rem;
   font-weight: 600 !important;
   letter-spacing: 0.01em;
@@ -74,16 +74,16 @@
 
 #contact .footer-cta__actions a:hover {
   transform: translateY(-2px);
-  border-color: #6E07F3 !important;
+  border-color: var(--color-accent) !important;
 }
 
 #contact .footer-cta__primary {
-  background: #6E07F3 !important;
-  border-color: #6E07F3 !important;
+  background: var(--color-accent) !important;
+  border-color: var(--color-accent) !important;
 }
 
 #contact .footer-cta__primary:hover {
-  background: #5206b8 !important;
+  background: var(--color-accent-strong) !important;
 }
 
 #contact .footer-cta__secondary {
@@ -93,7 +93,7 @@
 
 #contact .footer-cta__secondary:hover {
   background: rgba(255, 255, 255, 0.08) !important;
-  border-color: #6E07F3 !important;
+  border-color: var(--color-accent) !important;
 }
 
 #contact .footer-cta__github {
@@ -103,7 +103,7 @@
 
 #contact .footer-cta__github:hover {
   background: rgba(255, 255, 255, 0.08) !important;
-  border-color: #6E07F3 !important;
+  border-color: var(--color-accent) !important;
 }
 
 #contact .footer-cta__email {
@@ -112,14 +112,14 @@
   gap: 0.45rem;
   margin-top: 3rem;
   color: rgba(255, 255, 255, 0.58);
-  font-family: "Plus Jakarta Sans", "Helvetica Neue", sans-serif;
+  font-family: var(--font-sans);
   font-size: 0.9rem;
   font-weight: 500;
   text-decoration: none;
 }
 
 #contact .footer-cta__email:hover {
-  color: #fff !important;
+  color: var(--color-text) !important;
 }
 
 /* Smooth-scroll the navbar "Contact" link down to this footer

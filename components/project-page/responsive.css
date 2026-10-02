@@ -19,7 +19,7 @@
     gap: 0.75rem;
     padding: 0.8rem 0.9rem;
     background: rgba(15, 15, 15, 0.96);
-    border: 1px solid rgba(110, 7, 243, 0.45);
+    border: 1px solid rgba(var(--color-accent-rgb), 0.45);
     border-radius: 10px;
     box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
   }
@@ -133,10 +133,6 @@
     flex-direction: column;
   }
 
-  .pov-grid {
-    grid-template-columns: 1fr;
-  }
-
   .pov-hmw {
     flex-direction: column;
   }
@@ -187,4 +183,3 @@
     transform: none;
   }
 }
-

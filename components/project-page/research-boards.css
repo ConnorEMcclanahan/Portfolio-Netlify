@@ -1,8 +1,4 @@
-.pov-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-}
+
 
 .pov-card {
   background: #111;
@@ -15,7 +11,7 @@
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: #6E07F3;
+  color: var(--color-accent);
   margin-bottom: 0.75rem;
 }
 
@@ -57,7 +53,7 @@
 }
 
 .pov-hmw-heading {
-  color: #6E07F3;
+  color: var(--color-accent);
   text-align: center;
   margin-bottom: 1rem;
 }
@@ -73,14 +69,14 @@
 .pov-table th {
   border: 1px solid #444;
   padding: 12px;
-  background: rgba(110, 7, 243, 0.8);
-  color: #fff;
+  background: rgba(var(--color-accent-rgb), 0.8);
+  color: var(--color-text);
 }
 
 .pov-table td {
   border: 1px solid #444;
   padding: 12px;
-  color: #fff;
+  color: var(--color-text);
 }
 
 .pov-hmw .pov-container {
@@ -92,4 +88,3 @@
   gap: 1rem;
   padding-left: 1rem;
 }
-

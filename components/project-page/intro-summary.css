@@ -16,13 +16,13 @@ body.project-page-standard #intro-summary .intro-meta-item span {
 }
 
 body.project-page-standard #intro-summary {
-  background: #fff !important;
+  background: var(--color-text) !important;
   color: #161616;
 }
 
 .section-intro {
   padding: 4rem 1rem;
-  background: #fff;
+  background: var(--color-text);
   color: #161616;
   flex-direction: column;
 }
@@ -43,7 +43,7 @@ body.project-page-standard #intro-summary {
 
 .intro-heading .intro-title {
   margin: 0 0 0.6rem;
-  color: #6E07F3;
+  color: var(--color-accent);
   font-size: 2rem !important;
   line-height: 1.15;
   text-align: center;
@@ -59,33 +59,14 @@ body.project-page-standard #intro-summary {
 .intro-heading .intro-lead {
   max-width: 70ch;
   margin: 0 auto;
-  color: #6E07F3 !important;
+  color: var(--color-accent) !important;
   font-size: 1.25rem !important;
   font-weight: 600;
   line-height: 1.35;
 }
 
-body.project-page-standard .case-study-phase__placeholder {
-  padding-bottom: 1.25rem;
-  margin-bottom: 1.25rem;
-  border-bottom: 1px solid var(--case-line);
-}
-
-body.project-page-standard .case-study-phase__placeholder h3 {
-  margin: 0 0 0.45rem;
-  color: #fff;
-  font-size: 1.05rem;
-  text-align: left;
-}
-
-body.project-page-standard .case-study-phase__placeholder p {
-  margin: 0;
-  color: var(--case-muted) !important;
-  font-size: 0.95rem;
-}
-
 .intro-title {
-  color: #fff;
+  color: var(--color-text);
   margin-bottom: 1rem;
   font-weight: 700;
   text-align: left;
@@ -100,15 +81,6 @@ body.project-page-standard .case-study-phase__placeholder p {
 
 body.project-page-standard #intro-summary .intro-story-block h2 {
   font-size: 1.75rem !important;
-}
-
-.intro-kicker {
-  color: #6E07F3;
-  font-size: 0.75rem !important;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  margin-bottom: 1rem !important;
-  text-transform: uppercase;
 }
 
 .intro-lead {
@@ -145,7 +117,7 @@ body.project-page-standard .intro-meta ul {
 }
 
 .intro-story-block h2 {
-  color: #fff;
+  color: var(--color-text);
   font-size: 1.75rem;
   margin-bottom: 0.75rem;
   text-align: left;
@@ -166,19 +138,19 @@ body.project-page-standard .intro-meta ul {
 }
 
 .intro-meta-item strong {
-  color: #fff;
+  color: var(--color-text);
   font-size: 0.72rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
 /* Meta labels (Role / Context / Timeline / Tools Used / GitHub) take the same
-   purple accent (#6E07F3) as the intro title and lead. The extra class outranks
+   purple accent (var(--color-accent)) as the intro title and lead. The extra class outranks
    the white !important label rules in intro-theme.css and the per-page
    stylesheets (fitphone / motivate / diplora / phillipswall), so the accent
    holds on every project page. The class is added by intro-summary.js. */
 body.project-page-standard #intro-summary .intro-meta-item strong.intro-meta-label-accent {
-  color: #6E07F3 !important;
+  color: var(--color-accent) !important;
 }
 
 .intro-meta-item span {
@@ -204,4 +176,3 @@ body.project-page-standard #intro-summary .intro-meta-item strong.intro-meta-lab
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
-

@@ -160,7 +160,16 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollCue({ threshold: 0.3 });
   initPDF();
   addContentReveals();
-  window.addEventListener('scroll', reveal, { passive: true });
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      ticking = true;
+      window.requestAnimationFrame(() => {
+        reveal();
+        ticking = false;
+      });
+    }
+  }, { passive: true });
   reveal();
 });
 

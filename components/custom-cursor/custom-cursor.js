@@ -161,14 +161,16 @@ function initCustomCursor() {
       overInteractive = enlarged;
       cursor.classList.toggle('is-over', enlarged);
       targetScale = enlarged ? 1.55 : 1;
-    }
-    if (hovered) {
-      const box = hovered.getBoundingClientRect();
-      magnetX = box.left + box.width / 2;
-      magnetY = box.top + box.height / 2;
-      magnetStrength = 0.18;
-    } else {
-      magnetStrength = 0;
+      // Only measure the hovered element when the hover target changes, not on
+      // every pointermove — getBoundingClientRect() can force a layout pass.
+      if (enlarged && hovered) {
+        const box = hovered.getBoundingClientRect();
+        magnetX = box.left + box.width / 2;
+        magnetY = box.top + box.height / 2;
+        magnetStrength = 0.18;
+      } else {
+        magnetStrength = 0;
+      }
     }
 
     // The effect stays on at all times now — including while scrolling — and

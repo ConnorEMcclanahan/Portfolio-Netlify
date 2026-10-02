@@ -77,3 +77,32 @@
 - Added a hero animation, fade-in reveals, a scroll cue and font fixes across pages
 - Added internship/context badges on the homepage and case-study overviews
 - Cleaned up the repo (untracked editor config, removed scratch files)
+
+**Version 20 : CSS cleanup — removed dead rules and split oversized page stylesheets**
+- Removed dead/leftover selectors across the page stylesheets (unused `header`/`header nav` blocks, `.Overview`, `.media-column`, `.pov-item`, `#navigation`, `#final-container .box`, stale `#reflection` branches, `frontend.css` reference)
+- De-duplicated the custom cursor and halo styles by reusing `components/custom-cursor/custom-cursor.css` on the homepage
+- Split the two largest page stylesheets into focused files: `diplora.css` → `diplora.css` + `diplora-final.css`, and `index.css` → `index.css` + `index-responsive.css` (cascade order preserved)
+- Normalised file headers, removed stray run-on lines and empty placeholder rules
+
+**Version 21 : Fixed broken routes and de-bloated the responsive CSS**
+- Removed stale `_redirects`/README entries for retired pages (`/about`, `/thankyou`, `/drawphone`) and deleted the empty `drawphone.html` stub; legacy URLs now 301 to the homepage
+- Dropped duplicate `loading-screen.js` includes on the Diplora and Motivate pages
+- Deleted dead files: `js/pages/phillipswall-demo-fix.js`, `styles/pages/phillipswall-demo.js`, the unused `components/*/*.html` fragments, and stray `.pdf`/`.csv` assets
+- Rewrote `styles/mobile-responsive.css` (523 → 284 lines): removed dead `[style*="…"]` attribute selectors, SVG rules, and legacy `#Onboarding`/`.Overview`/`.media-column` blocks, and merged duplicate media queries
+- Extracted inline styles out of `pages/phillipswall.html` into the existing `.suggestion-row`/`.suggested-project-*` classes (also fixed the "You might also like" eyebrow colour)
+- Removed the dead `.expanded-card` flip-card styles from `phillipswall-demo.css`
+- Added a global design-token layer (`:root` custom properties) in `styles/style.css` and removed the redundant render-blocking font `@import`
+
+**Version 22 : Deleted dead renderers and split the FitPhone stylesheet**
+- Removed unused `components/project-page` renderers (`persona-grid.js`, `pov-grid.js`, `pov-hmw.js`, `questions-criteria.js`) — their `render*` functions were never called and the content (personas, POV/HMW boards) now lives in static HTML or no longer exists
+- Split `styles/pages/fitphone.css` (898 lines) into `fitphone.css` + `fitphone-responsive.css`, loading the responsive file immediately after the base file to preserve cascade order
+
+**Version 23 : Made internal links work when opened locally (file://)**
+- Replaced absolute root-relative links (`/`, `/#about`, `/diplora`, `/motivate`, `/fitphone`, `/phillipswall`, `/pdfs/resume.pdf`) with relative paths so the site can be clicked through without a server (e.g. `pages/diplora.html`, `../index.html#about`, `motivate.html`)
+- Fixed a broken logo reference in `pages/fitphone.html` (`../Images/logo.png` → `../images-optimized/logo.webp`)
+
+**Version 24 : Performance pass — removed expensive compositing and layout thrash**
+- Removed `mix-blend-mode: screen` from the cursor halo (a full-layer blend composited every frame) and all `backdrop-filter: blur` on the navbar, case-study nav, Philips demo, and TV mini-demo
+- Stopped the custom cursor calling `getBoundingClientRect()` on every pointermove — it now only re-measures when the hover target changes
+- Throttled every scroll-reveal handler with `requestAnimationFrame` so they no longer run `getBoundingClientRect()` over every `.reveal` element on every scroll event
+- Skipped the WebGL Vanta globe for users with `prefers-reduced-motion`

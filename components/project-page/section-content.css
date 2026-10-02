@@ -1,6 +1,6 @@
 body.project-page-standard .case-study-nav a:hover,
 body.project-page-standard .case-study-nav a:focus-visible {
-  color: #fff;
+  color: var(--color-text);
 }
 
 body.project-page-standard .project-section h3 {
@@ -8,7 +8,7 @@ body.project-page-standard .project-section h3 {
   align-items: baseline;
   gap: 0.8rem;
   margin-bottom: 1rem;
-  color: #fff;
+  color: var(--color-text);
   text-align: left;
   letter-spacing: 0;
 }
@@ -29,10 +29,10 @@ body.project-page-standard .project-section h3.final-title {
 body.project-page-standard .final-title,
 body.project-page-standard .project-section h3.final-title,
 body.project-page-standard .final-col h3.final-title {
-  font-family: "Syne", "Plus Jakarta Sans", sans-serif;
+  font-family: var(--font-display);
   font-weight: 800;
   line-height: 1.25;
-  color: #ffff !important;
+  color: var(--color-text) !important;
 }
 
 body.project-page-standard .text-column {
@@ -54,4 +54,3 @@ body.project-page-standard .project-section > div[style*="background"] {
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: none !important;
 }
-

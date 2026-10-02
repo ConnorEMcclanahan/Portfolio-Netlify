@@ -133,7 +133,16 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollCue({ threshold: 0.3 });
 
   addContentReveals();
-  window.addEventListener('scroll', checkReveal, { passive: true });
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      ticking = true;
+      window.requestAnimationFrame(() => {
+        checkReveal();
+        ticking = false;
+      });
+    }
+  }, { passive: true });
   checkReveal();
 });
 

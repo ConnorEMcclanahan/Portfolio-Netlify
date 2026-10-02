@@ -39,7 +39,16 @@ function initRevealOnScroll() {
   };
 
   reveal();
-  window.addEventListener('scroll', reveal, { passive: true });
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      ticking = true;
+      window.requestAnimationFrame(() => {
+        reveal();
+        ticking = false;
+      });
+    }
+  }, { passive: true });
 }
 
 function initDataLinkCards() {

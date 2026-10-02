@@ -1,8 +1,6 @@
 /* Navbar Component */
 .navbar {
-  background: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.9);
   padding: 1rem 2rem;
   position: sticky;
   top: 0;
@@ -43,16 +41,16 @@
 }
 
 .navbar-menu li a {
-  color: #fdfdfd;
+  color: var(--color-text);
   text-decoration: none;
-  font-family: "Plus Jakarta Sans", "Helvetica Neue", sans-serif;
+  font-family: var(--font-sans);
   font-size: 1.2em;
   font-weight: 500;
   transition: color 0.3s ease;
 }
 
 .navbar-menu li a:hover {
-  color: #999;
+  color: var(--color-text-faint);
 }
 
 .navbar-burger {
@@ -67,7 +65,7 @@
 .navbar-burger span {
   width: 25px;
   height: 3px;
-  background-color: #6E07F3;
+  background-color: var(--color-accent);
   border-radius: 2px;
   transition: all 0.3s ease;
 }
@@ -96,7 +94,7 @@
     background-color: #1a1a1a;
     padding: 1rem;
     gap: 1rem;
-    border-top: 1px solid #6E07F3;
+    border-top: 1px solid var(--color-accent);
   }
 
   .navbar-menu.active {

@@ -53,7 +53,7 @@ body.project-page-standard img.reveal-content:hover,
 body.project-page-standard img.reveal.active:hover,
 body.project-page-standard img.reveal-content.active:hover {
   transform: scale(1.03);
-  filter: drop-shadow(0 28px 42px rgba(0, 0, 0, 0.75)) drop-shadow(0 0 28px rgba(110, 7, 243, 0.4));
+  filter: drop-shadow(0 28px 42px rgba(0, 0, 0, 0.75)) drop-shadow(0 0 28px rgba(var(--color-accent-rgb), 0.4));
   /* Hovered image paints above its row-neighbours while scaled. */
   position: relative;
   z-index: 2;

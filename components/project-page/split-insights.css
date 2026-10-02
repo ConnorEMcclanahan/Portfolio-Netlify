@@ -12,7 +12,7 @@
 }
 
 .split-right {
-  border-left: 3px solid #6E07F3;
+  border-left: 3px solid var(--color-accent);
   padding-left: 2rem;
   display: flex;
   flex-direction: column;
@@ -21,13 +21,13 @@
 
 .split-main-title,
 .split-card-title {
-  color: #6E07F3;
+  color: var(--color-accent);
 }
 
 .split-main-copy,
 .split-copy,
 .split-list {
-  color: #fff;
+  color: var(--color-text);
 }
 
 .split-list {
@@ -35,4 +35,3 @@
   padding: 0;
   margin: 0;
 }
-

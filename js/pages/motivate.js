@@ -314,7 +314,16 @@ document.addEventListener('DOMContentLoaded', () => {
   addContentReveals();
 });
 
-window.addEventListener('scroll', reveal);
+let ticking = false;
+window.addEventListener('scroll', () => {
+  if (!ticking) {
+    ticking = true;
+    window.requestAnimationFrame(() => {
+      reveal();
+      ticking = false;
+    });
+  }
+}, { passive: true });
 window.addEventListener('load', () => {
   const loader = document.getElementById('loader');
   if (loader) {

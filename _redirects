@@ -6,22 +6,24 @@
 /motivate /pages/motivate.html 200
 /diplora /pages/diplora.html 200
 /phillipswall /pages/phillipswall.html 200
-/about /pages/about.html 200
-/drawphone /pages/drawphone.html 200
-/thankyou /pages/thankyou.html 200
 
 # Legacy root-level routes to pages/
-/About.html /pages/about.html 301
 /Fitphone.html /pages/fitphone.html 301
 /Motivate.html /pages/motivate.html 301
 /Diplora.html /pages/diplora.html 301
-/Thankyou.html /pages/thankyou.html 301
 
 # Lowercase root-level aliases
-/about.html /pages/about.html 301
 /fitphone.html /pages/fitphone.html 301
 /motivate.html /pages/motivate.html 301
 /diplora.html /pages/diplora.html 301
 /phillipswall.html /pages/phillipswall.html 301
-/drawphone.html /pages/drawphone.html 301
-/thankyou.html /pages/thankyou.html 301
+
+# Retired pages — About merged into the homepage; Thank You and Drawphone removed
+/about /#about 301
+/about.html /#about 301
+/About.html /#about 301
+/thankyou / 301
+/thankyou.html / 301
+/Thankyou.html / 301
+/drawphone / 301
+/drawphone.html / 301
