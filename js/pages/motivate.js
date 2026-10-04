@@ -15,8 +15,6 @@ const introSummaryData = {
   }
 };
 
-/* Single-column conclusion. Uses the same structure and length as the Diplora
-   case study: one Conclusion column, four titled paragraphs. */
 const finalSectionData = {
   columns: [
     {
@@ -286,9 +284,7 @@ function initReveal() {
     return;
   }
 
-  // IntersectionObserver reveals elements once and leaves them revealed.
-  // getBoundingClientRect() over every .reveal element on every scroll frame
-  // forces synchronous layout, which is what made scrolling feel laggy.
+  // IntersectionObserver reveals once and stays revealed.
   if (!('IntersectionObserver' in window)) {
     reveals.forEach((el) => el.classList.add('active'));
     return;

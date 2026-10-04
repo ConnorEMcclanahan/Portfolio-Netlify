@@ -1,27 +1,4 @@
-// Shared custom cursor — the same dot / ring / halo effect as index.html.
-// (Extracted from initCustomCursor() in js/pages/index.js so every page in
-// /pages/ can reuse it. index.html keeps its own copy; this file is for the
-// /pages/ can reuse it. index.html keeps its own copy; this file is for the
-// subpages, which load it alongside components/custom-cursor/custom-cursor.css
-// plus the .custom-cursor / .pointer-glow markup before </body>.)
-//
-// Replaces the native pointer, which the stylesheet hides via
-// `body.has-custom-cursor`. That class is only added once the replacement has
-// actually been painted, so the pointer can never blink out on load, and any
-// device that opts out below keeps its real cursor. It is removed again
-// whenever DevTools holds focus (inspect element) or the pointer leaves the
-// window — the moments the replacement can't be there — so the native
-// pointer takes over exactly when the effect steps aside.
-//
-//  * A 6px dot is written straight from the pointer position with no easing, so
-//    the click target is always exactly under the cursor; a 34px ring trails
-//    slightly behind it. That pairing is what stops it feeling laggy.
-//  * clientX/clientY + position: fixed keeps every layer pinned to the viewport,
-//    so they cannot lag behind or "stick" while the page scrolls.
-//  * The halo is its own root-level layer using mix-blend-mode: screen, so it
-//    can only ever brighten what is beneath it, never cover text.
-//  * Transforms are written in a single rAF loop using translate3d only, and the
-//    loop parks itself once everything has settled.
+// Custom cursor for the /pages/ subpages (index.html has its own copy).
 function initCustomCursor() {
   const cursor = document.querySelector('.custom-cursor');
   const glow = document.querySelector('.pointer-glow');
@@ -43,8 +20,6 @@ function initCustomCursor() {
     return;
   }
 
-  // The stylesheet keeps these layers display:none until this point, so devices
-  // that bail out above never pay for rendering them.
   cursor.classList.add('is-enabled');
   glow.classList.add('is-enabled');
 
@@ -80,11 +55,7 @@ function initCustomCursor() {
   const frameStep = () => {
     frame = null;
 
-    // The ring eases toward the pointer, tugged slightly toward the hovered
-    // element's centre (magnetic lift); the halo follows the raw pointer. The
-    // tug is capped so a large image or figure — whose centre can sit hundreds
-    // of pixels away from the pointer — can never drag the ring off the dot.
-    const MAX_PULL = 14; // px — the most the ring may lean toward the centre
+    const MAX_PULL = 14; // px — cap how far the ring leans toward a hovered element
     let pullX = pointerX;
     let pullY = pointerY;
     if (magnetStrength > 0) {
@@ -100,7 +71,6 @@ function initCustomCursor() {
     }
 
     if (snapNext) {
-      // Land exactly on the pointer instead of sweeping across the viewport.
       ringX = haloX = pointerX;
       ringY = haloY = pointerY;
       snapNext = false;
@@ -117,8 +87,7 @@ function initCustomCursor() {
     ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0) scale(${scale})`;
     halo.style.transform = `translate3d(${haloX}px, ${haloY}px, 0)`;
 
-    // Only now is it safe to hide the native pointer: the replacement has been
-    // painted in this very frame, so there is never a moment with no cursor.
+    // Hide the native pointer only after the replacement is painted.
     if (visible && !nativeHidden) {
       nativeHidden = true;
       document.body.classList.add('has-custom-cursor');
@@ -142,12 +111,7 @@ function initCustomCursor() {
     visible = next;
     cursor.classList.toggle('is-active', next);
     glow.classList.toggle('is-active', next);
-    // Whenever the replacement hides, hand the native pointer back — e.g.
-    // DevTools holds focus (inspect element) or the pointer left the window.
-    // Without this, `cursor: none` would stay applied while nothing is on
-    // screen, leaving the visitor with no pointer at all. frameStep re-adds
-    // the class after it paints the replacement again, so the swap stays
-    // flicker-free.
+    // Hand the native pointer back while the replacement is hidden.
     if (!next) {
       nativeHidden = false;
       document.body.classList.remove('has-custom-cursor');
@@ -158,8 +122,6 @@ function initCustomCursor() {
     }
   };
 
-  // Subtle lift: links, buttons, and images gently tug + enlarge the ring,
-  // like the mockup hover. Nothing else changes.
   const HOVER_SELECTOR = 'a, button, .tag, img, figure,'
     + ' .project-showcase__media, .project-showcase__media-link,'
     + ' .suggested-project-card, .profile-image, .about-portrait, .IntroPic';
@@ -175,8 +137,7 @@ function initCustomCursor() {
       overInteractive = enlarged;
       cursor.classList.toggle('is-over', enlarged);
       targetScale = enlarged ? 1.55 : 1;
-      // Only measure the hovered element when the hover target changes, not on
-      // every pointermove — getBoundingClientRect() can force a layout pass.
+      // Measure only when the hover target changes (layout pass is expensive).
       if (enlarged && hovered) {
         const box = hovered.getBoundingClientRect();
         magnetX = box.left + box.width / 2;
@@ -187,9 +148,6 @@ function initCustomCursor() {
       }
     }
 
-    // The effect stays on at all times now — including while scrolling — and
-    // only stands down while DevTools holds focus (inspect element), where
-    // the native pointer is what you actually want under your hand.
     if (document.hasFocus()) {
       setVisible(true);
     }
@@ -199,8 +157,6 @@ function initCustomCursor() {
   document.addEventListener('mousemove', onPointerMove, { passive: true });
   document.addEventListener('mouseleave', () => setVisible(false));
   window.addEventListener('blur', () => setVisible(false));
-  // Returning from DevTools (or another tab) brings the effect straight back
-  // without waiting for the next mouse move.
   window.addEventListener('focus', () => setVisible(true));
 }
 

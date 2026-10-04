@@ -24,9 +24,7 @@ function initRevealOnScroll() {
     return;
   }
 
-  // IntersectionObserver reveals elements once and leaves them revealed.
-  // getBoundingClientRect() over every .reveal element on every scroll frame
-  // forces synchronous layout, which is what made scrolling feel laggy.
+  // IntersectionObserver reveals once and stays revealed.
   if (!('IntersectionObserver' in window)) {
     reveals.forEach((el) => el.classList.add('active'));
     return;

@@ -1,11 +1,7 @@
 (function () {
   const api = window.ProjectPageComponents = window.ProjectPageComponents || {};
 
-  // Scroll-linked reveal for the cascade hero.
-  // The CSS reads --cascade-reveal (0 -> 1) to sink the tablets slightly and
-  // lift the phones by more, so scrolling pulls more of every phone out from
-  // under the tablet edges. The hero owns the first slice of the scroll, so
-  // the effect lands right around the point the scroll cue fades out.
+  // Scroll-linked reveal: sets --cascade-reveal (0 -> 1) as the hero scrolls.
   function initCascadeReveal(section) {
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     if (reducedMotion.matches) {
@@ -42,19 +38,15 @@
 
     const escapeHtml = api.escapeHtml || ((v) => String(v));
 
-    // Build title HTML
     const titleHtml = data.title ? `<h2 class="device-cascade__title">${escapeHtml(data.title)}</h2>` : '';
     const subtitleHtml = data.subtitle ? `<p class="device-cascade__subtitle">${escapeHtml(data.subtitle)}</p>` : '';
 
-    // Build items HTML - cascade order: back to front
     const itemsHtml = data.items.map((item, index) => {
       const isTablet = item.device === 'tablet';
       const isPhone = !isTablet;
       let frameClass = isTablet ? 'device-cascade__frame--tablet' : 'device-cascade__frame--phone';
       
-      // Phone roles: every phone is the same width — the two phones that
-      // overlap the tablets just carry a softer shadow so the middle phone
-      // still reads as the focus. Mirrored, so the cascade stays symmetrical.
+      // Overlapping phones get a softer shadow so the middle one reads as focus.
       if (isPhone) {
         if (index === 1 || index === 4) {
           frameClass += ' device-cascade__frame--phone-back';
@@ -72,7 +64,6 @@
       `;
     }).join('');
 
-    // Add modifier class
     if (data.noText) target.classList.add('device-cascade--no-text');
 
     target.innerHTML = `

@@ -3,15 +3,11 @@
   background: var(--color-bg) !important;
 }
 
-/* NOTE: deliberately no `transform` on body. A transform here turns the body
-   into the containing block for every `position: fixed` descendant, which
-   anchors them to the document instead of the viewport so they visibly drift /
-   "stick" while scrolling. The viewport-anchored pointer glow below relies on
-   this staying off. */
+/* No transform on body — it would break position: fixed descendants. */
 body {
   color: var(--color-text);
   overflow-x: hidden;
-  overflow-x: clip; /* clip without turning <body> into a scroll container (avoids scroll jank) */
+  overflow-x: clip;
   margin: 0;
   padding: 0;
   background: var(--color-bg);
@@ -30,6 +26,19 @@ section {
   margin-bottom: 0;
 }
 
+/* Fade the bottom of the Vanta globe into the next section. */
+#top::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: clamp(160px, 26vh, 320px);
+  background: linear-gradient(to bottom, transparent, var(--color-bg));
+  pointer-events: none;
+  z-index: 1;
+}
+
 .reveal {
   position: relative;
   opacity: 0;
@@ -42,11 +51,7 @@ section {
   transform: translateY(0);
 }
 
-/* Every project row carries .reveal itself (the showcase section no longer
-   does), so each project fades in on its own as it reaches the viewport. The
-   mockup starts a beat after its copy, which reads as one entrance per project
-   instead of two separate swaps. This animates the media column, so the
-   positioning transforms inside the mockup clusters are left untouched. */
+/* Each row reveals on its own; the media column trails the copy. */
 .project-showcase__row.reveal .project-showcase__media {
   opacity: 0;
   transform: translateY(24px);
@@ -59,8 +64,7 @@ section {
 }
 
 .hero.hero-shell {
-  /* Keep the hero content left-aligned over the full-screen Vanta globe
-     instead of Bulma's centered layout. */
+  /* Left-align the hero over the globe instead of Bulma's centered layout. */
   display: block;
 }
 
@@ -79,8 +83,7 @@ section {
   z-index: 2;
 }
 
-/* Sasha-style editorial type — one font, one statement, restrained highlights.
-   The name stays plain; one or two words get the accent. */
+/* Editorial type: the name stays plain, a word or two get the accent. */
 .hero-title {
   margin-bottom: 1.5rem;
   max-width: 11.5em;
@@ -97,16 +100,13 @@ section {
   hyphens: none;
 }
 
-/* Line 1 stays on its own row; everything after ("bridging...") always
-   starts on line 2. Block forces the break, nowrap keeps "I'm Connor —"
-   together. Survives the JS word-split rebuild since the class is cloned. */
+/* Force "I'm Connor —" onto its own line. */
 .hero-title .hero-title-line1 {
   display: block;
   white-space: nowrap;
 }
 
-/* Em-dash next to "Connor" — purple, inherits
-   into the JS-split character spans. */
+/* Em-dash next to "Connor" — purple. */
 .hero-title .hero-dash {
   color: var(--color-accent);
   font-weight: 700;
@@ -117,8 +117,7 @@ section {
   font-weight: inherit;
 }
 
-/* Ampersand between "design" and "development" — white, inherits
-   into the JS-split character spans inside <em>. */
+/* Ampersand between "design" and "development" — white. */
 .hero-title .hero-amp {
   color: var(--color-text);
   font-style: inherit;
@@ -137,13 +136,7 @@ section {
   color: var(--color-accent);
 }
 
-/* ============================================================
-   HERO ENTRANCE ANIMATION
-   Fun staggered text reveal + subtle scale-in on page load.
-   Mirrors the project-page entrance feel but tuned for the
-   full-screen Vanta globe hero on index.html.
-   ============================================================ */
-
+/* Hero entrance animation. */
 .hero__content {
   position: relative;
   z-index: 2;
@@ -205,30 +198,20 @@ section {
   font-weight: inherit;
 }
 
-/* Scroll-cue component override for index — inside #top, above gradient overlay */
+/* Scroll cue sits above the hero fade. */
 #top .scroll-cue {
   bottom: clamp(88px, 12vh, 132px);
   z-index: 5;
-  color: #d4bfff; /* brighter to offset the gradient overlay */
+  color: #d4bfff;
   filter: drop-shadow(0 0 8px var(--color-accent-light)) drop-shadow(0 0 20px var(--color-accent-light));
 }
 
-/* One vertical rhythm for the whole page: the space a project row carries above
-   and below itself. Two of them meet between rows, so every other gap on the
-   page is built to add up to that same 2x — the lead-in from the hero and the
-   space above About Me then read exactly like the gaps between projects.
-   Retuned once, in the mobile block at the end of this file; no gap on the page
-   is ever hard-coded twice. */
+/* One vertical rhythm for the whole page, tuned once in the mobile block. */
 :root {
   --row-space: clamp(5rem, 13vh, 9rem);
 }
 
-/* The hero already ends on a full screen of trailing space, so the showcase only
-   needs a short lead-in: just enough to clear the lifted scroll cue without
-   stacking a full rhythm unit on top of the first row's own padding. The bottom
-   is still left to the last row's own padding, which keeps both ends
-   symmetrical and hands the space above About Me over to that section instead
-   (see #about.about-section). */
+/* Short lead-in: the hero already ends with a full screen of space. */
 #previous-work {
   padding-top: clamp(1.25rem, 3.5vh, 2.5rem);
   padding-bottom: 0;
@@ -242,18 +225,12 @@ section {
   z-index: 10;
 }
 
-/* One project row — text on one side, mockup on the other, like saschas.ai.
-   The default row places text first; the alternate modifier flips the columns.
-   No dividers: rows are separated by whitespace alone. */
+/* One project row — text one side, mockup the other, separated by whitespace. */
 .project-showcase__row {
   display: grid;
   grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
   gap: clamp(2rem, 5vw, 4.5rem);
   align-items: center;
-  /* Generous vertical rhythm between projects — the whitespace does the
-     separating instead of rules, so each row reads as its own piece of work.
-     Two of these meet between rows, and that 2x is what the section gaps above
-     and below the showcase are matched to. */
   padding: var(--row-space) clamp(0.75rem, 2vw, 1.5rem);
 }
 

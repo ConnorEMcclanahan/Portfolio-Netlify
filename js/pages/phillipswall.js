@@ -16,8 +16,6 @@ const introSummaryData = {
   }
 };
 
-/* Single-column conclusion. Uses the same structure and length as the Diplora
-   case study: one Conclusion column, four titled paragraphs. */
 const finalSectionData = {
   columns: [
     {

@@ -9,12 +9,10 @@
 
     const escapeHtml = api.escapeHtml || ((v) => String(v));
 
-    // Apply background color
     if (data.bg) {
       target.style.setProperty('--staggered-bg', data.bg);
     }
 
-    // Apply custom colors
     if (data.titleColor) {
       target.style.setProperty('--staggered-title-color', data.titleColor);
     }
@@ -25,14 +23,12 @@
       target.style.setProperty('--staggered-label-color', data.labelColor);
     }
 
-    // Apply custom stagger offsets
     if (data.staggers) {
       data.staggers.forEach((stagger, index) => {
         target.style.setProperty(`--stagger-${index + 1}`, stagger);
       });
     }
 
-    // Build item HTML
     const itemsHtml = data.items.map((item, index) => {
       const deviceClass = item.device === 'tablet' ? 'staggered-mockup__frame--tablet' : '';
       const staggerValue = item.stagger || (data.staggers ? data.staggers[index] : '0');
@@ -46,15 +42,13 @@
       `;
     }).join('');
 
-    // Build title/subtitle HTML
     const titleHtml = data.title ? `<h2 class="staggered-mockup__title">${escapeHtml(data.title)}</h2>` : '';
     const subtitleHtml = data.subtitle ? `<p class="staggered-mockup__subtitle">${escapeHtml(data.subtitle)}</p>` : '';
 
-    // Add modifier classes
     if (data.noLabels) target.classList.add('staggered-mockup--no-labels');
     if (data.noText) target.classList.add('staggered-mockup--no-text');
 
-    // Find or create the row container (don't replace navbar)
+    // Find or create the row container (leave the navbar alone).
     let rowContainer = target.querySelector('.staggered-mockup__row');
     if (!rowContainer) {
       rowContainer = document.createElement('div');
@@ -63,7 +57,6 @@
       target.appendChild(rowContainer);
     }
     
-    // Find or create content container
     let contentContainer = target.querySelector('.staggered-mockup__content');
     if (!contentContainer) {
       contentContainer = document.createElement('div');
@@ -78,7 +71,6 @@
       </div>
     `;
 
-    // Add scroll cue mount if not exists
     if (!target.querySelector('#scroll-cue-mount')) {
       const mount = document.createElement('div');
       mount.id = 'scroll-cue-mount';
