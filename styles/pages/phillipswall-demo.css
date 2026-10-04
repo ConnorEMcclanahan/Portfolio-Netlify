@@ -34,14 +34,14 @@
 }
 
 .phillips-demo-hero .navbar {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   width: 100%;
   box-sizing: border-box;
   z-index: 50;
-  background: transparent;
+  background: rgba(0, 0, 0, 0.9);
 }
 
 .phillips-demo-header {

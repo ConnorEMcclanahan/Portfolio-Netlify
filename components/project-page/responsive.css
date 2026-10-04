@@ -156,14 +156,29 @@
     width: 100%;
   }
 
+  /* Competitor tables and comparison matrices stay horizontal on mobile.
+     Enable sideways scrolling as a safety net and let the columns shrink
+     to fit on larger phones/tablets instead of stacking vertically. */
+  .comparison-table-shell,
+  .matrix-shell {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
   .comparison-row {
-    grid-template-columns: 1fr;
-    gap: 0.5rem;
+    grid-template-columns: minmax(110px, 1fr) minmax(150px, 2fr) minmax(150px, 2fr);
+  }
+}
+
+/* Very small phones: give the rows a readable minimum width so they
+   scroll sideways rather than crushing the text. */
+@media (max-width: 480px) {
+  .comparison-row {
+    min-width: 560px;
   }
 
   .matrix-row {
-    grid-template-columns: 1fr;
-    gap: 0.4rem;
+    min-width: 760px;
   }
 }
 

@@ -7,9 +7,13 @@ function initVantaBackground() {
     return;
   }
 
-  // Full-screen Vanta globe behind the whole hero — the big parallax ball,
-  // same setup as the original design.
-  window.VANTA.GLOBE({
+  // Full-screen Vanta globe behind the whole hero — the big parallax ball.
+  // Brighter purple dots (#9A53FF, the site's lighter accent, unlit so the
+  // white spotlight can't wash them out) with white lines/arcs (color2) so
+  // the purple dots still read as distinct dots against the black hero.
+  // Throttled to ~30fps with a capped resolution, and pointer controls on
+  // so the ball follows the cursor.
+  const effect = window.VANTA.GLOBE({
     el: '#top',
     mouseControls: true,
     touchControls: true,
@@ -18,9 +22,37 @@ function initVantaBackground() {
     minWidth: 200,
     scale: 1,
     scaleMobile: 1,
-    color: 0x6e07f3,
+    color: 0x9a53ff,
+    color2: 0xffffff,
     backgroundColor: 0x0,
+    points: 8,
   });
+
+  // Cap the WebGL render resolution — the single biggest cost on high-DPI
+  // screens — and re-apply it after Vanta's own resize handler re-sets it.
+  const capResolution = () => {
+    if (effect.renderer && typeof effect.renderer.setPixelRatio === 'function') {
+      effect.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    }
+  };
+  capResolution();
+
+  // Throttle the animation loop to ~30fps so the globe keeps animating but does
+  // about half the GPU work of the default 60fps loop.
+  const originalLoop = effect.animationLoop;
+  let lastRender = 0;
+  effect.animationLoop = () => {
+    const now = performance.now();
+    if (now - lastRender >= 33) {
+      lastRender = now;
+      originalLoop.call(effect);
+    } else {
+      effect.req = window.requestAnimationFrame(effect.animationLoop);
+    }
+  };
+
+  // Vanta re-applies the full device pixel ratio on window resize; cap it again.
+  window.addEventListener('resize', () => window.setTimeout(capResolution, 120));
 
   // Trigger the hero entrance animation once Vanta has initialised.
   // This keeps the text reveal in sync with the background so the page
@@ -136,32 +168,25 @@ function initReveal() {
     return;
   }
 
-  const revealPoint = 150;
+  // Reveal with IntersectionObserver instead of a scroll + getBoundingClientRect
+  // loop. getBoundingClientRect() on every reveal element on every scroll frame
+  // forces synchronous layout, which is what made scrolling feel like it
+  // "grabbed" whenever you paused and changed direction.
+  if (!('IntersectionObserver' in window)) {
+    revealElements.forEach((el) => el.classList.add('active'));
+    return;
+  }
 
-  const checkReveal = () => {
-    const windowHeight = window.innerHeight;
-
-    revealElements.forEach((element) => {
-      const elementTop = element.getBoundingClientRect().top;
-      if (elementTop < windowHeight - revealPoint) {
-        element.classList.add('active');
-      } else {
-        element.classList.remove('active');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+        io.unobserve(entry.target); // reveal once and stay revealed
       }
     });
-  };
+  }, { rootMargin: '0px 0px -12% 0px', threshold: 0 });
 
-  checkReveal();
-  let ticking = false;
-  window.addEventListener('scroll', () => {
-    if (!ticking) {
-      ticking = true;
-      window.requestAnimationFrame(() => {
-        checkReveal();
-        ticking = false;
-      });
-    }
-  }, { passive: true });
+  revealElements.forEach((el) => io.observe(el));
 }
 
 function initPortraitAnimation() {
@@ -259,9 +284,23 @@ function initCustomCursor() {
     frame = null;
 
     // The ring eases toward the pointer, tugged slightly toward the hovered
-    // element's centre (magnetic lift); the halo follows the raw pointer.
-    const pullX = magnetStrength > 0 ? pointerX + (magnetX - pointerX) * magnetStrength : pointerX;
-    const pullY = magnetStrength > 0 ? pointerY + (magnetY - pointerY) * magnetStrength : pointerY;
+    // element's centre (magnetic lift); the halo follows the raw pointer. The
+    // tug is capped so a large image or figure — whose centre can sit hundreds
+    // of pixels away from the pointer — can never drag the ring off the dot.
+    const MAX_PULL = 14; // px — the most the ring may lean toward the centre
+    let pullX = pointerX;
+    let pullY = pointerY;
+    if (magnetStrength > 0) {
+      let dx = magnetX - pointerX;
+      let dy = magnetY - pointerY;
+      const dist = Math.hypot(dx, dy);
+      if (dist > MAX_PULL) {
+        dx = (dx / dist) * MAX_PULL;
+        dy = (dy / dist) * MAX_PULL;
+      }
+      pullX = pointerX + dx;
+      pullY = pointerY + dy;
+    }
 
     if (snapNext) {
       // Land exactly on the pointer instead of sweeping across the viewport.

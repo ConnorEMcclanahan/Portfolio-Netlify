@@ -6,7 +6,14 @@
 (function () {
   'use strict';
 
-  window.addEventListener('load', function () {
+  var hidden = false;
+
+  function hideLoader() {
+    if (hidden) {
+      return;
+    }
+    hidden = true;
+
     var loader = document.getElementById('loader');
     if (loader) {
       loader.style.display = 'none';
@@ -29,5 +36,10 @@
     if (document.body) {
       document.body.classList.add('loaded');
     }
-  });
+  }
+
+  window.addEventListener('load', hideLoader);
+  // Fallback: never keep the loader up longer than ~2s, even if a slow asset
+  // (e.g. the WebGL globe) is still downloading.
+  window.setTimeout(hideLoader, 2000);
 })();

@@ -13,6 +13,11 @@
   --font-display: "Syne", "Plus Jakarta Sans", sans-serif;
 }
 
+html {
+  background-color: var(--color-bg);
+  color-scheme: dark;
+}
+
 body {
   font-family: var(--font-sans);
   color: var(--color-text);

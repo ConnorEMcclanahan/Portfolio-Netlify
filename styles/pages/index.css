@@ -7,22 +7,14 @@
    into the containing block for every `position: fixed` descendant, which
    anchors them to the document instead of the viewport so they visibly drift /
    "stick" while scrolling. The viewport-anchored pointer glow below relies on
-   this staying off; #top canvas keeps its own compositing hint instead. */
+   this staying off. */
 body {
   color: var(--color-text);
   overflow-x: hidden;
+  overflow-x: clip; /* clip without turning <body> into a scroll container (avoids scroll jank) */
   margin: 0;
   padding: 0;
   background: var(--color-bg);
-}
-
-/* Improve scroll performance with Vanta globe */
-#top {
-  will-change: auto;
-}
-
-#top canvas {
-  will-change: transform;
 }
 
 section {
@@ -36,18 +28,6 @@ section {
   position: relative;
   padding: 0;
   margin-bottom: 0;
-}
-
-#top::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 40%;
-  background: linear-gradient(to bottom, transparent, var(--color-bg));
-  pointer-events: none;
-  z-index: 1;
 }
 
 .reveal {

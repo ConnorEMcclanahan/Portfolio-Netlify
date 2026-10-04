@@ -81,9 +81,23 @@ function initCustomCursor() {
     frame = null;
 
     // The ring eases toward the pointer, tugged slightly toward the hovered
-    // element's centre (magnetic lift); the halo follows the raw pointer.
-    const pullX = magnetStrength > 0 ? pointerX + (magnetX - pointerX) * magnetStrength : pointerX;
-    const pullY = magnetStrength > 0 ? pointerY + (magnetY - pointerY) * magnetStrength : pointerY;
+    // element's centre (magnetic lift); the halo follows the raw pointer. The
+    // tug is capped so a large image or figure — whose centre can sit hundreds
+    // of pixels away from the pointer — can never drag the ring off the dot.
+    const MAX_PULL = 14; // px — the most the ring may lean toward the centre
+    let pullX = pointerX;
+    let pullY = pointerY;
+    if (magnetStrength > 0) {
+      let dx = magnetX - pointerX;
+      let dy = magnetY - pointerY;
+      const dist = Math.hypot(dx, dy);
+      if (dist > MAX_PULL) {
+        dx = (dx / dist) * MAX_PULL;
+        dy = (dy / dist) * MAX_PULL;
+      }
+      pullX = pointerX + dx;
+      pullY = pointerY + dy;
+    }
 
     if (snapNext) {
       // Land exactly on the pointer instead of sweeping across the viewport.
