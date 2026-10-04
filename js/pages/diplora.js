@@ -104,35 +104,6 @@ const mockupFlowData = {
   ]
 };
 
-function initReveal() {
-  const reveals = document.querySelectorAll('.reveal');
-  if (!reveals.length) {
-    return;
-  }
-
-  // IntersectionObserver reveals once and stays revealed.
-  if (!('IntersectionObserver' in window)) {
-    reveals.forEach((el) => el.classList.add('active'));
-    return;
-  }
-
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('active');
-        io.unobserve(entry.target);
-      }
-    });
-  }, { rootMargin: '0px 0px -12% 0px', threshold: 0 });
-
-  reveals.forEach((el) => io.observe(el));
-}
-
-function addContentReveals() {
-  document.querySelectorAll('body.project-page-standard .project-section p, body.project-page-standard .project-section h3, body.project-page-standard .project-section h4, body.project-page-standard .project-section li, body.project-page-standard .project-section img, body.project-page-standard .project-section iframe, body.project-page-standard #competitor-analysis-matrix .matrix-shell > *, body.project-page-standard .case-study-phase__overview h3, body.project-page-standard .case-study-phase__overview li, body.project-page-standard #intro-summary .intro-heading > *, body.project-page-standard #intro-summary .intro-summary-left > *, body.project-page-standard #intro-summary .intro-meta-item, body.project-page-standard #intro-summary .intro-story-block h2, body.project-page-standard #intro-summary .intro-story-block p, body.project-page-standard .case-study-process h2, body.project-page-standard .case-study-process__step').forEach((element) => {
-    element.classList.add('reveal', 'reveal-content');
-  });
-}
 
 document.addEventListener('DOMContentLoaded', () => {
   if (window.pdfjsLib) {
@@ -148,13 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initScrollCue({ threshold: 0.3 });
 
-  addContentReveals();
-  initReveal();
+  window.Portfolio.initContentReveals('body.project-page-standard .project-section p, body.project-page-standard .project-section h3, body.project-page-standard .project-section h4, body.project-page-standard .project-section li, body.project-page-standard .project-section img, body.project-page-standard .project-section iframe, body.project-page-standard #competitor-analysis-matrix .matrix-shell > *, body.project-page-standard .case-study-phase__overview h3, body.project-page-standard .case-study-phase__overview li, body.project-page-standard #intro-summary .intro-heading > *, body.project-page-standard #intro-summary .intro-summary-left > *, body.project-page-standard #intro-summary .intro-meta-item, body.project-page-standard #intro-summary .intro-story-block h2, body.project-page-standard #intro-summary .intro-story-block p, body.project-page-standard .case-study-process h2, body.project-page-standard .case-study-process__step');
+  window.Portfolio.initRevealOnScroll();
 });
 
-window.addEventListener('load', () => {
-  const loader = document.getElementById('loader');
-  if (loader) {
-    loader.style.display = 'none';
-  }
-});

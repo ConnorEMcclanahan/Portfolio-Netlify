@@ -2,10 +2,11 @@
   "name": "portfolio-netlify",
   "version": "1.0.0",
   "description": "A personal portfolio site showcasing UI/UX and front-end development work, with detailed case-study pages for internship, university, and minor projects.",
-  "main": "index.js",
+  "private": true,
   "scripts": {
     "dev": "node dev-server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node dev-server.js",
+    "test": "python3 scripts/validate-project-css.py"
   },
   "repository": {
     "type": "git",
@@ -22,7 +23,6 @@
     "sharp": "^0.35.4"
   },
   "devDependencies": {
-    "express": "^5.2.1",
-    "http-proxy-middleware": "^4.2.0"
+    "express": "^5.2.1"
   }
 }

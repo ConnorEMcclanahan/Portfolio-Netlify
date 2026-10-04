@@ -50,25 +50,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initScrollCue({ threshold: 0.3 });
 
-  const reveals = document.querySelectorAll('.reveal');
-  if (!('IntersectionObserver' in window)) {
-    reveals.forEach((el) => el.classList.add('active'));
-  } else {
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-          io.unobserve(entry.target);
-        }
-      });
-    }, { rootMargin: '0px 0px -12% 0px', threshold: 0 });
-    reveals.forEach((el) => io.observe(el));
-  }
+  window.Portfolio.initRevealOnScroll();
 });
 
-window.addEventListener('load', () => {
-  const loader = document.querySelector('#loader');
-  if (loader) {
-    loader.style.display = 'none';
-  }
-});

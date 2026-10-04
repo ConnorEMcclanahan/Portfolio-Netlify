@@ -256,58 +256,6 @@ function initPDF() {
   });
 }
 
-function initSmoothScroll() {
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener('click', function onClick(e) {
-      const targetId = this.getAttribute('href');
-      if (!targetId) {
-        return;
-      }
-
-      e.preventDefault();
-      if (targetId === '#') {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        return;
-      }
-
-      const target = document.querySelector(targetId);
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth' });
-      }
-    });
-  });
-}
-
-function initReveal() {
-  const reveals = document.querySelectorAll('.reveal');
-  if (!reveals.length) {
-    return;
-  }
-
-  // IntersectionObserver reveals once and stays revealed.
-  if (!('IntersectionObserver' in window)) {
-    reveals.forEach((el) => el.classList.add('active'));
-    return;
-  }
-
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('active');
-        io.unobserve(entry.target);
-      }
-    });
-  }, { rootMargin: '0px 0px -12% 0px', threshold: 0 });
-
-  reveals.forEach((el) => io.observe(el));
-}
-
-function addContentReveals() {
-  document.querySelectorAll('body.project-page-standard .project-section p, body.project-page-standard .project-section h3, body.project-page-standard .project-section h4, body.project-page-standard .project-section li, body.project-page-standard .project-section img, body.project-page-standard .case-study-phase__overview h3, body.project-page-standard .case-study-phase__overview li, body.project-page-standard .case-study-process h2, body.project-page-standard .case-study-process__step').forEach((element) => {
-    element.classList.add('reveal', 'reveal-content');
-  });
-}
-
 
 document.addEventListener('DOMContentLoaded', () => {
   if (window.pdfjsLib) {
@@ -315,7 +263,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   initScrollCue({ threshold: 0.3 });
-  initSmoothScroll();
 
   if (window.ProjectPageComponents) {
     window.ProjectPageComponents.renderIntroSummary('#intro-summary', introSummaryData);
@@ -326,16 +273,10 @@ document.addEventListener('DOMContentLoaded', () => {
     window.ProjectPageComponents.renderFinalColumns('#final-container', finalSectionData);
   }
 
-  addContentReveals();
-  initReveal();
+  window.Portfolio.initContentReveals('body.project-page-standard .project-section p, body.project-page-standard .project-section h3, body.project-page-standard .project-section h4, body.project-page-standard .project-section li, body.project-page-standard .project-section img, body.project-page-standard .case-study-phase__overview h3, body.project-page-standard .case-study-phase__overview li, body.project-page-standard .case-study-process h2, body.project-page-standard .case-study-process__step');
+  window.Portfolio.initRevealOnScroll();
 });
 
 window.addEventListener('load', () => {
-  const loader = document.getElementById('loader');
-  if (loader) {
-    loader.style.display = 'none';
-  }
-
-  document.body.classList.add('loaded');
   initPDF();
 });
