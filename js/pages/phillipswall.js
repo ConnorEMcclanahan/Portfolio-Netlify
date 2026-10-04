@@ -52,23 +52,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initScrollCue({ threshold: 0.3 });
 
-  const checkReveal = () => {
-    document.querySelectorAll('.reveal').forEach((element) => {
-      element.classList.toggle('active', element.getBoundingClientRect().top < window.innerHeight - 120);
-    });
-  };
-
-  let ticking = false;
-  window.addEventListener('scroll', () => {
-    if (!ticking) {
-      ticking = true;
-      window.requestAnimationFrame(() => {
-        checkReveal();
-        ticking = false;
+  const reveals = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) {
+    reveals.forEach((el) => el.classList.add('active'));
+  } else {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          io.unobserve(entry.target);
+        }
       });
-    }
-  }, { passive: true });
-  checkReveal();
+    }, { rootMargin: '0px 0px -12% 0px', threshold: 0 });
+    reveals.forEach((el) => io.observe(el));
+  }
 });
 
 window.addEventListener('load', () => {

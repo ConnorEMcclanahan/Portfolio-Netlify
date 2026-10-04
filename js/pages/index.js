@@ -1,3 +1,169 @@
+// ==========================================================================
+// Thicker Vanta globe lines
+// --------------------------------------------------------------------------
+// WebGL clamps gl.lineWidth to 1 on nearly every browser, so Vanta's
+// LineBasicMaterial lines (the sphere wireframe, the outer arcs and the
+// latitude rings) can't be thickened with a `linewidth` setting. Instead we
+// rebuild those LineSegments as screen-space triangle quads and expand them
+// by GLOBE_LINE_WIDTH_PX in the vertex shader. The dots and the soft additive
+// connecting lines are left untouched.
+// ==========================================================================
+const GLOBE_LINE_WIDTH_PX = 2;
+
+function thickenVantaGlobeLines(effect) {
+  const THREE = window.THREE;
+  if (!THREE || !effect || !effect.renderer) {
+    return;
+  }
+
+  // One shared resolution uniform so all three materials update together.
+  const resolution = { value: new THREE.Vector2(1, 1) };
+  const materials = [];
+
+  const updateSize = () => {
+    const size = new THREE.Vector2();
+    effect.renderer.getDrawingBufferSize(size);
+    resolution.value.copy(size);
+    const dpr = effect.renderer.getPixelRatio() || window.devicePixelRatio || 1;
+    for (const material of materials) {
+      material.uniforms.uLineWidth.value = GLOBE_LINE_WIDTH_PX * dpr;
+    }
+  };
+  updateSize();
+
+  // Each line segment is expanded into a quad. The shader takes the segment's
+  // opposite endpoint (`opposite`) and which side of the line a vertex sits on
+  // (`side` = -1 left / +1 right), then pushes it out by half the line width in
+  // screen space so the thickness stays constant regardless of camera angle.
+  const vertexShader = [
+    'attribute vec3 opposite;',
+    'attribute float side;',
+    'uniform vec2 uResolution;',
+    'uniform float uLineWidth;',
+    'void main() {',
+    '  vec4 pos = modelViewMatrix * vec4(position, 1.0);',
+    '  vec4 opp = modelViewMatrix * vec4(opposite, 1.0);',
+    '  vec4 clipPos = projectionMatrix * pos;',
+    '  vec4 clipOpp = projectionMatrix * opp;',
+    '  vec2 ndc = clipPos.xy / clipPos.w;',
+    '  vec2 ndcOpp = clipOpp.xy / clipOpp.w;',
+    '  vec2 dirPx = (ndcOpp - ndc) * uResolution * 0.5;',
+    '  float len = length(dirPx);',
+    '  vec2 normalPx = len > 0.0001 ? dirPx / len : vec2(1.0, 0.0);',
+    '  normalPx = vec2(-normalPx.y, normalPx.x);',
+    '  vec2 offsetNdc = normalPx * side * uLineWidth * 0.5 * 2.0 / uResolution;',
+    '  ndc += offsetNdc;',
+    '  gl_Position = vec4(ndc * clipPos.w, clipPos.z, clipPos.w);',
+    '}',
+  ].join('\n');
+
+  const fragmentShader = [
+    'uniform vec3 uColor;',
+    'void main() {',
+    '  gl_FragColor = vec4(uColor, 1.0);',
+    '}',
+  ].join('\n');
+
+  // Turn one of Vanta's LineSegments into a thick, screen-space quad mesh.
+  const thicken = (lineSegments, colorHex) => {
+    if (!lineSegments || !lineSegments.geometry) {
+      return lineSegments;
+    }
+    const src = lineSegments.geometry.getAttribute('position');
+    if (!src) {
+      return lineSegments;
+    }
+
+    const srcCount = src.count; // two vertices per segment
+    const segmentCount = srcCount / 2;
+    const srcArray = src.array;
+
+    // Four vertices per segment (a quad): 0 = A left, 1 = A right,
+    // 2 = B left, 3 = B right.
+    const positions = new Float32Array(segmentCount * 4 * 3);
+    const opposites = new Float32Array(segmentCount * 4 * 3);
+    const sides = new Float32Array(segmentCount * 4);
+    const indices = new Uint16Array(segmentCount * 6);
+
+    for (let i = 0; i < segmentCount; i++) {
+      const a = i * 2;
+      const b = a + 1;
+      const ax = srcArray[a * 3];
+      const ay = srcArray[a * 3 + 1];
+      const az = srcArray[a * 3 + 2];
+      const bx = srcArray[b * 3];
+      const by = srcArray[b * 3 + 1];
+      const bz = srcArray[b * 3 + 2];
+
+      const v = i * 4;
+      const p = i * 12;
+      positions[p + 0] = ax; positions[p + 1] = ay; positions[p + 2] = az;
+      positions[p + 3] = ax; positions[p + 4] = ay; positions[p + 5] = az;
+      positions[p + 6] = bx; positions[p + 7] = by; positions[p + 8] = bz;
+      positions[p + 9] = bx; positions[p + 10] = by; positions[p + 11] = bz;
+
+      opposites[p + 0] = bx; opposites[p + 1] = by; opposites[p + 2] = bz;
+      opposites[p + 3] = bx; opposites[p + 4] = by; opposites[p + 5] = bz;
+      opposites[p + 6] = ax; opposites[p + 7] = ay; opposites[p + 8] = az;
+      opposites[p + 9] = ax; opposites[p + 10] = ay; opposites[p + 11] = az;
+
+      sides[v + 0] = -1; sides[v + 1] = 1; sides[v + 2] = -1; sides[v + 3] = 1;
+
+      const t = i * 6;
+      indices[t + 0] = v + 0; indices[t + 1] = v + 1; indices[t + 2] = v + 2;
+      indices[t + 3] = v + 2; indices[t + 4] = v + 1; indices[t + 5] = v + 3;
+    }
+
+    const geometry = new THREE.BufferGeometry();
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    geometry.setAttribute('opposite', new THREE.BufferAttribute(opposites, 3));
+    geometry.setAttribute('side', new THREE.BufferAttribute(sides, 1));
+    geometry.setIndex(new THREE.Uint16BufferAttribute(indices, 1));
+
+    const material = new THREE.ShaderMaterial({
+      uniforms: {
+        uColor: { value: new THREE.Color(colorHex) },
+        uResolution: resolution,
+        uLineWidth: { value: GLOBE_LINE_WIDTH_PX * (effect.renderer.getPixelRatio() || 1) },
+      },
+      vertexShader,
+      fragmentShader,
+      side: THREE.DoubleSide,
+    });
+    // Vanta's animation loop calls material.color.set(...) on these meshes
+    // every frame; expose a plain Color so that keeps working without error.
+    // The shader itself reads the fixed uColor uniform.
+    material.color = new THREE.Color(colorHex);
+    materials.push(material);
+
+    const mesh = new THREE.Mesh(geometry, material);
+    mesh.position.copy(lineSegments.position);
+    mesh.rotation.copy(lineSegments.rotation);
+    mesh.scale.copy(lineSegments.scale);
+    mesh.visible = lineSegments.visible;
+    mesh.frustumCulled = false; // screen-space quads can poke past the line's bounding box
+
+    const parent = lineSegments.parent;
+    if (parent) {
+      parent.add(mesh);
+      parent.remove(lineSegments);
+    }
+
+    return mesh;
+  };
+
+  // Swap the three static line meshes for thick versions and repoint Vanta's
+  // own references so its animation loop keeps rotating them (and setting
+  // their color) without throwing.
+  effect.sphere = thicken(effect.sphere, 0x9a53ff);
+  effect.linesMesh2 = thicken(effect.linesMesh2, 0xffffff);
+  effect.linesMesh3 = thicken(effect.linesMesh3, 0xffffff);
+
+  // Keep the thickness consistent when the canvas resizes.
+  window.addEventListener('resize', () => window.setTimeout(updateSize, 150));
+}
+
+
 function initVantaBackground() {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (!window.VANTA || !window.VANTA.GLOBE || reduceMotion) {
@@ -36,6 +202,10 @@ function initVantaBackground() {
     }
   };
   capResolution();
+
+  // Rebuild the globe's line meshes as screen-space quads so they render
+  // thicker (WebGL clamps gl.lineWidth to 1, so linewidth alone won't work).
+  thickenVantaGlobeLines(effect);
 
   // Throttle the animation loop to ~30fps so the globe keeps animating but does
   // about half the GPU work of the default 60fps loop.

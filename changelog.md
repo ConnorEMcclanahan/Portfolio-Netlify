@@ -170,3 +170,11 @@
 **Version 38 : Brightened the Vanta globe dots (kept the white lines)**
 - Brightened the globe dots from the deep text purple (#6E07F3) to the site's lighter accent (#9A53FF) so they stand out more against the black hero
 - Kept the globe's white lines/arcs (`color2`) white, so the brighter purple dots still read as distinct dots
+
+**Version 39 : Thickened the Vanta globe lines**
+- Rebuilt the globe's line meshes (sphere wireframe, outer arcs, latitude rings) as screen-space quads so they render ~2px thick instead of 1px — WebGL clamps `gl.lineWidth` to 1, so the normal `linewidth` setting has no effect in browsers
+
+**Version 40 : Smoothed project pages and sped up their load**
+- Deferred the PDF.js library and removed the redundant `pdf.worker.min.js` script tags (they were blocking first paint in the `<head>` on Motivate, FitPhone and Diplora)
+- Replaced the scroll-reveal on all project pages with `IntersectionObserver` (reveal-once) instead of calling `getBoundingClientRect()` over every `.reveal` element on every scroll frame, which forced synchronous layout and made scrolling feel laggy
+- Added `decoding="async"` to the lazy-loaded images so image decode no longer blocks the main thread

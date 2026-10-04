@@ -280,11 +280,30 @@ function initSmoothScroll() {
   });
 }
 
-function reveal() {
-  document.querySelectorAll('.reveal').forEach((el) => {
-    const top = el.getBoundingClientRect().top;
-    el.classList.toggle('active', top < window.innerHeight - 150);
-  });
+function initReveal() {
+  const reveals = document.querySelectorAll('.reveal');
+  if (!reveals.length) {
+    return;
+  }
+
+  // IntersectionObserver reveals elements once and leaves them revealed.
+  // getBoundingClientRect() over every .reveal element on every scroll frame
+  // forces synchronous layout, which is what made scrolling feel laggy.
+  if (!('IntersectionObserver' in window)) {
+    reveals.forEach((el) => el.classList.add('active'));
+    return;
+  }
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { rootMargin: '0px 0px -12% 0px', threshold: 0 });
+
+  reveals.forEach((el) => io.observe(el));
 }
 
 function addContentReveals() {
@@ -312,18 +331,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   addContentReveals();
+  initReveal();
 });
 
-let ticking = false;
-window.addEventListener('scroll', () => {
-  if (!ticking) {
-    ticking = true;
-    window.requestAnimationFrame(() => {
-      reveal();
-      ticking = false;
-    });
-  }
-}, { passive: true });
 window.addEventListener('load', () => {
   const loader = document.getElementById('loader');
   if (loader) {
@@ -332,5 +342,4 @@ window.addEventListener('load', () => {
 
   document.body.classList.add('loaded');
   initPDF();
-  reveal();
 });

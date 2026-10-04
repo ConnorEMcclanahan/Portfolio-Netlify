@@ -24,31 +24,24 @@ function initRevealOnScroll() {
     return;
   }
 
-  const reveal = () => {
-    const windowHeight = window.innerHeight;
-    const elementVisible = 150;
+  // IntersectionObserver reveals elements once and leaves them revealed.
+  // getBoundingClientRect() over every .reveal element on every scroll frame
+  // forces synchronous layout, which is what made scrolling feel laggy.
+  if (!('IntersectionObserver' in window)) {
+    reveals.forEach((el) => el.classList.add('active'));
+    return;
+  }
 
-    reveals.forEach((element) => {
-      const elementTop = element.getBoundingClientRect().top;
-      if (elementTop < windowHeight - elementVisible) {
-        element.classList.add('active');
-      } else {
-        element.classList.remove('active');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+        io.unobserve(entry.target);
       }
     });
-  };
+  }, { rootMargin: '0px 0px -12% 0px', threshold: 0 });
 
-  reveal();
-  let ticking = false;
-  window.addEventListener('scroll', () => {
-    if (!ticking) {
-      ticking = true;
-      window.requestAnimationFrame(() => {
-        reveal();
-        ticking = false;
-      });
-    }
-  }, { passive: true });
+  reveals.forEach((el) => io.observe(el));
 }
 
 function initDataLinkCards() {
