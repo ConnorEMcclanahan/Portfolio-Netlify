@@ -39,9 +39,10 @@
   z-index: 1;
 }
 
-/* Navbar inside staggered-mockup - fixed so it stays pinned while scrolling */
+/* Navbar inside staggered-mockup - absolute so it sits at the top of the hero
+   and scrolls away with the page instead of staying pinned. */
 .staggered-mockup .navbar {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;

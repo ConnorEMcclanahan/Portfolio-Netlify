@@ -151,10 +151,7 @@ body.project-page-standard .project-section :is(h4, h5, h6) {
 
 body.project-page-standard :is(
   .comparison-name,
-  .matrix-cell--name,
-  .accent-label,
-  .pov-title,
-  .persona-caption-title
+  .matrix-cell--name
 ) {
   color: var(--color-accent);
 }

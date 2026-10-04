@@ -73,9 +73,9 @@
   z-index: 1;
 }
 
-/* Navbar */
+/* Navbar — absolute so it sits at the top of the hero and scrolls away. */
 .device-cascade .navbar {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;

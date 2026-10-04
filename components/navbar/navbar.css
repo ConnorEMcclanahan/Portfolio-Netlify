@@ -2,10 +2,7 @@
 .navbar {
   background: rgba(0, 0, 0, 0.9);
   padding: 1rem 2rem;
-  position: sticky;
-  top: 0;
-  left: 0;
-  right: 0;
+  position: relative;
   z-index: 1000;
 }
 

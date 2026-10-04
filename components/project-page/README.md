@@ -15,8 +15,6 @@ No build step or JavaScript loader is required.
 | `section-content.css` | Section headings, conclusion heading treatment and content surfaces; existing nav focus override |
 | `intro-summary.css` | Intro summary, metadata, images and existing phase placeholder styles |
 | `final-columns.css` | Conclusions and reflection items |
-| `research-cards.css` | Shared component wrappers, labels and persona cards |
-| `research-boards.css` | POV grids, questions and HMW tables |
 | `split-insights.css` | Two-column insights |
 | `mockup-flow.css` | Mockup walkthroughs and tablet frames |
 | `comparisons.css` | Competitor tables and comparison matrices |

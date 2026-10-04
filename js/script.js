@@ -44,56 +44,7 @@ function initRevealOnScroll() {
   reveals.forEach((el) => io.observe(el));
 }
 
-function initDataLinkCards() {
-  const cards = document.querySelectorAll('[data-link]');
-  cards.forEach((card) => {
-    card.addEventListener('click', () => {
-      const link = card.getAttribute('data-link');
-      if (link) {
-        window.location.href = link;
-      }
-    });
-  });
-}
-
-function initRotatingSquareIcon() {
-  const icon = document.querySelector('.square_icon');
-  if (!icon) {
-    return;
-  }
-
-  let rotation = 90;
-  icon.addEventListener('click', () => {
-    icon.style.transform = `rotate(${rotation}deg)`;
-    rotation += 90;
-    if (rotation > 360) {
-      rotation = 90;
-    }
-  });
-}
-
-function initProfileImageAnimation() {
-  const profileImage = document.querySelector('.profile-image');
-  if (!profileImage) {
-    return;
-  }
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        profileImage.classList.add('loaded');
-        observer.unobserve(profileImage);
-      }
-    });
-  }, { threshold: 0.1 });
-
-  observer.observe(profileImage);
-}
-
 document.addEventListener('DOMContentLoaded', () => {
   initSmoothAnchorLinks();
   initRevealOnScroll();
-  initDataLinkCards();
-  initRotatingSquareIcon();
-  initProfileImageAnimation();
 });

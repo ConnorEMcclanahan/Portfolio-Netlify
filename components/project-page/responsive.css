@@ -133,10 +133,6 @@
     flex-direction: column;
   }
 
-  .pov-hmw {
-    flex-direction: column;
-  }
-
   .split-right {
     border-left: none;
     padding-left: 0;
@@ -198,3 +194,5 @@
     transform: none;
   }
 }
+
+
