@@ -7,31 +7,33 @@
   <title>Diplora | Internship Project Portfolio</title>
 
   <!-- Favicon & Global CSS -->
-  <link rel="icon" type="image/png" href="../images/logo.png" />
+  <link rel="icon" type="image/png" href="../images-optimized/logo.webp" />
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com"/>
+<link rel="preconnect" href="https://unpkg.com"/>
   <link rel="stylesheet" href="../styles/style.css" />
-  <link rel="stylesheet" href="../styles/frontend.css" />
   <link rel="stylesheet" href="../components/navbar/navbar.css"/>
   <link rel="stylesheet" href="../components/footer/footer.css"/>
   <link rel="stylesheet" href="../components/custom-cursor/custom-cursor.css"/>
   <link rel="stylesheet" href="../components/project-page/project-components.css"/>
   <link rel="stylesheet" href="../styles/mobile-responsive.css"/>
   <link rel="stylesheet" href="../styles/pages/diplora.css"/>
+  <link rel="stylesheet" href="../styles/pages/diplora-final.css"/>
   <link rel="stylesheet" href="../components/staggered-mockup/staggered-mockup.css"/>
   <link rel="stylesheet" href="../styles/pages/project-image-hover.css"/>
 <!-- External Resources -->
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 
   <!-- PDF.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
 
   <!-- Site JS -->
   <script src="../js/script.js" defer></script>
-  <script src="../components/loading-screen/loading-screen.js" defer></script>
   <link rel="stylesheet" href="../components/loading-screen/loading-screen.css" />
   <link rel="stylesheet" href="../components/scroll-cue/scroll-cue.css" />
 </head>
@@ -46,7 +48,7 @@
     <nav class="navbar">
       <div class="navbar-container">
         <a href="../index.html" class="navbar-logo">
-          <img src="../images/logo.png" alt="logo" class="navbar-logo-img"/>
+          <img src="../images-optimized/logo.webp" alt="logo" class="navbar-logo-img"/>
         </a>
         <button class="navbar-burger" aria-label="Toggle navigation menu">
           <span></span>
@@ -54,9 +56,9 @@
           <span></span>
         </button>
         <ul class="navbar-menu">
-          <li><a href="../index.html#about">About</a></li>
-          <li><a href="https://connormcclanahan.com/#projects">Projects</a></li>
-          <li><a href="https://connormcclanahan.com/pdfs/resume.pdf">Resume</a></li>
+<li><a href="../index.html#about">About</a></li>
+<li><a href="../index.html#projects">Projects</a></li>
+<li><a href="../pdfs/resume.pdf">Resume</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
@@ -120,7 +122,7 @@
     <div class="text-column">
       <h3>Brand Identity</h3>
       <p style="color: white; margin-top: 1rem;">I helped shape Diplora's visual identity around <strong>medical credibility, reassurance, and ease of use</strong>. The design needed to feel trustworthy and calm without making the interface feel clinical or intimidating, especially for older adults using the app at home.</p>
-    <img class="brand-identity-image" src="../images/diplora/DiploraIdentity.png" alt="Diplora brand identity" loading="lazy">
+    <img class="brand-identity-image" src="../images-optimized/diplora/DiploraIdentity.webp" alt="Diplora brand identity" loading="lazy" decoding="async">
 
       <h4>Accessible Design Standards</h4>
       <p style="color: white; margin-top: 1rem;">I translated the research into practical standards: <strong>minimum 18pt body text, at least 4.5:1 contrast, 44x44px touch targets, clear hierarchy, readable language, and icons supported by text labels.</strong></p>
@@ -152,7 +154,7 @@
           data-eyebrow="Figma board"
           data-cta="Open the journey map"
           data-note="The journey map only loads when you click."
-          data-poster="../images/diplora/DiploraUserJourney.png"
+          data-poster="../images-optimized/diplora/DiploraUserJourney.webp"
           data-poster-position="center top"
         ></div>
       </div>
@@ -194,7 +196,7 @@
     <div class="persona-list">
       <div class="persona-profile">
         <div class="persona-profile__image">
-          <img src="../images/diplora/persona1.png" alt="Persona 1" />
+          <img src="../images-optimized/diplora/persona1.webp" alt="Persona 1"  loading="lazy" decoding="async"/>
         </div>
         <h4>Persona 1: Primary User</h4>
         <p>Represents elderly patients aged 65+ who prioritize device reassurance and simple operation over comprehensive medical data.</p>
@@ -202,7 +204,7 @@
 
       <div class="persona-profile">
         <div class="persona-profile__image">
-          <img src="../images/diplora/persona2.png" alt="Persona 2" />
+          <img src="../images-optimized/diplora/persona2.webp" alt="Persona 2"  loading="lazy" decoding="async"/>
         </div>
         <h4>Persona 2: Secondary User</h4>
         <p>Healthcare professionals and caregivers who need diagnostic data access while ensuring elderly users have simplified, reassuring experiences.</p>
@@ -247,7 +249,7 @@
     <!-- Iteration 1 -->
     <div class="iteration-card">
       <div class="iteration-image">
-        <img src="../images/diplora/iterations/iteration1.png" alt="Iteration 1: Button Label Clarity" style="width: 100%; border-radius: 8px;">
+        <img src="../images-optimized/diplora/iterations/iteration1.webp" alt="Iteration 1: Button Label Clarity" style="width: 100%; border-radius: 8px;" loading="lazy" decoding="async">
       </div>
       <div class="iteration-text">
         <h4>Iteration 1: Button Label Clarity</h4>
@@ -261,7 +263,7 @@
     <!-- Iteration 2 -->
     <div class="iteration-card">
       <div class="iteration-image">
-        <img src="../images/diplora/iterations/iteration2.png" alt="Iteration 2: Icon Replacement" style="width: 100%; border-radius: 8px;">
+        <img src="../images-optimized/diplora/iterations/iteration2.webp" alt="Iteration 2: Icon Replacement" style="width: 100%; border-radius: 8px;" loading="lazy" decoding="async">
       </div>
       <div class="iteration-text">
         <h4>Iteration 2: Icon Replacement</h4>
@@ -275,7 +277,7 @@
     <!-- Iteration 3 -->
     <div class="iteration-card">
       <div class="iteration-image">
-        <img src="../images/diplora/iterations/iteration3.png" alt="Iteration 3: Help Button Addition" style="width: 100%; border-radius: 8px;">
+        <img src="../images-optimized/diplora/iterations/iteration3.webp" alt="Iteration 3: Help Button Addition" style="width: 100%; border-radius: 8px;" loading="lazy" decoding="async">
       </div>
       <div class="iteration-text">
         <h4>Iteration 3: Help Button Addition</h4>
@@ -289,7 +291,7 @@
     <!-- Iteration 4 -->
     <div class="iteration-card">
       <div class="iteration-image">
-        <img src="../images/diplora/iterations/iteration4.png" alt="Iteration 4: Battery Display De-emphasis" style="width: 100%; border-radius: 8px;">
+        <img src="../images-optimized/diplora/iterations/iteration4.webp" alt="Iteration 4: Battery Display De-emphasis" style="width: 100%; border-radius: 8px;" loading="lazy" decoding="async">
       </div>
       <div class="iteration-text">
         <h4>Iteration 4: Battery Display De-emphasis</h4>
@@ -303,7 +305,7 @@
     <!-- Iteration 5 -->
     <div class="iteration-card">
       <div class="iteration-image">
-        <img src="../images/diplora/iterations/iteration5.png" alt="Iteration 5: Logbook Simplification" style="width: 100%; border-radius: 8px;">
+        <img src="../images-optimized/diplora/iterations/iteration5.webp" alt="Iteration 5: Logbook Simplification" style="width: 100%; border-radius: 8px;" loading="lazy" decoding="async">
       </div>
       <div class="iteration-text">
         <h4>Iteration 5: Logbook Simplification</h4>
@@ -334,7 +336,7 @@
         data-eyebrow="Figma prototype"
         data-cta="Try the interactive prototype"
         data-note="The prototype only loads when you click."
-        data-poster="../images/diplora/diploraecgapplicationinterface.png"
+        data-poster="../images-optimized/diplora/diploraecgapplicationinterface.webp"
       ></div>
     </div>
   </section>
@@ -343,7 +345,7 @@
     <div class="text-column">
       <h3>Final Design</h3>
     </div>
-    <img class="final-design-showcase" src="../images/diplora/mainrounded.png" alt="Diplora key screens" loading="lazy" />
+    <img class="final-design-showcase" src="../images-optimized/diplora/mainrounded.webp" alt="Diplora key screens" loading="lazy" decoding="async" />
     <div id="mockup-flow" class="mockup-flow"></div>
     <div class="final-design-prototype-link">
       <h4>Explore the full experience</h4>
@@ -427,6 +429,7 @@
       <div class="suggested-projects-inner">
         <p class="suggested-projects-eyebrow">You might also like</p>
         <a href="motivate.html" class="suggested-project-card">
+          <img class="suggested-project-image" src="../images-optimized/motivate/mockup-2.webp" alt="Motivate instruction tool mockup" loading="lazy" />
           <span class="suggested-project-number">02</span>
           <span class="suggested-project-title">Motivate Instruction Creation Tool</span>
           <span class="suggested-project-blurb">Clearer work instructions for factory teams.</span>
@@ -497,30 +500,25 @@
             'clamp(-120px, -9vw, -160px)'  /* Activity - UP (edge, but high) */
           ],
           items: [
-            { src: '../images/mockups/diplora/logbook-portrait.png', alt: 'Logbook screen', label: 'Logbook' },
-            { src: '../images/mockups/diplora/lowpowerportrait.png', alt: 'Low power screen', label: 'Low Power' },
-            { src: '../images/mockups/diplora/diplorahomeportrait.png', alt: 'Home screen', label: 'Home' },
-            { src: '../images/mockups/diplora/onboarding-portrait.png', alt: 'Onboarding screen', label: 'Onboarding' },
-            { src: '../images/mockups/diplora/Onboarding Attach-(Compressify.io)-portrait.png', alt: 'Onboarding attach screen', label: 'Attach' },
-            { src: '../images/mockups/diplora/whatactivityportrait.png', alt: 'What activity screen', label: 'Activity' }
+            { src: '../images-optimized/mockups/diplora/logbook-portrait.webp', alt: 'Logbook screen', label: 'Logbook' },
+            { src: '../images-optimized/mockups/diplora/lowpowerportrait.webp', alt: 'Low power screen', label: 'Low Power' },
+            { src: '../images-optimized/mockups/diplora/diplorahomeportrait.webp', alt: 'Home screen', label: 'Home' },
+            { src: '../images-optimized/mockups/diplora/onboarding-portrait.webp', alt: 'Onboarding screen', label: 'Onboarding' },
+            { src: '../images-optimized/mockups/diplora/Onboarding Attach-(Compressify.io)-portrait.webp', alt: 'Onboarding attach screen', label: 'Attach' },
+            { src: '../images-optimized/mockups/diplora/whatactivityportrait.webp', alt: 'What activity screen', label: 'Activity' }
           ]
         });
       }
     });
   </script>
 
-  <!-- Custom cursor — the dot replaces the native pointer (hidden by
-       body.has-custom-cursor), the ring trails it. Driven by
-       initCustomCursor() in ../components/custom-cursor/custom-cursor.js. -->
+  <!-- Custom cursor (dot + trailing ring + halo). -->
   <div class="custom-cursor" aria-hidden="true">
     <span class="custom-cursor__ring"></span>
     <span class="custom-cursor__dot"></span>
   </div>
 
-  <!-- Ambient halo behind the cursor. Kept as its own root-level layer
-       because mix-blend-mode: screen must live on the layer itself — a
-       blended child would be confined by its parent's stacking context.
-       Driven by initCustomCursor() too. -->
+  <!-- Ambient halo layer. -->
   <div class="pointer-glow" aria-hidden="true">
     <span class="pointer-glow__halo"></span>
   </div>

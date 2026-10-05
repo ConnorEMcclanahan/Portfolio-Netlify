@@ -16,8 +16,6 @@ const introSummaryData = {
   }
 };
 
-/* Single-column conclusion. Uses the same structure and length as the Diplora
-   case study: one Conclusion column, four titled paragraphs. */
 const finalSectionData = {
   columns: [
     {
@@ -52,19 +50,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initScrollCue({ threshold: 0.3 });
 
-  const checkReveal = () => {
-    document.querySelectorAll('.reveal').forEach((element) => {
-      element.classList.toggle('active', element.getBoundingClientRect().top < window.innerHeight - 120);
-    });
-  };
-
-  window.addEventListener('scroll', checkReveal, { passive: true });
-  checkReveal();
+  window.Portfolio.initRevealOnScroll();
 });
 
-window.addEventListener('load', () => {
-  const loader = document.querySelector('#loader');
-  if (loader) {
-    loader.style.display = 'none';
-  }
-});

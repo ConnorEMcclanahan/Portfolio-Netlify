@@ -10,15 +10,13 @@ The site is assembled from small self-contained components (each ships its own C
 
 ## Pages
 
-- Home: `index.html`
-- About: `pages/about.html`
+- Home (includes the About section): `index.html`
 - Diplora — ECG companion app (internship): `pages/diplora.html`
 - Philips — AI-powered museum feedback wall (AI for Society minor): `pages/phillipswall.html`
 - Fontys FitPhone — community wellness app: `pages/fitphone.html`
 - Motivate — factory-floor PWA: `pages/motivate.html`
-- Thank You: `pages/thankyou.html`
 
-Legacy root-level URLs (e.g. `/about.html`) are 301-redirected to their current `pages/` locations through Netlify's `_redirects` file.
+Legacy URLs (e.g. `/about`, `/thankyou`, `/drawphone`) are 301-redirected to the homepage through Netlify's `_redirects` file.
 
 ## Tech Stack
 
@@ -50,12 +48,11 @@ Legacy root-level URLs (e.g. `/about.html`) are 301-redirected to their current 
 │   ├── pages/                   # Page-specific scripts (incl. Philips wall demos)
 │   ├── script.js
 │   └── vantaglobe.js            # Vanta globe for the hero
-├── pages/                       # All secondary pages (about, case studies, thankyou)
+├── pages/                       # Case-study pages
 ├── pdfs/                        # Resume, research and project documents
 ├── styles/
 │   ├── pages/                   # Page-specific stylesheets
 │   ├── style.css                # Main stylesheet
-│   ├── frontend.css
 │   └── mobile-responsive.css
 ├── _redirects                   # Netlify 301s for legacy URLs
 └── index.html                   # Homepage
@@ -85,7 +82,7 @@ The site deploys to Netlify by connecting this repository and publishing from th
 ## Architecture Notes
 
 - Components in `components/` are self-contained: each ships its own CSS and JS and can be dropped into any page.
-- Case-study pages are assembled from shared modules in `components/project-page/` (intro summaries, persona grids, POV/HMW boards, comparison tables/matrices, insights, final columns, etc.) so every project page stays consistent.
+- Case-study pages are assembled from shared modules in `components/project-page/` (intro summaries, comparison tables/matrices, split insights, mockup flows, final columns, case-study navigation, and Figma embeds) so every project page stays consistent.
 - Page-specific behavior lives in `js/pages/`; page-specific styling lives in `styles/pages/`.
 - Shared case-study CSS loads through an ordered import entry point and is split by responsibility. See [the case-study editing guide](components/project-page/README.md) for file ownership and cascade constraints.
 - Run `python scripts/validate-project-css.py` to check shared stylesheet imports and local HTTP delivery without installing dependencies.

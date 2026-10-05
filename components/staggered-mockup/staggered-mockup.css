@@ -12,7 +12,7 @@
 }
 
 .staggered-mockup[data-bg] {
-  background: var(--staggered-bg, #000);
+  background: var(--staggered-bg, var(--color-bg));
 }
 
 /* Subtle radial gradient overlay for depth - purple to match site */
@@ -21,9 +21,9 @@
   position: absolute;
   inset: 0;
   background: radial-gradient(ellipse 100% 80% at 50% 50%, 
-    rgba(110, 7, 243, 0.22) 0%, 
-    rgba(110, 7, 243, 0.15) 35%, 
-    rgba(110, 7, 243, 0.08) 60%,
+    rgba(var(--color-accent-rgb), 0.22) 0%, 
+    rgba(var(--color-accent-rgb), 0.15) 35%, 
+    rgba(var(--color-accent-rgb), 0.08) 60%,
     transparent 80%);
   pointer-events: none;
   z-index: 1;
@@ -39,7 +39,8 @@
   z-index: 1;
 }
 
-/* Navbar inside staggered-mockup - absolute positioned like phillips-hero */
+/* Navbar inside staggered-mockup - absolute so it sits at the top of the hero
+   and scrolls away with the page instead of staying pinned. */
 .staggered-mockup .navbar {
   position: absolute;
   top: 0;
@@ -60,16 +61,16 @@
 
 .staggered-mockup__title {
   margin: 0 0 0.5rem;
-  font-family: 'Syne', sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 800;
-  color: var(--staggered-title-color, #000);
+  color: var(--staggered-title-color, var(--color-bg));
   letter-spacing: -0.02em;
 }
 
 .staggered-mockup__subtitle {
   margin: 0;
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: var(--font-sans);
   font-size: clamp(1rem, 1.8vw, 1.125rem);
   font-weight: 400;
   color: var(--staggered-subtitle-color, #333);
@@ -188,7 +189,7 @@
 
 .staggered-mockup__label {
   margin: 0;
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: var(--font-sans);
   font-size: clamp(0.7rem, 1vw, 0.8rem);
   font-weight: 500;
   color: var(--staggered-label-color, #1a1a1a);

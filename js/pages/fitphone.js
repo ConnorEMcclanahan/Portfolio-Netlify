@@ -15,8 +15,6 @@ const introSummaryData = {
   }
 };
 
-/* Single-column conclusion. Uses the same structure and length as the Diplora
-   case study: one Conclusion column, four titled paragraphs. */
 const finalSectionData = {
   columns: [
     {
@@ -137,18 +135,6 @@ function initPDF() {
   });
 }
 
-function reveal() {
-  document.querySelectorAll('.reveal').forEach((el) => {
-    const top = el.getBoundingClientRect().top;
-    el.classList.toggle('active', top < window.innerHeight - 150);
-  });
-}
-
-function addContentReveals() {
-  document.querySelectorAll('body.project-page-standard .project-section p, body.project-page-standard .project-section h3, body.project-page-standard .project-section h4, body.project-page-standard .project-section li, body.project-page-standard .project-section img, body.project-page-standard .project-section iframe, body.project-page-standard .case-study-phase__title h2, body.project-page-standard .case-study-phase__overview h3, body.project-page-standard .case-study-phase__overview li, body.project-page-standard .case-study-process h2, body.project-page-standard .case-study-process__step, body.project-page-standard #intro-summary .intro-heading > *, body.project-page-standard #intro-summary .intro-summary-left > *, body.project-page-standard #intro-summary .intro-meta-item, body.project-page-standard #intro-summary .intro-story-block h2, body.project-page-standard #intro-summary .intro-story-block p').forEach((element) => {
-    element.classList.add('reveal', 'reveal-content');
-  });
-}
 
 document.addEventListener('DOMContentLoaded', () => {
   if (window.ProjectPageComponents) {
@@ -159,17 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initScrollCue({ threshold: 0.3 });
   initPDF();
-  addContentReveals();
-  window.addEventListener('scroll', reveal, { passive: true });
-  reveal();
+  window.Portfolio.initContentReveals('body.project-page-standard .project-section p, body.project-page-standard .project-section h3, body.project-page-standard .project-section h4, body.project-page-standard .project-section li, body.project-page-standard .project-section img, body.project-page-standard .project-section iframe, body.project-page-standard .case-study-phase__title h2, body.project-page-standard .case-study-phase__overview h3, body.project-page-standard .case-study-phase__overview li, body.project-page-standard .case-study-process h2, body.project-page-standard .case-study-process__step, body.project-page-standard #intro-summary .intro-heading > *, body.project-page-standard #intro-summary .intro-summary-left > *, body.project-page-standard #intro-summary .intro-meta-item, body.project-page-standard #intro-summary .intro-story-block h2, body.project-page-standard #intro-summary .intro-story-block p');
+  window.Portfolio.initRevealOnScroll();
 });
 
-window.addEventListener('load', () => {
-  const loader = document.getElementById('loader');
-  if (loader) {
-    loader.style.display = 'none';
-  }
-
-  document.body.classList.add('loaded');
-  reveal();
-});

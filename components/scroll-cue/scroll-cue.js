@@ -1,5 +1,4 @@
-/* Scroll Cue Component — standardized from Motivate's design */
-/* Auto-hides when user scrolls past 30% of viewport height */
+/* Scroll cue that auto-hides after 30% of the viewport. */
 
 function initScrollCue(options = {}) {
   const mountPoint = document.getElementById('scroll-cue-mount');
@@ -10,7 +9,6 @@ function initScrollCue(options = {}) {
   const target = options.target || '#intro-summary';
   const threshold = options.threshold || 0.3;
 
-  // Inject the scroll cue HTML
   mountPoint.innerHTML = `
     <a href="${target}" class="scroll-cue" aria-label="Scroll down to content">
       <ion-icon name="chevron-down-outline" aria-hidden="true"></ion-icon>

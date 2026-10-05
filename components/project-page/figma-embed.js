@@ -1,15 +1,7 @@
-/* Figma embeds — click-to-load component.
-   Figma iframes pull megabytes of JS/WASM and render blank until they finish
-   hydrating, so the embed URL lives in data-figma-src and the real iframe is
-   only injected when the visitor asks for it. Until then the shell shows a
-   lightweight poster (existing project image) with a Figma badge and CTA.
-   After injection the poster stays behind the iframe until its load event,
-   masking Figma's blank-hydration period. */
+/* Click-to-load Figma embeds: the iframe only loads once the visitor clicks. */
 (function () {
   const api = window.ProjectPageComponents = window.ProjectPageComponents || {};
 
-  /* Warmed up on hover/focus intent so the eventual load starts faster,
-     but still fetched only when the visitor shows interest. */
   const PRECONNECT_HOSTS = ['https://www.figma.com', 'https://embed.figma.com'];
   let preconnectAdded = false;
 
@@ -83,7 +75,6 @@
 
     const posterImg = el.querySelector('.figma-embed__poster-img');
     if (posterImg) {
-      /* A missing poster should never break the shell — fall back to the gradient. */
       posterImg.addEventListener('error', function () {
         posterImg.remove();
       });
@@ -124,7 +115,6 @@
     const reveal = function () {
       if (revealed) return;
       revealed = true;
-      /* rAF so the opacity transition on .figma-embed__frame always runs. */
       requestAnimationFrame(function () {
         el.classList.remove('is-loading');
         el.classList.add('is-ready');
@@ -132,12 +122,9 @@
       });
     };
 
-    /* Small delay after load lets Figma paint its first frame before the fade. */
     iframe.addEventListener('load', function () {
       setTimeout(reveal, 350);
     });
-    /* Safety net: if the load event never fires (flaky network), still
-       swap to the iframe so the visitor is not stuck on the spinner. */
     setTimeout(reveal, 9000);
 
     el.appendChild(iframe);

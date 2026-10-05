@@ -7,9 +7,12 @@
   <title>Motivate | Standard-Work Portfolio</title>
 
   <!-- Favicon & Global CSS -->
-  <link rel="icon" type="image/png" href="../images/logo.png" />
+  <link rel="icon" type="image/png" href="../images-optimized/logo.webp" />
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com"/>
+<link rel="preconnect" href="https://unpkg.com"/>
   <link rel="stylesheet" href="../styles/style.css" />
-  <link rel="stylesheet" href="../styles/frontend.css" />
   <link rel="stylesheet" href="../components/navbar/navbar.css"/>
   <link rel="stylesheet" href="../components/footer/footer.css"/>
   <link rel="stylesheet" href="../components/custom-cursor/custom-cursor.css"/>
@@ -17,21 +20,19 @@
   <link rel="stylesheet" href="../styles/pages/motivate.css"/>
   <link rel="stylesheet" href="../components/device-cascade/device-cascade.css"/>
   <link rel="stylesheet" href="../styles/pages/project-image-hover.css"/>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  
 
   <!-- External Resources -->
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 
   <!-- PDF.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
 
   <!-- Site JS -->
   <script src="../js/script.js" defer></script>
-  <script src="../components/loading-screen/loading-screen.js" defer></script>
   <link rel="stylesheet" href="../components/loading-screen/loading-screen.css" />
   <link rel="stylesheet" href="../components/scroll-cue/scroll-cue.css" />
 </head>
@@ -45,7 +46,7 @@
     <nav class="navbar">
       <div class="navbar-container">
         <a href="../index.html" class="navbar-logo">
-          <img src="../images/logo.png" alt="logo" class="navbar-logo-img"/>
+          <img src="../images-optimized/logo.webp" alt="logo" class="navbar-logo-img"/>
         </a>
         <button class="navbar-burger" aria-label="Toggle navigation menu">
           <span></span>
@@ -53,8 +54,8 @@
           <span></span>
         </button>
         <ul class="navbar-menu">
-          <li><a href="../index.html#about">About</a></li>
-          <li><a href="https://connormcclanahan.com/#projects">Projects</a></li>
+<li><a href="../index.html#about">About</a></li>
+<li><a href="../index.html#projects">Projects</a></li>
           <li><a href="../pdfs/resume.pdf">Resume</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
@@ -154,7 +155,7 @@
 
   <div class="media-column">
     <div class="moscow-image">
-      <img src="../images/moscow-motivate.png" alt="MOSCOW Analysis Diagram" />
+      <img src="../images-optimized/moscow-motivate.webp" alt="MOSCOW Analysis Diagram"  loading="lazy" decoding="async"/>
     </div>
   </div>
 </section>
@@ -179,7 +180,7 @@
   </div>
   
   <div class="workflow-container">
-    <img src="../images/workflow.png" alt="TWI Workflow Diagram" />
+    <img src="../images-optimized/workflow.webp" alt="TWI Workflow Diagram"  loading="lazy" decoding="async"/>
   </div>
 </section>
 
@@ -194,7 +195,7 @@
 
   <div class="media-column">
     <div class="sketch-image">
-      <img src="../images/sketches-motivate.png" alt="Low Fidelity Wireframe" />
+      <img src="../images-optimized/sketches-motivate.webp" alt="Low Fidelity Wireframe"  loading="lazy" decoding="async"/>
     </div>
   </div>
 </section>
@@ -224,7 +225,7 @@
 
 <section id="final-design" class="project-section reveal">
   <h3>Final Design</h3>
-  <img class="final-design-showcase" src="../images/topbar-motivate.png" alt="Motivate final design screens" loading="lazy" />
+  <img class="final-design-showcase" src="../images-optimized/topbar-motivate.webp" alt="Motivate final design screens" loading="lazy" decoding="async" />
 </section>
 
 <!-- MOCKUP SHOWCASE SECTIONS -->
@@ -251,6 +252,7 @@
     <div class="suggested-projects-inner">
       <p class="suggested-projects-eyebrow">You might also like</p>
       <a href="fitphone.html" class="suggested-project-card">
+        <img class="suggested-project-image" src="../images-optimized/mockups/home/whatsapp-home-portrait.webp" alt="FitPhone home screen" loading="lazy" />
         <span class="suggested-project-number">03</span>
         <span class="suggested-project-title">Fontys FitPhone</span>
         <span class="suggested-project-blurb">Digital wellness for healthier phone habits.</span>
@@ -313,29 +315,24 @@
           ariaLabel: 'Motivate app screens',
           noText: true,
           items: [
-            { src: '../images/motivate/mockup-4.png', alt: 'Viewing Standard (tablet)', device: 'tablet' },
-            { src: '../images/motivate/mockup-1.png', alt: 'Standard Form', device: 'phone' },
-            { src: '../images/motivate/mockup-2.png', alt: 'Standard Form Pt2', device: 'phone' },
-            { src: '../images/motivate/mockup-5.png', alt: 'Approval (tablet)', device: 'tablet' },
-            { src: '../images/motivate/mockup-3.png', alt: 'Standard Form Pt3', device: 'phone' }
+            { src: '../images-optimized/motivate/mockup-4.webp', alt: 'Viewing Standard (tablet)', device: 'tablet' },
+            { src: '../images-optimized/motivate/mockup-1.webp', alt: 'Standard Form', device: 'phone' },
+            { src: '../images-optimized/motivate/mockup-2.webp', alt: 'Standard Form Pt2', device: 'phone' },
+            { src: '../images-optimized/motivate/mockup-5.webp', alt: 'Approval (tablet)', device: 'tablet' },
+            { src: '../images-optimized/motivate/mockup-3.webp', alt: 'Standard Form Pt3', device: 'phone' }
           ]
         });
       }
     });
   </script>
 
-  <!-- Custom cursor — the dot replaces the native pointer (hidden by
-       body.has-custom-cursor), the ring trails it. Driven by
-       initCustomCursor() in ../components/custom-cursor/custom-cursor.js. -->
+  <!-- Custom cursor (dot + trailing ring + halo). -->
   <div class="custom-cursor" aria-hidden="true">
     <span class="custom-cursor__ring"></span>
     <span class="custom-cursor__dot"></span>
   </div>
 
-  <!-- Ambient halo behind the cursor. Kept as its own root-level layer
-       because mix-blend-mode: screen must live on the layer itself — a
-       blended child would be confined by its parent's stacking context.
-       Driven by initCustomCursor() too. -->
+  <!-- Ambient halo layer. -->
   <div class="pointer-glow" aria-hidden="true">
     <span class="pointer-glow__halo"></span>
   </div>

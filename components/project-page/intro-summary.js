@@ -16,8 +16,6 @@
       ['Tools Used', /tools|tech|stack|design/i],
       ['GitHub', /github|repository|source/i]
     ];
-    /* Labels that get the purple accent from the intro heading (styled in
-       intro-summary.css). Covers every rendered meta label, GitHub included. */
     const accentLabels = new Set(['Role', 'Context', 'Timeline', 'Tools Used', 'GitHub']);
     const metaItems = metaLabels
       .map(([label, matcher]) => {

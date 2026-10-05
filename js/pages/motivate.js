@@ -15,8 +15,6 @@ const introSummaryData = {
   }
 };
 
-/* Single-column conclusion. Uses the same structure and length as the Diplora
-   case study: one Conclusion column, four titled paragraphs. */
 const finalSectionData = {
   columns: [
     {
@@ -258,41 +256,6 @@ function initPDF() {
   });
 }
 
-function initSmoothScroll() {
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener('click', function onClick(e) {
-      const targetId = this.getAttribute('href');
-      if (!targetId) {
-        return;
-      }
-
-      e.preventDefault();
-      if (targetId === '#') {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        return;
-      }
-
-      const target = document.querySelector(targetId);
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth' });
-      }
-    });
-  });
-}
-
-function reveal() {
-  document.querySelectorAll('.reveal').forEach((el) => {
-    const top = el.getBoundingClientRect().top;
-    el.classList.toggle('active', top < window.innerHeight - 150);
-  });
-}
-
-function addContentReveals() {
-  document.querySelectorAll('body.project-page-standard .project-section p, body.project-page-standard .project-section h3, body.project-page-standard .project-section h4, body.project-page-standard .project-section li, body.project-page-standard .project-section img, body.project-page-standard .case-study-phase__overview h3, body.project-page-standard .case-study-phase__overview li, body.project-page-standard .case-study-process h2, body.project-page-standard .case-study-process__step').forEach((element) => {
-    element.classList.add('reveal', 'reveal-content');
-  });
-}
-
 
 document.addEventListener('DOMContentLoaded', () => {
   if (window.pdfjsLib) {
@@ -300,7 +263,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   initScrollCue({ threshold: 0.3 });
-  initSmoothScroll();
 
   if (window.ProjectPageComponents) {
     window.ProjectPageComponents.renderIntroSummary('#intro-summary', introSummaryData);
@@ -311,17 +273,10 @@ document.addEventListener('DOMContentLoaded', () => {
     window.ProjectPageComponents.renderFinalColumns('#final-container', finalSectionData);
   }
 
-  addContentReveals();
+  window.Portfolio.initContentReveals('body.project-page-standard .project-section p, body.project-page-standard .project-section h3, body.project-page-standard .project-section h4, body.project-page-standard .project-section li, body.project-page-standard .project-section img, body.project-page-standard .case-study-phase__overview h3, body.project-page-standard .case-study-phase__overview li, body.project-page-standard .case-study-process h2, body.project-page-standard .case-study-process__step');
+  window.Portfolio.initRevealOnScroll();
 });
 
-window.addEventListener('scroll', reveal);
 window.addEventListener('load', () => {
-  const loader = document.getElementById('loader');
-  if (loader) {
-    loader.style.display = 'none';
-  }
-
-  document.body.classList.add('loaded');
   initPDF();
-  reveal();
 });

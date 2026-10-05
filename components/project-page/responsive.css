@@ -19,7 +19,7 @@
     gap: 0.75rem;
     padding: 0.8rem 0.9rem;
     background: rgba(15, 15, 15, 0.96);
-    border: 1px solid rgba(110, 7, 243, 0.45);
+    border: 1px solid rgba(var(--color-accent-rgb), 0.45);
     border-radius: 10px;
     box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
   }
@@ -133,14 +133,6 @@
     flex-direction: column;
   }
 
-  .pov-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .pov-hmw {
-    flex-direction: column;
-  }
-
   .split-right {
     border-left: none;
     padding-left: 0;
@@ -160,14 +152,29 @@
     width: 100%;
   }
 
+  /* Competitor tables and comparison matrices stay horizontal on mobile.
+     Enable sideways scrolling as a safety net and let the columns shrink
+     to fit on larger phones/tablets instead of stacking vertically. */
+  .comparison-table-shell,
+  .matrix-shell {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
   .comparison-row {
-    grid-template-columns: 1fr;
-    gap: 0.5rem;
+    grid-template-columns: minmax(110px, 1fr) minmax(150px, 2fr) minmax(150px, 2fr);
+  }
+}
+
+/* Very small phones: give the rows a readable minimum width so they
+   scroll sideways rather than crushing the text. */
+@media (max-width: 480px) {
+  .comparison-row {
+    min-width: 560px;
   }
 
   .matrix-row {
-    grid-template-columns: 1fr;
-    gap: 0.4rem;
+    min-width: 760px;
   }
 }
 
@@ -187,4 +194,5 @@
     transform: none;
   }
 }
+
 

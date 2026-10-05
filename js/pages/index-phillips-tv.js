@@ -1,15 +1,4 @@
-/**
- * Phillips Wall — index "TV" mini demo.
- * Auto-plays a rotating preview of clusters/answers.
- * Card styles mirror the full parallax demo (phillipswall-demo.js):
- * pastel bubbles, portrait cards with a top-center dot, the question,
- * the answer and a right-pill badge. The first cluster (index 0) is
- * treated as the visitor's own submission: its graph bubble carries a
- * persistent "YOU" label. Within the fan, card 0 shows the YOU badge
- * (with a black emphasis ring) and dismisses once the visitor looks at
- * it (focus lands on card 0). All other cards show their ordinal number.
- * No "✕" badge on any card.
- */
+// Phillips Wall mini demo for the index TV row. Auto-plays a rotating preview.
 (function () {
   "use strict";
 
@@ -43,8 +32,7 @@
 
   function trunc(s, n) { return s.length > n ? s.slice(0, n - 1) + "…" : s; }
 
-  // Real visitor notes (mini demo selection). Rule: a bubble only ever
-  // groups notes sharing BOTH the same question AND post-it colour.
+  // Real visitor notes. A bubble groups notes sharing the same question + colour.
   var CLUSTERS = [
     { q: "What is your most remarkable experience with AI?", g: "linear-gradient(135deg,#008ce9 0%,#006db3 100%)", c: "#0E9C98", bg: "#7FD8D3", x: 30.7, y: 24.8, dx: 2.0, dy: 0.5,
       cards: [
@@ -153,12 +141,11 @@
     if (!grid || !fan) return;
     var bubbles = [];
 
-    // Randomize starting cluster and card for this instance (must be before forEach)
+    // Randomize starting cluster and card per instance.
     var order = [0, 1, 2, 3, 4, 5, 6, 7, 8];
     var yourClusterIndex = order[Math.floor(Math.random() * order.length)];
     var yourCardIndex = Math.floor(Math.random() * 5); // 0-4
 
-    // Counter pill — created once per root
     counterEl = document.createElement("div");
     counterEl.className = "mini-card-counter";
     root.appendChild(counterEl);
@@ -200,7 +187,6 @@
     function clearDismiss() { if (dismissTimer) { clearTimeout(dismissTimer); dismissTimer = null; } }
 
     function badgeFor(i, isYourCluster) {
-      // The randomly selected card shows YOU permanently for your cluster
       if (isYourCluster && i === yourCardIndex) {
         return { text: "YOU", you: true };
       }
@@ -228,10 +214,7 @@
 
     function renderCards(c, focusIdx, isYourCluster) {
       cardsEl.innerHTML = "";
-      // Hide the separate question circle; question now lives on each card
       if (qEl) { qEl.style.display = "none"; }
-      // Real notes: each card keeps its own exhibition question + answer
-      // on its original post-it colour (falls back to cluster colour/q).
       var notes = (c.cards || []).slice(0, 5);
       if (!notes.length && c.a) notes = c.a.slice(0, 5).map(function (txt) { return { q: c.q, a: txt }; });
       notes.forEach(function (note, i) {
@@ -260,10 +243,8 @@
         cardsEl.appendChild(card);
       });
 
-      // Reset graph YOU dismissal when your cluster renders
       if (isYourCluster) { graphYouDismissed = false; clearDismiss(); }
       refreshBadges(isYourCluster);
-      // Show counter with initial state
       var listLen = Math.min(5, c.a.length);
       updateCounter(isYourCluster, focusIdx, listLen);
     }
@@ -318,7 +299,6 @@
           clearDismiss();
           fan.classList.remove("is-open");
           if (counterEl) counterEl.classList.remove("active");
-          // Dismiss graph YOU label when your cluster closes
 if (ci === yourClusterIndex) {
             var bubble = bubbles[yourClusterIndex];
             if (bubble) {

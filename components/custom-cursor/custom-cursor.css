@@ -10,9 +10,10 @@
    Three details matter for correctness:
      1. `position: fixed` + clientX/clientY keeps every layer pinned to the
         viewport, so none of them can lag behind or "stick" while scrolling.
-     2. The halo is deliberately its OWN root-level layer using
-        `mix-blend-mode: screen`, so it can only ever LIGHTEN what is beneath it
-        and can never paint over or hide text. It is not nested inside
+     2. The halo is its OWN root-level layer using a faint radial gradient
+        (deliberately no mix-blend-mode, which is expensive to composite every
+        frame), so it reads as a soft glow without covering text. It is not
+        nested inside
         .custom-cursor because a blended element is confined by its parent's
         stacking context — nesting it would render the dot invisible over light
         mockups and photographs.
@@ -77,11 +78,11 @@
    (magnetic pull) — a subtle "lift" like the mockup hover. */
 .custom-cursor.is-over .custom-cursor__ring {
   border-color: rgba(200, 182, 255, 0.85);
-  background-color: rgba(110, 7, 243, 0.12);
+  background-color: rgba(var(--color-accent-rgb), 0.12);
 }
 
 .custom-cursor.is-over .custom-cursor__dot {
-  background: #fff;
+  background: var(--color-text);
 }
 
 /* The native pointer is hidden only once JS has positioned its replacement. */
@@ -99,7 +100,6 @@ body.has-custom-cursor * {
   z-index: 900;
   display: none;
   pointer-events: none;
-  mix-blend-mode: screen;
   opacity: 0;
   transition: opacity 0.5s ease;
 }
@@ -120,30 +120,11 @@ body.has-custom-cursor * {
   will-change: transform;
   background: radial-gradient(
     circle,
-    rgba(110, 7, 243, 0.16) 0%,
-    rgba(110, 7, 243, 0.07) 40%,
-    rgba(110, 7, 243, 0) 72%
+    rgba(var(--color-accent-rgb), 0.16) 0%,
+    rgba(var(--color-accent-rgb), 0.07) 40%,
+    rgba(var(--color-accent-rgb), 0) 72%
   );
   transition: width 0.35s ease, height 0.35s ease, margin 0.35s ease;
-}
-
-/* Image hover has moved to styles/pages/project-image-hover.css — one shared
-   file referenced by every /pages/ project page so the lift + one-at-a-time
-   spotlight stay consistent everywhere. */
-
-/* About portrait: it already lifts via its own rule — extend it with the
-   same purple glow so it feels identical to the index mockups.
-   Specificity (0,3,0) beats the inline about.html rule (0,2,0), and the
-   opacity transition is kept so the load fade-in still animates. */
-body .profile-section .profile-image.profile-image {
-  transition: opacity 0.6s ease, transform 0.45s ease, filter 0.45s ease, box-shadow 0.45s ease;
-}
-
-body .profile-section .profile-image.profile-image:hover {
-  transform: translateY(-6px) rotate(0.5deg) scale(1.03);
-  box-shadow:
-    0 12px 32px rgba(0, 0, 0, 0.6),
-    0 0 28px rgba(110, 7, 243, 0.4);
 }
 
 /* Safety: the navbar logo must never scale or glow. */
@@ -164,7 +145,7 @@ body .suggested-project-card:focus-visible {
   transform: translateY(-3px) scale(1.02);
   box-shadow:
     0 18px 44px rgba(0, 0, 0, 0.45),
-    0 0 28px rgba(110, 7, 243, 0.4);
+    0 0 28px rgba(var(--color-accent-rgb), 0.4);
 }
 
 @media screen and (max-width: 768px) {
@@ -175,19 +156,14 @@ body .suggested-project-card:focus-visible {
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  /* Project-page image hover now lives in project-image-hover.css,
-     which carries its own reduced-motion rules. */
-  body .profile-section .profile-image.profile-image,
-  body .suggested-project-card {
+@media (prefers-reduced-motion: reduce) {  body .suggested-project-card {
     transition: none;
   }
-
-  body .profile-section .profile-image.profile-image:hover,
   .suggested-project-card:hover {
     transform: none;
     filter: none;
   }
+
 
   .custom-cursor,
   .pointer-glow {

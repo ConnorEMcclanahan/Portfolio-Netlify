@@ -16,7 +16,7 @@ body.project-page-standard section {
 body.project-page-standard #intro-summary {
   padding: 7rem 2rem 5rem;
   background: var(--case-bg);
-  color: #fff;
+  color: var(--color-text);
   margin-top: 0;
 }
 
@@ -42,12 +42,12 @@ body.project-page-standard .case-study-phase {
   max-width: 1400px;
   margin: 4rem auto 0;
   padding: 0;
-  border: 1px solid #6E07F3;
+  border: 1px solid var(--color-accent);
 }
 
 body.project-page-standard .case-study-phase__title {
   padding: 1.5rem 2rem;
-  border-bottom: 1px solid rgba(110, 7, 243, 0.6);
+  border-bottom: 1px solid rgba(var(--color-accent-rgb), 0.6);
 }
 
 /* Single source of truth for every phase header (01-06) on every project page.
@@ -58,8 +58,8 @@ body.project-page-standard .case-study-phase__title {
    back to the legacy-looking regular cut. */
 body.project-page-standard .case-study-phase h2 {
   margin: 0;
-  color: #6E07F3;
-  font-family: "Syne", "Plus Jakarta Sans", sans-serif;
+  color: var(--color-accent);
+  font-family: var(--font-display);
   font-size: 1.8rem;
   font-weight: 800;
   text-align: center;
@@ -68,13 +68,13 @@ body.project-page-standard .case-study-phase h2 {
 body.project-page-standard .case-study-phase h3,
 body.project-page-standard .case-study-phase h4,
 body.project-page-standard .case-study-phase__overview li {
-  font-family: "Plus Jakarta Sans", sans-serif;
+  font-family: var(--font-sans);
 }
 
 body.project-page-standard .case-study-phase__overview h3,
 body.project-page-standard .case-study-phase__content h3,
 body.project-page-standard .case-study-phase__content h4 {
-  font-family: "Plus Jakarta Sans", sans-serif;
+  font-family: var(--font-sans);
 }
 
 body.project-page-standard .case-study-phase__body {
@@ -82,15 +82,13 @@ body.project-page-standard .case-study-phase__body {
   grid-template-columns: minmax(180px, 0.7fr) 2fr;
   gap: 3rem;
   padding: 2rem 4rem 3rem;
-}
-
-body.project-page-standard .case-study-phase__overview h3,
-body.project-page-standard .case-study-phase__lead h3 {
+}body.project-page-standard .case-study-phase__overview h3 {
   margin: 0 0 1.25rem;
-  color: #ffff;
+  color: var(--color-text);
   font-size: 1.5rem;
   text-align: left;
 }
+
 
 body.project-page-standard .case-study-phase__overview ul {
   margin: 0;
@@ -143,45 +141,19 @@ body.project-page-standard h3 {
    treatment. More specific section rules may retain larger heading sizes.
    Keep the reading font and 700 weight consistent across page overrides. */
 body.project-page-standard .project-section :is(h4, h5, h6) {
-  font-family: "Plus Jakarta Sans", sans-serif !important;
+  font-family: var(--font-sans) !important;
   font-size: max(1.25rem, 20px) !important;
   font-weight: 700 !important;
-  color: #ffff;
+  color: var(--color-text);
   line-height: 1.3;
   margin: 0 0 0.5rem;
 }
 
-/* Generated labels are not always h4-h6 elements. Give comparison names,
-   persona/POV labels and supporting purple labels the same readable baseline.
-   Scope to case-study content, not navigation or the interactive demo UI. */
 body.project-page-standard :is(
   .comparison-name,
-  .comparison-head,
-  .matrix-cell--name,
-  .matrix-head,
-  .accent-label,
-  .pov-title,
-  .persona-caption-title,
-  .case-study-phase__video-label,
-  .suggested-projects-eyebrow,
-  .suggested-project-number,
-  .intro-kicker
+  .matrix-cell--name
 ) {
-  font-family: "Plus Jakarta Sans", sans-serif !important;
-  font-size: max(1.25rem, 20px) !important;
-  font-weight: 700 !important;
-  line-height: 1.3;
-  overflow-wrap: anywhere;
-}
-
-body.project-page-standard :is(
-  .comparison-name,
-  .matrix-cell--name,
-  .accent-label,
-  .pov-title,
-  .persona-caption-title
-) {
-  color: #6E07F3;
+  color: var(--color-accent);
 }
 
 body.project-page-standard .project-section p,
@@ -195,8 +167,8 @@ body.project-page-standard .project-section p {
 }
 
 body.project-page-standard #design-system h4 {
-  color: #6E07F3 !important;
-  font-family: "Syne", "Plus Jakarta Sans", sans-serif;
+  color: var(--color-accent) !important;
+  font-family: var(--font-display);
   font-size: 2rem !important;
   font-weight: 700;
   line-height: 1.2;
@@ -212,7 +184,7 @@ body.project-page-standard .case-study-phase__narrative {
 
 body.project-page-standard .case-study-phase__narrative h3 {
   margin: 0 0 0.75rem;
-  color: #ffff;
+  color: var(--color-text);
   font-size: 2rem !important;
   line-height: 1.2;
   text-align: left;
@@ -238,55 +210,6 @@ body.project-page-standard .case-study-phase__content > .project-section > div[s
   padding: 0 !important;
 }
 
-body.project-page-standard #research-methods > div[style*="display: grid"] {
-  display: block !important;
-}
-
-body.project-page-standard #research-methods > div[style*="display: grid"] > div[style*="background"] {
-  margin: 0 0 2rem;
-}
-
-body.project-page-standard #research-methods div[style*="background"] {
-  background: transparent !important;
-  border: 0 !important;
-  box-shadow: none !important;
-  padding: 0 !important;
-}
-
-body.project-page-standard #research-methods > div[style*="display: grid"] > div[style*="background"] h4 {
-  color: #fff !important;
-  font-size: 1.25rem !important;
-  font-weight: 700;
-}
-
-body.project-page-standard #research-methods > div[style*="display: grid"] > div[style*="background"] p {
-  color: var(--case-muted) !important;
-}
-
-body.project-page-standard #research-methods .research-methods-copy {
-  max-width: 78ch;
-  margin-top: 2rem;
-}
-
-body.project-page-standard #research-methods .research-methods-copy p {
-  max-width: none;
-  margin: 0 0 1.25rem;
-  color: var(--case-muted) !important;
-  line-height: 1.75;
-}
-
-body.project-page-standard #research-methods .research-methods-copy p:last-child {
-  margin-bottom: 0;
-}
-
-body.project-page-standard #research-methods .research-methods-copy strong {
-  color: #6E07F3;
-}
-
-body.project-page-standard #research-methods {
-  display: none !important;
-}
-
 body.project-page-standard #research .research-narrative {
   max-width: 78ch;
   margin-top: 2rem;
@@ -304,12 +227,12 @@ body.project-page-standard #research .research-narrative p:last-child {
 }
 
 body.project-page-standard #research .research-narrative strong {
-  color: #fff;
+  color: var(--color-text);
 }
 
 body.project-page-standard #research .research-narrative h4 {
   margin: 2.5rem 0 0.75rem;
-  color: #6E07F3;
+  color: var(--color-accent);
   font-size: 2rem !important;
   line-height: 1.2;
   font-weight: 700;
@@ -356,4 +279,3 @@ body.project-page-standard section p {
   margin-bottom: 1.25rem;
   max-width: 68ch;
 }
-

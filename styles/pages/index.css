@@ -1,28 +1,16 @@
 /* Page-specific cleanup for index.html */
 .navbar {
-  background: #000 !important;
+  background: var(--color-bg) !important;
 }
 
-/* NOTE: deliberately no `transform` on body. A transform here turns the body
-   into the containing block for every `position: fixed` descendant, which
-   anchors them to the document instead of the viewport so they visibly drift /
-   "stick" while scrolling. The viewport-anchored pointer glow below relies on
-   this staying off; #top canvas keeps its own compositing hint instead. */
+/* No transform on body — it would break position: fixed descendants. */
 body {
-  color: #fff;
+  color: var(--color-text);
   overflow-x: hidden;
+  overflow-x: clip;
   margin: 0;
   padding: 0;
-  background: #000;
-}
-
-/* Improve scroll performance with Vanta globe */
-#top {
-  will-change: auto;
-}
-
-#top canvas {
-  will-change: transform;
+  background: var(--color-bg);
 }
 
 section {
@@ -38,14 +26,15 @@ section {
   margin-bottom: 0;
 }
 
+/* Fade the bottom of the Vanta globe into the next section. */
 #top::after {
   content: '';
   position: absolute;
-  bottom: 0;
   left: 0;
   right: 0;
-  height: 40%;
-  background: linear-gradient(to bottom, transparent, #000);
+  bottom: 0;
+  height: clamp(160px, 26vh, 320px);
+  background: linear-gradient(to bottom, transparent, var(--color-bg));
   pointer-events: none;
   z-index: 1;
 }
@@ -62,11 +51,7 @@ section {
   transform: translateY(0);
 }
 
-/* Every project row carries .reveal itself (the showcase section no longer
-   does), so each project fades in on its own as it reaches the viewport. The
-   mockup starts a beat after its copy, which reads as one entrance per project
-   instead of two separate swaps. This animates the media column, so the
-   positioning transforms inside the mockup clusters are left untouched. */
+/* Each row reveals on its own; the media column trails the copy. */
 .project-showcase__row.reveal .project-showcase__media {
   opacity: 0;
   transform: translateY(24px);
@@ -79,14 +64,13 @@ section {
 }
 
 .hero.hero-shell {
-  /* Keep the hero content left-aligned over the full-screen Vanta globe
-     instead of Bulma's centered layout. */
+  /* Left-align the hero over the globe instead of Bulma's centered layout. */
   display: block;
 }
 
 .hero-shell {
   position: relative;
-  color: #fff;
+  color: var(--color-text);
   text-align: left;
   max-width: 1200px;
   margin: 0 auto;
@@ -99,14 +83,13 @@ section {
   z-index: 2;
 }
 
-/* Sasha-style editorial type — one font, one statement, restrained highlights.
-   The name stays plain; one or two words get the accent. */
+/* Editorial type: the name stays plain, a word or two get the accent. */
 .hero-title {
   margin-bottom: 1.5rem;
   max-width: 11.5em;
   font-size: clamp(2.2rem, 4.5vw, 4rem) !important;
-  color: #fff;
-  font-family: "Syne", "Plus Jakarta Sans", sans-serif;
+  color: var(--color-text);
+  font-family: var(--font-display);
   font-weight: 700;
   line-height: 1.15;
   letter-spacing: -0.015em;
@@ -117,18 +100,15 @@ section {
   hyphens: none;
 }
 
-/* Line 1 stays on its own row; everything after ("bridging...") always
-   starts on line 2. Block forces the break, nowrap keeps "I'm Connor —"
-   together. Survives the JS word-split rebuild since the class is cloned. */
+/* Force "I'm Connor —" onto its own line. */
 .hero-title .hero-title-line1 {
   display: block;
   white-space: nowrap;
 }
 
-/* Em-dash next to "Connor" — purple, inherits
-   into the JS-split character spans. */
+/* Em-dash next to "Connor" — purple. */
 .hero-title .hero-dash {
-  color: #6e07f3;
+  color: var(--color-accent);
   font-weight: 700;
 }
 
@@ -137,10 +117,9 @@ section {
   font-weight: inherit;
 }
 
-/* Ampersand between "design" and "development" — white, inherits
-   into the JS-split character spans inside <em>. */
+/* Ampersand between "design" and "development" — white. */
 .hero-title .hero-amp {
-  color: #fff;
+  color: var(--color-text);
   font-style: inherit;
   font-weight: inherit;
 }
@@ -154,16 +133,10 @@ section {
 .hero-title em {
   font-style: italic;
   font-weight: 700;
-  color: #6e07f3;
+  color: var(--color-accent);
 }
 
-/* ============================================================
-   HERO ENTRANCE ANIMATION
-   Fun staggered text reveal + subtle scale-in on page load.
-   Mirrors the project-page entrance feel but tuned for the
-   full-screen Vanta globe hero on index.html.
-   ============================================================ */
-
+/* Hero entrance animation. */
 .hero__content {
   position: relative;
   z-index: 2;
@@ -215,7 +188,7 @@ section {
 .hero-title em {
   font-style: italic;
   font-weight: 700;
-  color: #6e07f3;
+  color: var(--color-accent);
 }
 
 /* Make sure split-char spans inside <em> inherit the styling */
@@ -225,30 +198,20 @@ section {
   font-weight: inherit;
 }
 
-/* Scroll-cue component override for index — inside #top, above gradient overlay */
+/* Scroll cue sits above the hero fade. */
 #top .scroll-cue {
   bottom: clamp(88px, 12vh, 132px);
   z-index: 5;
-  color: #d4bfff; /* brighter to offset the gradient overlay */
-  filter: drop-shadow(0 0 8px #9a53ff) drop-shadow(0 0 20px #9a53ff);
+  color: #d4bfff;
+  filter: drop-shadow(0 0 8px var(--color-accent-light)) drop-shadow(0 0 20px var(--color-accent-light));
 }
 
-/* One vertical rhythm for the whole page: the space a project row carries above
-   and below itself. Two of them meet between rows, so every other gap on the
-   page is built to add up to that same 2x — the lead-in from the hero and the
-   space above About Me then read exactly like the gaps between projects.
-   Retuned once, in the mobile block at the end of this file; no gap on the page
-   is ever hard-coded twice. */
+/* One vertical rhythm for the whole page, tuned once in the mobile block. */
 :root {
   --row-space: clamp(5rem, 13vh, 9rem);
 }
 
-/* The hero already ends on a full screen of trailing space, so the showcase only
-   needs a short lead-in: just enough to clear the lifted scroll cue without
-   stacking a full rhythm unit on top of the first row's own padding. The bottom
-   is still left to the last row's own padding, which keeps both ends
-   symmetrical and hands the space above About Me over to that section instead
-   (see #about.about-section). */
+/* Short lead-in: the hero already ends with a full screen of space. */
 #previous-work {
   padding-top: clamp(1.25rem, 3.5vh, 2.5rem);
   padding-bottom: 0;
@@ -262,18 +225,12 @@ section {
   z-index: 10;
 }
 
-/* One project row — text on one side, mockup on the other, like saschas.ai.
-   The default row places text first; the alternate modifier flips the columns.
-   No dividers: rows are separated by whitespace alone. */
+/* One project row — text one side, mockup the other, separated by whitespace. */
 .project-showcase__row {
   display: grid;
   grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
   gap: clamp(2rem, 5vw, 4.5rem);
   align-items: center;
-  /* Generous vertical rhythm between projects — the whitespace does the
-     separating instead of rules, so each row reads as its own piece of work.
-     Two of these meet between rows, and that 2x is what the section gaps above
-     and below the showcase are matched to. */
   padding: var(--row-space) clamp(0.75rem, 2vw, 1.5rem);
 }
 
@@ -290,11 +247,11 @@ section {
 .project-showcase__index {
   display: inline-block;
   margin-bottom: 1rem;
-  font-family: "Plus Jakarta Sans", "Helvetica Neue", sans-serif;
+  font-family: var(--font-sans);
   /* Sized up so the number reads as a label above the title rather than as a
      footnote to it. */
   font-size: clamp(1.05rem, 1.4vw, 1.4rem);
-  color: #6e07f3;
+  color: var(--color-accent);
   letter-spacing: 0.14em;
 }
 
@@ -304,12 +261,12 @@ section {
    colour differs — the titles stay white and keep their purple hover. */
 .project-showcase__title {
   margin: 0 0 0.75rem;
-  font-family: "Syne", "Plus Jakarta Sans", sans-serif;
+  font-family: var(--font-display);
   font-size: 2.25rem;
   font-weight: 800;
   line-height: 1.1;
   letter-spacing: -0.01em;
-  color: #fff;
+  color: var(--color-text);
 }
 
 .project-showcase__title a {
@@ -319,11 +276,11 @@ section {
 }
 
 .project-showcase__title a:hover {
-  color: #6e07f3;
+  color: var(--color-accent);
 }
 
 .project-showcase__dash {
-  color: #6e07f3;
+  color: var(--color-accent);
   font-weight: 400;
 }
 
@@ -354,7 +311,7 @@ section {
    stated explicitly and the chips read as white text on a soft white fill. */
 .project-showcase__tags .tag {
   background: rgba(255, 255, 255, 0.1);
-  color: #fff;
+  color: var(--color-text);
   padding: 5px 10px;
   border-radius: 20px;
   font-size: 0.78rem;
@@ -387,13 +344,13 @@ section {
   margin: 0 0 1.25rem;
   padding: 4px 11px;
   border-radius: 20px;
-  font-family: "Plus Jakarta Sans", "Helvetica Neue", sans-serif;
+  font-family: var(--font-sans);
   font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #fff;
-  background: #6e07f3;
+  color: var(--color-text);
+  background: var(--color-accent);
   white-space: nowrap;
 }
 
@@ -401,16 +358,16 @@ section {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  font-family: "Plus Jakarta Sans", "Helvetica Neue", sans-serif;
+  font-family: var(--font-sans);
   font-weight: 600;
   font-size: 1rem;
-  color: #6e07f3;
+  color: var(--color-accent);
   text-decoration: none;
   transition: color 0.25s ease, gap 0.25s ease;
 }
 
 .project-showcase__link:hover {
-  color: #fff;
+  color: var(--color-text);
 }
 
 .project-showcase__arrow {
@@ -456,34 +413,7 @@ section {
 
 .project-showcase__media-link:hover img {
   transform: scale(1.03);
-  filter: drop-shadow(0 28px 42px rgba(0, 0, 0, 0.75)) drop-shadow(0 0 28px rgba(110, 7, 243, 0.4));
-}
-
-/* The Philips Wall asset is a photograph rather than a transparent mockup,
-   so it keeps a framed card treatment instead of floating on the page. */
-.project-showcase__media--cover .project-showcase__media-link {
-  overflow: hidden;
-  border-radius: 18px;
-  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.45);
-  transition: box-shadow 0.35s ease;
-}
-
-.project-showcase__media--cover .project-showcase__media-link img {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-  object-position: center;
-  filter: none;
-}
-
-.project-showcase__media--cover .project-showcase__media-link:hover img {
-  filter: none;
-}
-
-.project-showcase__media--cover .project-showcase__media-link:hover {
-  box-shadow:
-    0 18px 44px rgba(0, 0, 0, 0.45),
-    0 0 42px rgba(110, 7, 243, 0.28);
+  filter: drop-shadow(0 28px 42px rgba(0, 0, 0, 0.75)) drop-shadow(0 0 28px rgba(var(--color-accent-rgb), 0.4));
 }
 
 /* Mockup cluster: one primary device with two supporting screens fanning out
@@ -543,12 +473,12 @@ section {
    absolutely positioned screens — so the fan restates its own transforms. */
 .project-showcase__media--fan .project-showcase__media-link:hover .project-showcase__fan-main {
   transform: scale(1.03);
-  filter: drop-shadow(0 28px 42px rgba(0, 0, 0, 0.75)) drop-shadow(0 0 28px rgba(110, 7, 243, 0.4));
+  filter: drop-shadow(0 28px 42px rgba(0, 0, 0, 0.75)) drop-shadow(0 0 28px rgba(var(--color-accent-rgb), 0.4));
 }
 
 .project-showcase__media--fan .project-showcase__media-link:hover .project-showcase__fan-back {
   transform: translate(-50%, -50%) translateX(var(--fan-x, 0)) scale(calc(var(--fan-back-scale, 0.94) * 1.03));
-  filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 20px rgba(110, 7, 243, 0.25));
+  filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 20px rgba(var(--color-accent-rgb), 0.25));
 }
 
 /* Mockup deck: one tilted device shown on three of its screens, stepping left
@@ -779,200 +709,23 @@ section {
 }
 
 .project-showcase__media--devices .project-showcase__media-link:hover .project-showcase__device {
-  filter: drop-shadow(0 26px 40px rgba(0, 0, 0, 0.78)) drop-shadow(0 0 26px rgba(110, 7, 243, 0.35));
+  filter: drop-shadow(0 26px 40px rgba(0, 0, 0, 0.78)) drop-shadow(0 0 26px rgba(var(--color-accent-rgb), 0.35));
 }
 
 .project-showcase__media--devices .project-showcase__media-link:hover .project-showcase__device--phone-back {
-  filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.66)) drop-shadow(0 0 20px rgba(110, 7, 243, 0.22));
+  filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.66)) drop-shadow(0 0 20px rgba(var(--color-accent-rgb), 0.22));
 }
 
-/* ---------------------------------------------------------------------------
-   Custom cursor + ambient halo
-   The native pointer is replaced by a 6px dot (tracked 1:1 for exact clicking)
-   with a thin ring trailing just behind it. Behind both sits a soft halo, used
-   as light rather than paint.
-
-   Three details matter for correctness, handled here + in initCustomCursor()
-   (js/pages/index.js):
-     1. `position: fixed` + clientX/clientY keeps every layer pinned to the
-        viewport, so none of them can lag behind or "stick" while scrolling.
-     2. The halo is deliberately its OWN root-level layer using
-        `mix-blend-mode: screen`, so it can only ever LIGHTEN what is beneath it
-        and can never paint over or hide text. It is not nested inside
-        .custom-cursor because a blended element is confined by its parent's
-        stacking context — nesting it would render the dot invisible over light
-        mockups and photographs.
-     3. The native pointer is hidden via `body.has-custom-cursor`, a class JS
-        adds only AFTER it has painted the replacement. So the cursor can never
-        blink out on load, and devices that opt out keep their real one.
-   Each layer is offset by a negative margin so its centre lands on the
-   element's transform origin, letting the JS write a plain translate3d.
-   --------------------------------------------------------------------------- */
-.custom-cursor {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 10000;
-  display: none;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-/* Enabled by initCustomCursor() only when a real hovering pointer is present. */
-.custom-cursor.is-enabled,
-.pointer-glow.is-enabled {
-  display: block;
-}
-
-.custom-cursor.is-active {
-  opacity: 1;
-}
-
-.custom-cursor__ring,
-.custom-cursor__dot {
-  position: absolute;
-  top: 0;
-  left: 0;
-  border-radius: 50%;
-  pointer-events: none;
-  will-change: transform;
-}
-
-/* Thin ring that trails the dot. */
-.custom-cursor__ring {
-  width: 34px;
-  height: 34px;
-  margin: -17px 0 0 -17px;
-  border: 1px solid rgba(167, 139, 255, 0.45);
-  transition: border-color 0.3s ease, background-color 0.3s ease;
-}
-
-/* 6px dot written straight from the pointer position — the actual click point.
-   The dark shadow ring keeps it legible over light photos and mockups, where a
-   pale dot alone would wash out. */
-.custom-cursor__dot {
-  width: 6px;
-  height: 6px;
-  margin: -3px 0 0 -3px;
-  background: #c8b6ff;
-  box-shadow: 0 0 0 1.5px rgba(0, 0, 0, 0.55);
-}
-
-/* Over links/buttons the ring opens up and brightens; the JS scales it too,
-   and tugs the ring gently toward the element's centre (magnetic pull). */
-.custom-cursor.is-over .custom-cursor__ring {
-  border-color: rgba(200, 182, 255, 0.85);
-  background-color: rgba(110, 7, 243, 0.12);
-}
-
-.custom-cursor.is-over .custom-cursor__dot {
-  background: #fff;
-}
-
-/* The native pointer is hidden only once JS has positioned its replacement. */
-body.has-custom-cursor,
-body.has-custom-cursor * {
-  cursor: none !important;
-}
-
-/* Ambient halo — a wide, very faint wash of the site's purple accent that
-   drifts along well behind the cursor. Kept subtle on purpose. */
-.pointer-glow {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 900;
-  display: none;
-  pointer-events: none;
-  mix-blend-mode: screen;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-}
-
-.pointer-glow.is-active {
-  opacity: 1;
-}
-
-.pointer-glow__halo {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 280px;
-  height: 280px;
-  margin: -140px 0 0 -140px;
-  border-radius: 50%;
-  pointer-events: none;
-  will-change: transform;
-  background: radial-gradient(
-    circle,
-    rgba(110, 7, 243, 0.16) 0%,
-    rgba(110, 7, 243, 0.07) 40%,
-    rgba(110, 7, 243, 0) 72%
-  );
-  transition: width 0.35s ease, height 0.35s ease, margin 0.35s ease;
-}
-
-@media screen and (max-width: 768px) {
-  /* No hover on touch — never show the custom cursor or halo. */
-  .custom-cursor,
-  .pointer-glow {
-    display: none !important;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .custom-cursor,
-  .pointer-glow {
-    display: none !important;
-  }
-
-  /* Belt and braces: never leave the visitor with no pointer at all. */
-  body.has-custom-cursor,
-  body.has-custom-cursor * {
-    cursor: auto !important;
-  }
-}
-
-.label {
-  color: #fff;
-}
-
-.btn {
-  display: inline-block;
-  padding: 12px 28px;
-  background-color: #6e07f3;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 30px;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  margin-top: 1.5rem;
-}
-
-.btn:hover {
-  background-color: #5206b8;
-  transform: translateY(-2px);
-}
+/* Custom cursor + ambient halo styles live in
+   components/custom-cursor/custom-cursor.css (linked from this page). */
 
 .title {
-  color: #6E07F3;
+  color: var(--color-accent);
   font-size: 2.25rem !important;
   text-align: center;
   margin-bottom: 0.5rem;
-  font-family: "Syne", "Plus Jakarta Sans", sans-serif;
+  font-family: var(--font-display);
   font-weight: 800;
-}
-
-.subtitle {
-  color: #fff;
-  text-align: center;
-  margin-bottom: 3rem;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-  font-size: 1.125rem !important;
-  line-height: 1.6;
 }
 
 .about-section {
@@ -980,7 +733,7 @@ body.has-custom-cursor * {
   margin: 0 auto 2rem;
   padding-top: 6rem;
   padding-bottom: 6rem;
-  background: #000 !important;
+  background: var(--color-bg) !important;
 }
 
 /* Space above About Me: the last project row already carries one unit of the
@@ -1012,7 +765,7 @@ body.has-custom-cursor * {
   border: 14px solid #111111;
   border-radius: 16px 16px 12px 12px / 20px 20px 14px 14px;
   transform: none;
-  box-shadow: 0 0 0 2px rgba(243, 239, 229, 0.15), 0 8px 18px rgba(0, 0, 0, 0.4), 0 0 30px rgba(110, 7, 243, 0.08);
+  box-shadow: 0 0 0 2px rgba(243, 239, 229, 0.15), 0 8px 18px rgba(0, 0, 0, 0.4), 0 0 30px rgba(var(--color-accent-rgb), 0.08);
   opacity: 0;
   transform: scale(0.95) translateY(20px);
   transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease;
@@ -1027,19 +780,19 @@ body.has-custom-cursor * {
   content: '';
   position: absolute;
   inset: 0;
-  border: 3px solid rgba(110, 7, 243, 0.25);
+  border: 3px solid rgba(var(--color-accent-rgb), 0.25);
   border-radius: inherit;
   pointer-events: none;
   z-index: 2;
-  box-shadow: inset 0 0 25px rgba(110, 7, 243, 0.06);
+  box-shadow: inset 0 0 25px rgba(var(--color-accent-rgb), 0.06);
   opacity: 0;
   transition: opacity 0.4s ease;
 }
 
 .about-portrait:hover::before {
   opacity: 1;
-  border-color: rgba(110, 7, 243, 0.5);
-  box-shadow: inset 0 0 35px rgba(110, 7, 243, 0.12);
+  border-color: rgba(var(--color-accent-rgb), 0.5);
+  box-shadow: inset 0 0 35px rgba(var(--color-accent-rgb), 0.12);
 }
 
 .about-portrait::after {
@@ -1060,7 +813,7 @@ body.has-custom-cursor * {
   width: 200%;
   height: 200%;
   background: radial-gradient(circle at 30% 20%, rgba(30, 30, 30, 0.15) 0%, transparent 50%),
-              linear-gradient(135deg, rgba(110, 7, 243, 0.08) 0%, transparent 40%, rgba(110, 7, 243, 0.04) 70%, transparent 100%);
+              linear-gradient(135deg, rgba(var(--color-accent-rgb), 0.08) 0%, transparent 40%, rgba(var(--color-accent-rgb), 0.04) 70%, transparent 100%);
   pointer-events: none;
   z-index: 1;
   opacity: 0;
@@ -1073,7 +826,7 @@ body.has-custom-cursor * {
 
 .about-portrait:hover {
   transform: translateY(-6px) rotate(0.5deg);
-  box-shadow: 0 0 0 2px rgba(243, 239, 229, 0.15), 0 12px 28px rgba(0, 0, 0, 0.5), 0 0 45px rgba(110, 7, 243, 0.15);
+  box-shadow: 0 0 0 2px rgba(243, 239, 229, 0.15), 0 12px 28px rgba(0, 0, 0, 0.5), 0 0 45px rgba(var(--color-accent-rgb), 0.15);
 }
 
 .about-portrait img {
@@ -1092,16 +845,7 @@ body.has-custom-cursor * {
   filter: saturate(0.9) contrast(1.1) brightness(1);
 }
 
-@keyframes portrait-fade-in {
-  0% {
-    opacity: 0;
-    transform: scale(0.95) translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
-}
+
 
 .about-copy {
   max-width: 100%;
@@ -1110,7 +854,7 @@ body.has-custom-cursor * {
 
 .about-title {
   margin: 0 0 1.75rem;
-  color: #6E07F3 !important;
+  color: var(--color-accent) !important;
   font-size: 2.25rem !important;
   font-weight: 800;
   text-align: left;
@@ -1136,161 +880,17 @@ body.has-custom-cursor * {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  color: #fff;
-  font-family: "Syne", "Plus Jakarta Sans", sans-serif;
+  color: var(--color-text);
+  font-family: var(--font-display);
   font-weight: 700;
   text-decoration: none;
 }
 
 .about-links a:hover {
-  color: #6E07F3;
+  color: var(--color-accent);
 }
 
 .about-links ion-icon {
   font-size: 1rem;
 }
 
-@media screen and (max-width: 768px) {
-  /* Rows stack one per screen here and the mockups get shorter, so the page
-     rhythm steps down to a phone-sized unit. Every gap is built from it, so the
-     hero lead-in and the space above About Me follow automatically and
-     #previous-work no longer needs an override of its own. */
-  :root {
-    --row-space: 4.5rem;
-  }
-
-  section {
-    padding: 3rem 1rem;
-  }
-
-  /* Generous rhythm between stacked projects on small screens too. */
-  .project-showcase__row {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.75rem;
-    padding: var(--row-space) 0.75rem;
-  }
-
-  .project-showcase__row--alt {
-    grid-template-columns: 1fr;
-  }
-
-  /* Show the media above the text on small screens for a stronger first impression. */
-  .project-showcase__text {
-    order: 2;
-  }
-
-  /* Mockups float straight on the page — no panel, no forced box, just a
-     size cap so the artwork never dominates a phone screen. */
-  .project-showcase__media {
-    order: 1;
-  }
-
-  .project-showcase__media-link img {
-    max-width: min(100%, 340px);
-    max-height: 62vh;
-    filter: drop-shadow(0 16px 26px rgba(0, 0, 0, 0.65));
-  }
-
-  .project-showcase__media--cover .project-showcase__media-link img {
-    max-width: 100%;
-  }
-
-  /* Fan cluster: tighter spread and shorter devices so all three screens still
-     sit inside a narrow viewport without spilling past the edges. */
-  .project-showcase__media--fan {
-    --fan-spread: 46%;
-    --fan-back-scale: 0.92;
-  }
-
-  .project-showcase__media--fan .project-showcase__fan {
-    height: clamp(310px, 48vh, 500px);
-  }
-
-  .project-showcase__media--fan .project-showcase__fan-main {
-    height: clamp(290px, 46vh, 470px);
-  }
-
-  .project-showcase__media--fan .project-showcase__fan-back {
-    height: clamp(225px, 36vh, 380px);
-  }
-  /* Deck cluster: the same one-knob setup, retuned for a single column. The
-     front screen takes a little more of the width here, and the overlap grows
-     with it so the three screens still total ~100% of the column instead of
-     spilling past the page edge. */
-  .project-showcase__media--deck {
-    --deck-front-w: min(50%, 30vh);
-    --deck-overlap: calc(var(--deck-front-w) * -0.365);
-    --deck-step: clamp(0.25rem, 0.9vh, 0.6rem);
-  }
-
-  /* Devices cluster: same phone share as desktop, only capped harder so the
-     whole lineup still fits a phone-width viewport. */
-  .project-showcase__media--devices {
-    --devices-tablet-w: min(62%, 42vh);
-  }
-
-  .project-showcase__title {
-    font-size: 1.55rem;
-  }
-
-  .project-showcase__desc {
-    font-size: 0.98rem !important;
-  }
-
-  .project-showcase__meta {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
-  }
-
-  .project-showcase__tags {
-    margin-top: 4px;
-    margin-left: 0;
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 6px;
-    width: 100%;
-    overflow-x: auto;
-    overflow-y: hidden;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    white-space: nowrap;
-  }
-
-  .project-showcase__tags::-webkit-scrollbar {
-    display: none;
-  }
-
-  .project-showcase__tags .tag {
-    font-size: 0.72rem;
-    padding: 4px 8px;
-  }
-
-  .about-section {
-    padding: 4rem 1.25rem;
-  }
-
-  .about-layout {
-    display: block;
-  }
-
-  .about-portrait {
-    float: none;
-    width: min(100%, 280px);
-    margin: 0 auto 2rem;
-    box-shadow: 0 0 0 2px rgba(243, 239, 229, 0.45), 0 8px 18px rgba(0, 0, 0, 0.24), 0 0 30px rgba(110, 7, 243, 0.08);
-  }
-
-  .about-title {
-    text-align: left;
-  }
-
-  .hero-shell {
-    padding: 7.5rem 1.25rem 3.5rem;
-  }
-
-  .hero h1 {
-    font-size: 2.5em !important;
-  }
-}

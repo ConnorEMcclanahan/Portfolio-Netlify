@@ -4,9 +4,12 @@
   <script>document.documentElement.classList.add('js');</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/png" href="../Images/logo.png"/>
+  <link rel="icon" type="image/png" href="../images-optimized/logo.webp"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com"/>
+<link rel="preconnect" href="https://unpkg.com"/>
   <link rel="stylesheet" href="../styles/style.css"/>
-  <link rel="stylesheet" href="../styles/frontend.css"/>
   <link rel="stylesheet" href="../components/navbar/navbar.css"/>
   <link rel="stylesheet" href="../components/footer/footer.css"/>
   <link rel="stylesheet" href="../components/custom-cursor/custom-cursor.css"/>
@@ -14,16 +17,17 @@
   <link rel="stylesheet" href="../components/staggered-mockup/staggered-mockup.css"/>
   <link rel="stylesheet" href="../styles/mobile-responsive.css"/>
   <link rel="stylesheet" href="../styles/pages/fitphone.css"/>
+  <link rel="stylesheet" href="../styles/pages/fitphone-responsive.css"/>
   <link rel="stylesheet" href="../styles/pages/project-image-hover.css"/>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <title>FitPhone | Community-based digital wellness app</title>
   
   <!-- PDF.js library -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
   
   <link rel="stylesheet" href="../components/loading-screen/loading-screen.css" />
   <link rel="stylesheet" href="../components/scroll-cue/scroll-cue.css" />
@@ -40,11 +44,11 @@
   <div class="staggered-mockup" id="staggered-mockup-hero">
     <nav class="navbar">
       <div class="navbar-container">
-        <a href="../index.html" class="navbar-logo"><img src="../images/logo.png" alt="logo" class="navbar-logo-img" /></a>
+        <a href="../index.html" class="navbar-logo"><img src="../images-optimized/logo.webp" alt="logo" class="navbar-logo-img" /></a>
         <button class="navbar-burger" aria-label="Toggle navigation menu"><span></span><span></span><span></span></button>
         <ul class="navbar-menu">
-          <li><a href="../index.html#about">About</a></li>
-          <li><a href="https://connormcclanahan.com/#projects">Projects</a></li>
+<li><a href="../index.html#about">About</a></li>
+<li><a href="../index.html#projects">Projects</a></li>
           <li><a href="../pdfs/resume.pdf">Resume</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
@@ -84,7 +88,7 @@
       <article class="method-card">
         <h3>Ideation</h3>
         <p>This approach allowed us to develop our <strong>core concept</strong>, which became the cornerstone of the project. By refining our ideas based on the research question and creative brainstorming, we were able to focus on the <strong>key aspects</strong> that would best address the challenges we aimed to solve.</p>
-        <img src="../images-optimized/ideation.webp" alt="FitPhone ideation board" class="media-image-full" />
+        <img src="../images-optimized/ideation.webp" alt="FitPhone ideation board" class="media-image-full"  loading="lazy" decoding="async"/>
       </article>
     </div>
 
@@ -140,7 +144,7 @@
       <article class="method-card agile-retrospective">
         <h3>Agile Retrospective</h3>
         <p>At the end of each cycle, the team <strong>reflected on what was working, what was creating friction, and what we wanted to carry into the next sprint</strong>. This made the process more intentional and gave us a practical way to improve our collaboration as well as the product.</p>
-        <img src="../images-optimized/implement.webp" alt="FitPhone Agile Start Stop Continue retrospective" class="retrospective-image" />
+        <img src="../images-optimized/implement.webp" alt="FitPhone Agile Start Stop Continue retrospective" class="retrospective-image"  loading="lazy" decoding="async"/>
         <div class="retrospective-grid">
           <section>
             <h4>Start</h4>
@@ -200,7 +204,7 @@
       <article class="method-card">
         <h3>Low-fidelity Sketches</h3>
         <p>Initial sketches focused on core functionalities like <strong>matchmaking and education</strong>, helping the team <strong>test the structure</strong> before investing in high-fidelity design.</p>
-        <img src="../images-optimized/sketches.webp" alt="FitPhone low-fidelity sketches" class="media-image-full" />
+        <img src="../images-optimized/sketches.webp" alt="FitPhone low-fidelity sketches" class="media-image-full"  loading="lazy" decoding="async"/>
       </article>
 
       <article class="method-card">
@@ -229,7 +233,7 @@
       <h3>Final Design</h3>
     </div>
 
-    <img class="final-design-showcase" src="../images-optimized/sss.webp" alt="FitPhone final design screen collage" loading="lazy" />
+    <img class="final-design-showcase" src="../images-optimized/sss.webp" alt="FitPhone final design screen collage" loading="lazy" decoding="async" />
 
     <div id="mockup-flow" class="mockup-flow"></div>
 
@@ -292,6 +296,7 @@
       <div class="suggested-projects-inner">
         <p class="suggested-projects-eyebrow">You might also like</p>
         <a href="diplora.html" class="suggested-project-card">
+          <img class="suggested-project-image" src="../images-optimized/mockups/diplora/diplorahomeportrait.webp" alt="Diplora ECG app home screen" loading="lazy" />
           <span class="suggested-project-number">01</span>
           <span class="suggested-project-title">Diplora ECG Companion</span>
           <span class="suggested-project-blurb">Accessible ECG sensor app for older adults.</span>
@@ -334,6 +339,8 @@
 
   <!-- Three.js loader: non-overlapping spheres -->
   
+  <script src="../js/script.js" defer></script>
+
   <script src="../components/project-page/utils.js" defer></script>
   <script src="../components/project-page/figma-embed.js" defer></script>
   <script src="../components/project-page/intro-summary.js" defer></script>
@@ -375,18 +382,13 @@
     });
   </script>
 
-  <!-- Custom cursor — the dot replaces the native pointer (hidden by
-       body.has-custom-cursor), the ring trails it. Driven by
-       initCustomCursor() in ../components/custom-cursor/custom-cursor.js. -->
+  <!-- Custom cursor (dot + trailing ring + halo). -->
   <div class="custom-cursor" aria-hidden="true">
     <span class="custom-cursor__ring"></span>
     <span class="custom-cursor__dot"></span>
   </div>
 
-  <!-- Ambient halo behind the cursor. Kept as its own root-level layer
-       because mix-blend-mode: screen must live on the layer itself — a
-       blended child would be confined by its parent's stacking context.
-       Driven by initCustomCursor() too. -->
+  <!-- Ambient halo layer. -->
   <div class="pointer-glow" aria-hidden="true">
     <span class="pointer-glow__halo"></span>
   </div>

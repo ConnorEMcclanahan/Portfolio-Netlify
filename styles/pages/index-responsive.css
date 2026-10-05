@@ -1,0 +1,143 @@
+/* Homepage responsive rules for index.html.
+ * Loaded immediately after index.css so the cascade order matches the original
+ * single-file version (these were the trailing @media blocks). */
+@media screen and (max-width: 768px) {
+  /* Rows stack one per screen here and the mockups get shorter, so the page
+     rhythm steps down to a phone-sized unit. Every gap is built from it, so the
+     hero lead-in and the space above About Me follow automatically and
+     #previous-work no longer needs an override of its own. */
+  :root {
+    --row-space: 4.5rem;
+  }
+
+  section {
+    padding: 3rem 1rem;
+  }
+
+  /* Generous rhythm between stacked projects on small screens too. */
+  .project-showcase__row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+    padding: var(--row-space) 0.75rem;
+  }
+
+  .project-showcase__row--alt {
+    grid-template-columns: 1fr;
+  }
+
+  /* Show the media above the text on small screens for a stronger first impression. */
+  .project-showcase__text {
+    order: 2;
+  }
+
+  /* Mockups float straight on the page — no panel, no forced box, just a
+     size cap so the artwork never dominates a phone screen. */
+  .project-showcase__media {
+    order: 1;
+  }
+
+  .project-showcase__media-link img {
+    max-width: min(100%, 340px);
+    max-height: 62vh;
+    filter: drop-shadow(0 16px 26px rgba(0, 0, 0, 0.65));
+  }
+
+  /* Fan cluster: tighter spread and shorter devices so all three screens still
+     sit inside a narrow viewport without spilling past the edges. */
+  .project-showcase__media--fan {
+    --fan-spread: 46%;
+    --fan-back-scale: 0.92;
+  }
+
+  .project-showcase__media--fan .project-showcase__fan {
+    height: clamp(310px, 48vh, 500px);
+  }
+
+  .project-showcase__media--fan .project-showcase__fan-main {
+    height: clamp(290px, 46vh, 470px);
+  }
+
+  .project-showcase__media--fan .project-showcase__fan-back {
+    height: clamp(225px, 36vh, 380px);
+  }
+  /* Deck cluster: the same one-knob setup, retuned for a single column. The
+     front screen takes a little more of the width here, and the overlap grows
+     with it so the three screens still total ~100% of the column instead of
+     spilling past the page edge. */
+  .project-showcase__media--deck {
+    --deck-front-w: min(50%, 30vh);
+    --deck-overlap: calc(var(--deck-front-w) * -0.365);
+    --deck-step: clamp(0.25rem, 0.9vh, 0.6rem);
+  }
+
+  /* Devices cluster: same phone share as desktop, only capped harder so the
+     whole lineup still fits a phone-width viewport. */
+  .project-showcase__media--devices {
+    --devices-tablet-w: min(62%, 42vh);
+  }
+
+  .project-showcase__title {
+    font-size: 1.55rem;
+  }
+
+  .project-showcase__desc {
+    font-size: 0.98rem !important;
+  }
+
+  .project-showcase__meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .project-showcase__tags {
+    margin-top: 4px;
+    margin-left: 0;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 6px;
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    white-space: nowrap;
+  }
+
+  .project-showcase__tags::-webkit-scrollbar {
+    display: none;
+  }
+
+  .project-showcase__tags .tag {
+    font-size: 0.72rem;
+    padding: 4px 8px;
+  }
+
+  .about-section {
+    padding: 4rem 1.25rem;
+  }
+
+  .about-layout {
+    display: block;
+  }
+
+  .about-portrait {
+    float: none;
+    width: min(100%, 280px);
+    margin: 0 auto 2rem;
+    box-shadow: 0 0 0 2px rgba(243, 239, 229, 0.45), 0 8px 18px rgba(0, 0, 0, 0.24), 0 0 30px rgba(var(--color-accent-rgb), 0.08);
+  }
+
+  .about-title {
+    text-align: left;
+  }
+
+  .hero-shell {
+    padding: 7.5rem 1.25rem 3.5rem;
+  }
+
+  .hero h1 {
+    font-size: 2.5em !important;
+  }
+}

@@ -5,9 +5,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Philips | AI-Powered Museum Feedback</title>
-  <link rel="icon" type="image/png" href="../images/logo.png" />
+  <link rel="icon" type="image/png" href="../images-optimized/logo.webp" />
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com"/>
+<link rel="preconnect" href="https://unpkg.com"/>
   <link rel="stylesheet" href="../styles/style.css" />
-  <link rel="stylesheet" href="../styles/frontend.css" />
   <link rel="stylesheet" href="../components/navbar/navbar.css" />
   <link rel="stylesheet" href="../components/footer/footer.css" />
   <link rel="stylesheet" href="../components/custom-cursor/custom-cursor.css" />
@@ -30,12 +33,12 @@
   <div class="phillips-demo-hero" id="top">
     <nav class="navbar">
       <div class="navbar-container">
-        <a href="../index.html" class="navbar-logo"><img src="../images/logo.png" alt="logo" class="navbar-logo-img" /></a>
+        <a href="../index.html" class="navbar-logo"><img src="../images-optimized/logo.webp" alt="logo" class="navbar-logo-img" /></a>
         <button class="navbar-burger" aria-label="Toggle navigation menu"><span></span><span></span><span></span></button>
         <ul class="navbar-menu">
-          <li><a href="../index.html#about">About</a></li>
-          <li><a href="https://connormcclanahan.com/#projects">Projects</a></li>
-          <li><a href="../pdfs/resume.pdf">Resume</a></li>
+<li><a href="../index.html#about">About</a></li>
+<li><a href="../index.html#projects">Projects</a></li>
+<li><a href="../pdfs/resume.pdf">Resume</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
@@ -58,7 +61,7 @@
       <p>We also visited the Philips Museum to study the physical feedback wall and the wider exhibition context. Seeing visitors move through the space helped us identify the UX problem: the exhibition encouraged active interaction with AI, but the final feedback activity became <strong>a static wall</strong>. The notes were personal and engaging, but visitors could not easily <strong>compare them, revisit them, or see how their thoughts connected to others</strong>.</p>
       <p>As a team, we combined system review, museum observation, stakeholder conversations, team-canvas exercises, project questions, concept research, and feedback sessions. We used these activities to define the audience, understand the existing technical constraints, <strong>identify privacy and accessibility risks</strong>, and decide <strong>what the museum actually needed</strong> from the experience.</p>
       <div class="phillips-image-grid">
-        <figure><img src="../images/phillipswall/team-brainstorming.jpeg" alt="Team members brainstorming with Post-it notes" loading="lazy"><figcaption>Team brainstorming session using physical Post-it notes.</figcaption></figure>
+        <figure><img src="../images-optimized/phillipswall/team-brainstorming.webp" alt="Team members brainstorming with Post-it notes" loading="lazy" decoding="async"><figcaption>Team brainstorming session using physical Post-it notes.</figcaption></figure>
       </div>
     </div>
   </section>
@@ -69,7 +72,7 @@
       <p>Only after the research did we create the proposal, <strong>“Your thoughts connected.”</strong> We explored <strong>a guided visitor journey, a feedback station, and an interactive wall</strong> that could process and display responses over time.</p>
       <p>Optional ideas such as printed summaries and a future time capsule helped us explore the wider opportunity. The core UX direction stayed focused on <strong>making every visitor feel that their contribution had been noticed and connected</strong>.</p>
       <div class="phillips-image-feature">
-        <figure><img src="../images/phillipswall/WhiteboardSketches.jpeg" alt="Early hand-drawn visualization concept" loading="lazy"><figcaption>Early proposal work translating research findings into a visitor journey.</figcaption></figure>
+        <figure><img src="../images-optimized/phillipswall/WhiteboardSketches.webp" alt="Early hand-drawn visualization concept" loading="lazy" decoding="async"><figcaption>Early proposal work translating research findings into a visitor journey.</figcaption></figure>
       </div>
     </div>
   </section>
@@ -103,9 +106,9 @@
       <p>We reduced the experience to a simple visual promise: <strong>a visitor contributes one response and sees it become part of a shared map</strong>. The question screen, language switch, confirmation flow, and response visualization were designed as one continuous journey. <strong>Privacy guidance was placed before scanning</strong> so anonymity and content limits were clear at the moment they mattered.</p>
       <p>I shaped the interaction flow and translated the concept into frontend behavior. The visitor's own response needed to be <strong>easy to recognize</strong>, while <strong>color, position, scale, and a visible language control</strong> communicated the result without requiring visitors to understand the AI behind it.</p>
       <div class="phillips-image-grid">
-        <figure><img src="../images/phillipswall/prototype-question-screen.jpeg" alt="Prototype screen showing AI feedback questions" loading="lazy"><figcaption>Prototype exploration of the question-selection experience.</figcaption></figure>
-        <figure><img src="../images/phillipswall/prototype-response-screen.jpeg" alt="Prototype screen showing grouped visitor responses" loading="lazy"><figcaption>Prototype exploration of grouped responses.</figcaption></figure>
-        <figure><img src="../images/phillipswall/sentiment-map-sketch.jpeg" alt="Hand-drawn sentiment map with x and y axes" loading="lazy"><figcaption>Sketch defining the sentiment map's two axes.</figcaption></figure>
+        <figure><img src="../images-optimized/phillipswall/prototype-question-screen.webp" alt="Prototype screen showing AI feedback questions" loading="lazy" decoding="async"><figcaption>Prototype exploration of the question-selection experience.</figcaption></figure>
+        <figure><img src="../images-optimized/phillipswall/prototype-response-screen.webp" alt="Prototype screen showing grouped visitor responses" loading="lazy" decoding="async"><figcaption>Prototype exploration of grouped responses.</figcaption></figure>
+        <figure><img src="../images-optimized/phillipswall/sentiment-map-sketch.webp" alt="Hand-drawn sentiment map with x and y axes" loading="lazy" decoding="async"><figcaption>Sketch defining the sentiment map's two axes.</figcaption></figure>
       </div>
     </div>
   </section>
@@ -117,9 +120,9 @@
       <p>Responses that land close together <strong>merge into larger clusters</strong>. This makes repeated ideas visible without requiring visitors to read hundreds of individual notes. A <strong>timeline filter</strong> adds another layer, letting people explore <strong>how perspectives change as more responses are collected</strong>.</p>
       <p>I translated the interaction model into the frontend experience, <strong>connected incoming response data to the graph</strong>, and refined the interaction states. Working closely with the backend developers meant that a visitor's position could appear clearly and consistently as the prototype changed.</p>
       <div class="phillips-image-grid">
-        <figure><img src="../images/phillipswall/live-sentiment-graph.jpeg" alt="Live sentiment graph displaying clustered responses" loading="lazy"><figcaption>Live graph showing responses clustered by sentiment.</figcaption></figure>
-        <figure><img src="../images/phillipswall/system-architecture.jpeg" alt="System architecture diagram connecting the web app, API, database, and OpenAI" loading="lazy"><figcaption>High-level architecture connecting the interface, API, database, and AI service.</figcaption></figure>
-        <figure><img src="../images/phillipswall/statistics-dashboard.jpeg" alt="Statistics dashboard showing PostWall response data" loading="lazy"><figcaption>Internal statistics view for monitoring collected responses.</figcaption></figure>
+        <figure><img src="../images-optimized/phillipswall/live-sentiment-graph.webp" alt="Live sentiment graph displaying clustered responses" loading="lazy" decoding="async"><figcaption>Live graph showing responses clustered by sentiment.</figcaption></figure>
+        <figure><img src="../images-optimized/phillipswall/system-architecture.webp" alt="System architecture diagram connecting the web app, API, database, and OpenAI" loading="lazy" decoding="async"><figcaption>High-level architecture connecting the interface, API, database, and AI service.</figcaption></figure>
+        <figure><img src="../images-optimized/phillipswall/statistics-dashboard.webp" alt="Statistics dashboard showing PostWall response data" loading="lazy" decoding="async"><figcaption>Internal statistics view for monitoring collected responses.</figcaption></figure>
       </div>
     </div>
   </section>
@@ -139,10 +142,10 @@
         <span>Spring 2025 AI &amp; Data Event</span>
       </div>
       <div class="phillips-image-grid phillips-event-gallery">
-        <figure><img src="../images/phillipswall/event-room-wide.jpeg" alt="Event table with the PostWall installation and two display screens" loading="lazy"><figcaption>The event setup connected the physical Post-it wall with two live visualizations.</figcaption></figure>
-        <figure><img src="../images/phillipswall/event-live-demonstration.jpeg" alt="Visitors and team members viewing the live PostWall visualization" loading="lazy"><figcaption>Demonstrating the working system and its live response graph.</figcaption></figure>
-        <figure><img src="../images/phillipswall/event-visitor-testing.jpeg" alt="Visitors testing the PostWall experience at the event" loading="lazy"><figcaption>Visitors testing the experience and comparing the two interface views.</figcaption></figure>
-        <figure><img src="../images/phillipswall/museum-installation.jpeg" alt="Philips Museum installation showing the physical Post-it wall and digital visualization" loading="lazy"><figcaption>The final installation brought the physical and digital feedback spaces together.</figcaption></figure>
+        <figure><img src="../images-optimized/phillipswall/event-room-wide.webp" alt="Event table with the PostWall installation and two display screens" loading="lazy" decoding="async"><figcaption>The event setup connected the physical Post-it wall with two live visualizations.</figcaption></figure>
+        <figure><img src="../images-optimized/phillipswall/event-live-demonstration.webp" alt="Visitors and team members viewing the live PostWall visualization" loading="lazy" decoding="async"><figcaption>Demonstrating the working system and its live response graph.</figcaption></figure>
+        <figure><img src="../images-optimized/phillipswall/event-visitor-testing.webp" alt="Visitors testing the PostWall experience at the event" loading="lazy" decoding="async"><figcaption>Visitors testing the experience and comparing the two interface views.</figcaption></figure>
+        <figure><img src="../images-optimized/phillipswall/museum-installation.webp" alt="Philips Museum installation showing the physical Post-it wall and digital visualization" loading="lazy" decoding="async"><figcaption>The final installation brought the physical and digital feedback spaces together.</figcaption></figure>
       </div>
     </div>
     <div class="phillips-demo">
@@ -164,18 +167,19 @@
     </div>
   </section>
 
-  <div class="suggestion-row" style="display: grid !important; grid-template-columns: 340px 1fr 340px; gap: 2rem; width: 100%; margin: 8rem auto 4rem; padding: 0 2rem; align-items: start;">
+  <div class="suggestion-row">
     <!-- Conclusion — rendered by renderFinalColumns() in js/pages/phillipswall.js -->
-    <section id="final-container" class="project-section reveal" style="grid-column: 2; max-width: 750px; width: 100%; justify-self: center; margin: 0 !important; padding: 0 !important;"></section>
+    <section id="final-container" class="project-section reveal"></section>
 
     <!-- You might also like -->
-    <section id="suggested-projects" class="project-section reveal" style="grid-column: 3; width: 340px; margin: 0 !important; padding: 0 !important; align-self: start;">
-      <div class="suggested-projects-inner" style="position: sticky; top: 6rem;">
-        <p class="suggested-projects-eyebrow" style="color: #ffff !important; font-family: 'Syne', 'Plus Jakarta Sans', sans-serif; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; margin: 0 0 1.5rem;">You might also like</p>
-        <a href="motivate.html" class="suggested-project-card" style="display: flex; flex-direction: column; gap: 0.5rem; width: 100%; padding: 1.5rem; border-radius: 10px; background: #101010 !important; border: 1px solid rgba(110, 7, 243, 0.35); text-decoration: none; color: #fff; transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;">
-          <span class="suggested-project-number" style="font-family: 'Syne', 'Plus Jakarta Sans', sans-serif; font-size: 0.75rem; color: #6E07F3 !important; letter-spacing: 0.1em; text-transform: uppercase;">02</span>
-          <span class="suggested-project-title" style="font-family: 'Syne', 'Plus Jakarta Sans', sans-serif; font-size: 1.15rem; font-weight: 700; color: #fff; line-height: 1.3;">Motivate Instruction Creation Tool</span>
-          <span class="suggested-project-blurb" style="font-size: 0.92rem; color: #b8b8b8; line-height: 1.6;">Clearer work instructions for factory teams.</span>
+    <section id="suggested-projects" class="project-section reveal">
+      <div class="suggested-projects-inner">
+        <p class="suggested-projects-eyebrow">You might also like</p>
+        <a href="motivate.html" class="suggested-project-card">
+          <img class="suggested-project-image" src="../images-optimized/motivate/mockup-2.webp" alt="Motivate instruction tool mockup" loading="lazy" />
+          <span class="suggested-project-number">02</span>
+          <span class="suggested-project-title">Motivate Instruction Creation Tool</span>
+          <span class="suggested-project-blurb">Clearer work instructions for factory teams.</span>
         </a>
       </div>
     </section>
@@ -210,6 +214,8 @@
     </div>
   </footer>
 
+  <script src="../js/script.js" defer></script>
+
   <script src="../components/project-page/utils.js" defer></script>
   <script src="../components/project-page/intro-summary.js" defer></script>
   <script src="../components/project-page/final-columns.js" defer></script>
@@ -221,18 +227,13 @@
   <script src="../components/custom-cursor/custom-cursor.js" defer></script>
   <script src="../components/scroll-cue/scroll-cue.js" defer></script>
 
-  <!-- Custom cursor — the dot replaces the native pointer (hidden by
-       body.has-custom-cursor), the ring trails it. Driven by
-       initCustomCursor() in ../components/custom-cursor/custom-cursor.js. -->
+  <!-- Custom cursor (dot + trailing ring + halo). -->
   <div class="custom-cursor" aria-hidden="true">
     <span class="custom-cursor__ring"></span>
     <span class="custom-cursor__dot"></span>
   </div>
 
-  <!-- Ambient halo behind the cursor. Kept as its own root-level layer
-       because mix-blend-mode: screen must live on the layer itself — a
-       blended child would be confined by its parent's stacking context.
-       Driven by initCustomCursor() too. -->
+  <!-- Ambient halo layer. -->
   <div class="pointer-glow" aria-hidden="true">
     <span class="pointer-glow__halo"></span>
   </div>

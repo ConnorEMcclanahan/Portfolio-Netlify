@@ -5,7 +5,7 @@ body.project-page-standard .case-study-process {
   background: var(--case-surface);
   border-top: 1px solid var(--case-line);
   border-bottom: 1px solid var(--case-line);
-  color: #fff;
+  color: var(--color-text);
 }
 
 body.project-page-standard .case-study-process__inner {
@@ -17,8 +17,8 @@ body.project-page-standard .case-study-process__inner {
    headers so the two never drift apart again. */
 body.project-page-standard .case-study-process h2 {
   margin: 0 0 3rem;
-  color: #ffff;
-  font-family: "Syne", "Plus Jakarta Sans", sans-serif;
+  color: var(--color-text);
+  font-family: var(--font-display);
   font-size: 2rem;
   font-weight: 800;
   letter-spacing: 0.04em;
@@ -36,12 +36,12 @@ body.project-page-standard .case-study-process__step {
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  color: #fff;
+  color: var(--color-text);
   text-align: center;
 }
 
 body.project-page-standard .case-study-process__step ion-icon {
-  color: #6E07F3;
+  color: var(--color-accent);
   font-size: 4.5rem;
 }
 
@@ -93,11 +93,11 @@ body.project-page-standard .case-study-process__step::before {
 
 body.project-page-standard .case-study-process__step:hover {
   transform: translateY(-8px);
-  border-color: rgba(110, 7, 243, 0.55);
-  background: rgba(110, 7, 243, 0.08);
+  border-color: rgba(var(--color-accent-rgb), 0.55);
+  background: rgba(var(--color-accent-rgb), 0.08);
   box-shadow:
     0 18px 40px rgba(0, 0, 0, 0.5),
-    0 0 28px rgba(110, 7, 243, 0.35);
+    0 0 28px rgba(var(--color-accent-rgb), 0.35);
 }
 
 body.project-page-standard .case-study-process__step:hover::before {
@@ -110,7 +110,7 @@ body.project-page-standard .case-study-process__step ion-icon {
 
 body.project-page-standard .case-study-process__step:hover ion-icon {
   transform: translateY(-6px) rotate(-8deg) scale(1.15);
-  color: #9a53ff;
+  color: var(--color-accent-light);
 }
 
 /* Label: swap the static underline for an animated one that grows on hover. */
@@ -128,7 +128,7 @@ body.project-page-standard .case-study-process__step span::after {
   width: 0;
   height: 2px;
   border-radius: 2px;
-  background: #9a53ff;
+  background: var(--color-accent-light);
   transform: translateX(-50%);
   transition: width 0.35s ease;
 }
@@ -140,21 +140,20 @@ body.project-page-standard .case-study-process__step:hover span::after {
 /* Keyboard users get the same feedback as pointer users. */
 body.project-page-standard .case-study-process__step:focus-visible {
   transform: translateY(-8px);
-  border-color: rgba(110, 7, 243, 0.55);
-  background: rgba(110, 7, 243, 0.08);
+  border-color: rgba(var(--color-accent-rgb), 0.55);
+  background: rgba(var(--color-accent-rgb), 0.08);
   box-shadow:
     0 18px 40px rgba(0, 0, 0, 0.5),
-    0 0 28px rgba(110, 7, 243, 0.35);
-  outline: 2px solid #9a53ff;
+    0 0 28px rgba(var(--color-accent-rgb), 0.35);
+  outline: 2px solid var(--color-accent-light);
   outline-offset: 2px;
 }
 
 body.project-page-standard .case-study-process__step:focus-visible ion-icon {
   transform: translateY(-6px) rotate(-8deg) scale(1.15);
-  color: #9a53ff;
+  color: var(--color-accent-light);
 }
 
 body.project-page-standard .case-study-process__step:focus-visible span::after {
   width: 100%;
 }
-

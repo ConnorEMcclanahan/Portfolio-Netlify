@@ -56,9 +56,9 @@
   position: absolute;
   inset: 0;
   background: radial-gradient(ellipse 100% 80% at 50% 40%, 
-    rgba(110, 7, 243, 0.15) 0%, 
-    rgba(110, 7, 243, 0.08) 35%, 
-    rgba(110, 7, 243, 0.04) 60%,
+    rgba(var(--color-accent-rgb), 0.15) 0%, 
+    rgba(var(--color-accent-rgb), 0.08) 35%, 
+    rgba(var(--color-accent-rgb), 0.04) 60%,
     transparent 80%);
   pointer-events: none;
   z-index: 1;
@@ -73,7 +73,7 @@
   z-index: 1;
 }
 
-/* Navbar */
+/* Navbar — absolute so it sits at the top of the hero and scrolls away. */
 .device-cascade .navbar {
   position: absolute;
   top: 0;
@@ -186,10 +186,7 @@
   filter: drop-shadow(0 14px 24px rgba(0, 0, 0, 0.6));
 }
 
-/* Front phone */
-.device-cascade__frame--phone-front {
-  /* overlap handled by item transform */
-}
+/* Front phone overlap is handled by the item transform (no extra styles). */
 
 /* Positioning - mirrored about the centre:
    item order in the markup is tablet, phone, phone, tablet, phone.
@@ -271,15 +268,15 @@ body.loaded .device-cascade__item > .device-cascade__frame--phone {
 
 /* Hover shadows */
 .device-cascade__track:hover .device-cascade__frame--tablet {
-  filter: drop-shadow(0 26px 40px rgba(0, 0, 0, 0.78)) drop-shadow(0 0 26px rgba(110, 7, 243, 0.35));
+  filter: drop-shadow(0 26px 40px rgba(0, 0, 0, 0.78)) drop-shadow(0 0 26px rgba(var(--color-accent-rgb), 0.35));
 }
 
 .device-cascade__track:hover .device-cascade__frame--phone {
-  filter: drop-shadow(0 26px 40px rgba(0, 0, 0, 0.78)) drop-shadow(0 0 26px rgba(110, 7, 243, 0.35));
+  filter: drop-shadow(0 26px 40px rgba(0, 0, 0, 0.78)) drop-shadow(0 0 26px rgba(var(--color-accent-rgb), 0.35));
 }
 
 .device-cascade__track:hover .device-cascade__frame--phone-back {
-  filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.66)) drop-shadow(0 0 20px rgba(110, 7, 243, 0.22));
+  filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.66)) drop-shadow(0 0 20px rgba(var(--color-accent-rgb), 0.22));
 }
 
 /* Responsive */

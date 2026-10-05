@@ -1,23 +1,10 @@
-﻿/**
- * Phillips Wall Demo - Vanilla JS Sentiment Index
- * Real visitor notes from the museum Post-it wall. Rule: a bubble only
- * ever groups notes that share BOTH the same exhibition question AND the
- * same post-it colour (Dutch cards are grouped with their English
- * translation, same colour). Bubbles sit on their group's sentiment
- * centroid (size = member count). Click a bubble to expand its real cards.
- * Off-topic notes with no AI sentiment (conv_609, conv_405, conv_264)
- * are excluded entirely — 58 real notes plotted. Bubbles sit on their
- * group's sentiment centroid — decluttered with small display offsets
- * (dx, dy) where groups share the optimistic corner so every bubble stays
- * clickable. Order of positions still follows the sentiment scores.
- */
+﻿// Phillips Wall demo — real visitor notes on a sentiment map. Click a bubble
+// to expand its cards.
 (function () {
   "use strict";
 
   var DEMO_CLUSTERS = [
-    // x/y are centroid(left%, top%) of member sentiment —
-    // top-left is optimistic/excited, bottom-right is worried/critical.
-    // dx/dy are small display-only nudges so overlapping groups separate.
+    // x/y = sentiment centroid; dx/dy = small nudges so overlapping groups separate.
     { id:1, q:"What is your most remarkable experience with AI?", c:"#0E9C98", bg:"#7FD8D3", x:30.7, y:24.8, dx:2.0, dy:0.5,
       cards:[
         { q:"What is your most remarkable experience with AI?", a:"We wrote a song with my daughter about why vegetables are super healthy and sweets not. It took 15 minutes.", bg:"#7FD8D3" },
@@ -137,9 +124,7 @@
     return map[hex] || "#BFE3FF";
   }
 
-  // Solid flat colors for the wall bubbles — same hues as the pastels,
-  // but fully saturated so they read clearly on the black hero.
-  // Cards stay pastel (above) so body text keeps high contrast.
+  // Saturated colours for bubbles, pastel for cards.
   function clusterSolidColor(g) {
     if (!g) return "#008CE9";
     var hex = (g.match(/#([0-9a-fA-F]{6})/) || [])[1];
@@ -157,18 +142,14 @@
   function createCluster(cluster) {
     var groupEl = document.createElement("div");
     groupEl.className = "cluster-group";
-    // True sentiment position, plus a small display-only declutter nudge.
     var px = cluster.x + (cluster.dx || 0);
     var py = cluster.y + (cluster.dy || 0);
     groupEl.style.left = px + "%";
     groupEl.style.top = py + "%";
-    // Sweep spatially across the wall, rather than following the data order.
     groupEl.style.setProperty("--cluster-enter-delay", (0.05 + px * 0.005 + py * 0.001).toFixed(3) + "s");
     groupEl.setAttribute("data-cluster-id", cluster.id);
 
     var bubbleCount = cluster.cards.length;
-    // Small clusters (1-2) stay small, medium ones grow, big ones cap out —
-    // this gives the natural variety of a living wall.
     var bubbleSize = Math.min(88, 36 + bubbleCount * 9);
     var bubble = document.createElement("div");
     bubble.className = "answer-bubble";
@@ -179,8 +160,7 @@
     bubble.style.top = "0";
     bubble.style.transform = "translate(-50%, -50%)";
     groupEl.appendChild(bubble);
-    // Honest stacking: singleton bubbles sit above the big clusters so
-    // they stay hoverable where (question x colour) groups overlap.
+    // Singletons sit above big clusters so they stay hoverable.
     if (bubbleCount <= 1) groupEl.style.zIndex = "8";
     groupEl.setAttribute("title", cluster.q + " (" + bubbleCount + (bubbleCount === 1 ? " real note)" : " real notes)"));
     groupEl.setAttribute("aria-label", cluster.q + ", " + bubbleCount + (bubbleCount === 1 ? " note" : " notes") + ". Activate to explore.");
@@ -240,10 +220,7 @@
     cardStack.className = "card-stack";
 
     var totalCards = cluster.cards.length;
-    // Pixel spacing between card centers. Wide enough that each card
-    // clearly peeks out from behind its neighbour in the idle fan (no
-    // hovering needed to read the deck). Shrink to fit so even the
-    // 9-card hero cluster stays on screen.
+    // Card spacing: wide enough to read the idle fan, shrunk to fit.
     var narrowScreen = window.innerWidth < 768;
     var baseCardW = narrowScreen ? 210 : 360;
     var baseSpacing = narrowScreen ? 150 : 260;
@@ -253,8 +230,6 @@
       : baseSpacing;
     var cardSpacing = Math.max(120, Math.min(baseSpacing, fitSpacing));
 
-    // Card background: each card keeps its original post-it colour (note.bg).
-    // The cluster fallback below only covers legacy data without per-card colours.
     var cardBg = clusterPastelColor(cluster.g);
     var textColor = "#1e1b4b";
     var textColorMuted = "#4b5563";
@@ -266,23 +241,18 @@
         card.style.background = cardBg;
         card.setAttribute("data-index", idx);
 
-        // Top-center dot indicator
         var dot = document.createElement("div");
         dot.className = "answer-card__dot";
         card.appendChild(dot);
 
-        // Each card shows its own real exhibition question + answer on its
-        // original post-it colour.
         var note = cluster.cards[idx] || {};
         card.style.background = note.bg || cardBg;
 
-        // Question (upper third of card)
         var questionEl = document.createElement("div");
         questionEl.className = "answer-card__question";
         questionEl.textContent = note.q || cluster.q || "";
         card.appendChild(questionEl);
 
-        // Answer (fluid middle block)
         var answerEl = document.createElement("div");
         answerEl.className = "answer-card__answer";
         answerEl.textContent = note.a || "";
@@ -314,17 +284,14 @@
 
     stackEl.appendChild(cardStack);
 
-    // Backdrop-click-to-close: attach once, not on every open (the old code
-    // stacked a duplicate listener each time a cluster was opened).
+    // Attach the backdrop close handler once.
     if (!stackBackdropHandler) {
       stackBackdropHandler = function (e) {
-        // Clicking the dark backdrop (outside cards/question/close btn) closes.
         if (e.target === stackEl) closeExpanded();
       };
       stackEl.addEventListener("click", stackBackdropHandler);
     }
 
-    // Footer counter pill — shows total card count
     var footerCounter = document.createElement("div");
     footerCounter.className = "card-footer-counter active";
     if (totalCards === 1) {
@@ -334,7 +301,6 @@
     }
     stackEl.appendChild(footerCounter);
 
-    // Keep counter state in sync when focus changes
     updateCounterText = function () {
       if (!footerCounter) return;
       var currentTotal = cluster ? cluster.cards.length : 0;
@@ -348,8 +314,6 @@
     };
 
     updateCards(cluster, totalCards, cardSpacing);
-    // Force a synchronous layout so the fan transforms are painted on the
-    // very first frame (avoids a flash of fully-stacked cards on open).
     void cardStack.offsetHeight;
   }
 
@@ -357,12 +321,7 @@
     var cards = stackEl.querySelectorAll(".answer-card");
     var center = (totalCards - 1) / 2;
 
-    // Match the original PhillipsWall fan geometry but with a slightly
-    // wider arc so the fan is obvious even without hovering:
-    //   maxAngle = min(35, totalCards * 3)
-    //   angle    = (idx - center) * (maxAngle / totalCards)
-    // No downward arc on idle cards (the original sits them flat),
-    // only a gentle lift on hover.
+    // Wider arc than the original so the fan reads without hovering.
     var maxAngle = Math.min(35, totalCards * 3);
     var angleStep = maxAngle / totalCards;
 
@@ -376,9 +335,7 @@
       var ty = isFocused ? -110 : (isHovered ? -40 : 0);
       var rot = isFocused ? 0 : angle;
       var scale = isFocused ? 1 : (isHovered ? 1.05 : 1);
-      // z-index peaks at the CENTER card and decreases outward. This keeps
-      // the fanned tops from poking up above their neighbours on the outer
-      // cards (the left-side corner-raising problem) — clean fan on both sides.
+      // z-index peaks at the centre card so the fan stays clean on both sides.
       var zIndex = isFocused ? 100 : (isHovered ? 50 + idx : 10 + (totalCards - Math.abs(idx - center)));
       var opacity = isFocused ? 1 : (focusedCard !== null ? 0 : 1);
 
@@ -387,10 +344,7 @@
       card.style.opacity = opacity;
       card.classList.toggle("focused", isFocused);
       card.classList.toggle("hovered", isHovered);
-      // Color state: cards inherit their background from the cluster gradient
-      // (set at creation time); no card-single/card-multi class toggling needed.
     });
-    // Sync counter text after each update
     if (updateCounterText) updateCounterText();
   }
 
@@ -415,8 +369,6 @@
 var axisLines = document.createElement("div");
     axisLines.className = "axis-lines";
 
-    // Activation: wall starts faded; "Try the demo" (or first bubble
-    // click) fades everything in.
     var activateBtn = hero.querySelector("#demo-activate-btn");
     function activateDemo() {
       hero.classList.add("demo-live");
@@ -456,8 +408,7 @@ var axisLines = document.createElement("div");
       if (e.key === "Escape") closeExpanded();
     });
 
-    // Swallow wheel/touch scrolling while a cluster is open so the
-    // page behind the cards stays put.
+    // Stop the page scrolling while a cluster is open.
     function swallowIfOpen(e) {
       if (activeCluster) {
         e.preventDefault();
@@ -468,7 +419,6 @@ var axisLines = document.createElement("div");
 
     window.addEventListener("resize", function () {
       if (activeCluster && !resizeRefreshPending) {
-        // Recompute spacing from scratch so the fan is correct at the new size.
         resizeRefreshPending = true;
         var cluster = activeCluster;
         closeExpanded();

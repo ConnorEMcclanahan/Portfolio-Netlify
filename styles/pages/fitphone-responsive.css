@@ -1,0 +1,169 @@
+/* Responsive rules for the FitPhone case study.
+ * Loaded immediately after fitphone.css so the cascade order matches the
+ * original single-file version (these were the trailing @media blocks). */
+@media (max-width: 768px) {
+  .pdf-container {
+    width: 100%;
+    height: 70vh;
+  }
+
+  .pdf-page-indicator {
+    font-size: 0.75rem;
+    padding: 4px 8px;
+  }
+
+  .pdf-controls button {
+    font-size: 0.8rem;
+  }
+
+  #final-container,
+  .final-section {
+    flex-direction: column;
+  }
+
+  .reveal.active:not(section):not(.reveal-content) {
+    display: block;
+    padding: 0;
+  }
+
+  .reveal.active:not(section) .text-column {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1.5rem;
+  }
+
+  .intro-summary-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .intro-summary-left {
+    padding: 0;
+  }
+}
+/* ============================================================
+   INTRO SECTION PARITY WITH DIPLORA
+   Every project page presents the overview/intro section exactly
+   like the Diplora case study: same fonts, sizes, colors,
+   alignment, and grid proportions (body.project-page-standard
+   rules load last and override any legacy intro styles).
+   ============================================================ */
+
+
+/* ============================================================
+   SUGGESTED PROJECT SECTION — sits beside the reflection
+   The reflection/final-container stays centered in the main
+   column; the suggested projects sit in a fixed sidebar.
+   ============================================================ */
+.suggestion-row {
+  display: grid;
+  grid-template-columns: 340px 1fr 340px;
+  gap: 2rem;
+  width: 100%;
+  margin: 8rem auto 4rem;
+  padding: 0 2rem;
+}
+
+.suggestion-row > #final-container {
+  grid-column: 2;
+  max-width: 750px;
+  width: 100%;
+  justify-self: center;
+}
+
+.suggestion-row > #suggested-projects {
+  grid-column: 3;
+  width: 340px;
+}
+
+.suggested-projects-inner {
+  position: sticky;
+  top: 6rem;
+}
+
+.suggested-projects-eyebrow {
+  color: var(--color-text) !important;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin: 0 0 1.5rem;
+}
+
+.suggested-project-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 1.5rem;
+  border-radius: 10px;
+  background: var(--color-surface);
+  border: 1px solid rgba(var(--color-accent-rgb), 0.35);
+  text-decoration: none;
+  color: var(--color-text);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.suggested-project-card:hover,
+.suggested-project-card:focus-visible {
+  transform: translateY(-3px);
+  border-color: var(--color-accent);
+  box-shadow: 0 8px 22px rgba(var(--color-accent-rgb), 0.25);
+}
+
+.suggested-project-number {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  color: var(--color-accent);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.suggested-project-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.3;
+}
+
+.suggested-project-blurb {
+  font-size: 0.92rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+.suggested-project-image {
+  display: block;
+  width: 100%;
+  height: 220px;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 10px;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(var(--color-accent-rgb), 0.14), transparent 72%),
+    rgba(255, 255, 255, 0.04);
+  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.45));
+}
+
+@media (max-width: 768px) {
+  .suggestion-row {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin: 6rem auto 2rem;
+    padding: 0 1.25rem;
+  }
+
+  .suggestion-row > #final-container {
+    grid-column: 1;
+  }
+
+  .suggestion-row > #suggested-projects {
+    grid-column: 1;
+    width: 100%;
+  }
+
+  .suggested-projects-inner {
+    position: static;
+  }
+}
