@@ -7,11 +7,11 @@
   <title>Motivate | Standard-Work Portfolio</title>
 
   <!-- Favicon & Global CSS -->
-  <link rel="icon" type="image/png" href="../images-optimized/logo.webp" />
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link rel="preconnect" href="https://cdnjs.cloudflare.com"/>
-<link rel="preconnect" href="https://unpkg.com"/>
+  <link rel="icon" type="image/png" href="../images/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com"/>
+  <link rel="preconnect" href="https://unpkg.com"/>
   <link rel="stylesheet" href="../styles/style.css" />
   <link rel="stylesheet" href="../components/navbar/navbar.css"/>
   <link rel="stylesheet" href="../components/footer/footer.css"/>
@@ -20,13 +20,11 @@
   <link rel="stylesheet" href="../styles/pages/motivate.css"/>
   <link rel="stylesheet" href="../components/device-cascade/device-cascade.css"/>
   <link rel="stylesheet" href="../styles/pages/project-image-hover.css"/>
-  
 
   <!-- External Resources -->
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 
   <!-- PDF.js -->
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
@@ -46,7 +44,7 @@
     <nav class="navbar">
       <div class="navbar-container">
         <a href="../index.html" class="navbar-logo">
-          <img src="../images-optimized/logo.webp" alt="logo" class="navbar-logo-img"/>
+          <img src="../images-optimized/logo.webp" alt="logo" class="navbar-logo-img" decoding="async" />
         </a>
         <button class="navbar-burger" aria-label="Toggle navigation menu">
           <span></span>
@@ -54,8 +52,8 @@
           <span></span>
         </button>
         <ul class="navbar-menu">
-<li><a href="../index.html#about">About</a></li>
-<li><a href="../index.html#projects">Projects</a></li>
+          <li><a href="../index.html#about">About</a></li>
+          <li><a href="../index.html#projects">Projects</a></li>
           <li><a href="../pdfs/resume.pdf">Resume</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
@@ -89,24 +87,19 @@
   </div>
 </section>
 
-
-
-
   <!-- Competitor analysis -->
 <section id="competitor-analysis" class="project-section reveal">
   <div id="competitor-analysis-mount"></div>
 </section>
 
-
-
   <!-- RESEARCH FOCUS -->
-  <section id="research-question" class="project-section reveal">
-    <div class="text-column narrative-block">
-      <h3>Research Question</h3>
-      <p><strong>The central question was:</strong> How can the PMT platform support efficient instruction management while meeting standardization requirements?</p>
-      <p>This led to four supporting questions: how to make instruction creation intuitive, which workflow steps are essential, how factory conditions affect the interface, and what technical challenges exist in building a compliant PDF viewer.</p>
-    </div>
-  </section>
+<section id="research-question" class="project-section reveal">
+  <div class="text-column narrative-block">
+    <h3>Research Question</h3>
+    <p><strong>The central question was:</strong> How can the PMT platform support efficient instruction management while meeting standardization requirements?</p>
+    <p>This led to four supporting questions: how to make instruction creation intuitive, which workflow steps are essential, how factory conditions affect the interface, and what technical challenges exist in building a compliant PDF viewer.</p>
+  </div>
+</section>
 <!-- CUSTOMER INTERVIEWS -->
 <section id="customer-interviews" class="project-section reveal">
   <div class="text-column">
@@ -115,7 +108,6 @@
     <p>The findings focused the design around <strong>easier instruction management</strong>, <strong>stronger integration</strong>, and interfaces that remain readable in real factory conditions.</p>
   </div>
 </section>
-
 
 <section id="observational-studies" class="project-section reveal">
   <div id="observational-mount"></div>
@@ -178,7 +170,7 @@
       I translated the requirements into a <strong>complete instruction-creation workflow based on Training Within Industry methodology</strong>. The flow covered the practical sequence from creating a standard and documenting the work to adding media, reviewing content, submitting it for approval, and making the approved version available to factory teams. Structuring the process this way kept the experience aligned with <strong>how standards are actually created and used</strong>, rather than treating each screen as an isolated feature.
     </p>
   </div>
-  
+
   <div class="workflow-container">
     <img src="../images-optimized/workflow.webp" alt="TWI Workflow Diagram"  loading="lazy" decoding="async"/>
   </div>
@@ -252,7 +244,7 @@
     <div class="suggested-projects-inner">
       <p class="suggested-projects-eyebrow">You might also like</p>
       <a href="fitphone.html" class="suggested-project-card">
-        <img class="suggested-project-image" src="../images-optimized/mockups/home/whatsapp-home-portrait.webp" alt="FitPhone home screen" loading="lazy" />
+        <img class="suggested-project-image" src="../images-optimized/mockups/home/whatsapp-home-portrait.webp" alt="FitPhone home screen" loading="lazy" decoding="async" />
         <span class="suggested-project-number">03</span>
         <span class="suggested-project-title">Fontys FitPhone</span>
         <span class="suggested-project-blurb">Digital wellness for healthier phone habits.</span>
@@ -291,7 +283,7 @@
   </footer>
 
 <!-- Move scripts to bottom of body -->
-  
+
   <script src="../components/project-page/utils.js" defer></script>
   <script src="../components/project-page/intro-summary.js" defer></script>
   <script src="../components/project-page/final-columns.js" defer></script>

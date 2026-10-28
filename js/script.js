@@ -13,25 +13,44 @@
   }
 
   // Smooth-scroll in-page anchor links (`#section`); a bare `#` scrolls to the
-  // top. Runs on DOMContentLoaded, before components inject their own links.
+  // top. Delegated on the document so it also covers links components inject
+  // after load (e.g. the scroll cue) without extra listeners per link.
   function initSmoothAnchorLinks() {
-    document.querySelectorAll('a[href^="#"]').forEach((link) => {
-      link.addEventListener('click', (event) => {
-        const href = link.getAttribute('href');
-        if (!href) return;
+    document.addEventListener('click', (event) => {
+      if (
+        event.defaultPrevented
+        || event.button !== 0
+        || event.metaKey
+        || event.ctrlKey
+        || event.shiftKey
+        || event.altKey
+        || !(event.target instanceof Element)
+      ) {
+        return;
+      }
 
-        if (href === '#') {
-          event.preventDefault();
-          window.scrollTo({ top: 0, behavior: smoothBehavior() });
-          return;
-        }
+      const link = event.target.closest('a[href^="#"]');
+      if (!link) return;
 
-        const target = document.querySelector(href);
-        if (!target) return;
+      const href = link.getAttribute('href');
+      if (!href) return;
 
+      if (href === '#') {
         event.preventDefault();
-        target.scrollIntoView({ behavior: smoothBehavior() });
-      });
+        window.scrollTo({ top: 0, behavior: smoothBehavior() });
+        return;
+      }
+
+      let target = null;
+      try {
+        target = document.querySelector(href);
+      } catch (error) {
+        return; // Not a valid selector — leave the click to the browser.
+      }
+      if (!target) return;
+
+      event.preventDefault();
+      target.scrollIntoView({ behavior: smoothBehavior() });
     });
   }
 

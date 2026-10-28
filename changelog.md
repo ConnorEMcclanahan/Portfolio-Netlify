@@ -178,3 +178,7 @@
 - Deferred the PDF.js library and removed the redundant `pdf.worker.min.js` script tags (they were blocking first paint in the `<head>` on Motivate, FitPhone and Diplora)
 - Replaced the scroll-reveal on all project pages with `IntersectionObserver` (reveal-once) instead of calling `getBoundingClientRect()` over every `.reveal` element on every scroll frame, which forced synchronous layout and made scrolling feel laggy
 - Added `decoding="async"` to the lazy-loaded images so image decode no longer blocks the main thread
+
+**Version 41 : Fixed the tablet navbar clipping and refreshed the About copy**
+- Replaced the navbar container's fixed 28rem logo-menu gap with a viewport-scaled gap and stepped the nav padding/menu size down between 769px and 1100px, so the menu no longer runs off the right edge of the screen on tablets
+- Rewrote the About section's off-screen paragraph: gaming (Counter-Strike and Old School RuneScape), music and movies are now the main interests, with cooking kept as just a casual interest
