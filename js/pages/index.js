@@ -258,13 +258,12 @@ function initHeroEntrance() {
 
   Array.from(tempDiv.childNodes).forEach(node => rebuildNode(node, heroTitle));
 
+  // Stagger the reveal with CSS transition delays rather than one timer per
+  // character (~150 timers), keeping the main thread quieter during load.
   const spans = heroTitle.querySelectorAll('.split-char');
-  
   spans.forEach((span, index) => {
-    const delay = Math.min(index * 15, 200);
-    setTimeout(() => {
-      span.classList.add('is-visible');
-    }, delay);
+    span.style.transitionDelay = `${Math.min(index * 15, 200)}ms`;
+    span.classList.add('is-visible');
   });
 
   heroContent.classList.add('is-visible');

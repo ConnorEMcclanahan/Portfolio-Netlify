@@ -12,7 +12,11 @@
   justify-content: space-between;
   max-width: 1400px;
   margin: 0 auto;
-  gap: 28rem;
+  /* Scales with the viewport instead of a fixed 28rem: on tablet widths the
+     fixed gap pushed the menu past the right edge of the screen, clipping the
+     last link against the viewport (the "white bar" at the nav's edge). The
+     28rem look is kept from ~1245px up, where the menu always fits. */
+  gap: clamp(2rem, 36vw, 28rem);
 }
 
 .navbar-logo {
@@ -64,7 +68,23 @@
   height: 3px;
   background-color: var(--color-accent);
   border-radius: 2px;
-  transition: all 0.3s ease;
+}
+
+/* Tablet: the full menu stays visible (burger only appears on phones), but the
+   gap, padding and link size step down so the row always fits inside the
+   viewport instead of clipping the last link against the right edge. */
+@media (min-width: 769px) and (max-width: 1100px) {
+  .navbar {
+    padding: 1rem;
+  }
+
+  .navbar-menu {
+    gap: 1.25rem !important;
+  }
+
+  .navbar-menu li a {
+    font-size: 1rem;
+  }
 }
 
 /* Mobile responsive */

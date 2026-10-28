@@ -23,44 +23,47 @@ function parseRedirects() {
       const from = parts[0];
       const to = parts[1];
       const status = parts[2] ? parseInt(parts[2]) : 200;
-      redirects.push({ from, to, status });
+      redirects.push({ from, to, status, regex: compilePattern(from) });
     }
   }
 
   return redirects;
 }
 
+// Compile a Netlify-style redirect pattern into a RegExp once at startup so
+// every request only needs `pathname.match()` instead of rebuilding regexes.
+function compilePattern(fromPattern) {
+  // Convert Netlify-style patterns to regex
+  let source = fromPattern
+    .replace(/\*/g, '.*')
+    .replace(/\?/g, '.')
+    .replace(/\$(\d+)/g, '(.*)'); // Handle $1, $2 etc
+
+  if (!source.startsWith('^')) source = '^' + source;
+  if (!source.endsWith('$')) source = source + '$';
+
+  try {
+    return new RegExp(source);
+  } catch (error) {
+    return null; // Skip invalid regex
+  }
+}
+
 function matchRedirect(pathname, redirects) {
   for (const redirect of redirects) {
-    const fromPattern = redirect.from;
-    
-    // Convert Netlify-style patterns to regex
-    let regexPattern = fromPattern
-      .replace(/\*/g, '.*')
-      .replace(/\?/g, '.')
-      .replace(/\$(\d+)/g, '(.*)'); // Handle $1, $2 etc
-    
-    if (!regexPattern.startsWith('^')) regexPattern = '^' + regexPattern;
-    if (!regexPattern.endsWith('$')) regexPattern = regexPattern + '$';
+    if (!redirect.regex) continue;
 
-    try {
-      const regex = new RegExp(regexPattern);
-      const match = pathname.match(regex);
+    const match = pathname.match(redirect.regex);
+    if (!match) continue;
 
-      if (match) {
-        let toPath = redirect.to;
-        // Replace $1, $2, etc with captured groups
-        for (let i = 1; i < match.length; i++) {
-          toPath = toPath.replace(new RegExp(`\\$${i}`, 'g'), match[i]);
-        }
-        // Replace $: and $/ if present
-        toPath = toPath.replace(/\$:/g, ':').replace(/\$\//g, '/');
-        return { to: toPath, status: redirect.status };
-      }
-    } catch (e) {
-      // Skip invalid regex
-      continue;
+    let toPath = redirect.to;
+    // Replace $1, $2, etc with captured groups
+    for (let i = 1; i < match.length; i++) {
+      toPath = toPath.replace(new RegExp(`\\$${i}`, 'g'), match[i]);
     }
+    // Replace $: and $/ if present
+    toPath = toPath.replace(/\$:/g, ':').replace(/\$\//g, '/');
+    return { to: toPath, status: redirect.status };
   }
   return null;
 }

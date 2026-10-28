@@ -257,7 +257,7 @@
   align-items: center;
   justify-content: center;
   line-height: 0;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, background-color 0.3s ease;
   z-index: 1001;
   cursor: pointer;
   font-family: inherit;
@@ -295,7 +295,8 @@
   border-radius: 1.5rem;
   background: #BFE3FF;
   cursor: pointer;
-  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+              opacity 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   transform-origin: bottom center;
   display: flex;
   flex-direction: column;
