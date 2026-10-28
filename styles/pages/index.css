@@ -876,6 +876,15 @@ section {
   filter: drop-shadow(0 0 4px rgba(110, 7, 243, 0.6)) drop-shadow(0 0 10px rgba(110, 7, 243, 0.3));
 }
 
+/* Zoom the portrait in slightly so the figure fills the frame more and the
+   torso sits more central. The outline SVG shares the same transform, which
+   keeps the silhouette locked to the photo. */
+.portrait-container img,
+.portrait-container .portrait-outline {
+  transform: scale(1.25);
+  transform-origin: 50% 30%;
+}
+
 
 
 .about-copy {
