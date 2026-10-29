@@ -142,10 +142,30 @@ function thickenVantaGlobeLines(effect) {
 }
 
 
+// Plays the hero entrance once the loading screen has revealed the page, so
+// the character animation is visible instead of finishing behind the loader.
+function initHeroEntranceWhenVisible() {
+  if (document.body && document.body.classList.contains('loaded')) {
+    initHeroEntrance();
+    return;
+  }
+
+  const onReveal = () => {
+    document.removeEventListener('loading-screen:hide', onReveal);
+    window.removeEventListener('load', onReveal);
+    initHeroEntrance();
+  };
+  document.addEventListener('loading-screen:hide', onReveal);
+  // Safety: if the loading screen never fires (it always should), play the
+  // entrance once the window load event has settled.
+  window.addEventListener('load', onReveal);
+}
+
+
 function initVantaBackground() {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (!window.VANTA || !window.VANTA.GLOBE || reduceMotion) {
-    initHeroEntrance();
+    initHeroEntranceWhenVisible();
     return;
   }
 
@@ -190,7 +210,7 @@ function initVantaBackground() {
 
   window.addEventListener('resize', () => window.setTimeout(capResolution, 120));
 
-  initHeroEntrance();
+  initHeroEntranceWhenVisible();
 }
 
 function initHeroEntrance() {

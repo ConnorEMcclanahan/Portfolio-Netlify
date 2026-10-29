@@ -25,6 +25,35 @@ body {
   padding: 0;
 }
 
+/* ---------------------------------------------------------------------------
+   Image fade-in
+   Images fade in the moment they finish loading (`.is-loaded` is added by
+   components/loading-screen/loading-screen.js) so they never pop into view.
+   The fade is a keyframe animation rather than a `transition` so it cannot
+   clobber the transform/filter transitions other rules put on the same
+   <img> (project showcase decks, portraits, device cascades, ...).
+--------------------------------------------------------------------------- */
+.js img:not(.is-loaded) {
+  opacity: 0;
+}
+
+.js img.is-loaded {
+  animation: portfolio-image-fade 0.4s ease;
+}
+
+@keyframes portfolio-image-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js img:not(.is-loaded),
+  .js img.is-loaded {
+    opacity: 1;
+    animation: none;
+  }
+}
+
 .hero {
   align-items: stretch;
   color: white !important;

@@ -56,26 +56,44 @@
 
   // Reveal `.reveal` elements once as they enter the viewport, then stop
   // observing them. Falls back to revealing everything when IntersectionObserver
-  // is unavailable.
+  // is unavailable. Waits for the loading screen to reveal the page first, so
+  // reveals never play hidden behind it.
   function initRevealOnScroll() {
     const reveals = document.querySelectorAll('.reveal');
     if (!reveals.length) return;
 
-    if (!('IntersectionObserver' in window)) {
-      reveals.forEach((el) => el.classList.add('active'));
+    const start = () => {
+      if (!('IntersectionObserver' in window)) {
+        reveals.forEach((el) => el.classList.add('active'));
+        return;
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { rootMargin: '0px 0px -12% 0px', threshold: 0 });
+
+      reveals.forEach((el) => observer.observe(el));
+    };
+
+    if (document.body && document.body.classList.contains('loaded')) {
+      start();
       return;
     }
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { rootMargin: '0px 0px -12% 0px', threshold: 0 });
-
-    reveals.forEach((el) => observer.observe(el));
+    const onReveal = () => {
+      document.removeEventListener('loading-screen:hide', onReveal);
+      window.removeEventListener('load', onReveal);
+      start();
+    };
+    document.addEventListener('loading-screen:hide', onReveal);
+    // Safety: if the loading screen never fires (it always should), reveal
+    // once the window load event has settled.
+    window.addEventListener('load', onReveal);
   }
 
   // Mark every element matching `selector` as scroll-revealable content. Call
