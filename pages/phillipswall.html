@@ -23,6 +23,9 @@
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
   <link rel="stylesheet" href="../components/loading-screen/loading-screen.css" />
   <link rel="stylesheet" href="../components/scroll-cue/scroll-cue.css" />
+  <!-- Preload the first-screen images so the loading screen finishes faster. -->
+  <link rel="preload" as="image" href="../images-optimized/logo.webp" fetchpriority="high"/>
+  <link rel="preload" as="image" href="../images-optimized/phillipswall/team-brainstorming.webp" fetchpriority="high"/>
 </head>
 <body class="project-page-standard">
   <!-- Shared Loading Screen Component -->

@@ -33,6 +33,10 @@
   <script src="../js/script.js" defer></script>
   <link rel="stylesheet" href="../components/loading-screen/loading-screen.css" />
   <link rel="stylesheet" href="../components/scroll-cue/scroll-cue.css" />
+  <!-- Preload the first-screen images so the loading screen finishes faster. -->
+  <link rel="preload" as="image" href="../images-optimized/logo.webp" fetchpriority="high"/>
+  <link rel="preload" as="image" href="../images-optimized/motivate/mockup-3.webp" fetchpriority="high"/>
+  <link rel="preload" as="image" href="../images-optimized/motivate/mockup-4.webp" fetchpriority="high"/>
 </head>
 <body class="project-page-standard">
   <!-- Shared Loading Screen Component -->

@@ -182,3 +182,11 @@
 **Version 41 : Fixed the tablet navbar clipping and refreshed the About copy**
 - Replaced the navbar container's fixed 28rem logo-menu gap with a viewport-scaled gap and stepped the nav padding/menu size down between 769px and 1100px, so the menu no longer runs off the right edge of the screen on tablets
 - Rewrote the About section's off-screen paragraph: gaming (Counter-Strike and Old School RuneScape), music and movies are now the main interests, with cooking kept as just a casual interest
+
+**Version 42 : Made images fully load behind the loading screen (no more chunky pop-in)**
+- The shared loading screen now force-fetches and decodes every image on the page (including the `loading="lazy"` ones below the fold) while it is up, and only reveals the site once images, fonts and the window load event have settled — capped by a 2.5s timeout so slow connections are never held hostage
+- Images now fade in the moment they finish loading (`.is-loaded` added by the loading-screen script) via a keyframe animation in `styles/style.css`, so nothing pops into view mid-scroll; the animation is used instead of a `transition` so it can't clobber the transform/filter transitions on project showcase decks, portraits and device cascades
+- The loader now fades out over 0.5s instead of disappearing abruptly, and is removed from the DOM once the fade has finished
+- Scroll reveals (`initRevealOnScroll`) and the hero character entrance now wait for `loading-screen:hide`, so their animations no longer play hidden behind the loader
+- Added `<link rel="preload" as="image" fetchpriority="high">` hints for each page's first-screen images (logo, hero and first project media) so fetching starts before the scripts run
+- Both the image fade and the loader fade are skipped under `prefers-reduced-motion`
