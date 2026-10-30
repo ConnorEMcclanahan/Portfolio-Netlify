@@ -506,6 +506,25 @@ body.demo-locked .case-study-nav {
   .card-footer-counter { bottom: 16px; font-size: 0.6rem; padding: 3px 10px; }
 }
 
+/* Tablet: the sentiment wall hero stays usable on portrait tablets where the
+   desktop insets (130px) would otherwise crowd the bubbles off the edges. */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .phillips-demo-hero { min-height: 560px; }
+  .phillips-demo-header { top: 92px; padding: 0 1.5rem; }
+  .phillips-demo-header h2 { font-size: 1.9rem; }
+  .sentiment-grid { top: 170px; left: 60px; right: 60px; bottom: 88px; }
+  .answer-bubble { width: 44px; height: 44px; }
+}
+
+/* Mobile: tighten the hero so the wall fits inside the viewport. */
+@media (max-width: 768px) {
+  .phillips-demo-hero { min-height: 520px; }
+  .phillips-demo-header { top: 80px; padding: 0 1rem; }
+  .phillips-demo-header h2 { font-size: 1.5rem; }
+  .sentiment-grid { top: 140px; left: 30px; right: 30px; bottom: 88px; }
+  .answer-bubble { width: 42px; height: 42px; }
+}
+
 .cluster-group:hover .answer-bubble { transform: translate(-50%, -50%) scale(1.15); box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25); }
 
 @keyframes float {

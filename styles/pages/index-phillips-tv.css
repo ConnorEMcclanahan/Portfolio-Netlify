@@ -67,7 +67,11 @@
 .phillips-tv__stand { display: flex; flex-direction: column; align-items: center; }
 .phillips-tv__neck { display: block; width: clamp(56px, 12%, 90px); height: 22px; background: linear-gradient(180deg,#2c2c34,#101014); clip-path: polygon(12% 0, 88% 0, 100% 100%, 0% 100%); }
 .phillips-tv__base { display: block; width: clamp(180px, 46%, 300px); height: 10px; border-radius: 999px; background: linear-gradient(180deg,#3d3d48,#0c0c10); box-shadow: 0 10px 22px rgba(0,0,0,0.6); }
-@media (max-width: 768px) { .phillips-tv { width: min(100%, 380px); } }
+@media (min-width: 769px) and (max-width: 1024px) {
+  .phillips-tv { width: min(100%, 460px); }
+}
+@media (max-width: 768px) { .phillips-tv { width: min(100%, 360px); } }
+@media (max-width: 480px) { .phillips-tv { width: min(100%, 300px); } }
 @media (prefers-reduced-motion: reduce) { .mini-bubble.is-spot::after { animation: none !important; } .mini-card, .mini-question, .mini-fan { transition: none !important; } }
 
 @keyframes tvPing { 0% { transform: scale(0.7); opacity: 1; } 100% { transform: scale(1.25); opacity: 0; } }
