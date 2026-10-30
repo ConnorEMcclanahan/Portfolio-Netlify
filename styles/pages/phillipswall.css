@@ -520,3 +520,23 @@ body.project-page-standard .project-section h4 + p {
     position: static;
   }
 }
+
+/* Mobile/tablet: keep case-study sections from colliding with the fixed
+   bottom nav and keep copy readable. */
+@media (max-width: 1024px) {
+  body.project-page-standard section.project-section {
+    padding-bottom: 4rem;
+  }
+}
+
+@media (max-width: 768px) {
+  body.project-page-standard section.project-section {
+    padding: 1.5rem 0.75rem;
+    padding-bottom: 3rem;
+  }
+  body.project-page-standard .text-column {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+}
